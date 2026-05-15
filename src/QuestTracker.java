@@ -6,3 +6,4 @@ public class QuestTracker {
     private ArrayList<Quest> riwayatMisiSelesai;
 }
 
+// testing ini hal baru
