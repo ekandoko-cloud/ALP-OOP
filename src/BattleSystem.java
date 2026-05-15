@@ -4,11 +4,9 @@ public class BattleSystem {
     //private int turnSekarang;
     private BattleLog battleLog;
 
-    public BattleSystem(PlayerCharacter[] partyPlayer, Monster[] partyEnemy, BattleLog battleLog) {
-        this.partyPlayer = partyPlayer;
-        this.partyEnemy = partyEnemy;
-        this.battleLog = battleLog;
+    public BattleSystem() {
     }
+
 
     public PlayerCharacter[] getPartyPlayer() {
         return partyPlayer;

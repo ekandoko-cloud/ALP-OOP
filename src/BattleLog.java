@@ -3,6 +3,11 @@ import java.util.ArrayList;
 public class BattleLog {
     private ArrayList<String> historyLog = new ArrayList<>();
 
+    public BattleLog() {
+        this.historyLog = new ArrayList<>();
+    }
+
+
     public void tambahEntri(String teks) {
         historyLog.add(teks);
     }

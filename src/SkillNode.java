@@ -8,11 +8,70 @@ public class SkillNode {
     private SkillNode parent;
     private ArrayList<SkillNode> children;
 
+    public SkillNode() {
+        this.namaSkill = "";
+        this.deskripsi = "";
+        this.biayaGold = 0;
+        this.isUnlocked = false;
+        this.parent = null;
+        this.children = new ArrayList<>();
+    }
+
+
+    public String getNamaSkill() {
+        return namaSkill;
+    }
+
+    public void setNamaSkill(String namaSkill) {
+        this.namaSkill = namaSkill;
+    }
+
+    public String getDeskripsi() {
+        return deskripsi;
+    }
+
+    public void setDeskripsi(String deskripsi) {
+        this.deskripsi = deskripsi;
+    }
+
+    public int getBiayaGold() {
+        return biayaGold;
+    }
+
+    public void setBiayaGold(int biayaGold) {
+        this.biayaGold = biayaGold;
+    }
+
+    public boolean isUnlocked() {
+        return isUnlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        isUnlocked = unlocked;
+    }
+
+    public SkillNode getParent() {
+        return parent;
+    }
+
+    public void setParent(SkillNode parent) {
+        this.parent = parent;
+    }
+
+    public ArrayList<SkillNode> getChildren() {
+        return children;
+    }
+
+    public void setChildren(ArrayList<SkillNode> children) {
+        this.children = children;
+    }
+
     public void unlock() {
+        this.isUnlocked = true;
     }
 
     public boolean isAvailable() {
-        return true;
+        return parent == null || parent.isUnlocked;
     }
 }
 

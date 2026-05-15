@@ -5,13 +5,10 @@ public class ConsumableFood extends Item implements IConsumable {
     private int tempDefBuff;
     private String infoGiziSDG;
 
-    public ConsumableFood(int healHpAmount, int healMpAmount, int tempStrBuff, int tempDefBuff, String infoGiziSDG) {
-        this.healHpAmount = healHpAmount;
-        this.healMpAmount = healMpAmount;
-        this.tempStrBuff = tempStrBuff;
-        this.tempDefBuff = tempDefBuff;
-        this.infoGiziSDG = infoGiziSDG;
+    public ConsumableFood() {
+        super();
     }
+
 
     public void consume(GameCharacter target) {
     }

@@ -1,12 +1,12 @@
 public class ClassTree {
     private ClassNode root;
 
-    public ClassTree(ClassNode root) {
-        this.root = root;
+    public ClassTree() {
     }
 
+
     public ClassNode getRoot() {
-        return null;
+        return root;
     }
 
     public void pilihClass(ClassNode node, PlayerCharacter karakter) {
