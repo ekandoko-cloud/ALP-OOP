@@ -1,7 +1,8 @@
 public class ClassTree {
     private ClassNode root;
 
-    public ClassTree() {
+    public ClassTree(ClassNode root) {
+        this.root = root;
     }
 
 

@@ -3,8 +3,8 @@ import java.util.Stack;
 public class MapTraversal {
     private Stack<Location> riwayatArea;
 
-    public MapTraversal() {
-        this.riwayatArea = new Stack<>();
+    public MapTraversal(Stack<Location> riwayatArea) {
+        this.riwayatArea = riwayatArea;
     }
 
 

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Shop {
     private ArrayList<Item> daftarItem;
 
-    public Shop() {
-        this.daftarItem = new ArrayList<>();
+    public Shop(ArrayList<Item> daftarItem) {
+        this.daftarItem = daftarItem;
     }
 
 

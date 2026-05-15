@@ -3,8 +3,8 @@ import java.util.LinkedList;
 public class Inventory {
     private LinkedList<Item> listBarang;
 
-    public Inventory() {
-        this.listBarang = new LinkedList<>();
+    public Inventory(LinkedList<Item> listBarang) {
+        this.listBarang = listBarang;
     }
 
 

@@ -8,7 +8,15 @@ public abstract class GameCharacter {
     protected int defense;
     protected int level;
 
-    protected GameCharacter() {
+    protected GameCharacter(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level) {
+        this.nama = nama;
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+        this.maxMp = maxMp;
+        this.currentMp = currentMp;
+        this.kekuatan = kekuatan;
+        this.defense = defense;
+        this.level = level;
     }
 
 

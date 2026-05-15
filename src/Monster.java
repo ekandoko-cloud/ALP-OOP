@@ -2,8 +2,19 @@ public class Monster extends GameCharacter {
     private String idMonster;
     private String triviaPenyakit;
 
-    public Monster() {
-        super();
+    public Monster(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
+                   String idMonster, String triviaPenyakit) {
+        super(nama, maxHp, currentHp, maxMp, currentMp, kekuatan, defense, level);
+        this.nama = nama;
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+        this.maxMp = maxMp;
+        this.currentMp = currentMp;
+        this.kekuatan = kekuatan;
+        this.defense = defense;
+        this.level = level;
+        this.idMonster = idMonster;
+        this.triviaPenyakit = triviaPenyakit;
     }
 
 

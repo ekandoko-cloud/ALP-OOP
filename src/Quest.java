@@ -4,7 +4,11 @@ public abstract class Quest {
     protected int targetKills;
     protected int hadiahKoin;
 
-    protected Quest() {
+    protected Quest(String idQuest, String namaQuest, int targetKills, int hadiahKoin) {
+        this.idQuest = idQuest;
+        this.namaQuest = namaQuest;
+        this.targetKills = targetKills;
+        this.hadiahKoin = hadiahKoin;
     }
 
 

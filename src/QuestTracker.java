@@ -5,10 +5,10 @@ public class QuestTracker {
     private ArrayList<SubQuest> daftarSubQuestAktif;
     private ArrayList<Quest> riwayatMisiSelesai;
 
-    public QuestTracker() {
-        this.daftarMainQuest = new ArrayList<>();
-        this.daftarSubQuestAktif = new ArrayList<>();
-        this.riwayatMisiSelesai = new ArrayList<>();
+    public QuestTracker(ArrayList<MainQuest> daftarMainQuest, ArrayList<SubQuest> daftarSubQuestAktif, ArrayList<Quest> riwayatMisiSelesai) {
+        this.daftarMainQuest = daftarMainQuest;
+        this.daftarSubQuestAktif = daftarSubQuestAktif;
+        this.riwayatMisiSelesai = riwayatMisiSelesai;
     }
 
     public ArrayList<MainQuest> getDaftarMainQuest() {

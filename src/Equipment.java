@@ -4,8 +4,17 @@ public class Equipment extends Item implements IEquippable {
     private int bonusDefense;
     private int levelTempa;
 
-    public Equipment() {
-        super();
+    public Equipment(String idItem, String namaItem, int hargaJual, String deskripsi,
+                     String tipeEquipment, int bonusKekuatan, int bonusDefense, int levelTempa) {
+        super(idItem, namaItem, hargaJual, deskripsi);
+        this.idItem = idItem;
+        this.namaItem = namaItem;
+        this.hargaJual = hargaJual;
+        this.deskripsi = deskripsi;
+        this.tipeEquipment = tipeEquipment;
+        this.bonusKekuatan = bonusKekuatan;
+        this.bonusDefense = bonusDefense;
+        this.levelTempa = levelTempa;
     }
 
 

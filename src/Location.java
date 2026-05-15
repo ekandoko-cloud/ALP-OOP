@@ -2,7 +2,9 @@ public class Location {
     private String namaLokasi;
     private String deskripsiLokasi;
 
-    public Location() {
+    public Location(String namaLokasi, String deskripsiLokasi) {
+        this.namaLokasi = namaLokasi;
+        this.deskripsiLokasi = deskripsiLokasi;
     }
 
 

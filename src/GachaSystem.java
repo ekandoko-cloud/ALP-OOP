@@ -2,9 +2,9 @@ public class GachaSystem {
     private Item[] poolItem;
     private int[] bobotProbabilitas;
 
-    public GachaSystem() {
-        this.poolItem = null;
-        this.bobotProbabilitas = null;
+    public GachaSystem(Item[] poolItem, int[] bobotProbabilitas) {
+        this.poolItem = poolItem;
+        this.bobotProbabilitas = bobotProbabilitas;
     }
 
 

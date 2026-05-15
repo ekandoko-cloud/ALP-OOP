@@ -5,8 +5,18 @@ public class ConsumableFood extends Item implements IConsumable {
     private int tempDefBuff;
     private String infoGiziSDG;
 
-    public ConsumableFood() {
-        super();
+    public ConsumableFood(String idItem, String namaItem, int hargaJual, String deskripsi,
+                          int healHpAmount, int healMpAmount, int tempStrBuff, int tempDefBuff, String infoGiziSDG) {
+        super(idItem, namaItem, hargaJual, deskripsi);
+        this.idItem = idItem;
+        this.namaItem = namaItem;
+        this.hargaJual = hargaJual;
+        this.deskripsi = deskripsi;
+        this.healHpAmount = healHpAmount;
+        this.healMpAmount = healMpAmount;
+        this.tempStrBuff = tempStrBuff;
+        this.tempDefBuff = tempDefBuff;
+        this.infoGiziSDG = infoGiziSDG;
     }
 
 

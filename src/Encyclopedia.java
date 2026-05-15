@@ -5,10 +5,10 @@ public class Encyclopedia {
     private HashMap<String, Object> indexMakanan;
     private HashMap<String, Object> indexLokasi;
 
-    public Encyclopedia() {
-        this.indexMonster = new HashMap<>();
-        this.indexMakanan = new HashMap<>();
-        this.indexLokasi = new HashMap<>();
+    public Encyclopedia(HashMap<String, Object> indexMonster, HashMap<String, Object> indexMakanan, HashMap<String, Object> indexLokasi) {
+        this.indexMonster = indexMonster;
+        this.indexMakanan = indexMakanan;
+        this.indexLokasi = indexLokasi;
     }
 
 

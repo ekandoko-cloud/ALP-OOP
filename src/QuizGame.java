@@ -2,8 +2,12 @@ public class QuizGame extends MiniGame {
     private String[] arraySoalGizi;
     private String[] arrayJawaban;
 
-    public QuizGame() {
-        super();
+    public QuizGame(String namaGame, int rewardKoin, String[] arraySoalGizi, String[] arrayJawaban) {
+        super(namaGame, rewardKoin);
+        this.namaGame = namaGame;
+        this.rewardKoin = rewardKoin;
+        this.arraySoalGizi = arraySoalGizi;
+        this.arrayJawaban = arrayJawaban;
     }
 
 

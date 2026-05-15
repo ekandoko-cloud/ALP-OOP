@@ -8,13 +8,13 @@ public class SkillNode {
     private SkillNode parent;
     private ArrayList<SkillNode> children;
 
-    public SkillNode() {
-        this.namaSkill = "";
-        this.deskripsi = "";
-        this.biayaGold = 0;
-        this.isUnlocked = false;
-        this.parent = null;
-        this.children = new ArrayList<>();
+    public SkillNode(String namaSkill, String deskripsi, int biayaGold, boolean isUnlocked, SkillNode parent, ArrayList<SkillNode> children) {
+        this.namaSkill = namaSkill;
+        this.deskripsi = deskripsi;
+        this.biayaGold = biayaGold;
+        this.isUnlocked = isUnlocked;
+        this.parent = parent;
+        this.children = children;
     }
 
 

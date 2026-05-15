@@ -4,9 +4,9 @@ public class WaypointSystem {
     private ArrayList<Location> lokasiTerbuka;
     private Location lokasiSaatIni;
 
-    public WaypointSystem() {
-        this.lokasiTerbuka = new ArrayList<>();
-        this.lokasiSaatIni = null;
+    public WaypointSystem(ArrayList<Location> lokasiTerbuka, Location lokasiSaatIni) {
+        this.lokasiTerbuka = lokasiTerbuka;
+        this.lokasiSaatIni = lokasiSaatIni;
     }
 
 

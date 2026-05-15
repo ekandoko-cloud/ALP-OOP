@@ -9,8 +9,14 @@ public class ClassNode {
     private ClassNode parent;
     private ArrayList<ClassNode> children;
 
-    public ClassNode() {
-        this.children = new ArrayList<>();
+    public ClassNode(String namaClass, String deskripsi, int syaratLevel, boolean isUnlocked, ClassType tipeClass, ClassNode parent, ArrayList<ClassNode> children) {
+        this.namaClass = namaClass;
+        this.deskripsi = deskripsi;
+        this.syaratLevel = syaratLevel;
+        this.isUnlocked = isUnlocked;
+        this.tipeClass = tipeClass;
+        this.parent = parent;
+        this.children = children;
     }
 
 

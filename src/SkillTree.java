@@ -2,7 +2,9 @@ public class SkillTree {
     private SkillNode root;
     private int poinSkillTersedia;
 
-    public SkillTree() {
+    public SkillTree(SkillNode root, int poinSkillTersedia) {
+        this.root = root;
+        this.poinSkillTersedia = poinSkillTersedia;
     }
 
 

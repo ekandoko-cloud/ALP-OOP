@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class BattleLog {
     private ArrayList<String> historyLog = new ArrayList<>();
 
-    public BattleLog() {
-        this.historyLog = new ArrayList<>();
+    public BattleLog(ArrayList<String> historyLog) {
+        this.historyLog = historyLog;
     }
 
 

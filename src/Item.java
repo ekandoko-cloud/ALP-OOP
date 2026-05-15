@@ -4,7 +4,11 @@ public abstract class Item {
     protected int hargaJual;
     protected String deskripsi;
 
-    protected Item() {
+    protected Item(String idItem, String namaItem, int hargaJual, String deskripsi) {
+        this.idItem = idItem;
+        this.namaItem = namaItem;
+        this.hargaJual = hargaJual;
+        this.deskripsi = deskripsi;
     }
 
 

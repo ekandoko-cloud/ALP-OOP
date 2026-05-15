@@ -2,8 +2,12 @@ public class SpaceGame extends MiniGame {
     private int batasWaktuDetik;
     private int jumlahKetukanSpasi;
 
-    public SpaceGame() {
-        super();
+    public SpaceGame(String namaGame, int rewardKoin, int batasWaktuDetik, int jumlahKetukanSpasi) {
+        super(namaGame, rewardKoin);
+        this.namaGame = namaGame;
+        this.rewardKoin = rewardKoin;
+        this.batasWaktuDetik = batasWaktuDetik;
+        this.jumlahKetukanSpasi = jumlahKetukanSpasi;
     }
 
 

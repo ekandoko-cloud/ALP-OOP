@@ -5,7 +5,11 @@ public class AccountProfile {
     //    private int totalWaktuMain;
     private PlayerCharacter[] party;
 
-    public AccountProfile() {
+    public AccountProfile(String username, String password, int totalGold, PlayerCharacter[] party) {
+        this.username = username;
+        this.password = password;
+        this.totalGold = totalGold;
+        this.party = party;
     }
 
 

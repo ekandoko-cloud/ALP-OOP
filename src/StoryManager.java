@@ -2,7 +2,9 @@ public class StoryManager {
     private int chapterSaatIni;
     private String unitTaktisAktif;
 
-    public StoryManager() {
+    public StoryManager(int chapterSaatIni, String unitTaktisAktif) {
+        this.chapterSaatIni = chapterSaatIni;
+        this.unitTaktisAktif = unitTaktisAktif;
     }
 
 

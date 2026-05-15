@@ -2,7 +2,9 @@ public abstract class MiniGame {
     protected String namaGame;
     protected int rewardKoin;
 
-    protected MiniGame() {
+    protected MiniGame(String namaGame, int rewardKoin) {
+        this.namaGame = namaGame;
+        this.rewardKoin = rewardKoin;
     }
 
 

@@ -4,8 +4,21 @@ public class PlayerCharacter extends GameCharacter {
     private String namaEvolusiClass;
     private boolean statusTubuhNirlelah;
 
-    public PlayerCharacter() {
-        super();
+    public PlayerCharacter(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
+                           int currentExp, int maxExp, String namaEvolusiClass, boolean statusTubuhNirlelah) {
+        super(nama, maxHp, currentHp, maxMp, currentMp, kekuatan, defense, level);
+        this.nama = nama;
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
+        this.maxMp = maxMp;
+        this.currentMp = currentMp;
+        this.kekuatan = kekuatan;
+        this.defense = defense;
+        this.level = level;
+        this.currentExp = currentExp;
+        this.maxExp = maxExp;
+        this.namaEvolusiClass = namaEvolusiClass;
+        this.statusTubuhNirlelah = statusTubuhNirlelah;
     }
 
 

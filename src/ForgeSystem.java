@@ -1,7 +1,8 @@
 public class ForgeSystem {
     private int levelMaks;
 
-    public ForgeSystem() {
+    public ForgeSystem(int levelMaks) {
+        this.levelMaks = levelMaks;
     }
 
 

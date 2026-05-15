@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class CraftingSystem {
     private ArrayList<String> daftarResep;
 
-    public CraftingSystem() {
-        this.daftarResep = new ArrayList<>();
+    public CraftingSystem(ArrayList<String> daftarResep) {
+        this.daftarResep = daftarResep;
     }
 
 

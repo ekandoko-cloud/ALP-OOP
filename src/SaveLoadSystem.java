@@ -1,7 +1,8 @@
 public class SaveLoadSystem {
     private String namaFile;
 
-    public SaveLoadSystem() {
+    public SaveLoadSystem(String namaFile) {
+        this.namaFile = namaFile;
     }
 
 
