@@ -1,0 +1,37 @@
+package systems.map;
+import java.util.*;
+import models.location.Location;
+public class MapTraversal {
+    private Stack<Location> riwayatArea;
+
+    public MapTraversal(Stack<Location> riwayatArea) {
+        this.riwayatArea = riwayatArea;
+    }
+
+
+    public Stack<Location> getRiwayatArea() {
+        return riwayatArea;
+    }
+
+    public void setRiwayatArea(Stack<Location> riwayatArea) {
+        this.riwayatArea = riwayatArea;
+    }
+
+    public void pindahArea(Location area) {
+        if (area != null) {
+            riwayatArea.push(area);
+        }
+    }
+
+    public Location kembali() {
+        if (riwayatArea.isEmpty()) return null;
+        return riwayatArea.pop();
+    }
+
+    public Location areaSaatIni() {
+        if (riwayatArea.isEmpty()) return null;
+        return riwayatArea.peek();
+    }
+}
+
+

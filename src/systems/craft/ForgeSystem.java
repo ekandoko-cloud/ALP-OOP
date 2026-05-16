@@ -1,0 +1,29 @@
+package systems.craft;
+import java.util.*;
+import models.item.Equipment;
+import systems.inventory.Inventory;
+public class ForgeSystem {
+    private int levelMaks;
+
+    public ForgeSystem(int levelMaks) {
+        this.levelMaks = levelMaks;
+    }
+
+
+    public int getLevelMaks() {
+        return levelMaks;
+    }
+
+    public void setLevelMaks(int levelMaks) {
+        this.levelMaks = levelMaks;
+    }
+
+    public boolean upgrade(Equipment equipment, Inventory inventory) {
+        return true;
+    }
+
+    public void tampilkanEquipment(Inventory inventory) {
+    }
+}
+
+
