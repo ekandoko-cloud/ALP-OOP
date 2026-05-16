@@ -1,6 +1,7 @@
 package systems.classSystem;
 
 import systems.classSystem.ClassNode;
+import enums.*;
 import java.util.*;
 public class ClassNode {
     private String namaClass;
