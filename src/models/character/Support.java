@@ -1,6 +1,5 @@
-package utils;
-import java.util.*;
-import models.character.PlayerCharacter;
+package models.character;
+
 public class Support extends PlayerCharacter {
 	public Support(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
 				   int currentExp, int maxExp, String namaEvolusiClass, boolean statusTubuhNirlelah) {
