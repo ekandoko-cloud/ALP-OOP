@@ -152,7 +152,10 @@ public class SaveLoadSystem {
         PlayerCharacter[] partyArray = new PlayerCharacter[4];
         int partyCount = 0;
         LinkedList<Item> inventoryList = new LinkedList<>();
-        QuestTracker questTracker = null;
+        ArrayList<MainQuest> mainQuestAktif = new ArrayList<>();
+        ArrayList<SubQuest> subQuestAktif = new ArrayList<>();
+        ArrayList<Quest> riwayatMisiSelesai = new ArrayList<>();
+        boolean explicitQuestTrackerNull = false;
 
         String currentSection = "";
 
@@ -199,41 +202,113 @@ public class SaveLoadSystem {
                     }
                 } else if (currentSection.equals(inventory)) {
                     if (line.startsWith("inqredient=")) {
-                        String[] parts = line.substring("inqredient=".length()).split("\\^");
-                        if (parts.length >= 4) {
-                            int id = Integer.parseInt(parts[0]);
-                            String nama = parts[1];
-                            String deskripsi = parts[2];
-                            int harga = Integer.parseInt(parts[3]);
+                        String[] data = line.substring("inqredient=".length()).split("\\^");
+                        if (data.length >= 4) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            int harga = Integer.parseInt(data[3]);
                             inventoryList.add(new Inqredients(id, nama, harga, deskripsi));
                         }
                     } else if (line.startsWith("equipment=")) {
-                        String[] parts = line.substring("equipment=".length()).split("\\^");
-                        if (parts.length >= 8) {
-                            int id = Integer.parseInt(parts[0]);
-                            String nama = parts[1];
-                            String deskripsi = parts[2];
-                            int harga = Integer.parseInt(parts[3]);
-                            String tipe = parts[4];
-                            int bonusStr = Integer.parseInt(parts[5]);
-                            int bonusDef = Integer.parseInt(parts[6]);
-                            int levelTempa = Integer.parseInt(parts[7]);
+                        String[] data = line.substring("equipment=".length()).split("\\^");
+                        if (data.length >= 8) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            int harga = Integer.parseInt(data[3]);
+                            String tipe = data[4];
+                            int bonusStr = Integer.parseInt(data[5]);
+                            int bonusDef = Integer.parseInt(data[6]);
+                            int levelTempa = Integer.parseInt(data[7]);
                             inventoryList.add(new Equipment(id, nama, harga, deskripsi, tipe, bonusStr, bonusDef, levelTempa));
                         }
                     } else if (line.startsWith("consumableFood=")) {
-                        String[] parts = line.substring("consumableFood=".length()).split("\\^");
-                        if (parts.length >= 9) {
-                            int id = Integer.parseInt(parts[0]);
-                            String nama = parts[1];
-                            String deskripsi = parts[2];
-                            int harga = Integer.parseInt(parts[3]);
-                            int healHp = Integer.parseInt(parts[4]);
-                            int healMp = Integer.parseInt(parts[5]);
-                            int tempStr = Integer.parseInt(parts[6]);
-                            int tempDef = Integer.parseInt(parts[7]);
-                            String info = parts[8];
+                        String[] data = line.substring("consumableFood=".length()).split("\\^");
+                        if (data.length >= 9) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            int harga = Integer.parseInt(data[3]);
+                            int healHp = Integer.parseInt(data[4]);
+                            int healMp = Integer.parseInt(data[5]);
+                            int tempStr = Integer.parseInt(data[6]);
+                            int tempDef = Integer.parseInt(data[7]);
+                            String info = data[8];
                             inventoryList.add(new ConsumableFood(id, nama, harga, deskripsi, healHp, healMp, tempStr, tempDef, info));
                         }
+                    }
+                } else if (currentSection.equals(quest)) {
+                    if (line.startsWith("mainQuest=")) {
+                        String[] data = line.substring("mainQuest=".length()).split("\\^");
+                        if (data.length >= 10) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            String objective = data[3];
+                            int target = Integer.parseInt(data[4]);
+                            int progress = Integer.parseInt(data[5]);
+                            int hadiah = Integer.parseInt(data[6]);
+                            int chapter = Integer.parseInt(data[7]);
+                            enums.StatusQuest status = enums.StatusQuest.valueOf(data[8]);
+                            ArrayList<String> riwayat = new ArrayList<>();
+                            if (!data[9].isEmpty()) {
+                                riwayat.addAll(Arrays.asList(data[9].split("~")));
+                            }
+                            MainQuest mq = new MainQuest(id, nama, deskripsi, objective, target, hadiah, chapter);
+                            mq.setObjectiveProgress(progress);
+                            mq.setStatusQuest(status);
+                            mq.setRiwayatObjective(riwayat);
+                            mainQuestAktif.add(mq);
+                        }
+                    } else if (line.startsWith("subQuest=")) {
+                        String[] data = line.substring("subQuest=".length()).split("\\^");
+                        if (data.length >= 10) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            String objective = data[3];
+                            int target = Integer.parseInt(data[4]);
+                            int progress = Integer.parseInt(data[5]);
+                            int hadiah = Integer.parseInt(data[6]);
+                            int syaratLevel = Integer.parseInt(data[7]);
+                            enums.StatusQuest status = enums.StatusQuest.valueOf(data[8]);
+                            ArrayList<String> riwayat = new ArrayList<>();
+                            if (!data[9].isEmpty()) {
+                                riwayat.addAll(Arrays.asList(data[9].split("~")));
+                            }
+                            SubQuest sq = new SubQuest(id, nama, deskripsi, objective, target, hadiah, syaratLevel);
+                            sq.setObjectiveProgress(progress);
+                            sq.setStatusQuest(status);
+                            sq.setRiwayatObjective(riwayat);
+                            subQuestAktif.add(sq);
+                        }
+                    } else if (line.startsWith("questHistory=")) {
+                        String[] data = line.substring("questHistory=".length()).split("\\^");
+                        if (data.length >= 9) {
+                            int id = Integer.parseInt(data[0]);
+                            String nama = data[1];
+                            String deskripsi = data[2];
+                            String objective = data[3];
+                            int target = Integer.parseInt(data[4]);
+                            int progress = Integer.parseInt(data[5]);
+                            int hadiah = Integer.parseInt(data[6]);
+                            enums.StatusQuest status = enums.StatusQuest.valueOf(data[7]);
+                            ArrayList<String> riwayat = new ArrayList<>();
+                            if (!data[8].isEmpty()) {
+                                riwayat.addAll(Arrays.asList(data[8].split("~")));
+                            }
+                            Quest q = new Quest(id, nama, deskripsi, objective, target, hadiah) {};
+                            q.setObjectiveProgress(progress);
+                            q.setStatusQuest(status);
+                            q.setRiwayatObjective(riwayat);
+                            riwayatMisiSelesai.add(q);
+                        }
+                    } else if (line.startsWith("questTracker=null")) {
+                        explicitQuestTrackerNull = true;
+                        mainQuestAktif.clear();
+                        subQuestAktif.clear();
+                        riwayatMisiSelesai.clear();
                     }
                 }
             }
@@ -243,6 +318,10 @@ public class SaveLoadSystem {
             } else if (partyCount < partyArray.length) {
                 partyArray = Arrays.copyOf(partyArray, partyCount);
             }
+
+            QuestTracker questTracker = (!explicitQuestTrackerNull && (!mainQuestAktif.isEmpty() || !subQuestAktif.isEmpty() || !riwayatMisiSelesai.isEmpty()))
+                    ? new QuestTracker(mainQuestAktif, subQuestAktif, riwayatMisiSelesai)
+                    : null;
 
             return new AccountProfile(usernameSave.isEmpty() ? username : usernameSave, "", totalGold, partyArray, inventoryList, questTracker);
         } catch (Exception e) {

@@ -4,15 +4,6 @@ import java.io.*;
 import java.util.*;
 
 import models.account.AccountProfile;
-import models.item.ConsumableFood;
-import models.item.Inqredients;
-import models.item.Item;
-import models.quest.MainQuest;
-import models.quest.Quest;
-import models.quest.SubQuest;
-import systems.inventory.Inventory;
-import systems.quest.QuestTracker;
-import models.character.PlayerCharacter;
 import systems.save.SaveLoadSystem;
 
 public class App {
@@ -26,10 +17,7 @@ public class App {
     String ACCOUNT_FILE = "src/main/accounts.txt";
     String DELIMITER = ":";
     SaveLoadSystem saveload = new SaveLoadSystem();
-
-    ArrayList<MainQuest> mainQuestAktif = new ArrayList<>();
-    ArrayList<SubQuest> subQuestAktif = new ArrayList<>();
-    ArrayList<Quest> riwayatQuest = new ArrayList<>();
+    String usernameLogin = "";
 
 
     //FITUR 3.2.2 LOGIN REGISTER
@@ -105,9 +93,9 @@ public class App {
         while (true) {
             System.out.println("--- LOGIN ---");
             System.out.print("Username: ");
-            String username = inpStr.nextLine();
+            usernameLogin = inpStr.nextLine();
 
-            if (username.isEmpty()) {
+            if (usernameLogin.isEmpty()) {
                 System.out.println("Username tidak boleh kosong");
                 return;
             }
@@ -120,24 +108,18 @@ public class App {
                 return;
             }
 
-            if (verifyLogin(username, password)) {
-                System.out.println("Login successful. Welcome, " + username + "!");
+            if (verifyLogin(usernameLogin, password)) {
+                System.out.println("Login successful. Welcome, " + usernameLogin + "!");
 
-                //dummy data inven
-                LinkedList<Item> inventory = new LinkedList<Item>(new LinkedList<>());
-                Inqredients bawang = new Inqredients(1, "Bawang", 5, "Bawang merah segar");
-                ConsumableFood pizza = new ConsumableFood(1, "Pizza", 10, "Pizza lembut dengan topping keju dan pepperoni", 20, 10, 10, 10, "Makanan tinggi kalori yang memberikan energi cepat");
-                inventory.add(bawang);
-                inventory.add(pizza);
-
-                //dummy data quest
-                mainQuestAktif.add(new MainQuest(1, "MainMission1", "Misi utama 1", "Bunuh 10 goblin", 10, 100, 1));
-                subQuestAktif.add(new SubQuest(1, "SubMission1", "Misi sampingan 1", "Kumpulkan 5 buah apel", 5, 50, 1));
-                MainQuest mq2 = new MainQuest(2, "MainMission2", "Misi utama 2", "Kalahkan bos naga", 1, 500, 5);
-                riwayatQuest.add(mq2);
-                QuestTracker questTracker = new QuestTracker(mainQuestAktif, subQuestAktif, riwayatQuest);
-
-                this.currentAccount = new AccountProfile(username, password, 100, null, inventory, questTracker);
+                AccountProfile loadedAccount = saveload.load(usernameLogin);
+                if (loadedAccount != null) {
+                    loadedAccount.setPassword(password);
+                    this.currentAccount = loadedAccount;
+                    System.out.println("Save ditemukan. Data akun berhasil di-load otomatis.");
+                } else {
+                    this.currentAccount = new AccountProfile(usernameLogin, password, 0, null, new LinkedList<>(), null);
+                    System.out.println("Belum ada file save. Profil baru dibuat di memori, dan file akan dibuat saat kamu save manual.");
+                }
 
                 mainMenu();
             } else {
@@ -218,8 +200,7 @@ public class App {
         System.out.println("║  [13] Waypoint       ║  [14] Profil Akun   ║");
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.println("║  [15] Save Game                            ║");
-        System.out.println("║  [16] Load Game                            ║");
-        System.out.println("║  [17] Logout                               ║");
+        System.out.println("║  [16] Logout                               ║");
         System.out.println("╚════════════════════════════════════════════╝");
     }
 
@@ -264,9 +245,9 @@ public class App {
                     saveload.save(currentAccount);
                     System.out.println("Game saved successfully.");
                 } else if (choice == 16) {
-
-                } else if (choice == 17) {
                     System.out.println("Logging out...");
+                    currentAccount = null;
+                    usernameLogin = "";
                     startMenu();
                 } else {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
@@ -278,11 +259,6 @@ public class App {
             }
 
         }
-    }
-
-    // Getter untuk current account
-    public AccountProfile getCurrentAccount() {
-        return currentAccount;
     }
 }
 
