@@ -2,8 +2,12 @@ package main;
 
 import java.io.*;
 import java.util.*;
+import java.nio.file.Files;
 
 import models.account.AccountProfile;
+import models.character.PlayerCharacter;
+import models.item.Item;
+import systems.quest.QuestTracker;
 import systems.save.SaveLoadSystem;
 
 public class App {
@@ -12,6 +16,7 @@ public class App {
 
     // Current logged-in account
     private AccountProfile currentAccount;
+    private PlayerCharacter[] party = new PlayerCharacter[4];
 
     //utk nyimpan akun
     String ACCOUNT_FILE = "src/main/accounts.txt";
@@ -117,9 +122,42 @@ public class App {
                     this.currentAccount = loadedAccount;
                     System.out.println("Save ditemukan. Data akun berhasil di-load otomatis.");
                 } else {
-                    this.currentAccount = new AccountProfile(usernameLogin, password, 0, null, new LinkedList<>(), null);
-                    System.out.println("Belum ada file save. Profil baru dibuat di memori, dan file akan dibuat saat kamu save manual.");
+                    PlayerCharacter[] newParty = new PlayerCharacter[4];
+                    List<String> namePool = new ArrayList<>();
+                    File namesFile = new File("src/main/charaNames.txt");
+                    if (namesFile.exists()) {
+                        try (BufferedReader brNames = new BufferedReader(new FileReader(namesFile))) {
+                            String n;
+                            while ((n = brNames.readLine()) != null) {
+                                n = n.trim();
+                                if (!n.isEmpty()) namePool.add(n);
+                            }
+                        } catch (IOException ex) {
+                            System.out.println("Gagal membaca charaNames.txt: " + ex.getMessage());
+                        }
+                    }
+                    Random rand = new Random();
+                    for (int i = 0; i < 4; i++) {
+                        String pick;
+                        if (!namePool.isEmpty()) {
+                            int idRandomChara = rand.nextInt(namePool.size());
+                            pick = namePool.remove(idRandomChara);
+                        } else {
+                            pick = "Hero" + (i + 1);
+                        }
+                        newParty[i] = new PlayerCharacter(pick, 100, 100, 50, 50, 10, 5, 1, 0, 100, "CLASSLESS", false);
+                    }
+                    this.currentAccount = new AccountProfile(usernameLogin, password, 0, newParty, new LinkedList<>(), null);
+                    try {
+                        saveload.save(currentAccount);
+                    } catch (Exception ex) {
+                        System.out.println("Belum ada file save. 4 karakter CLASSLESS baru telah dibuat (gagal autosave: " + ex.getMessage() + ")");
+                    }
                 }
+                // keep global party in sync after login
+                party = (currentAccount != null && currentAccount.getParty() != null)
+                        ? currentAccount.getParty()
+                        : new PlayerCharacter[0];
 
                 mainMenu();
             } else {
@@ -184,6 +222,125 @@ public class App {
 
     }
 
+    public boolean changeUsername(String oldUsername, String newUsername) {
+        File accFile = new File(ACCOUNT_FILE);
+        if (!accFile.exists()) return false;
+
+        List<String> lines = new ArrayList<>();
+        boolean found = false;
+        try (BufferedReader br = new BufferedReader(new FileReader(accFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(DELIMITER, 2);
+                if (parts.length == 2 && oldUsername != null && parts[0].trim().equals(oldUsername.trim())) {
+                    lines.add(newUsername + DELIMITER + parts[1]);
+                    found = true;
+                } else {
+                    lines.add(line);
+                }
+            }
+        } catch (IOException e) {
+            return false;
+        }
+
+        if (!found) return false;
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(accFile, false))) {
+            for (String l : lines) {
+                bw.write(l);
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            return false;
+        }
+
+        File oldSaveFile = new File(saveload.SAVE_FOLDER + oldUsername + saveload.extension);
+        if (oldSaveFile.exists()) {
+            File newSaveFile = new File(saveload.SAVE_FOLDER + newUsername + saveload.extension);
+            try (BufferedReader brSave = new BufferedReader(new FileReader(oldSaveFile));
+                 BufferedWriter bwSave = new BufferedWriter(new FileWriter(newSaveFile))) {
+                String saveLine;
+                while ((saveLine = brSave.readLine()) != null) {
+                    if (saveLine.startsWith("username=")) {
+                        bwSave.write("username=" + newUsername);
+                    } else {
+                        bwSave.write(saveLine);
+                    }
+                    bwSave.newLine();
+
+                }
+            } catch (IOException e) {
+                return false;
+            }
+            try {
+                Files.deleteIfExists(oldSaveFile.toPath());
+            } catch (IOException ex) {
+                System.err.println("Warning: failed to delete old save file: " + ex.getMessage());
+            }
+        }
+
+        return true;
+    }
+
+//    // sync party from currentAccount (ensures max 4)
+//    private void syncPartyFromAccount() {
+//        if (currentAccount == null) {
+//            party = new PlayerCharacter[0];
+//            return;
+//        }
+//        PlayerCharacter[] acctParty = currentAccount.getParty();
+//        if (acctParty == null) {
+//            party = new PlayerCharacter[0];
+//        } else if (acctParty.length <= 4) {
+//            party = acctParty;
+//        } else {
+//            party = Arrays.copyOf(acctParty, 4);
+//            currentAccount.setParty(party);
+//        }
+//    }
+
+
+//    // party management helpers: enforce max 4 characters
+//    public boolean addToParty(PlayerCharacter pc) {
+//        if (pc == null) return false;
+//        if (party == null) party = new PlayerCharacter[0];
+//        if (party.length >= 4) return false; // max reached
+//        PlayerCharacter[] next = Arrays.copyOf(party, party.length + 1);
+//        next[party.length] = pc;
+//        party = next;
+//        if (currentAccount != null) currentAccount.setParty(party);
+//        return true;
+//    }
+//
+//    public boolean removeFromParty(int index) {
+//        if (party == null || index < 0 || index >= party.length) return false;
+//        PlayerCharacter[] next = new PlayerCharacter[Math.max(0, party.length - 1)];
+//        for (int i = 0, j = 0; i < party.length; i++) {
+//            if (i == index) continue;
+//            next[j++] = party[i];
+//        }
+//        party = next;
+//        if (currentAccount != null) currentAccount.setParty(party);
+//        return true;
+//    }
+//
+//    // sync party from currentAccount (ensures max 4)
+//    private void syncPartyFromAccount() {
+//        if (currentAccount == null) {
+//            party = new PlayerCharacter[0];
+//            return;
+//        }
+//        PlayerCharacter[] acctParty = currentAccount.getParty();
+//        if (acctParty == null) {
+//            party = new PlayerCharacter[0];
+//        } else if (acctParty.length <= 4) {
+//            party = acctParty;
+//        } else {
+//            party = Arrays.copyOf(acctParty, 4);
+//            currentAccount.setParty(party);
+//        }
+//    }
+
     //MAIN MENU NUTRITALE
     public void displayMainMenu() {
         System.out.println("\n╔════════════════════════════════════════════╗");
@@ -218,7 +375,19 @@ public class App {
                 } else if (choice == 2) {
 
                 } else if (choice == 3) {
-
+                    System.out.println("--- INVENTORY ---");
+                    LinkedList<Item> inventory = currentAccount.getInventory();
+                    if (inventory == null || inventory.isEmpty()) {
+                        System.out.println("Inventory kosong.");
+                    } else {
+                        for (int i = 0; i < inventory.size(); i++) {
+                            Item item = inventory.get(i);
+                            System.out.println((i + 1) + ". " + item.getNamaItem() +
+                                    " | ID: " + item.getIdItem() +
+                                    " | Harga Jual: " + item.getHargaJual() +
+                                    " | Deskripsi: " + item.getDeskripsi());
+                        }
+                    }
                 } else if (choice == 4) {
 
                 } else if (choice == 5) {
@@ -240,7 +409,7 @@ public class App {
                 } else if (choice == 13) {
 
                 } else if (choice == 14) {
-
+                    accProfileMenu();
                 } else if (choice == 15) {
                     saveload.save(currentAccount);
                     System.out.println("Game saved successfully.");
@@ -248,6 +417,7 @@ public class App {
                     System.out.println("Logging out...");
                     currentAccount = null;
                     usernameLogin = "";
+                    party = new PlayerCharacter[0];
                     startMenu();
                 } else {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
@@ -257,7 +427,187 @@ public class App {
                 System.out.println("Input tidak valid. Silakan masukkan angka yang sesuai.");
                 continue;
             }
+        }
+    }
 
+    public void accProfileMenu() {
+        while (true) {
+            party = (currentAccount != null && currentAccount.getParty() != null) ? currentAccount.getParty() : new PlayerCharacter[0];
+            System.out.println();
+            System.out.println("========== PROFIL AKUN ==========");
+            if (currentAccount == null) {
+                System.out.println("No account loaded. Returning to main menu.");
+                return;
+            }
+            System.out.println("Username    : " + currentAccount.getUsername());
+            System.out.println("Total Gold  : " + currentAccount.getTotalGold());
+            System.out.println("=================================");
+            System.out.println();
+
+//            System.out.println("--- PARTY ---");
+//            if (currentAccount == null || party == null || party.length == 0) {
+//                System.out.println("Party is empty.");
+//            } else {
+//                for (int i = 0; i < party.length; i++) {
+//                    PlayerCharacter pc = party[i];
+//                    if (pc == null) {
+//                        continue;
+//                    }
+//                    System.out.println((i + 1) + ". " + pc.getNama() +
+//                            " | Class: " + pc.getNamaClass() +
+//                            " | Level: " + pc.getLevel() +
+//                            " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() +
+//                            " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp() +
+//                            " | STR: " + pc.getKekuatan() +
+//                            " | DEF: " + pc.getDefense() +
+//                            " | EXP: " + pc.getCurrentExp() + "/" + pc.getMaxExp() +
+//                            " | Nirlelah: " + pc.isStatusTubuhNirlelah());
+//                }
+//            }
+
+//            System.out.println();
+//            System.out.println("--- INVENTORY ---");
+//            LinkedList<Item> inventory = currentAccount.getInventory();
+//            if (inventory == null || inventory.isEmpty()) {
+//                System.out.println("Inventory kosong.");
+//            } else {
+//                for (int i = 0; i < inventory.size(); i++) {
+//                    Item item = inventory.get(i);
+//                    System.out.println((i + 1) + ". " + item.getNamaItem() +
+//                            " | ID: " + item.getIdItem() +
+//                            " | Harga Jual: " + item.getHargaJual() +
+//                            " | Deskripsi: " + item.getDeskripsi());
+//                }
+//            }
+
+//            System.out.println();
+//            System.out.println("--- QUEST TRACKER ---");
+//            QuestTracker qt = currentAccount.getQuestTracker();
+//            if (qt == null) {
+//                System.out.println("Belum ada quest tracker.");
+//            } else {
+//                System.out.println("Main Quest Aktif : " + (qt.getDaftarMainQuestAktif() == null ? 0 : qt.getDaftarMainQuestAktif().size()));
+//                System.out.println("Sub Quest Aktif  : " + (qt.getDaftarSubQuestAktif() == null ? 0 : qt.getDaftarSubQuestAktif().size()));
+//                System.out.println("Riwayat Quest    : " + (qt.getRiwayatMisiSelesai() == null ? 0 : qt.getRiwayatMisiSelesai().size()));
+//            }
+
+//            System.out.println();
+            System.out.println("[1] Edit username");
+            System.out.println("[2] Lihat detail karakter");
+            System.out.println("[3] Edit nama karakter");
+            System.out.println("[4] Kembali");
+            System.out.print("Pilihan: ");
+            try {
+                String choiceLine = inpStr.nextLine();
+                if (choiceLine == null || choiceLine.trim().isEmpty()) {
+                    System.out.println("Input tidak valid.");
+                    continue;
+                }
+                int choice = Integer.parseInt(choiceLine.trim());
+                if (choice == 1) {
+                    System.out.print("Masukkan username baru: ");
+                    String usernameBaru = inpStr.nextLine();
+                    usernameBaru = usernameBaru == null ? "" : usernameBaru.trim();
+                    if (usernameBaru.isEmpty()) {
+                        System.out.println("Username tidak boleh kosong");
+                        return;
+                    }
+
+                    if (checkUsername(usernameBaru)) {
+                        System.out.println("Username sudah terdaftar, silakan pilih username lain");
+                        return;
+                    }
+
+                    String usernameOld = currentAccount != null ? currentAccount.getUsername() : usernameLogin;
+
+                    if (changeUsername(usernameOld, usernameBaru)) {
+                        currentAccount.setUsername(usernameBaru);
+                        usernameLogin = usernameBaru;
+                        System.out.println("Username berhasil diubah menjadi '" + usernameBaru + "'");
+                    } else {
+                        System.out.println("Gagal mengubah username.");
+                    }
+                } else if (choice == 2) {
+                    if (party == null || party.length == 0) {
+                        System.out.println("Party is empty.");
+                    } else {
+                        for (int i = 0; i < party.length; i++) {
+                            if (party[i] == null) continue;
+                            System.out.println((i + 1) + ". " + party[i].getNama() + " | Class: " + party[i].getNamaClass());
+                        }
+                        System.out.print("Pilihan: ");
+                        try {
+                            String detailLine = inpStr.nextLine();
+                            int choiceDetail = Integer.parseInt(detailLine.trim());
+                            if (choiceDetail < 1 || choiceDetail > party.length) {
+                                System.out.println("Pilihan tidak valid.");
+                            } else {
+                                PlayerCharacter pc = party[choiceDetail - 1];
+                                if (pc == null) {
+                                    System.out.println("Pilihan tidak valid.");
+                                    continue;
+                                }
+                                System.out.println("\n--- Detail Karakter ---");
+                                System.out.println("Nama       : " + pc.getNama());
+                                System.out.println("Class      : " + pc.getNamaClass());
+                                System.out.println("Level      : " + pc.getLevel());
+                                System.out.println("HP         : " + pc.getCurrentHp() + "/" + pc.getMaxHp());
+                                System.out.println("MP         : " + pc.getCurrentMp() + "/" + pc.getMaxMp());
+                                System.out.println("STR        : " + pc.getKekuatan());
+                                System.out.println("DEF        : " + pc.getDefense());
+                                System.out.println("EXP        : " + pc.getCurrentExp() + "/" + pc.getMaxExp());
+                                System.out.println("Nirlelah   : " + (pc.isStatusTubuhNirlelah() ? "Ya" : "Tidak"));
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                    }
+                } else if (choice == 3) {
+                    if (party == null || party.length == 0) {
+                        System.out.println("Party is empty.");
+                    } else {
+                        for (int i = 0; i < party.length; i++) {
+                            if (party[i] == null) continue;
+                            System.out.println((i + 1) + ". " + party[i].getNama() + " | Class: " + party[i].getNamaClass());
+                        }
+                        System.out.print("Pilihan: ");
+                        try {
+                            String editLine = inpStr.nextLine();
+                            int choiceEditNamaChara = Integer.parseInt(editLine.trim());
+                            if (choiceEditNamaChara < 1 || choiceEditNamaChara > party.length) {
+                                System.out.println("Pilihan tidak valid.");
+                            } else {
+                                PlayerCharacter pc = party[choiceEditNamaChara - 1];
+                                if (pc == null) {
+                                    System.out.println("Pilihan tidak valid.");
+                                    continue;
+                                }
+                                System.out.print("Masukkan nama baru untuk " + pc.getNama() + ": ");
+                                String namaBaru = inpStr.nextLine();
+                                namaBaru = namaBaru == null ? "" : namaBaru.trim();
+                                if (namaBaru.isEmpty()) {
+                                    System.out.println("Nama karakter tidak boleh kosong");
+                                    return;
+                                }
+                                pc.setNama(namaBaru);
+                                System.out.println("Nama karakter berhasil diubah menjadi '" + namaBaru + "'");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                    }
+                } else if (choice == 4) {
+                    System.out.println();
+                    mainMenu();
+                } else {
+                    System.out.println("Pilihan tidak valid.");
+                }
+            } catch (Exception e) {
+                System.out.println("Input tidak valid.");
+                continue;
+            }
         }
     }
 }

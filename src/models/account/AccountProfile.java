@@ -42,9 +42,7 @@ public class AccountProfile {
             return party;
         }
 
-        PlayerCharacter[] limitedParty = new PlayerCharacter[MAX_PARTY_SIZE];
-        System.arraycopy(party, 0, limitedParty, 0, MAX_PARTY_SIZE);
-        return limitedParty;
+        return Arrays.copyOf(party, MAX_PARTY_SIZE);
     }
 
     public String getUsername() {
