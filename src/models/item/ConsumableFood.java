@@ -9,7 +9,7 @@ public class ConsumableFood extends Item implements IConsumable {
     private int tempDefBuff;
     private String infoGiziSDG;
 
-    public ConsumableFood(String idItem, String namaItem, int hargaJual, String deskripsi,
+    public ConsumableFood(int idItem, String namaItem, int hargaJual, String deskripsi,
                           int healHpAmount, int healMpAmount, int tempStrBuff, int tempDefBuff, String infoGiziSDG) {
         super(idItem, namaItem, hargaJual, deskripsi);
         this.idItem = idItem;

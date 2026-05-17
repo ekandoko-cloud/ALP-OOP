@@ -1,19 +1,20 @@
 package models.quest;
-import java.util.*;
+
 public class SubQuest extends Quest {
     private int syaratLevel;
-    private int batasWaktu;
+    //private int batasWaktu;
+//    private String objectiveSubQuest;
 
-    public SubQuest(String idQuest, String namaQuest, int targetKills, int hadiahKoin, int syaratLevel, int batasWaktu) {
-        super(idQuest, namaQuest, targetKills, hadiahKoin);
-        this.idQuest = idQuest;
-        this.namaQuest = namaQuest;
-        this.targetKills = targetKills;
-        this.hadiahKoin = hadiahKoin;
+    public SubQuest(int idQuest, String namaQuest, String deskripsiQuest, String objectiveSubQuest, int objectiveTarget, int hadiahKoin, int syaratLevel/*, int batasWaktu*/) {
+        super(idQuest, namaQuest, deskripsiQuest/*, objectiveSubQuest*/, objectiveTarget, hadiahKoin);
         this.syaratLevel = syaratLevel;
-        this.batasWaktu = batasWaktu;
+        //this.batasWaktu = batasWaktu;
+//        this.objectiveSubQuest = objectiveSubQuest;
     }
 
+//    public SubQuest(int idQuest, String namaQuest, int objectiveTarget, int hadiahKoin, int syaratLevel/*, int batasWaktu*/) {
+//        this(idQuest, namaQuest, namaQuest, namaQuest, objectiveTarget, hadiahKoin, syaratLevel/*, batasWaktu*/);
+//    }
 
     public int getSyaratLevel() {
         return syaratLevel;
@@ -23,13 +24,24 @@ public class SubQuest extends Quest {
         this.syaratLevel = syaratLevel;
     }
 
-    public int getBatasWaktu() {
-        return batasWaktu;
-    }
+//    public int getBatasWaktu() {
+//        return batasWaktu;
+//    }
+//
+//    public void setBatasWaktu(int batasWaktu) {
+//        this.batasWaktu = batasWaktu;
+//    }
 
-    public void setBatasWaktu(int batasWaktu) {
-        this.batasWaktu = batasWaktu;
+//    public String getObjectiveSubQuest() {
+//        return objectiveSubQuest;
+//    }
+//
+//    public void setObjectiveSubQuest(String objectiveSubQuest) {
+//        this.objectiveSubQuest = objectiveSubQuest;
+//        this.objectiveQuest = objectiveSubQuest;
+//    }
+
+    public void catatObjectiveSubQuest(int progressTambahan, String catatan) {
+        catatObjective(progressTambahan, "[SubQuest] " + catatan);
     }
 }
-
-

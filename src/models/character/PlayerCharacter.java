@@ -3,7 +3,7 @@ import java.util.*;
 public class PlayerCharacter extends GameCharacter {
     private int currentExp;
     private int maxExp;
-    private String namaEvolusiClass;
+    private String namaClass;
     private boolean statusTubuhNirlelah;
 
     public PlayerCharacter(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
@@ -19,7 +19,7 @@ public class PlayerCharacter extends GameCharacter {
         this.level = level;
         this.currentExp = currentExp;
         this.maxExp = maxExp;
-        this.namaEvolusiClass = namaEvolusiClass;
+        this.namaClass = namaEvolusiClass;
         this.statusTubuhNirlelah = statusTubuhNirlelah;
     }
 
@@ -40,12 +40,12 @@ public class PlayerCharacter extends GameCharacter {
         this.maxExp = maxExp;
     }
 
-    public String getNamaEvolusiClass() {
-        return namaEvolusiClass;
+    public String getNamaClass() {
+        return namaClass;
     }
 
-    public void setNamaEvolusiClass(String namaEvolusiClass) {
-        this.namaEvolusiClass = namaEvolusiClass;
+    public void setNamaClass(String namaEvolusiClass) {
+        this.namaClass = namaEvolusiClass;
     }
 
     public boolean isStatusTubuhNirlelah() {

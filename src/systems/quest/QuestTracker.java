@@ -4,22 +4,22 @@ import models.quest.MainQuest;
 import models.quest.Quest;
 import models.quest.SubQuest;
 public class QuestTracker {
-    private ArrayList<MainQuest> daftarMainQuest;
+    private ArrayList<MainQuest> daftarMainQuestAktif;
     private ArrayList<SubQuest> daftarSubQuestAktif;
     private ArrayList<Quest> riwayatMisiSelesai;
 
     public QuestTracker(ArrayList<MainQuest> daftarMainQuest, ArrayList<SubQuest> daftarSubQuestAktif, ArrayList<Quest> riwayatMisiSelesai) {
-        this.daftarMainQuest = daftarMainQuest;
+        this.daftarMainQuestAktif = daftarMainQuest;
         this.daftarSubQuestAktif = daftarSubQuestAktif;
         this.riwayatMisiSelesai = riwayatMisiSelesai;
     }
 
-    public ArrayList<MainQuest> getDaftarMainQuest() {
-        return daftarMainQuest;
+    public ArrayList<MainQuest> getDaftarMainQuestAktif() {
+        return daftarMainQuestAktif;
     }
 
-    public void setDaftarMainQuest(ArrayList<MainQuest> daftarMainQuest) {
-        this.daftarMainQuest = daftarMainQuest;
+    public void setDaftarMainQuestAktif(ArrayList<MainQuest> daftarMainQuest) {
+        this.daftarMainQuestAktif = daftarMainQuest;
     }
 
     public ArrayList<SubQuest> getDaftarSubQuestAktif() {

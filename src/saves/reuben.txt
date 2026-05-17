@@ -1,0 +1,15 @@
+[BASIC INFO]
+username=reuben
+totalGold=100
+
+[PARTY INFO]
+
+[INVENTORY INFO]
+inqredient=1^Bawang^Bawang merah segar^5
+consumableFood=1^Pizza^Pizza lembut dengan topping keju dan pepperoni^10^20^10^10^10^Makanan tinggi kalori yang memberikan energi cepat
+
+[QUEST INFO]
+mainQuest=1^MainMission1^Misi utama 1^Misi utama 1^10^0^100^1^ONGOING^
+subQuest=1^SubMission1^Misi sampingan 1^Misi sampingan 1^5^0^50^1^ONGOING^
+questHistory=2^MainMission2^Misi utama 2^Misi utama 2^1^0^500^ONGOING^
+

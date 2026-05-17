@@ -19,10 +19,10 @@ public class Inventory {
         this.listBarang = listBarang;
     }
 
-    public void tambahItem(Item item) {
+    public void tambahItem(Item Item) {
     }
 
-    public void hapusItem(Item item) {
+    public void hapusItem(Item Item) {
     }
 
     public Item cariItem(String keyword) {

@@ -1,12 +1,12 @@
 package models.item;
 import java.util.*;
 public abstract class Item {
-    protected String idItem;
+    protected int idItem;
     protected String namaItem;
     protected int hargaJual;
     protected String deskripsi;
 
-    protected Item(String idItem, String namaItem, int hargaJual, String deskripsi) {
+    protected Item(int idItem, String namaItem, int hargaJual, String deskripsi) {
         this.idItem = idItem;
         this.namaItem = namaItem;
         this.hargaJual = hargaJual;
@@ -14,11 +14,11 @@ public abstract class Item {
     }
 
 
-    public String getIdItem() {
+    public int getIdItem() {
         return idItem;
     }
 
-    public void setIdItem(String idItem) {
+    public void setIdItem(int idItem) {
         this.idItem = idItem;
     }
 

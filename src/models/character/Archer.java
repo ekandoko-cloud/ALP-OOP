@@ -14,7 +14,7 @@ public class Archer extends PlayerCharacter {
 		this.level = level;
 		this.setCurrentExp(currentExp);
 		this.setMaxExp(maxExp);
-		this.setNamaEvolusiClass(namaEvolusiClass);
+		this.setNamaClass(namaEvolusiClass);
 		this.setStatusTubuhNirlelah(statusTubuhNirlelah);
 	}
 
