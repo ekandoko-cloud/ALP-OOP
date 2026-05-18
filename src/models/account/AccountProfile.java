@@ -10,7 +10,8 @@ public class AccountProfile {
     private String username;
     private String password;
     private int totalGold;
-    //    private int totalWaktuMain;
+    private int totalPlaytime;
+    private String areaName;
     private PlayerCharacter[] party;
     private LinkedList<Item> inventory;
     private QuestTracker questTracker;
@@ -19,6 +20,8 @@ public class AccountProfile {
         this.username = username;
         this.password = password;
         this.totalGold = totalGold;
+        this.totalPlaytime = 0;
+        this.areaName = "";
         this.party = limitPartySize(party);
         this.inventory = inventory;
         this.questTracker = questTracker;
@@ -83,6 +86,22 @@ public class AccountProfile {
 
     public void setQuestTracker(QuestTracker questTracker) {
         this.questTracker = questTracker;
+    }
+
+    public int getTotalPlaytime() {
+        return totalPlaytime;
+    }
+
+    public void setTotalPlaytime(int totalPlaytime) {
+        this.totalPlaytime = totalPlaytime;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 }
 

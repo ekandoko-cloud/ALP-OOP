@@ -1,6 +1,5 @@
 package systems.save;
 
-import java.awt.*;
 import java.io.*;
 import java.util.*;
 
@@ -40,6 +39,10 @@ public class SaveLoadSystem {
             writer.write("username=" + profile.getUsername());
             writer.newLine();
             writer.write("totalGold=" + profile.getTotalGold());
+            writer.newLine();
+            writer.write("totalPlaytime=" + profile.getTotalPlaytime());
+            writer.newLine();
+            writer.write("areaName=" + profile.getAreaName());
             writer.newLine();
             writer.newLine();
 
@@ -146,8 +149,8 @@ public class SaveLoadSystem {
         //temp file
         String usernameSave = "";
         int totalGold = 0;
-        //int totalPlaytime = 0;
-        //String areaName = "";
+        int totalPlaytime = 0;
+        String areaName = "";
 
         PlayerCharacter[] partyArray = new PlayerCharacter[4];
         int partyCount = 0;
@@ -178,6 +181,10 @@ public class SaveLoadSystem {
                         usernameSave = line.substring("username=".length());
                     } else if (line.startsWith("totalGold=")) {
                         totalGold = Integer.parseInt(line.substring("totalGold=".length()));
+                    } else if (line.startsWith("totalPlaytime=")) {
+                        totalPlaytime = Integer.parseInt(line.substring("totalPlaytime=".length()));
+                    } else if (line.startsWith("areaName=")) {
+                        areaName = line.substring("areaName=".length());
                     }
                 } else if (currentSection.equals(party)) {
                     if (line.startsWith("karakter=")) {
@@ -323,7 +330,10 @@ public class SaveLoadSystem {
                     ? new QuestTracker(mainQuestAktif, subQuestAktif, riwayatMisiSelesai)
                     : null;
 
-            return new AccountProfile(usernameSave.isEmpty() ? username : usernameSave, "", totalGold, partyArray, inventoryList, questTracker);
+            AccountProfile profile = new AccountProfile(usernameSave.isEmpty() ? username : usernameSave, "", totalGold, partyArray, inventoryList, questTracker);
+            profile.setTotalPlaytime(totalPlaytime);
+            profile.setAreaName(areaName);
+            return profile;
         } catch (Exception e) {
             System.out.println("Error loading game: " + e.getMessage());
             return null;

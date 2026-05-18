@@ -1,6 +1,8 @@
 [BASIC INFO]
 username=Christian
 totalGold=100
+totalPlaytime=7200
+areaName=Forest -> Village
 
 [PARTY INFO]
 

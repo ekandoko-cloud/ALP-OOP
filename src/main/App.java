@@ -7,7 +7,6 @@ import java.nio.file.Files;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.Item;
-import systems.quest.QuestTracker;
 import systems.save.SaveLoadSystem;
 
 public class App {
@@ -343,22 +342,22 @@ public class App {
 
     //MAIN MENU NUTRITALE
     public void displayMainMenu() {
-        System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║              N U T R I T A L E             ║");
-        System.out.println("╠════════════════════════════════════════════╣");
-        System.out.println("║  MENU UTAMA                                ║");
-        System.out.println("╠══════════════════╦═════════════════════════╣");
-        System.out.println("║  [ 1] Play           ║  [ 2] Quest Tracker ║");
-        System.out.println("║  [ 3] Inventory      ║  [ 4] Shop          ║");
-        System.out.println("║  [ 5] Crafting       ║  [ 6] Forge         ║");
-        System.out.println("║  [ 7] Quest Board    ║  [ 8] Mini Game     ║");
-        System.out.println("║  [ 9] Encyclopedia   ║  [10] Skill Tree    ║");
-        System.out.println("║  [11] Class Tree     ║  [12] Gacha         ║");
-        System.out.println("║  [13] Waypoint       ║  [14] Profil Akun   ║");
-        System.out.println("╠════════════════════════════════════════════╣");
-        System.out.println("║  [15] Save Game                            ║");
-        System.out.println("║  [16] Logout                               ║");
-        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.println("\n╔════════════════════════════════════════════════════╗");
+        System.out.println("║                  N U T R I T A L E                 ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║                  M A I N   M E N U                 ║");
+        System.out.println("╠═══════════════════════════╦════════════════════════╣");
+        System.out.println("║ [ 1] Play                 ║ [ 2] Quest Tracker     ║");
+        System.out.println("║ [ 3] Inventory            ║ [ 4] Shop              ║");
+        System.out.println("║ [ 5] Crafting             ║ [ 6] Forge             ║");
+        System.out.println("║ [ 7] Quest Board          ║ [ 8] Mini Game         ║");
+        System.out.println("║ [ 9] Encyclopedia         ║ [10] Skill Tree        ║");
+        System.out.println("║ [11] Class Tree           ║ [12] Gacha             ║");
+        System.out.println("║ [13] Waypoint             ║ [14] Profil Akun       ║");
+        System.out.println("╠════════════════════════════════════════════════════╣");
+        System.out.println("║ [15] Save Game                                     ║");
+        System.out.println("║ [16] Logout                                        ║");
+        System.out.println("╚════════════════════════════════════════════════════╝");
     }
 
     public void mainMenu() {
@@ -375,19 +374,19 @@ public class App {
                 } else if (choice == 2) {
 
                 } else if (choice == 3) {
-                    System.out.println("--- INVENTORY ---");
-                    LinkedList<Item> inventory = currentAccount.getInventory();
-                    if (inventory == null || inventory.isEmpty()) {
-                        System.out.println("Inventory kosong.");
-                    } else {
-                        for (int i = 0; i < inventory.size(); i++) {
-                            Item item = inventory.get(i);
-                            System.out.println((i + 1) + ". " + item.getNamaItem() +
-                                    " | ID: " + item.getIdItem() +
-                                    " | Harga Jual: " + item.getHargaJual() +
-                                    " | Deskripsi: " + item.getDeskripsi());
-                        }
-                    }
+//                    System.out.println("--- INVENTORY ---");
+//                    LinkedList<Item> inventory = currentAccount.getInventory();
+//                    if (inventory == null || inventory.isEmpty()) {
+//                        System.out.println("Inventory kosong.");
+//                    } else {
+//                        for (int i = 0; i < inventory.size(); i++) {
+//                            Item item = inventory.get(i);
+//                            System.out.println((i + 1) + ". " + item.getNamaItem() +
+//                                    " | ID: " + item.getIdItem() +
+//                                    " | Harga Jual: " + item.getHargaJual() +
+//                                    " | Deskripsi: " + item.getDeskripsi());
+//                        }
+//                    }
                 } else if (choice == 4) {
 
                 } else if (choice == 5) {
@@ -430,17 +429,17 @@ public class App {
         }
     }
 
+
+    //Fitur 3.2.5 Profil Akun
     public void accProfileMenu() {
         while (true) {
             party = (currentAccount != null && currentAccount.getParty() != null) ? currentAccount.getParty() : new PlayerCharacter[0];
             System.out.println();
             System.out.println("========== PROFIL AKUN ==========");
-            if (currentAccount == null) {
-                System.out.println("No account loaded. Returning to main menu.");
-                return;
-            }
             System.out.println("Username    : " + currentAccount.getUsername());
             System.out.println("Total Gold  : " + currentAccount.getTotalGold());
+            System.out.println("Total Playtime : " + currentAccount.getTotalPlaytime() + " menit");
+            System.out.println("Area Name   : " + (currentAccount.getAreaName() == null || currentAccount.getAreaName().isEmpty() ? "Belum menjelajah" : currentAccount.getAreaName()));
             System.out.println("=================================");
             System.out.println();
 
@@ -498,24 +497,19 @@ public class App {
             System.out.println("[4] Kembali");
             System.out.print("Pilihan: ");
             try {
-                String choiceLine = inpStr.nextLine();
-                if (choiceLine == null || choiceLine.trim().isEmpty()) {
-                    System.out.println("Input tidak valid.");
-                    continue;
-                }
-                int choice = Integer.parseInt(choiceLine.trim());
+                int choice = inpInt.nextInt();
                 if (choice == 1) {
                     System.out.print("Masukkan username baru: ");
                     String usernameBaru = inpStr.nextLine();
                     usernameBaru = usernameBaru == null ? "" : usernameBaru.trim();
                     if (usernameBaru.isEmpty()) {
                         System.out.println("Username tidak boleh kosong");
-                        return;
+                        accProfileMenu();
                     }
 
                     if (checkUsername(usernameBaru)) {
                         System.out.println("Username sudah terdaftar, silakan pilih username lain");
-                        return;
+                        accProfileMenu();
                     }
 
                     String usernameOld = currentAccount != null ? currentAccount.getUsername() : usernameLogin;
@@ -537,15 +531,14 @@ public class App {
                         }
                         System.out.print("Pilihan: ");
                         try {
-                            String detailLine = inpStr.nextLine();
-                            int choiceDetail = Integer.parseInt(detailLine.trim());
+                            int choiceDetail = inpInt.nextInt();
                             if (choiceDetail < 1 || choiceDetail > party.length) {
                                 System.out.println("Pilihan tidak valid.");
                             } else {
                                 PlayerCharacter pc = party[choiceDetail - 1];
                                 if (pc == null) {
                                     System.out.println("Pilihan tidak valid.");
-                                    continue;
+                                    accProfileMenu();
                                 }
                                 System.out.println("\n--- Detail Karakter ---");
                                 System.out.println("Nama       : " + pc.getNama());
@@ -573,8 +566,7 @@ public class App {
                         }
                         System.out.print("Pilihan: ");
                         try {
-                            String editLine = inpStr.nextLine();
-                            int choiceEditNamaChara = Integer.parseInt(editLine.trim());
+                            int choiceEditNamaChara = inpInt.nextInt();
                             if (choiceEditNamaChara < 1 || choiceEditNamaChara > party.length) {
                                 System.out.println("Pilihan tidak valid.");
                             } else {
@@ -588,7 +580,7 @@ public class App {
                                 namaBaru = namaBaru == null ? "" : namaBaru.trim();
                                 if (namaBaru.isEmpty()) {
                                     System.out.println("Nama karakter tidak boleh kosong");
-                                    return;
+                                    accProfileMenu();
                                 }
                                 pc.setNama(namaBaru);
                                 System.out.println("Nama karakter berhasil diubah menjadi '" + namaBaru + "'");
