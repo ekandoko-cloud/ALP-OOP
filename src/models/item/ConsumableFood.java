@@ -1,30 +1,21 @@
 package models.item;
 
+import enums.itemType;
 import models.character.GameCharacter;
-import java.util.*;
 public class ConsumableFood extends Item implements IConsumable {
     private int healHpAmount;
     private int healMpAmount;
-    private int tempStrBuff;
-    private int tempDefBuff;
+    private int strBuff;
+    private int defBuff;
     private String infoGiziSDG;
 
-    public ConsumableFood(int idItem, String namaItem, int hargaJual, String deskripsi,
-                          int healHpAmount, int healMpAmount, int tempStrBuff, int tempDefBuff, String infoGiziSDG) {
-        super(idItem, namaItem, hargaJual, deskripsi);
-        this.idItem = idItem;
-        this.namaItem = namaItem;
-        this.hargaJual = hargaJual;
-        this.deskripsi = deskripsi;
+    public ConsumableFood(int idItem, String namaItem, int hargaJual, String deskripsi, itemType itemType, int healHpAmount, int healMpAmount, int strBuff, int defBuff, String infoGiziSDG) {
+        super(idItem, namaItem, hargaJual, deskripsi, itemType);
         this.healHpAmount = healHpAmount;
         this.healMpAmount = healMpAmount;
-        this.tempStrBuff = tempStrBuff;
-        this.tempDefBuff = tempDefBuff;
+        this.strBuff = strBuff;
+        this.defBuff = defBuff;
         this.infoGiziSDG = infoGiziSDG;
-    }
-
-
-    public void consume(GameCharacter target) {
     }
 
     public int getHealHpAmount() {
@@ -43,20 +34,20 @@ public class ConsumableFood extends Item implements IConsumable {
         this.healMpAmount = healMpAmount;
     }
 
-    public int getTempStrBuff() {
-        return tempStrBuff;
+    public int getStrBuff() {
+        return strBuff;
     }
 
-    public void setTempStrBuff(int tempStrBuff) {
-        this.tempStrBuff = tempStrBuff;
+    public void setStrBuff(int strBuff) {
+        this.strBuff = strBuff;
     }
 
-    public int getTempDefBuff() {
-        return tempDefBuff;
+    public int getDefBuff() {
+        return defBuff;
     }
 
-    public void setTempDefBuff(int tempDefBuff) {
-        this.tempDefBuff = tempDefBuff;
+    public void setDefBuff(int defBuff) {
+        this.defBuff = defBuff;
     }
 
     public String getInfoGiziSDG() {
@@ -66,6 +57,25 @@ public class ConsumableFood extends Item implements IConsumable {
     public void setInfoGiziSDG(String infoGiziSDG) {
         this.infoGiziSDG = infoGiziSDG;
     }
+
+
+    public void consume(GameCharacter target) {
+        useItem(target);
+    }
+
+    public void useItem(GameCharacter target) {
+        if (target == null) {
+            return;
+        }
+
+        target.setCurrentHp(Math.max(0, Math.min(target.getMaxHp(), target.getCurrentHp() + healHpAmount)));
+        target.setCurrentMp(Math.max(0, Math.min(target.getMaxMp(), target.getCurrentMp() + healMpAmount)));
+        // apply permanent buffs
+        target.setKekuatan(Math.max(0, target.getKekuatan() + strBuff));
+        target.setDefense(Math.max(0, target.getDefense() + defBuff));
+    }
+
+
 }
 
 

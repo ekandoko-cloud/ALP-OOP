@@ -15,6 +15,7 @@ public class AccountProfile {
     private PlayerCharacter[] party;
     private LinkedList<Item> inventory;
     private QuestTracker questTracker;
+    private int maxInventorySlots = 10;
 
     public AccountProfile(String username, String password, int totalGold, PlayerCharacter[] party, LinkedList<Item> inventory, QuestTracker questTracker) {
         this.username = username;
@@ -102,6 +103,27 @@ public class AccountProfile {
 
     public void setAreaName(String areaName) {
         this.areaName = areaName;
+    }
+
+    public void addItemToInventory(Item item) {
+        if (this.inventory == null) {
+            this.inventory = new LinkedList<>();
+        }
+        this.inventory.add(item);
+    }
+
+    public void removeItemFromInventory(Item item) {
+        if (this.inventory != null) {
+            this.inventory.remove(item);
+        }
+    }
+
+    public int getMaxInventorySlots() {
+        return maxInventorySlots;
+    }
+
+    public void setMaxInventorySlots(int maxInventorySlots) {
+        this.maxInventorySlots = maxInventorySlots;
     }
 }
 

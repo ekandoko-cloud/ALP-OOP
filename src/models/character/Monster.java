@@ -1,24 +1,16 @@
 package models.character;
+
 import java.util.*;
+
 public class Monster extends GameCharacter {
     private String idMonster;
     private String triviaPenyakit;
 
-    public Monster(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
-                   String idMonster, String triviaPenyakit) {
-        super(nama, maxHp, currentHp, maxMp, currentMp, kekuatan, defense, level);
-        this.nama = nama;
-        this.maxHp = maxHp;
-        this.currentHp = currentHp;
-        this.maxMp = maxMp;
-        this.currentMp = currentMp;
-        this.kekuatan = kekuatan;
-        this.defense = defense;
-        this.level = level;
+    public Monster(String nama, int maxHp, int currentHp, int kekuatan, int defense, int level, String idMonster, String triviaPenyakit) {
+        super(nama, maxHp, currentHp, kekuatan, defense, level);
         this.idMonster = idMonster;
         this.triviaPenyakit = triviaPenyakit;
     }
-
 
     public String getIdMonster() {
         return idMonster;

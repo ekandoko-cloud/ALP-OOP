@@ -1,5 +1,4 @@
 package models.character;
-import java.util.*;
 public class PlayerCharacter extends GameCharacter {
     private int currentExp;
     private int maxExp;
@@ -7,19 +6,13 @@ public class PlayerCharacter extends GameCharacter {
     private boolean statusTubuhNirlelah;
 
     public PlayerCharacter(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level,
-                           int currentExp, int maxExp, String namaEvolusiClass, boolean statusTubuhNirlelah) {
-        super(nama, maxHp, currentHp, maxMp, currentMp, kekuatan, defense, level);
-        this.nama = nama;
-        this.maxHp = maxHp;
-        this.currentHp = currentHp;
+                           int currentExp, int maxExp, String namaClass, boolean statusTubuhNirlelah) {
+        super(nama, maxHp, currentHp, kekuatan, defense, level);
         this.maxMp = maxMp;
         this.currentMp = currentMp;
-        this.kekuatan = kekuatan;
-        this.defense = defense;
-        this.level = level;
         this.currentExp = currentExp;
         this.maxExp = maxExp;
-        this.namaClass = namaEvolusiClass;
+        this.namaClass = namaClass;
         this.statusTubuhNirlelah = statusTubuhNirlelah;
     }
 

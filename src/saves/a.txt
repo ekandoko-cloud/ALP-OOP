@@ -1,0 +1,25 @@
+[BASIC INFO]
+username=a
+totalGold=0
+totalPlaytime=0
+areaName=
+
+[PARTY INFO]
+karakter=Lir^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Fenn^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Eamon^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Roran^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+
+[INVENTORY INFO]
+consumableFood=1^Daging Orc Goreng Lemak^Resep: 2x Tulang Belulang Orc dan 2x Minyak Lemak Hewan. Hidangan berat dengan cita rasa gurih.^120^180^0^-6^-2^Tidak Sehat - Tinggi lemak jenuh, risiko obesitas.
+consumableFood=2^Roti Gandum Berjamur^Resep: 2x Sisa Roti Keras dan 1x Spora Jamur Gua. Roti lama dengan aroma tajam.^80^120^0^0^-4^Tidak Sehat - Kontaminasi mikotoksin berbahaya.
+consumableFood=4^Sate Daging Tikus^Resep: 3x Kulit Tikus Selokan dan 1x Paku Bengkok. Sate ekstrem dengan rasa liar.^95^0^0^90^-3^Tidak Sehat - Risiko tinggi pembawa vektor penyakit pes.
+consumableFood=5^Sup Tulang Berkarat^Resep: 2x Tulang Rapuh dan 1x Besi Karatan. Sup asin beraroma logam.^110^150^0^-2^0^Tidak Sehat - Kontaminasi logam berat berbahaya.
+consumableFood=1^Daging Orc Goreng Lemak^Resep: 2x Tulang Belulang Orc dan 2x Minyak Lemak Hewan. Hidangan berat dengan cita rasa gurih.^120^180^0^-6^-2^Tidak Sehat - Tinggi lemak jenuh, risiko obesitas.
+consumableFood=2^Roti Gandum Berjamur^Resep: 2x Sisa Roti Keras dan 1x Spora Jamur Gua. Roti lama dengan aroma tajam.^80^120^0^0^-4^Tidak Sehat - Kontaminasi mikotoksin berbahaya.
+consumableFood=4^Sate Daging Tikus^Resep: 3x Kulit Tikus Selokan dan 1x Paku Bengkok. Sate ekstrem dengan rasa liar.^95^0^0^90^-3^Tidak Sehat - Risiko tinggi pembawa vektor penyakit pes.
+consumableFood=5^Sup Tulang Berkarat^Resep: 2x Tulang Rapuh dan 1x Besi Karatan. Sup asin beraroma logam.^110^150^0^-2^0^Tidak Sehat - Kontaminasi logam berat berbahaya.
+
+[QUEST INFO]
+questTracker=null
+

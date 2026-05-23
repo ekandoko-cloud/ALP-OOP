@@ -3,6 +3,7 @@ package systems.save;
 import java.io.*;
 import java.util.*;
 
+import enums.itemType;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.ConsumableFood;
@@ -74,7 +75,7 @@ public class SaveLoadSystem {
                         writer.write("equipment=" + equipment.getIdItem() + "^" + equipment.getNamaItem() + "^" + equipment.getDeskripsi() + "^" + equipment.getHargaJual() + "^" + equipment.getTipeEquipment() + "^" + equipment.getBonusKekuatan() + "^" + equipment.getBonusDefense() + "^" + equipment.getLevelTempa());
                         writer.newLine();
                     } else if (item instanceof ConsumableFood consumableFood) {
-                        writer.write("consumableFood=" + consumableFood.getIdItem() + "^" + consumableFood.getNamaItem() + "^" + consumableFood.getDeskripsi() + "^" + consumableFood.getHargaJual() + "^" + consumableFood.getHealHpAmount() + "^" + consumableFood.getHealMpAmount() + "^" + consumableFood.getTempStrBuff() + "^" + consumableFood.getTempDefBuff() + "^" + consumableFood.getInfoGiziSDG());
+                        writer.write("consumableFood=" + consumableFood.getIdItem() + "^" + consumableFood.getNamaItem() + "^" + consumableFood.getDeskripsi() + "^" + consumableFood.getHargaJual() + "^" + consumableFood.getHealHpAmount() + "^" + consumableFood.getHealMpAmount() + "^" + consumableFood.getStrBuff() + "^" + consumableFood.getDefBuff() + "^" + consumableFood.getInfoGiziSDG());
                         writer.newLine();
                     }
                 }
@@ -215,7 +216,7 @@ public class SaveLoadSystem {
                             String nama = data[1];
                             String deskripsi = data[2];
                             int harga = Integer.parseInt(data[3]);
-                            inventoryList.add(new Inqredients(id, nama, harga, deskripsi));
+                            inventoryList.add(new Inqredients(id, nama, harga, deskripsi, itemType.INQREDIENT));
                         }
                     } else if (line.startsWith("equipment=")) {
                         String[] data = line.substring("equipment=".length()).split("\\^");
@@ -228,7 +229,7 @@ public class SaveLoadSystem {
                             int bonusStr = Integer.parseInt(data[5]);
                             int bonusDef = Integer.parseInt(data[6]);
                             int levelTempa = Integer.parseInt(data[7]);
-                            inventoryList.add(new Equipment(id, nama, harga, deskripsi, tipe, bonusStr, bonusDef, levelTempa));
+                            inventoryList.add(new Equipment(id, nama, harga, deskripsi, itemType.EQUIPMENT, bonusStr, bonusDef, levelTempa));
                         }
                     } else if (line.startsWith("consumableFood=")) {
                         String[] data = line.substring("consumableFood=".length()).split("\\^");
@@ -239,10 +240,10 @@ public class SaveLoadSystem {
                             int harga = Integer.parseInt(data[3]);
                             int healHp = Integer.parseInt(data[4]);
                             int healMp = Integer.parseInt(data[5]);
-                            int tempStr = Integer.parseInt(data[6]);
-                            int tempDef = Integer.parseInt(data[7]);
+                            int strBuff = Integer.parseInt(data[6]);
+                            int defBuff = Integer.parseInt(data[7]);
                             String info = data[8];
-                            inventoryList.add(new ConsumableFood(id, nama, harga, deskripsi, healHp, healMp, tempStr, tempDef, info));
+                            inventoryList.add(new ConsumableFood(id, nama, harga, deskripsi, itemType.CONSUMABLE, healHp, healMp, strBuff, defBuff, info));
                         }
                     }
                 } else if (currentSection.equals(quest)) {

@@ -1,5 +1,4 @@
 package models.character;
-import java.util.*;
 public abstract class GameCharacter {
     protected String nama;
     protected int maxHp;
@@ -10,12 +9,10 @@ public abstract class GameCharacter {
     protected int defense;
     protected int level;
 
-    protected GameCharacter(String nama, int maxHp, int currentHp, int maxMp, int currentMp, int kekuatan, int defense, int level) {
+    protected GameCharacter(String nama, int maxHp, int currentHp, int kekuatan, int defense, int level) {
         this.nama = nama;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
-        this.maxMp = maxMp;
-        this.currentMp = currentMp;
         this.kekuatan = kekuatan;
         this.defense = defense;
         this.level = level;

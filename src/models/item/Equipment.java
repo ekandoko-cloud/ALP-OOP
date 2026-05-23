@@ -1,5 +1,6 @@
 package models.item;
-import java.util.*;
+
+import enums.itemType;
 import models.character.PlayerCharacter;
 public class Equipment extends Item implements IEquippable {
     private String tipeEquipment;
@@ -7,19 +8,12 @@ public class Equipment extends Item implements IEquippable {
     private int bonusDefense;
     private int levelTempa;
 
-    public Equipment(int idItem, String namaItem, int hargaJual, String deskripsi,
-                     String tipeEquipment, int bonusKekuatan, int bonusDefense, int levelTempa) {
-        super(idItem, namaItem, hargaJual, deskripsi);
-        this.idItem = idItem;
-        this.namaItem = namaItem;
-        this.hargaJual = hargaJual;
-        this.deskripsi = deskripsi;
-        this.tipeEquipment = tipeEquipment;
+    public Equipment(int idItem, String namaItem, int hargaJual, String deskripsi, itemType itemType, int bonusKekuatan, int bonusDefense, int levelTempa) {
+        super(idItem, namaItem, hargaJual, deskripsi, itemType);
         this.bonusKekuatan = bonusKekuatan;
         this.bonusDefense = bonusDefense;
         this.levelTempa = levelTempa;
     }
-
 
     public String getTipeEquipment() {
         return tipeEquipment;
@@ -52,6 +46,9 @@ public class Equipment extends Item implements IEquippable {
     public void setLevelTempa(int levelTempa) {
         this.levelTempa = levelTempa;
     }
+
+
+
 
     public void equip(PlayerCharacter target) {
     }

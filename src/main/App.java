@@ -1,5 +1,7 @@
 package main;
 
+import DummyData.*;
+
 import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
@@ -7,12 +9,17 @@ import java.nio.file.Files;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.Item;
+import systems.inventory.Inventory;
 import systems.save.SaveLoadSystem;
+import systems.shop.Shop;
 
 public class App {
     public Scanner inpInt = new Scanner(System.in);
     public Scanner inpStr = new Scanner(System.in);
 
+    Inventory inventory;
+    private HashMap<Integer, Item> ingredientCatalog = inqredients.getDummyIngredientsMap();
+    private HashMap<Integer, Item> consumables = DummyData.consumables.getDummyConsumablesMap();
     // Current logged-in account
     private AccountProfile currentAccount;
     private PlayerCharacter[] party = new PlayerCharacter[4];
@@ -22,7 +29,6 @@ public class App {
     String DELIMITER = ":";
     SaveLoadSystem saveload = new SaveLoadSystem();
     String usernameLogin = "";
-
 
     //FITUR 3.2.2 LOGIN REGISTER
     public void startMenu() {
@@ -39,6 +45,10 @@ public class App {
 
             try {
                 choice = inpInt.nextInt();
+                try {
+                    inpInt.nextLine();
+                } catch (Exception ignored) {
+                }
 
                 if (choice == 1) {
                     login();
@@ -50,12 +60,16 @@ public class App {
                 } else {
                     System.out.println("Pilihan tidak valid. Silakan pilih 1, 2, atau 3.");
                     System.out.println();
-                    startMenu();
+                    continue;
                 }
             } catch (Exception e) {
+                try {
+                    inpInt.nextLine();
+                } catch (Exception ignored) {
+                }
                 System.out.println("Input tidak valid. Silakan masukkan yang sesuai.");
                 System.out.println();
-                startMenu();
+                continue;
             }
         }
     }
@@ -89,7 +103,7 @@ public class App {
 
             System.out.println("Registration successful.");
             System.out.println();
-            startMenu();
+            return;
         }
     }
 
@@ -152,13 +166,18 @@ public class App {
                     } catch (Exception ex) {
                         System.out.println("Belum ada file save. 4 karakter CLASSLESS baru telah dibuat (gagal autosave: " + ex.getMessage() + ")");
                     }
+
+                    if (ingredientCatalog.isEmpty()) {
+                        System.out.println("Peringatan: data dummy ingredients gagal dimuat.");
+                    }
                 }
-                // keep global party in sync after login
+
                 party = (currentAccount != null && currentAccount.getParty() != null)
                         ? currentAccount.getParty()
                         : new PlayerCharacter[0];
 
                 mainMenu();
+                return;
             } else {
                 System.out.println("Login failed. Incorrect username or password.");
                 return;
@@ -374,21 +393,14 @@ public class App {
                 } else if (choice == 2) {
 
                 } else if (choice == 3) {
-//                    System.out.println("--- INVENTORY ---");
-//                    LinkedList<Item> inventory = currentAccount.getInventory();
-//                    if (inventory == null || inventory.isEmpty()) {
-//                        System.out.println("Inventory kosong.");
-//                    } else {
-//                        for (int i = 0; i < inventory.size(); i++) {
-//                            Item item = inventory.get(i);
-//                            System.out.println((i + 1) + ". " + item.getNamaItem() +
-//                                    " | ID: " + item.getIdItem() +
-//                                    " | Harga Jual: " + item.getHargaJual() +
-//                                    " | Deskripsi: " + item.getDeskripsi());
-//                        }
-//                    }
+                    currentAccount.addItemToInventory(consumables.get(1));
+                    currentAccount.addItemToInventory(consumables.get(2));
+                    currentAccount.addItemToInventory(consumables.get(3));
+                    currentAccount.addItemToInventory(consumables.get(4));
+                    currentAccount.addItemToInventory(consumables.get(5));
+                    inventoryMenu();
                 } else if (choice == 4) {
-
+                    
                 } else if (choice == 5) {
 
                 } else if (choice == 6) {
@@ -417,14 +429,131 @@ public class App {
                     currentAccount = null;
                     usernameLogin = "";
                     party = new PlayerCharacter[0];
-                    startMenu();
+                    return;
                 } else {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
                     continue;
                 }
             } catch (Exception e) {
+                // clear invalid token
+                try {
+                    inpInt.nextLine();
+                } catch (Exception ignored) {
+                }
                 System.out.println("Input tidak valid. Silakan masukkan angka yang sesuai.");
                 continue;
+            }
+        }
+    }
+    
+    //FITUR SHOP
+    Shop shop1;
+    public void shop1(){
+        ArrayList<Item> shop1Items = new ArrayList<>();
+        shop1 = new Shop(shop1Items, "Shop 1", currentAccount);
+        shop1Items.add(consumables.get(1));
+        shop1Items.add(consumables.get(2));
+        shop1Items.add(consumables.get(3));
+        shop1Items.add(consumables.get(4));
+        shop1Items.add(consumables.get(5));
+        shop1Items.add(consumables.get(6));
+        shop1Items.add(consumables.get(7));
+        shop1Items.add(consumables.get(8));
+        shopMenu1();
+    }
+
+    public void shopMenu1(){
+        while (true) {
+            System.out.println("=== " + shop1.getShopName() + "  ===");
+            shop1.tampilkanItem();
+            System.out.println("1. Buy Items");
+            System.out.println("2. Sell Items");
+            System.out.println("3. Display Item Details");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Choose an option: ");
+
+            try {
+                int choice = inpInt.nextInt();
+
+                if(choice == 1) {
+                    System.out.print("Enter the index of the item you want to buy: ");
+                    int itemIndex = inpInt.nextInt();
+                    System.out.print("Enter the amount: ");
+                    int itemAmount = inpInt.nextInt();
+                    shop1.beliItem(itemIndex, itemAmount, currentAccount);
+                }else if (choice == 2) {
+                    Inventory inventoryPlayer = new Inventory(currentAccount);
+                    inventoryPlayer.displayInventory();
+                    System.out.println();
+                    System.out.print("Enter the index of the item you want to sell: ");
+                    int itemIndex = inpInt.nextInt();
+                    shop1.sellItem(itemIndex, currentAccount);
+                }else if (choice == 3) {
+                    System.out.print("Enter the index of the item you want to see the details of: ");
+                    int  itemIndex = inpInt.nextInt();
+                    shop1.displayItemDetail(itemIndex);
+                }else if (choice == 4) {
+                    mainMenu();
+                } else {
+                    System.out.println("Invalid Input. Please pick according to the index");
+                }
+            }catch (Exception ignored) {
+                System.out.println("Invalid Input");
+            }
+        }
+    }
+
+    //FITUR INVENTORY
+    public void inventoryMenu(){
+        while (true) {
+            Inventory inventoryView = new Inventory(currentAccount);
+            inventoryView.displayInventory();
+            System.out.println();
+            System.out.println("=== INVENTORY MENU===");
+            System.out.println("1. Search Item");
+            System.out.println("2. View Item Details");
+            System.out.println("3. Use Items");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("Choose an option: ");
+            try {
+                int invChoice = inpInt.nextInt();
+                inpInt.nextLine();
+
+                if(invChoice == 1) {
+                    System.out.print("Masukkan kata kunci untuk mencari item: ");
+                    String keyword = inpStr.nextLine();
+                    inventoryView.cariItem(keyword);
+                }else if(invChoice == 2){
+                    System.out.print("Masukkan index item: ");
+                    int index = inpInt.nextInt();
+                    inventoryView.displayItemDetail(currentAccount.getInventory().get(index - 1).getNamaItem());
+                }else if(invChoice == 3){
+                    System.out.print("Masukkan index item yang ingin dipakai: ");
+                    int itemIndex = inpInt.nextInt();
+                    inpInt.nextLine();
+
+                    System.out.println("Pilih member yang ingin digunakan itemnya:");
+                    if (currentAccount.getParty() != null) {
+                        for (int i = 0; i < currentAccount.getParty().length; i++) {
+                            PlayerCharacter pc = currentAccount.getParty()[i];
+                            if (pc == null) {
+                                continue;
+                            }
+                            System.out.println((i+1) + ". " + pc.getNama() + " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() + " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp());
+                        }
+                    }
+
+                    System.out.print("Masukkan index member: ");
+                    int targetIndex = inpInt.nextInt();
+                    inventoryView.useItem(itemIndex, targetIndex);
+                }else if(invChoice == 4){
+                    mainMenu();
+                }else{
+                    System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
+                }
+            } catch (Exception e) {
+                try { inpInt.nextLine(); } catch (Exception ignored) {}
+                System.out.println("Invalid input");
             }
         }
     }
@@ -498,18 +627,22 @@ public class App {
             System.out.print("Pilihan: ");
             try {
                 int choice = inpInt.nextInt();
+                try {
+                    inpInt.nextLine();
+                } catch (Exception ignored) {
+                }
                 if (choice == 1) {
                     System.out.print("Masukkan username baru: ");
                     String usernameBaru = inpStr.nextLine();
                     usernameBaru = usernameBaru == null ? "" : usernameBaru.trim();
                     if (usernameBaru.isEmpty()) {
                         System.out.println("Username tidak boleh kosong");
-                        accProfileMenu();
+                        continue;
                     }
 
                     if (checkUsername(usernameBaru)) {
                         System.out.println("Username sudah terdaftar, silakan pilih username lain");
-                        accProfileMenu();
+                        continue;
                     }
 
                     String usernameOld = currentAccount != null ? currentAccount.getUsername() : usernameLogin;
@@ -532,13 +665,18 @@ public class App {
                         System.out.print("Pilihan: ");
                         try {
                             int choiceDetail = inpInt.nextInt();
+                            try {
+                                inpInt.nextLine();
+                            } catch (Exception ignored) {
+                            }
                             if (choiceDetail < 1 || choiceDetail > party.length) {
                                 System.out.println("Pilihan tidak valid.");
+                                continue;
                             } else {
                                 PlayerCharacter pc = party[choiceDetail - 1];
                                 if (pc == null) {
                                     System.out.println("Pilihan tidak valid.");
-                                    accProfileMenu();
+                                    continue;
                                 }
                                 System.out.println("\n--- Detail Karakter ---");
                                 System.out.println("Nama       : " + pc.getNama());
@@ -552,6 +690,10 @@ public class App {
                                 System.out.println("Nirlelah   : " + (pc.isStatusTubuhNirlelah() ? "Ya" : "Tidak"));
                             }
                         } catch (Exception e) {
+                            try {
+                                inpInt.nextLine();
+                            } catch (Exception ignored) {
+                            }
                             System.out.println("Input tidak valid.");
                             continue;
                         }
@@ -567,8 +709,13 @@ public class App {
                         System.out.print("Pilihan: ");
                         try {
                             int choiceEditNamaChara = inpInt.nextInt();
+                            try {
+                                inpInt.nextLine();
+                            } catch (Exception ignored) {
+                            }
                             if (choiceEditNamaChara < 1 || choiceEditNamaChara > party.length) {
                                 System.out.println("Pilihan tidak valid.");
+                                continue;
                             } else {
                                 PlayerCharacter pc = party[choiceEditNamaChara - 1];
                                 if (pc == null) {
@@ -580,23 +727,32 @@ public class App {
                                 namaBaru = namaBaru == null ? "" : namaBaru.trim();
                                 if (namaBaru.isEmpty()) {
                                     System.out.println("Nama karakter tidak boleh kosong");
-                                    accProfileMenu();
+                                    continue;
                                 }
                                 pc.setNama(namaBaru);
                                 System.out.println("Nama karakter berhasil diubah menjadi '" + namaBaru + "'");
                             }
                         } catch (Exception e) {
+                            try {
+                                inpInt.nextLine();
+                            } catch (Exception ignored) {
+                            }
                             System.out.println("Input tidak valid.");
                             continue;
                         }
                     }
                 } else if (choice == 4) {
                     System.out.println();
-                    mainMenu();
+                    return;
                 } else {
                     System.out.println("Pilihan tidak valid.");
+                    continue;
                 }
             } catch (Exception e) {
+                try {
+                    inpInt.nextLine();
+                } catch (Exception ignored) {
+                }
                 System.out.println("Input tidak valid.");
                 continue;
             }
