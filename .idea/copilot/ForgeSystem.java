@@ -23,7 +23,7 @@ import models.account.AccountProfile;
  */
 public class ForgeSystem {
     private static final int MAX_UPGRADE_LEVEL = 10;
-    private HashMap<Integer, UpgradeFormula> upgradeFormulas;
+    private ArrayList<UpgradeFormula> upgradeFormulas;
     private String blacksmithName;
     private int maxInventorySlots;
 
@@ -38,11 +38,11 @@ public class ForgeSystem {
         private int defIncrease; // Peningkatan DEF
         private String materialName; // Nama material yang dibutuhkan
 
-        public UpgradeFormula(int level, String materialName, int materialReq,
+        public UpgradeFormula(int level, String materialName, int materialAmount,
                              int atkInc, int defInc) {
             this.level = level;
             this.materialName = materialName;
-            this.materialRequirement = materialReq;
+            this.materialRequirement = materialAmount;
             this.atkIncrease = atkInc;
             this.defIncrease = defInc;
         }
@@ -57,7 +57,7 @@ public class ForgeSystem {
     public ForgeSystem(String blacksmithName, int maxInventorySlots) {
         this.blacksmithName = blacksmithName;
         this.maxInventorySlots = maxInventorySlots;
-        this.upgradeFormulas = new HashMap<>();
+        this.upgradeFormulas = new ArrayList<>();
         initializeUpgradeFormulas();
     }
 
@@ -66,16 +66,16 @@ public class ForgeSystem {
      * Semakin tinggi level, semakin besar requirement dan bonus
      */
     private void initializeUpgradeFormulas() {
-        upgradeFormulas.put(1, new UpgradeFormula(1, "Iron Ore", 2, 5, 2));
-        upgradeFormulas.put(2, new UpgradeFormula(2, "Iron Ore", 3, 8, 3));
-        upgradeFormulas.put(3, new UpgradeFormula(3, "Steel Ingot", 2, 10, 5));
-        upgradeFormulas.put(4, new UpgradeFormula(4, "Steel Ingot", 3, 12, 7));
-        upgradeFormulas.put(5, new UpgradeFormula(5, "Mithril Ore", 2, 15, 10));
-        upgradeFormulas.put(6, new UpgradeFormula(6, "Mithril Ore", 3, 18, 12));
-        upgradeFormulas.put(7, new UpgradeFormula(7, "Mithril Ingot", 2, 20, 15));
-        upgradeFormulas.put(8, new UpgradeFormula(8, "Mithril Ingot", 3, 25, 18));
-        upgradeFormulas.put(9, new UpgradeFormula(9, "Orichalcum", 3, 30, 20));
-        upgradeFormulas.put(10, new UpgradeFormula(10, "Orichalcum", 5, 35, 25));
+        upgradeFormulas.add(new UpgradeFormula(1, "Iron Ore", 2, 5, 2));
+        upgradeFormulas.add(new UpgradeFormula(2, "Iron Ore", 3, 8, 3));
+        upgradeFormulas.add(new UpgradeFormula(3, "Steel Ingot", 2, 10, 5));
+        upgradeFormulas.add(new UpgradeFormula(4, "Steel Ingot", 3, 12, 7));
+        upgradeFormulas.add(new UpgradeFormula(5, "Mithril Ore", 2, 15, 10));
+        upgradeFormulas.add(new UpgradeFormula(6, "Mithril Ore", 3, 18, 12));
+        upgradeFormulas.add(new UpgradeFormula(7, "Mithril Ingot", 2, 20, 15));
+        upgradeFormulas.add(new UpgradeFormula(8, "Mithril Ingot", 3, 25, 18));
+        upgradeFormulas.add(new UpgradeFormula(9, "Orichalcum", 3, 30, 20));
+        upgradeFormulas.add(new UpgradeFormula(10, "Orichalcum", 5, 35, 25));
     }
 
     /**
@@ -145,7 +145,7 @@ public class ForgeSystem {
 
         // Tampilkan requirement untuk level berikutnya
         int nextLevel = currentLevel + 1;
-        UpgradeFormula formula = upgradeFormulas.get(nextLevel);
+        UpgradeFormula formula = getFormulaByLevel(nextLevel);
 
         if (formula != null) {
             System.out.println("\n--- Requirement Upgrade ke Level +" + nextLevel + " ---");
@@ -188,7 +188,7 @@ public class ForgeSystem {
 
         // Dapatkan formula upgrade berikutnya
         int nextLevel = currentLevel + 1;
-        UpgradeFormula formula = upgradeFormulas.get(nextLevel);
+        UpgradeFormula formula = getFormulaByLevel(nextLevel);
 
         if (formula == null) {
             System.out.println("\n✗ Formula upgrade tidak ditemukan!");
@@ -279,6 +279,13 @@ public class ForgeSystem {
         }
     }
 
+    private UpgradeFormula getFormulaByLevel(int level) {
+        if (level < 1 || level > upgradeFormulas.size()) {
+            return null;
+        }
+        return upgradeFormulas.get(level - 1);
+    }
+
     /**
      * Menampilkan statistics upgrade untuk semua level
      */
@@ -288,11 +295,11 @@ public class ForgeSystem {
             "Level", "Material", "Jumlah", "ATK+", "DEF+"));
         System.out.println("-".repeat(65));
 
-        for (int i = 1; i <= MAX_UPGRADE_LEVEL; i++) {
+        for (int i = 0; i < upgradeFormulas.size(); i++) {
             UpgradeFormula formula = upgradeFormulas.get(i);
             if (formula != null) {
                 System.out.println(String.format("%-8s | %-15s | %-15d | %-8d | %-8d",
-                    "+" + i,
+                    "+" + formula.getLevel(),
                     formula.getMaterialName(),
                     formula.getMaterialRequirement(),
                     formula.getAtkIncrease(),

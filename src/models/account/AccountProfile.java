@@ -106,6 +106,9 @@ public class AccountProfile {
     }
 
     public void addItemToInventory(Item item) {
+        if (item == null) {
+            return;
+        }
         if (this.inventory == null) {
             this.inventory = new LinkedList<>();
         }

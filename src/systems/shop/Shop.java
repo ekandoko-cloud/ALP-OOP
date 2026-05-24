@@ -57,17 +57,17 @@ public class Shop {
 
     public boolean beliItem(int itemIndex, int jumlah, AccountProfile playerAccount) {
         if (playerAccount == null) {
-            System.out.println("\n Profil pemain tidak tersedia!");
+            System.out.println("\nProfil pemain tidak tersedia!");
             return false;
         }
 
         if (itemIndex < 1 || itemIndex > daftarItem.size()) {
-            System.out.println("\n Index item tidak valid!");
+            System.out.println("\nIndex item tidak valid!");
             return false;
         }
 
         if (jumlah <= 0) {
-            System.out.println("\n Jumlah pembelian harus lebih dari 0!");
+            System.out.println("\nJumlah pembelian harus lebih dari 0!");
             return false;
         }
 
@@ -89,7 +89,7 @@ public class Shop {
         }
 
         if (playerInventory.size() + jumlah > playerAccount.getMaxInventorySlots()) {
-            System.out.println("\n✗ Inventory sudah penuh! (Max " + playerAccount.getMaxInventorySlots() + " slot)");
+            System.out.println("\nInventory sudah penuh! (Max " + playerAccount.getMaxInventorySlots() + " slot)");
             System.out.println("  Slot yang digunakan: " + playerInventory.size() + "/" + playerAccount.getMaxInventorySlots());
             return false;
         }
@@ -100,7 +100,7 @@ public class Shop {
             playerInventory.add(shopItem);
         }
 
-        System.out.println("\n✓ Pembelian berhasil!");
+        System.out.println("\nPembelian berhasil!");
         System.out.println("  Item dibeli: " + shopItem.getNamaItem());
         System.out.println("  Jumlah: " + jumlah);
         System.out.println("  Harga total: " + totalPrice + " gold");
@@ -140,24 +140,24 @@ public class Shop {
 
     public boolean sellItem(int inventoryIndex, AccountProfile playerAccount) {
         if (playerAccount == null) {
-            System.out.println("\n Profil pemain tidak tersedia!");
+            System.out.println("\nProfil pemain tidak tersedia!");
             return false;
         }
 
         LinkedList<Item> inventory = playerAccount.getInventory();
         if (inventory == null || inventory.isEmpty()) {
-            System.out.println("\n Inventory kosong, tidak ada yang bisa dijual.");
+            System.out.println("\nInventory kosong, tidak ada yang bisa dijual.");
             return false;
         }
 
         if (inventoryIndex < 1 || inventoryIndex > inventory.size()) {
-            System.out.println("\n Index inventory tidak valid!");
+            System.out.println("\nIndex inventory tidak valid!");
             return false;
         }
 
         Item itemToSell = inventory.get(inventoryIndex - 1);
         if (itemToSell == null) {
-            System.out.println("\n Item tidak ditemukan pada index tersebut.");
+            System.out.println("\nItem tidak ditemukan pada index tersebut.");
             return false;
         }
 
@@ -165,7 +165,7 @@ public class Shop {
         inventory.remove(inventoryIndex - 1);
         playerAccount.setTotalGold(playerAccount.getTotalGold() + sellPrice);
 
-        System.out.println("\n Penjualan berhasil!");
+        System.out.println("\nPenjualan berhasil!");
         System.out.println("  Item terjual: " + itemToSell.getNamaItem());
         System.out.println("  Harga jual: " + sellPrice + " gold");
         System.out.println("  Gold sekarang: " + playerAccount.getTotalGold());
@@ -201,6 +201,10 @@ public class Shop {
 
     public AccountProfile getLinkedAccount() {
         return linkedAccount;
+    }
+
+    public void setCurrentAccount(AccountProfile account) {
+        this.linkedAccount = account;
     }
 }
 

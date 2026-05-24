@@ -1,6 +1,6 @@
 [BASIC INFO]
 username=a
-totalGold=0
+totalGold=1000000
 totalPlaytime=0
 areaName=
 

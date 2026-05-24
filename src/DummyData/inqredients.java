@@ -209,6 +209,16 @@ public class inqredients {
             i(198, "Inti Ekstraksi Kekuatan", 115000, "Mengubah 100% Defense musuh menjadi Kekuatan tambahan karakter."),
             i(199, "Simbol Absolut Kekuatan", 200000, "Rune sakti peningkat output damage tanpa batas."),
             i(200, "Jantung Avatar Pandemi", 250000, "Inti pedang pembasmi yang mampu menyembuhkan dunia."),
+            i(201, "Iron Ore", 300, "Bijih dasar untuk penempaan equipment level awal."),
+            i(202, "Copper Ore", 350, "Bijih tembaga untuk upgrade peralatan ringan."),
+            i(203, "Tin Ore", 400, "Bijih timah untuk penempaan komponen menengah."),
+            i(204, "Silver Ore", 500, "Bijih perak untuk perlengkapan dengan kualitas lebih baik."),
+            i(205, "Gold Ore", 650, "Bijih emas untuk upgrade equipment bernilai tinggi."),
+            i(206, "Mithril Ore", 900, "Bijih mithril untuk equipment kelas menengah-atas."),
+            i(207, "Orichalcum Ore", 1200, "Bijih orichalcum untuk penempaan lanjutan."),
+            i(208, "Adamantite Ore", 1600, "Bijih adamantite untuk equipment sangat kuat."),
+            i(209, "Celestite Ore", 2000, "Bijih celestite dengan energi langit yang stabil."),
+            i(210, "Dragonite Ore", 2500, "Bijih dragonite untuk upgrade forge level tertinggi."),
     };
 
     private static final HashMap<Integer, Item> INGREDIENT_MAP = initializeMap();
