@@ -1,0 +1,34 @@
+[BASIC INFO]
+username=w
+totalGold=3500
+totalPlaytime=0:07
+maxInventorySlots=20
+areaName=
+
+[PARTY INFO]
+karakter=Gideon^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Yarrow^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Barek^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Ilanor^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+
+[INVENTORY INFO]
+inqredient=10^Daun Obat Kering^Campuran ramuan penyembuh awal.^70
+equipment=25^Kacamata Pembidik Mekanis^[Archer] Lensa pembesar khusus pemantau pergerakan angin.^360^Archer^22^8^0
+consumableFood=1^Daging Orc Goreng Lemak^Resep: 2x Tulang Belulang Orc dan 2x Minyak Lemak Hewan. Hidangan berat dengan cita rasa gurih. Efek: HP +180, STR -6, DEF -2.^120^180^0^-6^-2^Tidak Sehat - Tinggi lemak jenuh, risiko obesitas.
+
+[QUEST INFO]
+questTracker=null
+
+
+[CRAFTING INFO]
+resep=1
+resep=2
+resep=3
+resep=4
+resep=5
+resep=6
+resep=7
+resep=8
+resep=9
+resep=10
+resep=11

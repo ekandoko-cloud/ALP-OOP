@@ -42,8 +42,7 @@ public class Shop {
 
         System.out.println("\n=== " + shopName + " ===");
         System.out.println("Selamat datang di " + shopName + "!");
-        System.out.println(String.format("%-30s | %-15s | %-10s",
-                "Nama Item", "Tipe", "Harga"));
+        System.out.printf("%-30s | %-15s | %-10s%n", "Nama Item", "Tipe", "Harga");
         System.out.println("-".repeat(70));
 
         int index = 1;
@@ -75,7 +74,7 @@ public class Shop {
         int totalPrice = shopItem.getHargaJual() * jumlah;
 
         if (playerAccount.getTotalGold() < totalPrice) {
-            System.out.println("\n✗ Gold tidak mencukupi!");
+            System.out.println("\nGold tidak mencukupi!");
             System.out.println("  Gold Anda: " + playerAccount.getTotalGold());
             System.out.println("  Harga Total: " + totalPrice);
             System.out.println("  Kurang: " + (totalPrice - playerAccount.getTotalGold()) + " gold");
@@ -97,7 +96,7 @@ public class Shop {
         playerAccount.setTotalGold(playerAccount.getTotalGold() - totalPrice);
 
         for (int i = 0; i < jumlah; i++) {
-            playerInventory.add(shopItem);
+            playerAccount.addItemToInventory(shopItem);
         }
 
         System.out.println("\nPembelian berhasil!");
@@ -150,19 +149,23 @@ public class Shop {
             return false;
         }
 
-        if (inventoryIndex < 1 || inventoryIndex > inventory.size()) {
-            System.out.println("\nIndex inventory tidak valid!");
+        LinkedList<Item> sortedInventory = new LinkedList<>(inventory);
+        sortedInventory.sort(Comparator.comparing(Item::getNamaItem));
+
+        if (inventoryIndex < 1 || inventoryIndex > sortedInventory.size()) {
+            System.out.println("\nIndex inventory tidak valid! (Valid: 1 - " + sortedInventory.size() + ")");
             return false;
         }
 
-        Item itemToSell = inventory.get(inventoryIndex - 1);
+        Item itemToSell = sortedInventory.get(inventoryIndex - 1);
         if (itemToSell == null) {
             System.out.println("\nItem tidak ditemukan pada index tersebut.");
             return false;
         }
 
         int sellPrice = itemToSell.getHargaJual();
-        inventory.remove(inventoryIndex - 1);
+
+        inventory.remove(itemToSell);
         playerAccount.setTotalGold(playerAccount.getTotalGold() + sellPrice);
 
         System.out.println("\nPenjualan berhasil!");
@@ -172,21 +175,11 @@ public class Shop {
         return true;
     }
 
-    private Item findItemInShop(String itemName) {
-        for (Item item : daftarItem) {
-            if (item.getNamaItem().equalsIgnoreCase(itemName)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-
     public int getMaxInventorySlots() {
         if (linkedAccount != null) {
             return linkedAccount.getMaxInventorySlots();
         }
-        return 10;
+        return models.account.AccountProfile.DEFAULT_MAX_INVENTORY_SLOTS;
     }
 
     public void setMaxInventorySlots(int maxInventorySlots) {
@@ -204,7 +197,7 @@ public class Shop {
     }
 
     public void setCurrentAccount(AccountProfile account) {
-        this.linkedAccount = account;
+        setLinkedAccount(account);
     }
 }
 

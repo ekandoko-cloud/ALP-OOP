@@ -1,0 +1,34 @@
+[BASIC INFO]
+username=1
+totalGold=0
+totalPlaytime=0:00
+maxInventorySlots=20
+areaName=
+
+[PARTY INFO]
+karakter=Quist^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Arlen^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Udon^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+karakter=Tarin^CLASSLESS^1^100^100^50^50^10^5^0^100^false
+
+[INVENTORY INFO]
+inqredient=10^Daun Obat Kering^Campuran ramuan penyembuh awal.^70
+inqredient=100^Jantung Mesin Karat^Mengaktifkan golem atau drone pendamping.^3500
+equipment=25^Kacamata Pembidik Mekanis^[Archer] Lensa pembesar khusus pemantau pergerakan angin.^360^Archer^22^8^0
+
+[QUEST INFO]
+questTracker=null
+
+
+[CRAFTING INFO]
+resep=1
+resep=2
+resep=3
+resep=4
+resep=5
+resep=6
+resep=7
+resep=8
+resep=9
+resep=10
+resep=11

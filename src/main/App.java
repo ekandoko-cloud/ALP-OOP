@@ -10,6 +10,7 @@ import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.Item;
 import systems.craft.ForgeSystem;
+import systems.craft.CraftingSystem;
 import systems.inventory.Inventory;
 import systems.save.SaveLoadSystem;
 import systems.shop.Shop;
@@ -19,12 +20,18 @@ public class App {
     public Scanner inpStr = new Scanner(System.in);
 
     Inventory inventory;
+    //ensiklopedia
     private HashMap<Integer, Item> ingredientCatalog = inqredients.getDummyIngredientsMap();
     private HashMap<Integer, Item> consumables = DummyData.consumables.getDummyConsumablesMap();
     private HashMap<Integer, Item> equipment = DummyData.equipment.getEquipmentMap();
+    private HashMap<Integer, systems.craft.craftingRecipe> craftingRecipes = DummyData.craftingRecipe.getDummyRecipesMap();
+    private ArrayList<systems.craft.craftingRecipe> resepUser;
+    private static final String CRAFTING_SECTION = "[CRAFTING INFO]";
+    private static final int STARTER_RECIPE_COUNT = 11;
     // Current logged-in account
     private AccountProfile currentAccount;
     private ForgeSystem forgeSystem;
+    private CraftingSystem craftingSystem;
     private PlayerCharacter[] party = new PlayerCharacter[4];
 
     //utk nyimpan akun
@@ -134,6 +141,8 @@ public class App {
                 if (loadedAccount != null) {
                     loadedAccount.setPassword(password);
                     this.currentAccount = loadedAccount;
+                    this.resepUser = loadResepUserFromSave(usernameLogin);
+                    this.craftingSystem = null;
                     System.out.println("Save ditemukan. Data akun berhasil di-load otomatis.");
                 } else {
                     PlayerCharacter[] newParty = new PlayerCharacter[4];
@@ -162,8 +171,10 @@ public class App {
                         newParty[i] = new PlayerCharacter(pick, 100, 100, 50, 50, 10, 5, 1, 0, 100, "CLASSLESS", false);
                     }
                     this.currentAccount = new AccountProfile(usernameLogin, password, 0, newParty, new LinkedList<>(), null);
+                    this.resepUser = createStarterResepUser();
+                    this.craftingSystem = null;
                     try {
-                        saveload.save(currentAccount);
+                        saveCurrentAccountWithRecipes();
                     } catch (Exception ex) {
                         System.out.println("Belum ada file save. 4 karakter CLASSLESS baru telah dibuat (gagal autosave: " + ex.getMessage() + ")");
                     }
@@ -182,6 +193,8 @@ public class App {
                 } else {
                     forgeSystem.setCurrentAccount(currentAccount);
                 }
+
+                if (currentAccount != null) currentAccount.startPlaytime();
 
                 mainMenu();
                 return;
@@ -394,25 +407,17 @@ public class App {
 
             try {
                 choice = inpInt.nextInt();
-                
+
                 if (choice == 1) {
 
                 } else if (choice == 2) {
 
                 } else if (choice == 3) {
-                    currentAccount.addItemToInventory(consumables.get(1));
-                    currentAccount.addItemToInventory(consumables.get(2));
-                    currentAccount.addItemToInventory(consumables.get(3));
-                    currentAccount.addItemToInventory(ingredientCatalog.get(201));
-                    currentAccount.addItemToInventory(ingredientCatalog.get(201));
-                    currentAccount.addItemToInventory(ingredientCatalog.get(201));
-                    currentAccount.addItemToInventory(equipment.get(1));
-                    currentAccount.addItemToInventory(equipment.get(2));
                     inventoryMenu();
                 } else if (choice == 4) {
                     shop1();
                 } else if (choice == 5) {
-
+                    craftingMenu();
                 } else if (choice == 6) {
                     forgeMenu();
                 } else if (choice == 7) {
@@ -432,12 +437,26 @@ public class App {
                 } else if (choice == 14) {
                     accProfileMenu();
                 } else if (choice == 15) {
-                    saveload.save(currentAccount);
-                    System.out.println("Game saved successfully.");
+                    if (currentAccount != null) {
+                        currentAccount.stopPlaytimeAndAccumulate();
+                        saveCurrentAccountWithRecipes();
+                        System.out.println("Game saved successfully. (playtime updated: " + currentAccount.getTotalPlaytimeFormatted() + ")");
+                        currentAccount.startPlaytime();
+                    } else {
+                        System.out.println("No account loaded to save.");
+                    }
                 } else if (choice == 16) {
-                    System.out.println("Logging out...");
+                    if (currentAccount != null) {
+                        currentAccount.stopPlaytimeAndAccumulate();
+                        saveCurrentAccountWithRecipes();
+                        System.out.println("Logging out... Playtime saved: " + currentAccount.getTotalPlaytimeFormatted());
+                    } else {
+                        System.out.println("Logging out...");
+                    }
                     currentAccount = null;
                     usernameLogin = "";
+                    resepUser = null;
+                    craftingSystem = null;
                     party = new PlayerCharacter[0];
                     if (forgeSystem != null) forgeSystem.setCurrentAccount(null);
                     startMenu();
@@ -452,6 +471,45 @@ public class App {
         }
     }
 
+
+
+    //FITUR CRAFTING
+    public void craftingMenu(){
+        if (craftingSystem == null) {
+            craftingSystem = new CraftingSystem(resepUser != null ? resepUser : createStarterResepUser());
+        }
+
+        currentAccount.getInventory().add(ingredientCatalog.get(30));
+        currentAccount.getInventory().add(ingredientCatalog.get(30));
+        currentAccount.getInventory().add(ingredientCatalog.get(32));
+        currentAccount.getInventory().add(ingredientCatalog.get(32));
+
+        while (true){
+            craftingSystem.tampilkanResep();
+            System.out.println("======================================");
+            System.out.println("1. Craft Item");
+            System.out.println("2. Back to Main Menu");
+            System.out.print("Choose an option: ");
+
+            try{
+                int choice = inpInt.nextInt();
+
+                if(choice == 1) {
+                    System.out.print("Masukkan index resep yang mau dicraft: ");
+                    int index = inpInt.nextInt();
+                    craftingSystem.craft(index, currentAccount);
+                }else if(choice == 2){
+                    return;
+                }else {
+                    System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
+                }
+            }catch (Exception e){
+                System.out.println("Invalid Input");
+            }
+
+        }
+    }
+
     //FITUR FORGE
     public void forgeMenu(){
         if (forgeSystem == null) {
@@ -459,6 +517,11 @@ public class App {
         } else {
             forgeSystem.setCurrentAccount(currentAccount);
         }
+
+        currentAccount.getInventory().add(equipment.get(1));
+        currentAccount.getInventory().add(ingredientCatalog.get(201));
+        currentAccount.getInventory().add(ingredientCatalog.get(201));
+        currentAccount.getInventory().add(ingredientCatalog.get(201));
 
         while (true) {
             forgeSystem.tampilkanEquipment(currentAccount);
@@ -473,7 +536,6 @@ public class App {
                 if (choice == 1) {
                     System.out.print("Masukkan index equipment yang mau diupgrade: ");
                     int index = inpInt.nextInt();
-                 
                     forgeSystem.upgrade(index, currentAccount);
                 } else if (choice == 2) {
                     return;
@@ -520,28 +582,57 @@ public class App {
 
             try {
                 int choice = inpInt.nextInt();
-                 
+
 
                 if(choice == 1) {
                     System.out.print("Enter the index of the item you want to buy: ");
                     int itemIndex = inpInt.nextInt();
-                 
+
                     System.out.print("Enter the amount: ");
                     int itemAmount = inpInt.nextInt();
-                 
+
                     shop1.beliItem(itemIndex, itemAmount, currentAccount);
                 }else if (choice == 2) {
-                    Inventory inventoryPlayer = new Inventory(currentAccount);
-                    inventoryPlayer.displayInventory();
-                    System.out.println();
-                    System.out.print("Enter the index of the item you want to sell: ");
-                    int itemIndex = inpInt.nextInt();
-                 
-                    shop1.sellItem(itemIndex, currentAccount);
+                    try {
+                        if (currentAccount == null) {
+                            System.out.println("Error: Account tidak tersedia.");
+                            continue;
+                        }
+
+                        LinkedList<Item> inventory = currentAccount.getInventory();
+                        if (inventory == null || inventory.isEmpty()) {
+                            System.out.println("Inventory Anda kosong! Tidak ada item untuk dijual.");
+                            continue;
+                        }
+
+                        Inventory inventoryPlayer = new Inventory(currentAccount);
+                        inventoryPlayer.displayInventory();
+                        System.out.println();
+                        System.out.print("Enter the index of the item you want to sell: ");
+                        
+                        if (!inpInt.hasNextInt()) {
+                            System.out.println("Input tidak valid. Masukkan angka!");
+                            inpInt.nextLine();
+                            continue;
+                        }
+                        
+                        int itemIndex = inpInt.nextInt();
+                        inpInt.nextLine();
+
+                        if (itemIndex < 1 || itemIndex > inventory.size()) {
+                            System.out.println("Index tidak valid! (Valid: 1 - " + inventory.size() + ")");
+                            continue;
+                        }
+
+                        shop1.sellItem(itemIndex, currentAccount);
+                    } catch (NullPointerException e) {
+                        System.out.println("Error: Data tidak tersedia untuk penjualan!");
+                    } catch (Exception e) {
+                        System.out.println("Error saat menjual item: " + e.getMessage());
+                    }
                 }else if (choice == 3) {
                     System.out.print("Enter the index of the item you want to see the details of: ");
                     int  itemIndex = inpInt.nextInt();
-                 
                     shop1.displayItemDetail(itemIndex);
                 }else if (choice == 4) {
                     mainMenu();
@@ -556,6 +647,11 @@ public class App {
 
     //FITUR INVENTORY
     public void inventoryMenu(){
+        currentAccount.getInventory().add(ingredientCatalog.get(10));
+        currentAccount.getInventory().add(ingredientCatalog.get(100));
+        currentAccount.getInventory().add(consumables.get(44));
+        currentAccount.getInventory().add(equipment.get(25));
+
         while (true) {
             Inventory inventoryView = new Inventory(currentAccount);
             inventoryView.displayInventory();
@@ -576,28 +672,57 @@ public class App {
                 }else if(invChoice == 2){
                     System.out.print("Masukkan index item: ");
                     int index = inpInt.nextInt();
-                 
-                    inventoryView.displayItemDetail(currentAccount.getInventory().get(index - 1).getNamaItem());
-                }else if(invChoice == 3){
-                    System.out.print("Masukkan index item yang ingin dipakai: ");
-                    int itemIndex = inpInt.nextInt();
-                 
-                    
 
-                    System.out.println("Pilih member yang ingin digunakan itemnya:");
-                    if (currentAccount.getParty() != null) {
-                        for (int i = 0; i < currentAccount.getParty().length; i++) {
-                            PlayerCharacter pc = currentAccount.getParty()[i];
-                            if (pc == null) {
-                                continue;
-                            }
-                            System.out.println((i+1) + ". " + pc.getNama() + " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() + " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp());
-                        }
+                    inventoryView.displayItemDetail(currentAccount.getInventory().get(index - 1).getNamaItem());
+                } else if (invChoice == 3) {
+                    System.out.print("Masukkan index item yang ingin dipakai: ");
+                    String itemLine = inpStr.nextLine();
+                    int itemIndex;
+                    try {
+                        itemIndex = Integer.parseInt(itemLine.trim());
+                    } catch (Exception ex) {
+                        System.out.println("Input tidak valid. Kembali ke menu inventory.");
+                        continue;
                     }
 
-                    System.out.print("Masukkan index member: ");
-                    int targetIndex = inpInt.nextInt();
-                 
+                    System.out.println("Pilih member yang ingin digunakan itemnya:");
+                    PlayerCharacter[] acctParty = currentAccount == null ? null : currentAccount.getParty();
+                    if (acctParty == null || acctParty.length == 0) {
+                        System.out.println("Party kosong.");
+                        continue;
+                    }
+                    for (int i = 0; i < acctParty.length; i++) {
+                        PlayerCharacter pc = acctParty[i];
+                        if (pc == null) continue;
+                        System.out.println((i + 1) + ". " + pc.getNama() + " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() + " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp());
+                    }
+
+                    int targetIndex = -1;
+                    while (true) {
+                        System.out.print("Masukkan index member (0 untuk batal): ");
+                        String targetLine = inpStr.nextLine();
+                        if (targetLine == null || targetLine.trim().isEmpty()) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                        try {
+                            targetIndex = Integer.parseInt(targetLine.trim());
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                        if (targetIndex == 0) {
+                            System.out.println("Batal menggunakan item.");
+                            break;
+                        }
+                        if (targetIndex < 1 || targetIndex > acctParty.length || acctParty[targetIndex - 1] == null) {
+                            System.out.println("Pilihan tidak valid.");
+                            continue;
+                        }
+                        break;
+                    }
+
+                    if (targetIndex == 0) continue;
                     inventoryView.useItem(itemIndex, targetIndex);
                 }else if(invChoice == 4){
                     mainMenu();
@@ -620,7 +745,7 @@ public class App {
             System.out.println("========== PROFIL AKUN ==========");
             System.out.println("Username    : " + currentAccount.getUsername());
             System.out.println("Total Gold  : " + currentAccount.getTotalGold());
-            System.out.println("Total Playtime : " + currentAccount.getTotalPlaytime() + " menit");
+            System.out.println("Total Playtime : " + currentAccount.getTotalPlaytimeFormatted() + " (H:MM)");
             System.out.println("Area Name   : " + (currentAccount.getAreaName() == null || currentAccount.getAreaName().isEmpty() ? "Belum menjelajah" : currentAccount.getAreaName()));
             System.out.println("=================================");
             System.out.println();
@@ -813,6 +938,93 @@ public class App {
                 continue;
             }
         }
+    }
+
+    private ArrayList<systems.craft.craftingRecipe> createStarterResepUser() {
+        ArrayList<systems.craft.craftingRecipe> starter = new ArrayList<>();
+        systems.craft.craftingRecipe[] defaults = DummyData.craftingRecipe.getDummyRecipesArray();
+        if (defaults == null) {
+            return starter;
+        }
+
+        for (int i = 0; i < defaults.length && i < STARTER_RECIPE_COUNT; i++) {
+            if (defaults[i] != null) {
+                starter.add(defaults[i]);
+            }
+        }
+        return starter;
+    }
+
+    private ArrayList<systems.craft.craftingRecipe> loadResepUserFromSave(String username) {
+        ArrayList<systems.craft.craftingRecipe> loaded = new ArrayList<>();
+        File saveFile = new File(saveload.SAVE_FOLDER + username + saveload.extension);
+        if (!saveFile.exists()) {
+            return createStarterResepUser();
+        }
+
+        boolean inCraftSection = false;
+        try (BufferedReader br = new BufferedReader(new FileReader(saveFile))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (line.isEmpty()) continue;
+                if (line.equals(CRAFTING_SECTION)) {
+                    inCraftSection = true;
+                    continue;
+                }
+                if (line.startsWith("[") && !line.equals(CRAFTING_SECTION)) {
+                    inCraftSection = false;
+                    continue;
+                }
+                if (inCraftSection && line.startsWith("resep=")) {
+                    try {
+                        int recipeId = Integer.parseInt(line.substring("resep=".length()).trim());
+                        systems.craft.craftingRecipe recipe = craftingRecipes.get(recipeId);
+                        if (recipe != null) {
+                            loaded.add(recipe);
+                        }
+                    } catch (NumberFormatException ignored) {
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Gagal membaca crafting save: " + e.getMessage());
+        }
+
+        return loaded.isEmpty() ? createStarterResepUser() : loaded;
+    }
+
+    private void saveResepUserToFile() {
+        if (currentAccount == null || resepUser == null) {
+            return;
+        }
+
+        File saveFile = new File(saveload.SAVE_FOLDER + currentAccount.getUsername() + saveload.extension);
+        if (!saveFile.exists()) {
+            return;
+        }
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(saveFile, true))) {
+            bw.newLine();
+            bw.write(CRAFTING_SECTION);
+            bw.newLine();
+            for (systems.craft.craftingRecipe recipe : resepUser) {
+                if (recipe != null && recipe.getResultItem() != null) {
+                    bw.write("resep=" + recipe.getResultItem().getIdItem());
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Gagal menyimpan crafting save: " + e.getMessage());
+        }
+    }
+
+    private void saveCurrentAccountWithRecipes() {
+        if (currentAccount == null) {
+            return;
+        }
+        saveload.save(currentAccount);
+        saveResepUserToFile();
     }
 }
 

@@ -9,14 +9,9 @@ import models.item.Equipment;
 import models.item.Item;
 
 public class Inventory {
-    private int MAX_INVENTORY_SLOTS = 10;
+    private int MAX_INVENTORY_SLOTS = models.account.AccountProfile.DEFAULT_MAX_INVENTORY_SLOTS;
     private AccountProfile currentAccount;
     private LinkedList<Item> listBarang;
-
-    public Inventory(LinkedList<Item> listBarang) {
-        this.listBarang = listBarang;
-        this.currentAccount = null;
-    }
 
     public Inventory(AccountProfile currentAccount) {
         this.currentAccount = currentAccount;
@@ -24,13 +19,13 @@ public class Inventory {
         syncInventory();
     }
 
-    public void syncInventory(){
-        if(currentAccount.getInventory() != null){
+    public void syncInventory() {
+        if (currentAccount.getInventory() != null) {
             this.listBarang = new LinkedList<>(currentAccount.getInventory());
         }
     }
 
-    public LinkedList<Item> sortAbjad(){
+    public LinkedList<Item> sortAbjad() {
         listBarang.sort(Comparator.comparing(Item::getNamaItem));
         return listBarang;
     }
@@ -41,7 +36,7 @@ public class Inventory {
         return sorted;
     }
 
-    public void displayInventory(){
+    public void displayInventory() {
         if (listBarang.isEmpty()) {
             System.out.println("\n=== INVENTORY ===");
             System.out.println("Inventory masih kosong!");
@@ -52,7 +47,7 @@ public class Inventory {
         sorted.sort(Comparator.comparing(Item::getNamaItem));
 
         System.out.println("\n=== INVENTORY ===");
-        System.out.println("Slot: " + listBarang.size() + "/" + MAX_INVENTORY_SLOTS);
+//        System.out.println("Slot: " + listBarang.size() + "/" + getMAX_INVENTORY_SLOTS());
         System.out.printf("%-4s %-30s %-15s %s%n", "No.", "Nama Item", "Tipe", "Harga");
         System.out.println("-".repeat(65));
 
@@ -104,50 +99,59 @@ public class Inventory {
 
 
     public boolean useItem(int itemIndex, int targetIndex) {
-        sortAbjad();
+        try {
+            LinkedList<Item> sortedInventory = getSortedInventory();
 
-        if (itemIndex < 1 || itemIndex > listBarang.size()) {
-            System.out.println("Index item tidak valid.");
-            return false;
-        }
-
-        Item item = listBarang.get(itemIndex - 1);
-        if (!(item instanceof ConsumableFood food)) {
-            System.out.println("Item tersebut bukan consumable.");
-            return false;
-        }
-
-        if (currentAccount == null || currentAccount.getParty() == null) {
-            System.out.println("Party tidak tersedia.");
-            return false;
-        }
-
-        List<PlayerCharacter> members = new ArrayList<>();
-        for (PlayerCharacter pc : currentAccount.getParty()) {
-            if (pc != null) {
-                members.add(pc);
+            if (itemIndex < 1 || itemIndex > sortedInventory.size()) {
+                System.out.println("Index item tidak valid. (Valid: 1 - " + sortedInventory.size() + ")");
+                return false;
             }
-        }
 
-        if (members.isEmpty()) {
-            System.out.println("Party kosong.");
+            Item item = sortedInventory.get(itemIndex - 1);
+            if (!(item instanceof ConsumableFood food)) {
+                System.out.println("Item tersebut bukan consumable.");
+                return false;
+            }
+
+            if (currentAccount == null || currentAccount.getParty() == null) {
+                System.out.println("Party tidak tersedia.");
+                return false;
+            }
+
+            List<PlayerCharacter> members = new ArrayList<>();
+            for (PlayerCharacter pc : currentAccount.getParty()) {
+                if (pc != null) {
+                    members.add(pc);
+                }
+            }
+
+            if (members.isEmpty()) {
+                System.out.println("Party kosong.");
+                return false;
+            }
+
+            if (targetIndex < 1 || targetIndex > members.size()) {
+                System.out.println("Index member tidak valid.");
+                return false;
+            }
+
+            PlayerCharacter target = members.get(targetIndex - 1);
+            food.useItem(target);
+
+            listBarang.remove(item);
+            if (currentAccount.getInventory() != null) {
+                currentAccount.getInventory().remove(item);
+            }
+
+            System.out.println("Item consumable digunakan pada " + target.getNama() + ".");
+            return true;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Error: Index tidak valid!");
+            return false;
+        } catch (Exception e) {
+            System.out.println("Error menggunakan item: " + e.getMessage());
             return false;
         }
-
-        if (targetIndex < 1 || targetIndex > members.size()) {
-            System.out.println("Index member tidak valid.");
-            return false;
-        }
-
-        PlayerCharacter target = members.get(targetIndex - 1);
-        food.useItem(target);
-        listBarang.remove(itemIndex - 1);
-        if (currentAccount.getInventory() != null) {
-            currentAccount.getInventory().remove(item);
-        }
-
-        System.out.println("Item consumable digunakan pada " + target.getNama() + ".");
-        return true;
     }
 
     public void displayItemDetail(String itemName) {
@@ -190,39 +194,6 @@ public class Inventory {
         this.listBarang = listBarang;
     }
 
-//    public boolean tambahItem(Item Item) {
-//        if (Item == null) {
-//            System.out.println("Item tidak valid!");
-//            return false;
-//        }
-//
-//        if (listBarang.size() >= MAX_INVENTORY_SLOTS) {
-//            System.out.println("\n Inventory penuh! (Max " + MAX_INVENTORY_SLOTS + " slot)");
-//            System.out.println("Slot yang digunakan: " + listBarang.size() + "/" + MAX_INVENTORY_SLOTS);
-//            return false;
-//        }
-//
-//        listBarang.add(Item);
-//        currentAccount.getInventory().add(Item);
-//
-//        System.out.println("\n✓ Item '" + Item.getNamaItem() + "' ditambahkan ke inventory!");
-//        return true;
-//    }
-
-//    public boolean hapusItem(Item Item) {
-//        Item item = itemNameSearch(Item.getNamaItem());
-//
-//        if (item == null) {
-//            System.out.println("Item '" + Item + "' tidak ditemukan!");
-//            return false;
-//        }
-//
-//        listBarang.remove(item);
-//        currentAccount.getInventory().remove(item);
-//
-//        System.out.println("\n✓ Item '" + Item.getNamaItem() + "' dihapus dari inventory!");
-//        return true;
-//    }
 
     public int getMAX_INVENTORY_SLOTS() {
         if (currentAccount != null) {

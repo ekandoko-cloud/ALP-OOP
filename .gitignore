@@ -4,6 +4,12 @@ out/
 !**/src/test/**/out/
 .kotlin
 
+# Java class files
+*.class
+
+# IntelliJ / build output
+/coba2/
+
 ### Eclipse ###
 .apt_generated
 .classpath

@@ -55,8 +55,7 @@ public class ForgeSystem {
         }
 
         System.out.println("\n=== FORGE ===");
-        System.out.println(String.format("%-30s | %-8s | %-6s | %-6s",
-                "Nama Equipment", "Level", "ATK", "DEF"));
+        System.out.printf("%-30s | %-8s | %-6s | %-6s%n", "Nama Equipment", "Level", "ATK", "DEF");
         System.out.println("-".repeat(65));
 
         int index = 1;

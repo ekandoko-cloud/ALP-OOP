@@ -6,16 +6,18 @@ import systems.quest.QuestTracker;
 
 public class AccountProfile {
     private static final int MAX_PARTY_SIZE = 4;
+    public static final int DEFAULT_MAX_INVENTORY_SLOTS = 20;
 
     private String username;
     private String password;
     private int totalGold;
     private int totalPlaytime;
+    private transient long sessionStartMillis = 0L;
     private String areaName;
     private PlayerCharacter[] party;
     private LinkedList<Item> inventory;
     private QuestTracker questTracker;
-    private int maxInventorySlots = 10;
+    private int maxInventorySlots = DEFAULT_MAX_INVENTORY_SLOTS;
 
     public AccountProfile(String username, String password, int totalGold, PlayerCharacter[] party, LinkedList<Item> inventory, QuestTracker questTracker) {
         this.username = username;
@@ -24,7 +26,8 @@ public class AccountProfile {
         this.totalPlaytime = 0;
         this.areaName = "";
         this.party = limitPartySize(party);
-        this.inventory = inventory;
+        this.inventory = null;
+        setInventory(inventory);
         this.questTracker = questTracker;
     }
 
@@ -79,6 +82,11 @@ public class AccountProfile {
 
     public void setInventory(LinkedList<Item> inventory) {
         this.inventory = inventory;
+        if (this.inventory != null) {
+            while (this.inventory.size() > this.maxInventorySlots) {
+                this.inventory.removeLast();
+            }
+        }
     }
 
     public QuestTracker getQuestTracker() {
@@ -97,6 +105,31 @@ public class AccountProfile {
         this.totalPlaytime = totalPlaytime;
     }
 
+    public void startPlaytime() {
+        if (this.sessionStartMillis == 0L) {
+            this.sessionStartMillis = System.currentTimeMillis();
+        }
+    }
+
+    public int stopPlaytimeAndAccumulate() {
+        if (this.sessionStartMillis == 0L) return 0;
+        long now = System.currentTimeMillis();
+        long elapsedMillis = now - this.sessionStartMillis;
+        int addedMinutes = (int) (elapsedMillis / 60000L);
+        if (addedMinutes > 0) {
+            this.totalPlaytime += addedMinutes;
+        }
+        this.sessionStartMillis = 0L;
+        return addedMinutes;
+    }
+
+    public String getTotalPlaytimeFormatted() {
+        int minutes = Math.max(0, this.totalPlaytime);
+        int hours = minutes / 60;
+        int mins = minutes % 60;
+        return String.format("%d:%02d", hours, mins);
+    }
+
     public String getAreaName() {
         return areaName;
     }
@@ -111,6 +144,9 @@ public class AccountProfile {
         }
         if (this.inventory == null) {
             this.inventory = new LinkedList<>();
+        }
+        if (this.inventory.size() >= this.maxInventorySlots) {
+            return;
         }
         this.inventory.add(item);
     }
@@ -127,6 +163,7 @@ public class AccountProfile {
 
     public void setMaxInventorySlots(int maxInventorySlots) {
         this.maxInventorySlots = maxInventorySlots;
+        setInventory(this.inventory);
     }
 }
 

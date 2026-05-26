@@ -41,7 +41,9 @@ public class SaveLoadSystem {
             writer.newLine();
             writer.write("totalGold=" + profile.getTotalGold());
             writer.newLine();
-            writer.write("totalPlaytime=" + profile.getTotalPlaytime());
+            writer.write("totalPlaytime=" + profile.getTotalPlaytimeFormatted());
+            writer.newLine();
+            writer.write("maxInventorySlots=" + profile.getMaxInventorySlots());
             writer.newLine();
             writer.write("areaName=" + profile.getAreaName());
             writer.newLine();
@@ -151,6 +153,7 @@ public class SaveLoadSystem {
         String usernameSave = "";
         int totalGold = 0;
         int totalPlaytime = 0;
+        int maxInventorySlots = -1;
         String areaName = "";
 
         PlayerCharacter[] partyArray = new PlayerCharacter[4];
@@ -183,7 +186,27 @@ public class SaveLoadSystem {
                     } else if (line.startsWith("totalGold=")) {
                         totalGold = Integer.parseInt(line.substring("totalGold=".length()));
                     } else if (line.startsWith("totalPlaytime=")) {
-                        totalPlaytime = Integer.parseInt(line.substring("totalPlaytime=".length()));
+                        String val = line.substring("totalPlaytime=".length());
+                        if (val.contains(":")) {
+                            String[] parts = val.split(":");
+                            try {
+                                int h = Integer.parseInt(parts[0]);
+                                int m = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
+                                totalPlaytime = h * 60 + m;
+                            } catch (NumberFormatException nfe) {
+                                totalPlaytime = 0;
+                            }
+                        } else {
+                            try {
+                                totalPlaytime = Integer.parseInt(val);
+                            } catch (NumberFormatException nfe) {
+                                totalPlaytime = 0;
+                            }
+                        }
+                    } else if (line.startsWith("maxInventorySlots=")) {
+                        try {
+                            maxInventorySlots = Integer.parseInt(line.substring("maxInventorySlots=".length()));
+                        } catch (NumberFormatException ignored) {}
                     } else if (line.startsWith("areaName=")) {
                         areaName = line.substring("areaName=".length());
                     }
@@ -332,6 +355,8 @@ public class SaveLoadSystem {
                     : null;
 
             AccountProfile profile = new AccountProfile(usernameSave.isEmpty() ? username : usernameSave, "", totalGold, partyArray, inventoryList, questTracker);
+            // apply loaded maxInventorySlots if present (will re-apply trimming inside setMaxInventorySlots)
+            if (maxInventorySlots > 0) profile.setMaxInventorySlots(maxInventorySlots);
             profile.setTotalPlaytime(totalPlaytime);
             profile.setAreaName(areaName);
             return profile;

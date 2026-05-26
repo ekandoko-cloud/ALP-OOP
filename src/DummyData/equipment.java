@@ -13,7 +13,7 @@ public class equipment {
 	private static final ArrayList<Equipment> DUMMY_EQUIPMENT = new ArrayList<>();
 
 	static {
-		// Warrior (1 - 13)
+		// Warrior
 		DUMMY_EQUIPMENT.add(e(1, "Pedang Besar Vanguard", 500, "[Warrior] Pedang dua tangan berat khusus untuk mendobrak lini depan.", "Warrior", 45, 5, 0));
 		DUMMY_EQUIPMENT.add(e(2, "Zirah Pelat Baja Berat", 650, "[Warrior] Pelindung dada tebal yang memberikan pertahanan fisik mutlak.", "Warrior", 0, 50, 0));
 		DUMMY_EQUIPMENT.add(e(3, "Kapak Tempur Berserker", 480, "[Warrior] Kapak dua bilah yang meningkatkan daya rusak secara brutal.", "Warrior", 50, 0, 0));
@@ -28,7 +28,7 @@ public class equipment {
 		DUMMY_EQUIPMENT.add(e(12, "Claymore Berkarat", 150, "[Warrior] Pedang besar tua yang masih menyimpan daya tebas mematikan.", "Warrior", 25, 2, 0));
 		DUMMY_EQUIPMENT.add(e(13, "Sabuk Kulit Raksasa", 190, "[Warrior] Ikat pinggang penahan beban yang meningkatkan stamina otot.", "Warrior", 20, 8, 0));
 
-		// Archer (14 - 25)
+		// Archer
 		DUMMY_EQUIPMENT.add(e(14, "Busur Panjang Kayu Elven", 450, "[Archer] Busur ringan dari kayu mistis dengan akurasi jarak jauh.", "Archer", 42, 0, 0));
 		DUMMY_EQUIPMENT.add(e(15, "Jubah Kulit Penjejak", 320, "[Archer] Pakaian berburu yang ringan untuk mobilitas tinggi.", "Archer", 10, 22, 0));
 		DUMMY_EQUIPMENT.add(e(16, "Busur Silang Berbisa", 520, "[Archer] Crossbow mekanis yang meluncurkan baut berdaya rusak tinggi.", "Archer", 48, 0, 0));
@@ -42,7 +42,7 @@ public class equipment {
 		DUMMY_EQUIPMENT.add(e(24, "Cincin Fokus Penglihatan", 290, "[Archer] Cincin yang mempertajam insting membidik titik vital.", "Archer", 25, 0, 0));
 		DUMMY_EQUIPMENT.add(e(25, "Kacamata Pembidik Mekanis", 360, "[Archer] Lensa pembesar khusus pemantau pergerakan angin.", "Archer", 22, 8, 0));
 
-		// Mage (26 - 38)
+		// Mage
 		DUMMY_EQUIPMENT.add(e(26, "Tongkat Kristal Mana", 550, "[Mage] Tongkat pengalir sihir dengan ujung batu permata murni.", "Mage", 46, 2, 0));
 		DUMMY_EQUIPMENT.add(e(27, "Jubah Sutra Arcane", 400, "[Mage] Jubah tenunan benang mana yang menahan abrasi sihir musuh.", "Mage", 12, 24, 0));
 		DUMMY_EQUIPMENT.add(e(28, "Kitab Mantra Kuno", 460, "[Mage] Grimoire berisi tulisan kuno pengganda daya hancur sihir.", "Mage", 40, 0, 0));
@@ -57,7 +57,7 @@ public class equipment {
 		DUMMY_EQUIPMENT.add(e(37, "Sarung Tangan Rajutan Mantra", 190, "[Mage] Memudahkan perapalan segel sihir menggunakan tangan.", "Mage", 18, 6, 0));
 		DUMMY_EQUIPMENT.add(e(38, "Tiara Perak Pengendali", 330, "[Mage] Mahkota kecil penyeimbang konsentrasi pikiran.", "Mage", 22, 14, 0));
 
-		// Support (39 - 50)
+		// Support
 		DUMMY_EQUIPMENT.add(e(39, "Tongkat Suci Pemberi Berkat", 480, "[Support] Tongkat upacara ritual, meningkatkan efektivitas pemulihan.", "Support", 15, 28, 0));
 		DUMMY_EQUIPMENT.add(e(40, "Jubah Pelindung Guardian", 600, "[Support] Jubah tebal berlapis pelindung aura bagi penjaga tim.", "Support", 4, 48, 0));
 		DUMMY_EQUIPMENT.add(e(41, "Lonceng Ritual Penyembuh", 370, "[Support] Dentang loncengnya memberikan rasa tenang dan perlindungan.", "Support", 10, 32, 0));

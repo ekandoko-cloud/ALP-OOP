@@ -10,3 +10,8 @@ Cr7:mpruy
 timothy:123
 a:1
 q:q
+cr7:1
+w:w
+e:e
+1:1
+cr8:100
