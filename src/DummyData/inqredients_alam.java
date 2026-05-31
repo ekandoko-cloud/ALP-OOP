@@ -109,6 +109,8 @@ public class inqredients_alam {
             i(98, "Thunderstone", 398, "Batu bersudut tajam penyimpan aliran listrik statis yang besar."),
             i(99, "Wind Chime Stone", 402, "Batu ringan yang beresonansi dan bernyanyi saat tertiup angin."),
             i(100, "Miracle Sprout", 406, "Tunas ajaib yang tumbuh di tanah paling tandus sekalipun."),
+            i(101, "Crystal Shard", 120, "Pecahan kristal murni yang memantulkan cahaya. Digunakan sebagai filter alami untuk menjernihkan air dan udara."),
+            i(102, "Meteorite Dust", 160, "Debu halus sisa hancurnya meteorit. Partikelnya mengandung mineral langka dari luar angkasa yang sangat reaktif."),
     };
 
     private static final HashMap<Integer, Item> DUMMY_INQREDIENTS_ALAM_MAP = initializeMap();

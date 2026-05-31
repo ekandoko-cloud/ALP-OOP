@@ -47,9 +47,6 @@ public abstract class Item {
         this.deskripsi = deskripsi;
     }
 
-    public void tampilkanInfoItem() {
-    }
-
     public itemType getItemType() {
         return itemType;
     }

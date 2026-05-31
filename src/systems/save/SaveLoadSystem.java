@@ -100,7 +100,7 @@ public class SaveLoadSystem {
                         if (mq == null) {
                             continue;
                         }
-                        writer.write("mainQuest=" + mq.getIdQuest() + "^" + mq.getNamaQuest() + "^" + mq.getDeskripsiQuest() + "^" + mq.getObjectiveQuest() + "^" + mq.getObjectiveTarget() + "^" + mq.getObjectiveProgress() + "^" + mq.getHadiahKoin() + "^" + mq.getChapterTerbuka() + "^" + mq.getStatusQuest() + "^" + String.join("~", mq.getRiwayatObjective()));
+                        writer.write("mainQuest=" + mq.getIdQuest() + "^" + mq.getNamaQuest() + "^" + mq.getDeskripsiQuest() + "^" + mq.getObjectiveQuest() + "^" + mq.getObjectiveTarget() + "^" + mq.getObjectiveProgress() + "^" + mq.getHadiahKoin() + "^" + mq.getChapterTerbuka() + "^" + mq.getStatusQuest() + "^" + String.join("~", mq.getRiwayatObjective()) + "^" + (mq.getWilayah() == null ? "" : mq.getWilayah()) + "^" + mq.getNomorQuest() + "^" + (mq.getHadiahUtama() == null ? "" : mq.getHadiahUtama()) + "^" + String.join("~", mq.getLineUpMusuh()));
                         writer.newLine();
                     }
                 }
@@ -138,12 +138,6 @@ public class SaveLoadSystem {
             System.out.println("Error saving game: " + e.getMessage());
         }
     }
-
-    /*
-    private String safe(String value) {
-        return value == null ? "" : value.replace("^", " ").replace(",", " ").replace("\n", " ").replace("\r", " ");
-    }
-    */
 
     public AccountProfile load(String username) {
         String fileName = SAVE_FOLDER + username + extension;
@@ -301,7 +295,14 @@ public class SaveLoadSystem {
                             if (!data[9].isEmpty()) {
                                 riwayat.addAll(Arrays.asList(data[9].split("~")));
                             }
-                            MainQuest mq = new MainQuest(id, nama, deskripsi, objective, target, hadiah, chapter);
+                            String wilayah = data.length >= 11 ? data[10] : null;
+                            int nomorQuest = data.length >= 12 && !data[11].isEmpty() ? Integer.parseInt(data[11]) : 0;
+                            String hadiahUtama = data.length >= 13 ? data[12] : null;
+                            ArrayList<String> lineUpMusuh = new ArrayList<>();
+                            if (data.length >= 14 && !data[13].isEmpty()) {
+                                lineUpMusuh.addAll(Arrays.asList(data[13].split("~")));
+                            }
+                            MainQuest mq = new MainQuest(id, nama, deskripsi, objective, target, hadiah, chapter, wilayah, nomorQuest, hadiahUtama, lineUpMusuh);
                             mq.setObjectiveProgress(progress);
                             mq.setStatusQuest(status);
                             mq.setRiwayatObjective(riwayat);

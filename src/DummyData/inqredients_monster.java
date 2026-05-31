@@ -109,6 +109,11 @@ public class inqredients_monster {
             i(198, "Parasitic Wolf Pelt", 798, "Bulu serigala dengan parasit inang."),
             i(199, "Toxic Zombie Brain", 802, "Otak zombie beracun."),
             i(200, "Plague Slime Essence", 806, "Esensi wabah murni dari slime tingkat tinggi."),
+            i(201, "Blight-Root Core", 850, "Inti dari akar Blight yang menjadi sumber kontaminasi di Valerion. Berdenyut dengan energi kegelapan purba."),
+            i(202, "Miasma Gland", 900, "Kelenjar miasma dari Goliath Toad yang menyaring racun rawa. Bahan utama penawar gas beracun."),
+            i(203, "Silo Vault Key", 950, "Kunci gudang silo pangan ilegal milik Baron Gluttony. Diperlukan untuk membuka akses ke persediaan pangan darurat."),
+            i(204, "Vaccine Formula", 1000, "Formula vaksin asli hasil penelitian Dr. Mortis. Berisi resep lengkap untuk membuat vaksin penawar wabah."),
+            i(205, "Core of Purified Earth", 1200, "Inti bumi murni dari Aldoria yang telah menyaring seluruh radiasi. Simbol harapan untuk memulai kehidupan baru."),
     };
 
     private static final HashMap<Integer, Item> DUMMY_INQREDIENTS_MONSTER_MAP = initializeMap();

@@ -37,16 +37,7 @@ public class ForgeSystem {
         }
 
         setCurrentAccount(playerAccount);
-        LinkedList<Item> inventory = playerAccount.getInventory();
-        List<Equipment> upgradableEquips = new ArrayList<>();
-
-        if (inventory != null) {
-            for (Item item : inventory) {
-                if (item instanceof Equipment) {
-                    upgradableEquips.add((Equipment) item);
-                }
-            }
-        }
+        List<Equipment> upgradableEquips = collectEquipment(playerAccount.getInventory());
 
         if (upgradableEquips.isEmpty()) {
             System.out.println("\n=== FORGE ===");
@@ -105,18 +96,7 @@ public class ForgeSystem {
         }
 
         int nextLevel = currentLevel + 1;
-        if (daftarFormula == null || daftarFormula.isEmpty()) {
-            System.out.println("\nFormula upgrade tidak tersedia!");
-            return false;
-        }
-
-        forgeFormula formula = null;
-        for (forgeFormula f : daftarFormula) {
-            if (f.getLevel() == nextLevel) {
-                formula = f;
-                break;
-            }
-        }
+        forgeFormula formula = findFormulaForLevel(nextLevel);
 
         if (formula == null) {
             System.out.println("\nFormula upgrade untuk level +" + nextLevel + " tidak ditemukan!");
@@ -137,28 +117,13 @@ public class ForgeSystem {
         System.out.println("Equipment: " + equipment.getNamaItem());
         System.out.println("Level: +" + currentLevel + " → +" + nextLevel);
 
-        int removed = 0;
-        for (int i = 0; i < inventory.size() && removed < formula.getMaterialAmount(); i++) {
-            if (inventory.get(i).getNamaItem().equalsIgnoreCase(formula.getMaterialName())) {
-                inventory.remove(i);
-                removed++;
-                i--;
-            }
-        }
+        removeMaterials(inventory, formula.getMaterialName(), formula.getMaterialAmount());
         System.out.println(" Material '" + formula.getMaterialName() + "' x" + formula.getMaterialAmount() + " digunakan");
 
         equipment.setLevelTempa(nextLevel);
 
-        int appliedAtk = 0;
-        int appliedDef = 0;
-        if (equipment instanceof models.item.Weapon || equipment instanceof models.item.Accessory) {
-            appliedAtk = formula.getAtkIncrease();
-            equipment.setBonusKekuatan(equipment.getBonusKekuatan() + appliedAtk);
-        }
-        if (equipment instanceof models.item.Armor || equipment instanceof models.item.Accessory) {
-            appliedDef = formula.getDefIncrease();
-            equipment.setBonusDefense(equipment.getBonusDefense() + appliedDef);
-        }
+        int appliedAtk = applyAttackBonus(equipment, formula);
+        int appliedDef = applyDefenseBonus(equipment, formula);
 
         System.out.println("Stats Equipment ditingkatkan:");
         System.out.println("ATK: " + equipment.getBonusKekuatan() + " (+" + appliedAtk + ")");
@@ -178,6 +143,64 @@ public class ForgeSystem {
             }
         }
         return count;
+    }
+
+    private List<Equipment> collectEquipment(LinkedList<Item> inventory) {
+        List<Equipment> equipmentList = new ArrayList<>();
+        if (inventory == null) {
+            return equipmentList;
+        }
+
+        for (Item item : inventory) {
+            if (item instanceof Equipment) {
+                equipmentList.add((Equipment) item);
+            }
+        }
+        return equipmentList;
+    }
+
+    private forgeFormula findFormulaForLevel(int level) {
+        if (daftarFormula == null || daftarFormula.isEmpty()) {
+            return null;
+        }
+
+        for (forgeFormula formula : daftarFormula) {
+            if (formula.getLevel() == level) {
+                return formula;
+            }
+        }
+        return null;
+    }
+
+    private void removeMaterials(LinkedList<Item> inventory, String materialName, int amount) {
+        int removed = 0;
+        for (int i = 0; i < inventory.size() && removed < amount; i++) {
+            if (inventory.get(i).getNamaItem().equalsIgnoreCase(materialName)) {
+                inventory.remove(i);
+                removed++;
+                i--;
+            }
+        }
+    }
+
+    private int applyAttackBonus(Equipment equipment, forgeFormula formula) {
+        if (!(equipment instanceof models.item.Weapon || equipment instanceof models.item.Accessory)) {
+            return 0;
+        }
+
+        int appliedAtk = formula.getAtkIncrease();
+        equipment.setBonusKekuatan(equipment.getBonusKekuatan() + appliedAtk);
+        return appliedAtk;
+    }
+
+    private int applyDefenseBonus(Equipment equipment, forgeFormula formula) {
+        if (!(equipment instanceof models.item.Armor || equipment instanceof models.item.Accessory)) {
+            return 0;
+        }
+
+        int appliedDef = formula.getDefIncrease();
+        equipment.setBonusDefense(equipment.getBonusDefense() + appliedDef);
+        return appliedDef;
     }
 
 

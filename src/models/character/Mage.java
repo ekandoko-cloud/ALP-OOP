@@ -18,6 +18,21 @@ public class Mage extends PlayerCharacter {
 		this.setStatusTubuhNirlelah(statusTubuhNirlelah);
 	}
 
+	@Override
+	public void gunakanSkillUnik(GameCharacter target) {
+		if (target == null) {
+			return;
+		}
+
+		if (getCurrentMp() < 10) {
+			return;
+		}
+
+		setCurrentMp(getCurrentMp() - 10);
+		int damage = Math.max(1, (int) Math.round(getKekuatan() * 2.1) - (target.getDefense() / 3));
+		target.terimaDamage(damage);
+	}
+
 }
 
 

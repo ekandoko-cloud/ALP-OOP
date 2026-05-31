@@ -67,27 +67,7 @@ public class CraftingSystem {
         craftingRecipe chosen = daftarResep.get(index - 1);
 
         ArrayList<Item> temp = new ArrayList<>(inv);
-        List<String> missing = new ArrayList<>();
-        if (chosen.getRequiredIngredients() != null) {
-            for (craftingRecipe.IngredientReq req : chosen.getRequiredIngredients()) {
-                String name = req.getIngredient().getNamaItem();
-                int amount = req.getAmount();
-                for (int k = 0; k < amount; k++) {
-                    boolean removed = false;
-                    for (int i = 0; i < temp.size(); i++) {
-                        if (temp.get(i).getNamaItem().equalsIgnoreCase(name)) {
-                            temp.remove(i);
-                            removed = true;
-                            break;
-                        }
-                    }
-                    if (!removed) {
-                        missing.add(name + " (Kurang)");
-                        break;
-                    }
-                }
-            }
-        }
+        List<String> missing = consumeRequiredIngredients(chosen, temp);
 
         if (!missing.isEmpty()) {
             System.out.println("\nCrafting gagal! Bahan kurang:");
@@ -96,9 +76,7 @@ public class CraftingSystem {
         }
 
         Item result = chosen.getResultItem();
-        int resultCount = (result == null) ? 0 : 1;
-        int finalSize = temp.size() + resultCount;
-        if (finalSize > playerAccount.getMaxInventorySlots()) {
+        if (!hasSpaceForCraftResult(temp.size(), result, playerAccount.getMaxInventorySlots())) {
             System.out.println("\nCrafting gagal! Inventory penuh. (Max " + playerAccount.getMaxInventorySlots() + " slot)");
             return false;
         }
@@ -110,6 +88,41 @@ public class CraftingSystem {
         System.out.println("\nCrafting '" + chosen.getRecipeName() + "' berhasil! ");
         if (result != null) System.out.println("Item '" + result.getNamaItem() + "' ditambahkan ke inventory.");
         return true;
+    }
+
+    private List<String> consumeRequiredIngredients(craftingRecipe recipe, List<Item> inventorySnapshot) {
+        List<String> missing = new ArrayList<>();
+        if (recipe.getRequiredIngredients() == null) {
+            return missing;
+        }
+
+        for (craftingRecipe.IngredientReq req : recipe.getRequiredIngredients()) {
+            String ingredientName = req.getIngredient().getNamaItem();
+            int amount = req.getAmount();
+
+            for (int taken = 0; taken < amount; taken++) {
+                if (!removeFirstMatch(inventorySnapshot, ingredientName)) {
+                    missing.add(ingredientName + " (Kurang)");
+                    break;
+                }
+            }
+        }
+
+        return missing;
+    }
+
+    private boolean removeFirstMatch(List<Item> items, String itemName) {
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getNamaItem().equalsIgnoreCase(itemName)) {
+                items.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean hasSpaceForCraftResult(int inventorySize, Item result, int maxSlots) {
+        return inventorySize + (result == null ? 0 : 1) <= maxSlots;
     }
 
     public ArrayList<craftingRecipe> getDaftarResep() {

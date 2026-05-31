@@ -48,12 +48,8 @@ public class accessory {
         return new Accessory(id, name, price, desc, bonusKekuatan, bonusDefense, 0);
     }
 
-    public static List<Accessory> generateDummyAccessories() {
-        return new ArrayList<>(DUMMY_ACCESSORIES);
-    }
-
     public static List<Accessory> getDummyAccessories() {
-        return generateDummyAccessories();
+        return new ArrayList<>(DUMMY_ACCESSORIES);
     }
 
     public static Accessory[] getDummyAccessoriesArray() {

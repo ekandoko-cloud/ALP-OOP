@@ -2,20 +2,23 @@ package systems.map;
 
 import java.util.*;
 import models.location.Location;
+import models.quest.MainQuest;
+import models.quest.Quest;
 import DummyData.kota;
 
-/**
- * Stack-based map traversal system.
- *
- * Linear world path: Valerion -> Asgard -> Grandis -> LUmina -> Aldoria
- * The stack stores the sequence of areas the player has visited (bottom -> top).
- * New players start at Valerion. Moving forward pushes the next area onto the stack.
- * Moving back pops the stack to return to the previous area.
- */
 public class MapTraversal {
     private Stack<Location> riwayatArea;
 
     private static final List<Location> LINEAR_LOCATIONS = kota.getDummyKota();
+
+    private static final int[][] AREA_QUEST_ID_RANGES = {
+        {1, 5},
+        {6, 10},
+        {11, 15},
+        {16, 20},
+        {21, 25}
+    };
+
 
     public MapTraversal() {
         this.riwayatArea = new Stack<>();
@@ -109,6 +112,47 @@ public class MapTraversal {
             if (LINEAR_LOCATIONS.get(i).getNamaLokasi().equalsIgnoreCase(name)) return i;
         }
         return -1;
+    }
+
+    public static int[] getQuestIdRangeForArea(String areaName) {
+        if (areaName == null) return null;
+        for (int i = 0; i < LINEAR_LOCATIONS.size(); i++) {
+            if (LINEAR_LOCATIONS.get(i).getNamaLokasi().equalsIgnoreCase(areaName)) {
+                return AREA_QUEST_ID_RANGES[i];
+            }
+        }
+        return null;
+    }
+
+    public int[] getQuestIdRangeForCurrentArea() {
+        Location current = areaSaatIni();
+        if (current == null) return null;
+        return getQuestIdRangeForArea(current.getNamaLokasi());
+    }
+
+
+    public static int countCompletedQuestsInRange(List<Quest> completedQuests, int startId, int endId) {
+        if (completedQuests == null) return 0;
+        int count = 0;
+        for (Quest q : completedQuests) {
+            if (q instanceof MainQuest) {
+                int id = q.getIdQuest();
+                if (id >= startId && id <= endId) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public static boolean areAllQuestsInRangeCompleted(List<Quest> completedQuests, int startId, int endId) {
+        return countCompletedQuestsInRange(completedQuests, startId, endId) >= (endId - startId + 1);
+    }
+
+    public boolean isCurrentAreaCleared(List<Quest> completedQuests) {
+        int[] range = getQuestIdRangeForCurrentArea();
+        if (range == null) return false;
+        return areAllQuestsInRangeCompleted(completedQuests, range[0], range[1]);
     }
 }
 

@@ -25,7 +25,7 @@ public abstract class Quest {
         this.objectiveTarget = objectiveTarget;
         this.objectiveProgress = 0;
         this.hadiahKoin = hadiahKoin;
-        this.statusQuest = StatusQuest.ONGOING;
+        this.statusQuest = StatusQuest.BELUM_DIAMBIL;
         this.riwayatObjective = new ArrayList<>();
     }
 
@@ -124,8 +124,6 @@ public abstract class Quest {
     public void cekStatusPenyelesaian() {
         if (this.objectiveProgress >= this.objectiveTarget) {
             this.statusQuest = StatusQuest.COMPLETED;
-        } else if (this.statusQuest != StatusQuest.BELUM_DIAMBIL) {
-            this.statusQuest = StatusQuest.ONGOING;
         }
     }
 }

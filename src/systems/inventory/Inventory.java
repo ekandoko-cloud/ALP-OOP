@@ -25,29 +25,22 @@ public class Inventory {
         }
     }
 
-    public LinkedList<Item> sortAbjad() {
-        listBarang.sort(Comparator.comparing(Item::getNamaItem));
-        return listBarang;
-    }
-
     public LinkedList<Item> getSortedInventory() {
         LinkedList<Item> sorted = new LinkedList<>(listBarang);
-        sorted.sort(Comparator.comparing(Item::getNamaItem));
+        sortByName(sorted);
         return sorted;
     }
 
     public void displayInventory() {
-        if (listBarang.isEmpty()) {
+        LinkedList<Item> sorted = getSortedInventory();
+
+        if (sorted.isEmpty()) {
             System.out.println("\n=== INVENTORY ===");
             System.out.println("Inventory masih kosong!");
             return;
         }
 
-        LinkedList<Item> sorted = new LinkedList<>(listBarang);
-        sorted.sort(Comparator.comparing(Item::getNamaItem));
-
         System.out.println("\n=== INVENTORY ===");
-//        System.out.println("Slot: " + listBarang.size() + "/" + getMAX_INVENTORY_SLOTS());
         System.out.printf("%-4s %-30s %-15s %s%n", "No.", "Nama Item", "Tipe", "Harga");
         System.out.println("-".repeat(65));
 
@@ -75,6 +68,8 @@ public class Inventory {
             System.out.println("Item dengan kata kunci '" + keyword + "' tidak ditemukan!");
             return;
         }
+
+        sortByName(hasil);
 
         System.out.println("\n=== HASIL PENCARIAN: '" + keyword + "' ===");
         System.out.printf("%-4s %-30s %-15s %s%n", "No.", "Nama Item", "Tipe", "Harga");
@@ -181,9 +176,7 @@ public class Inventory {
             System.out.println("Buff Kekuatan Permanen: " + food.getStrBuff());
             System.out.println("Buff Defense Permanen: " + food.getDefBuff());
             System.out.println("Info Gizi SDG: " + food.getInfoGiziSDG());
-        } /*else if (item instanceof Inqredients) {
-            System.out.println("Tipe: Bahan/Ingredients");
-        }*/
+        }
     }
 
     public LinkedList<Item> getListBarang() {
@@ -192,6 +185,10 @@ public class Inventory {
 
     public void setListBarang(LinkedList<Item> listBarang) {
         this.listBarang = listBarang;
+    }
+
+    private void sortByName(List<Item> items) {
+        items.sort(Comparator.comparing(Item::getNamaItem));
     }
 
 

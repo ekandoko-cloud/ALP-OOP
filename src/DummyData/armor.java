@@ -98,12 +98,8 @@ public class armor {
         return new Armor(id, name, price, desc, bonusDefense, 0, requiredClassType);
     }
 
-    public static List<Armor> generateDummyArmors() {
-        return new ArrayList<>(DUMMY_ARMORS);
-    }
-
     public static List<Armor> getDummyArmors() {
-        return generateDummyArmors();
+        return new ArrayList<>(DUMMY_ARMORS);
     }
 
     public static Armor[] getDummyArmorsArray() {

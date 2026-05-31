@@ -3,6 +3,7 @@ import java.util.*;
 import models.quest.MainQuest;
 import models.quest.Quest;
 import models.quest.SubQuest;
+import enums.StatusQuest;
 public class QuestTracker {
     private ArrayList<MainQuest> daftarMainQuestAktif;
     private ArrayList<SubQuest> daftarSubQuestAktif;
@@ -36,6 +37,47 @@ public class QuestTracker {
 
     public void setRiwayatMisiSelesai(ArrayList<Quest> riwayatMisiSelesai) {
         this.riwayatMisiSelesai = riwayatMisiSelesai;
+    }
+
+    public void sinkronisasiChapterTerbuka(int chapterAktif) {
+    }
+
+    public void bukaQuestUntukChapter(int chapterAktif) {
+    }
+
+    public ArrayList<String> catatKemenanganMusuh(String namaMusuh) {
+        return catatMusuhKalah(namaMusuh);
+    }
+
+    public ArrayList<String> catatMusuhKalah(String namaMusuh) {
+        ArrayList<String> catatan = new ArrayList<>();
+        if (namaMusuh == null || daftarMainQuestAktif == null) {
+            return catatan;
+        }
+
+        Iterator<MainQuest> iterator = daftarMainQuestAktif.iterator();
+        while (iterator.hasNext()) {
+            MainQuest mq = iterator.next();
+            if (mq == null || mq.getStatusQuest() != StatusQuest.ONGOING) {
+                continue;
+            }
+
+            if (mq.butuhMusuh(namaMusuh)) {
+                mq.tambahProgress(1, "Mengalahkan " + namaMusuh);
+                catatan.add("Quest naik: " + mq.getNamaQuest() + " = " + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget());
+
+                if (mq.getStatusQuest() == StatusQuest.COMPLETED) {
+                    iterator.remove();
+                    if (riwayatMisiSelesai == null) {
+                        riwayatMisiSelesai = new ArrayList<>();
+                    }
+                    riwayatMisiSelesai.add(mq);
+                    catatan.add("Quest selesai: " + mq.getNamaQuest());
+                }
+            }
+        }
+
+        return catatan;
     }
 }
 

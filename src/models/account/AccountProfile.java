@@ -82,11 +82,7 @@ public class AccountProfile {
 
     public void setInventory(LinkedList<Item> inventory) {
         this.inventory = inventory;
-        if (this.inventory != null) {
-            while (this.inventory.size() > this.maxInventorySlots) {
-                this.inventory.removeLast();
-            }
-        }
+        trimInventoryToLimit();
     }
 
     public QuestTracker getQuestTracker() {
@@ -163,7 +159,17 @@ public class AccountProfile {
 
     public void setMaxInventorySlots(int maxInventorySlots) {
         this.maxInventorySlots = maxInventorySlots;
-        setInventory(this.inventory);
+        trimInventoryToLimit();
+    }
+
+    private void trimInventoryToLimit() {
+        if (this.inventory == null) {
+            return;
+        }
+
+        while (this.inventory.size() > this.maxInventorySlots) {
+            this.inventory.removeLast();
+        }
     }
 }
 

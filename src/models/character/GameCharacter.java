@@ -7,6 +7,7 @@ public abstract class GameCharacter {
     protected int currentMp;
     protected int kekuatan;
     protected int defense;
+    protected boolean defending;
 
     protected GameCharacter(String nama, int maxHp, int currentHp, int kekuatan, int defense) {
         this.nama = nama;
@@ -14,6 +15,7 @@ public abstract class GameCharacter {
         this.currentHp = currentHp;
         this.kekuatan = kekuatan;
         this.defense = defense;
+        this.defending = false;
     }
 
 
@@ -73,10 +75,58 @@ public abstract class GameCharacter {
         this.defense = defense;
     }
 
-    public void serang(GameCharacter target) {
+    public boolean isDefending() {
+        return defending;
+    }
+
+    public void setDefending(boolean defending) {
+        this.defending = defending;
+    }
+
+    public boolean isAlive() {
+        return this.currentHp > 0;
+    }
+
+    public int getXpReward() {
+        return 0;
+    }
+
+    public int serang(GameCharacter target) {
+        if (target == null || !isAlive()) {
+            return 0;
+        }
+
+        int damage = Math.max(1, this.kekuatan - target.getDefense());
+        return target.terimaDamage(damage);
+    }
+
+    public int defend() {
+        this.defending = true;
+        return 0;
+    }
+
+    public int terimaDamage(int damage) {
+        if (damage < 0) {
+            damage = 0;
+        }
+
+        int actualDamage = damage;
+        if (this.defending) {
+            actualDamage = Math.max(1, (int) Math.ceil(actualDamage * 0.5));
+            this.defending = false;
+        }
+
+        this.currentHp = Math.max(0, this.currentHp - actualDamage);
+        return actualDamage;
     }
 
     public void modifikasiStat(int hp, int mp, int atk, int def) {
+        setMaxHp(Math.max(1, this.maxHp + hp));
+        setCurrentHp(Math.max(0, Math.min(this.maxHp, this.currentHp + hp)));
+        setMaxMp(Math.max(0, this.maxMp + mp));
+        setCurrentMp(Math.max(0, Math.min(this.maxMp, this.currentMp + mp)));
+        setKekuatan(Math.max(0, this.kekuatan + atk));
+        setDefense(Math.max(0, this.defense + def));
     }
 }
 

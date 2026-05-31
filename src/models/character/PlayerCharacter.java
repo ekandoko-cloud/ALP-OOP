@@ -68,13 +68,6 @@ public class PlayerCharacter extends GameCharacter implements Skill {
         this.level = level;
     }
 
-    public Equipment getCurrentEquipment() {
-        return currentWeapon;
-    }
-
-    public void setCurrentEquipment(Equipment currentEquipment) {
-        this.currentWeapon = currentEquipment;
-    }
 
     public Equipment getCurrentWeapon() {
         return currentWeapon;
@@ -150,6 +143,27 @@ public class PlayerCharacter extends GameCharacter implements Skill {
         return normalized;
     }
 
+    public void tambahExp(int exp) {
+        if (exp <= 0) return;
+        this.currentExp += exp;
+        while (this.currentExp >= this.maxExp) {
+            this.currentExp -= this.maxExp;
+            levelUp();
+        }
+    }
+
+    public void levelUp() {
+        this.level++;
+        this.maxExp = this.level * 100;
+        this.maxHp++;
+        this.currentHp = this.maxHp;
+        this.maxMp++;
+        this.currentMp = this.maxMp;
+        this.kekuatan++;
+        this.defense++;
+        System.out.println("LEVEL UP! " + this.nama + " sekarang level " + this.level + "!");
+    }
+
     @Override
     public void gunakanSkillUnik(GameCharacter target) {
         if (target == null) {
@@ -157,7 +171,7 @@ public class PlayerCharacter extends GameCharacter implements Skill {
         }
 
         int damage = Math.max(1, (int) Math.round(getKekuatan() * 1.5) - target.getDefense());
-        target.setCurrentHp(Math.max(0, target.getCurrentHp() - damage));
+        target.terimaDamage(damage);
     }
 }
 

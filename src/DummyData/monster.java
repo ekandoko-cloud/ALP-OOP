@@ -111,18 +111,51 @@ public class monster {
         DUMMY_MONSTERS.add(m("Parasitic Wolf", 185, 185, 61, 32, "Mengidap infeksi cacing pita babi (Taenia solium) yang bermigrasi menjadi neurosistiserkosis di dalam otak."));
         DUMMY_MONSTERS.add(m("Toxic Zombie", 176, 176, 61, 26, "Mengalami keracunan pestisida organofosfat akut akibat penggunaan bahan kimia pertanian tanpa standar keamanan WHO."));
         DUMMY_MONSTERS.add(m("Plague Slime", 190, 190, 56, 33, "Terbentuk dari genangan air limbah terbuka, menjadi sarang pembiakan nyamuk Anopheles penyebar Malaria."));
+
+        // === QUEST-SPECIFIC MONSTERS ===
+
+        // Valerion (Chapter 1) monsters
+        DUMMY_MONSTERS.add(m("Scavenger Scout", 48, 48, 14, 10, "Pemulung rendah yang menyusup ke pemukiman mencari sisa makanan. Menyebarkan bakteri E. coli akibat kebersihan diri yang buruk."));
+        DUMMY_MONSTERS.add(m("Corrupted Crawler", 44, 44, 12, 11, "Serangga raksasa yang terkontaminasi limbah pertanian beracun. Membawa residu pestisida organofosfat yang merusak saraf."));
+        DUMMY_MONSTERS.add(m("Blight Spore", 42, 42, 11, 9, "Gumpalan spora terapung dari jamur yang terinfeksi Blight. Menyebarkan mikotoksin aflatoksin pemicu kanker hati."));
+        DUMMY_MONSTERS.add(m("Scavenger Hunter", 55, 55, 16, 12, "Pemulung yang lebih agresif dan terorganisir. Terinfeksi bakteri Campylobacter dari daging bangkai yang dikonsumsinya."));
+
+        // Aethelgard (Chapter 2) monsters
+        DUMMY_MONSTERS.add(m("Swamplands Leech", 60, 60, 16, 11, "Lintah raksasa dari rawa beracun yang mengisap darah korbannya. Vektor penyakit Leptospirosis dari genangan air kotor."));
+        DUMMY_MONSTERS.add(m("Miasma Husk", 68, 68, 18, 13, "Tubuh kering terbungkus kabut miasma beracun. Menyebabkan keracunan hidrogen sulfida akut pada makhluk di sekitarnya."));
+        DUMMY_MONSTERS.add(m("Sludge Mutant", 72, 72, 17, 14, "Mutan yang terbentuk dari lumpur limbah industri. Terpapar logam berat merkuri penyebab penyakit Minamata."));
+
+        // Grandis (Chapter 3) monsters
+        DUMMY_MONSTERS.add(m("Security Drone", 78, 78, 22, 15, "Drone otomatis pengawal gudang pangan ilegal. Menyebarkan debu logam berat yang memicu penyakit paru okupasional."));
+        DUMMY_MONSTERS.add(m("Enath Trooper", 85, 85, 25, 16, "Tentara bayaran bersenjata lengkap yang menjaga distribusi ilegal. Mengidap TBC resisten obat akibat lingkungan kerja tertutup."));
+        DUMMY_MONSTERS.add(m("Elite Guard", 90, 90, 26, 18, "Pengawal pribadi Baron yang terlatih dan kejam. Menderita pneumonia kimia akibat sering terpapar gas air mata dan asap."));
+        DUMMY_MONSTERS.add(m("Heavy Enath Trooper", 95, 95, 28, 20, "Tentara elit lapis baja dengan perlengkapan berat. Mengalami gangguan pendengaran permanen akibat baku tembak terus-menerus."));
+
+        // Lumina (Chapter 4) monsters
+        DUMMY_MONSTERS.add(m("Test Subject X", 105, 105, 28, 18, "Mantan manusia yang dijadikan kelinci percobaan vaksin gagal. Mengidap sindrom cytokine storm akibat over-reaksi imun."));
+        DUMMY_MONSTERS.add(m("Alchemist Cultist", 110, 110, 30, 19, "Pengikut aliran sesat yang melakukan eksperimen bioteror. Terpapar patogen aerosol yang menyebabkan pneumonia berat."));
+        DUMMY_MONSTERS.add(m("Failed Experiment", 115, 115, 32, 21, "Hasil percobaan genetika yang keluar dari laboratorium. Mengalami nekrosis jaringan akibat senyawa kimia eksperimental."));
+
+        // Aldoria (Chapter 5) monsters
+        DUMMY_MONSTERS.add(m("Ash Beast", 145, 145, 36, 24, "Binatang buas yang bertahan di area radioaktif. Mengidap acute radiation syndrome yang merusak sumsum tulang."));
+        DUMMY_MONSTERS.add(m("Radiant Sentinel", 155, 155, 38, 26, "Makhluk penjaga yang menyatu dengan kristal radiasi. Menyebabkan kerusakan DNA seluler akibat paparan radiasi pengion."));
+        DUMMY_MONSTERS.add(m("Flare Crawler", 150, 150, 40, 25, "Reptil bermutasi yang memancarkan panas ekstrem. Kulitnya mengandung zat radioaktif cesium-137 yang memicu kanker tiroid."));
+
+        // === BOSS MONSTERS ===
+        DUMMY_MONSTERS.add(m("Blight-Root", 120, 120, 28, 20, "BOSS: Akar raksasa yang menjadi sumber Blight di Valerion. Menyebabkan Sindrom Uremia Hemolitik melalui toksin yang meracuni sumber air."));
+        DUMMY_MONSTERS.add(m("Goliath Toad", 160, 160, 35, 25, "BOSS: Katak raksasa mutan di rawa Aethelgard. Kulitnya mengeluarkan racun batrachotoxin yang memicu fibrilasi jantung fatal."));
+        DUMMY_MONSTERS.add(m("Baron Gluttony", 200, 200, 45, 28, "BOSS: Penguasa kartel pangan ilegal Grandis. Menderita obesitas morbid dan diabetes tipe 2 akibat kerakusan tak terkendali."));
+        DUMMY_MONSTERS.add(m("Dr. Mortis", 230, 230, 50, 32, "BOSS: Ilmuwan gila di balik vaksin palsu Lumina. Terinfeksi virus laboratorium hasil rekayasanya sendiri yang tak terkendali."));
+        DUMMY_MONSTERS.add(m("Crimson Chimera", 280, 280, 60, 38, "BOSS FINAL: Makhluk gabungan hasil mutasi radiasi Aldoria. Menjadi inang segala penyakit yang pernah ada, siap menyebarkan wabah final."));
     }
 
     private static Monster m(String name, int maxHp, int currentHp, int kekuatan, int defense, String trivia) {
-        return new Monster(name, maxHp, currentHp, kekuatan, defense, trivia);
-    }
-
-    public static List<Monster> generateDummyMonsters() {
-        return new ArrayList<>(DUMMY_MONSTERS);
+        int xp = Math.max(5, (maxHp / 10) + kekuatan * 2);
+        return new Monster(name, maxHp, currentHp, kekuatan, defense, trivia, xp);
     }
 
     public static List<Monster> getDummyMonsters() {
-        return generateDummyMonsters();
+        return new ArrayList<>(DUMMY_MONSTERS);
     }
 
     public static Monster[] getDummyMonstersArray() {

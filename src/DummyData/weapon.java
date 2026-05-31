@@ -98,12 +98,8 @@ public class weapon {
         return new Weapon(id, name, price, desc, bonusKekuatan, 0, requiredClassType);
     }
 
-    public static List<Weapon> generateDummyWeapons() {
-        return new ArrayList<>(DUMMY_WEAPONS);
-    }
-
     public static List<Weapon> getDummyWeapons() {
-        return generateDummyWeapons();
+        return new ArrayList<>(DUMMY_WEAPONS);
     }
 
     public static Weapon[] getDummyWeaponsArray() {
