@@ -1750,7 +1750,7 @@ public class App {
         QuestTracker qt = account.getQuestTracker();
         if (qt == null) {
             // For new accounts: do NOT pre-populate subquests. Players must take subquests from the Quest Board.
-            qt = new QuestTracker(new ArrayList<>(mainquest.getDummyMainQuest()), new ArrayList<Quest>(), new ArrayList<Quest>());
+            qt = new QuestTracker(new ArrayList<>(mainquest.getDummyMainQuest()), new ArrayList<SubQuest>(), new ArrayList<Quest>());
             account.setQuestTracker(qt);
             return;
         }
@@ -1760,7 +1760,7 @@ public class App {
         }
         // Ensure subquest list exists but do not populate it automatically. Leave empty until player accepts from Quest Board.
         if (qt.getDaftarSubQuestAktif() == null) {
-            qt.setDaftarSubQuestAktif(new ArrayList<Quest>());
+            qt.setDaftarSubQuestAktif(new ArrayList<SubQuest>());
         }
         if (qt.getRiwayatMisiSelesai() == null) {
             qt.setRiwayatMisiSelesai(new ArrayList<Quest>());
