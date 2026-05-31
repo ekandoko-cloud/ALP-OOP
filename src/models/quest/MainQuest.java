@@ -329,6 +329,7 @@ public class MainQuest extends Quest {
         }
     }
 
+    //varargs -- ... maps --> bisa menerima banyak map
     private static Item cariItem(String nama, Map<Integer, Item>... maps) {
         for (Map<Integer, Item> map : maps) {
             if (map == null) continue;

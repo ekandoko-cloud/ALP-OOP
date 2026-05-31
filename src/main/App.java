@@ -256,9 +256,7 @@ public class App {
                 AccountProfile loadedAccount = saveload.load(usernameLogin);
                 if (loadedAccount != null) {
                     loadedAccount.setPassword(password);
-                    if (loadedAccount.getQuestTracker() == null) {
-                        loadedAccount.setQuestTracker(new QuestTracker(new ArrayList<>(mainquest.getDummyMainQuest()), new ArrayList<SubQuest>(), new ArrayList<Quest>()));
-                    }
+                    ensureQuestTrackerCatalog(loadedAccount);
                     this.currentAccount = loadedAccount;
                     this.craftingSystem = null;
                     System.out.println("Save ditemukan. Data akun berhasil di-load otomatis.");
@@ -288,7 +286,8 @@ public class App {
                         }
                         newParty[i] = new PlayerCharacter(pick, 100, 100, 50, 50, 10, 5, 1, 0, 100, "CLASSLESS", false);
                     }
-                    this.currentAccount = new AccountProfile(usernameLogin, password, 0, newParty, new LinkedList<>(), new QuestTracker(new ArrayList<>(mainquest.getDummyMainQuest()), new ArrayList<SubQuest>(), new ArrayList<Quest>()));
+                    this.currentAccount = new AccountProfile(usernameLogin, password, 0, newParty, new LinkedList<>(), null);
+                    ensureQuestTrackerCatalog(this.currentAccount);
                     this.craftingSystem = null;
                     try {
                         saveCurrentAccountWithRecipes();
@@ -881,14 +880,11 @@ public class App {
                 choice = inpInt.nextInt();
 
                 if (choice == 1) {
-                    // Enter map traversal (Play)
                     mapTraversalMenu();
-
                 } else if (choice == 2) {
                     if (currentAccount != null) {
                         MainQuest.displayQuestTracker(currentAccount.getQuestTracker());
-                    } else {
-                        System.out.println("Belum login.");
+                        SubQuest.displayQuestTracker(currentAccount.getQuestTracker());
                     }
                 } else if (choice == 3) {
                     inventoryMenu();
@@ -902,6 +898,7 @@ public class App {
                     if (currentAccount != null) {
                         String areaNow = mapTraversal != null && mapTraversal.areaSaatIni() != null ? mapTraversal.areaSaatIni().getNamaLokasi() : "";
                         MainQuest.displayQuestBoardForArea(currentAccount.getQuestTracker(), areaNow, inpStr);
+                        SubQuest.displayQuestBoardForArea(currentAccount.getQuestTracker(), areaNow, inpStr);
                     } else {
                         System.out.println("Belum login.");
                     }
@@ -1745,6 +1742,31 @@ public class App {
         }
     }
 
+    private void ensureQuestTrackerCatalog(AccountProfile account) {
+        if (account == null) {
+            return;
+        }
+
+        QuestTracker qt = account.getQuestTracker();
+        if (qt == null) {
+            // For new accounts: do NOT pre-populate subquests. Players must take subquests from the Quest Board.
+            qt = new QuestTracker(new ArrayList<>(mainquest.getDummyMainQuest()), new ArrayList<Quest>(), new ArrayList<Quest>());
+            account.setQuestTracker(qt);
+            return;
+        }
+
+        if (qt.getDaftarMainQuestAktif() == null || qt.getDaftarMainQuestAktif().isEmpty()) {
+            qt.setDaftarMainQuestAktif(new ArrayList<>(mainquest.getDummyMainQuest()));
+        }
+        // Ensure subquest list exists but do not populate it automatically. Leave empty until player accepts from Quest Board.
+        if (qt.getDaftarSubQuestAktif() == null) {
+            qt.setDaftarSubQuestAktif(new ArrayList<Quest>());
+        }
+        if (qt.getRiwayatMisiSelesai() == null) {
+            qt.setRiwayatMisiSelesai(new ArrayList<Quest>());
+        }
+    }
+
     //Fitur 3.2.5 Profil Akun
     public void accProfileMenu() {
         while (true) {
@@ -1961,6 +1983,7 @@ public class App {
         if (currentAccount == null) {
             return;
         }
+        ensureQuestTrackerCatalog(currentAccount);
         saveload.save(currentAccount);
     }
 }

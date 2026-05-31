@@ -111,7 +111,7 @@ public class SaveLoadSystem {
                         if (sq == null) {
                             continue;
                         }
-                        writer.write("subQuest=" + sq.getIdQuest() + "^" + sq.getNamaQuest() + "^" + sq.getDeskripsiQuest() + "^" + sq.getObjectiveQuest() + "^" + sq.getObjectiveTarget() + "^" + sq.getObjectiveProgress() + "^" + sq.getHadiahKoin() + "^" + sq.getSyaratLevel() + "^" + sq.getStatusQuest() + "^" + String.join("~", sq.getRiwayatObjective()));
+                        writer.write("subQuest=" + sq.getIdQuest() + "^" + sq.getNamaQuest() + "^" + sq.getDeskripsiQuest() + "^" + sq.getObjectiveQuest() + "^" + sq.getObjectiveTarget() + "^" + sq.getObjectiveProgress() + "^" + sq.getHadiahKoin() + "^" + sq.getStatusQuest() + "^" + String.join("~", sq.getRiwayatObjective()) + "^" + (sq.getWilayah() == null ? "" : sq.getWilayah()));
                         writer.newLine();
                     }
                 }
@@ -318,13 +318,13 @@ public class SaveLoadSystem {
                             int target = Integer.parseInt(data[4]);
                             int progress = Integer.parseInt(data[5]);
                             int hadiah = Integer.parseInt(data[6]);
-                            int syaratLevel = Integer.parseInt(data[7]);
-                            enums.StatusQuest status = enums.StatusQuest.valueOf(data[8]);
                             ArrayList<String> riwayat = new ArrayList<>();
-                            if (!data[9].isEmpty()) {
-                                riwayat.addAll(Arrays.asList(data[9].split("~")));
+                            enums.StatusQuest status = enums.StatusQuest.valueOf(data[7]);
+                            if (!data[8].isEmpty()) {
+                                riwayat.addAll(Arrays.asList(data[8].split("~")));
                             }
-                            SubQuest sq = new SubQuest(id, nama, deskripsi, objective, target, hadiah, syaratLevel);
+                            String wilayah = data[9];
+                            SubQuest sq = new SubQuest(id, nama, deskripsi, objective, target, hadiah, wilayah.isEmpty() ? null : wilayah);
                             sq.setObjectiveProgress(progress);
                             sq.setStatusQuest(status);
                             sq.setRiwayatObjective(riwayat);

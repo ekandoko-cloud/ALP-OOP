@@ -55,9 +55,8 @@ public class QuestTracker {
             return catatan;
         }
 
-        Iterator<MainQuest> iterator = daftarMainQuestAktif.iterator();
-        while (iterator.hasNext()) {
-            MainQuest mq = iterator.next();
+        for (int i = daftarMainQuestAktif.size() - 1; i >= 0; i--) {
+            MainQuest mq = daftarMainQuestAktif.get(i);
             if (mq == null || mq.getStatusQuest() != StatusQuest.ONGOING) {
                 continue;
             }
@@ -67,7 +66,8 @@ public class QuestTracker {
                 catatan.add("Quest naik: " + mq.getNamaQuest() + " = " + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget());
 
                 if (mq.getStatusQuest() == StatusQuest.COMPLETED) {
-                    iterator.remove();
+                    // remove by index to avoid ConcurrentModificationException
+                    daftarMainQuestAktif.remove(i);
                     if (riwayatMisiSelesai == null) {
                         riwayatMisiSelesai = new ArrayList<>();
                     }
