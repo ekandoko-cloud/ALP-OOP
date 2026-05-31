@@ -4,12 +4,17 @@ import java.io.*;
 import java.util.*;
 
 import enums.itemType;
+import enums.ClassType;
+import enums.tipeEquipment;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.ConsumableFood;
+import models.item.Accessory;
+import models.item.Armor;
 import models.item.Equipment;
 import models.item.Inqredients;
 import models.item.Item;
+import models.item.Weapon;
 import models.quest.MainQuest;
 import models.quest.Quest;
 import models.quest.SubQuest;
@@ -58,7 +63,7 @@ public class SaveLoadSystem {
                     if (karakter == null) {
                         continue;
                     }
-                    writer.write("karakter=" + karakter.getNama() + "^" + karakter.getNamaClass() + "^" + karakter.getLevel() + "^" + karakter.getMaxHp() + "^" + karakter.getCurrentHp() + "^" + karakter.getMaxMp() + "^" + karakter.getCurrentMp() + "^" + karakter.getKekuatan() + "^" + karakter.getDefense() + "^" + karakter.getCurrentExp() + "^" + karakter.getMaxExp() + "^" + karakter.isStatusTubuhNirlelah());
+                    writer.write("karakter=" + karakter.getNama() + "^" + karakter.getNamaClass() + "^" + karakter.getLevel() + "^" + karakter.getMaxHp() + "^" + karakter.getCurrentHp() + "^" + karakter.getMaxMp() + "^" + karakter.getCurrentMp() + "^" + karakter.getKekuatan() + "^" + karakter.getDefense() + "^" + karakter.getCurrentExp() + "^" + karakter.getMaxExp() + "^" + karakter.isStatusTubuhNirlelah() + "^" + (karakter.getCurrentWeapon() != null ? karakter.getCurrentWeapon().getIdItem() : 0) + "^" + (karakter.getCurrentArmor() != null ? karakter.getCurrentArmor().getIdItem() : 0) + "^" + (karakter.getCurrentAccessory() != null ? karakter.getCurrentAccessory().getIdItem() : 0));
                     writer.newLine();
                 }
             }
@@ -74,7 +79,7 @@ public class SaveLoadSystem {
                         writer.write("inqredient=" + item.getIdItem() + "^" + item.getNamaItem() + "^" + item.getDeskripsi() + "^" + item.getHargaJual());
                         writer.newLine();
                     } else if (item instanceof Equipment equipment) {
-                        writer.write("equipment=" + equipment.getIdItem() + "^" + equipment.getNamaItem() + "^" + equipment.getDeskripsi() + "^" + equipment.getHargaJual() + "^" + equipment.getTipeEquipment() + "^" + equipment.getBonusKekuatan() + "^" + equipment.getBonusDefense() + "^" + equipment.getLevelTempa());
+                        writer.write("equipment=" + equipment.getIdItem() + "^" + equipment.getNamaItem() + "^" + equipment.getDeskripsi() + "^" + equipment.getHargaJual() + "^" + equipment.getTipeEquipment().name() + "^" + equipment.getBonusKekuatan() + "^" + equipment.getBonusDefense() + "^" + equipment.getLevelTempa() + "^" + equipment.getRequiredClassType().name());
                         writer.newLine();
                     } else if (item instanceof ConsumableFood consumableFood) {
                         writer.write("consumableFood=" + consumableFood.getIdItem() + "^" + consumableFood.getNamaItem() + "^" + consumableFood.getDeskripsi() + "^" + consumableFood.getHargaJual() + "^" + consumableFood.getHealHpAmount() + "^" + consumableFood.getHealMpAmount() + "^" + consumableFood.getStrBuff() + "^" + consumableFood.getDefBuff() + "^" + consumableFood.getInfoGiziSDG());
@@ -227,6 +232,15 @@ public class SaveLoadSystem {
                                     Integer.parseInt(data[10]), // maxExp
                                     data[1], //class
                                     Boolean.parseBoolean(data[11])); //fatigue
+                            if (data.length >= 13) {
+                                trySetEquipmentSlot(karakter, data[12], "WEAPON");
+                            }
+                            if (data.length >= 14) {
+                                trySetEquipmentSlot(karakter, data[13], "ARMOR");
+                            }
+                            if (data.length >= 15) {
+                                trySetEquipmentSlot(karakter, data[14], "ACCESSORY");
+                            }
                             partyArray[partyCount] = karakter;
                             partyCount++;
                         }
@@ -248,11 +262,12 @@ public class SaveLoadSystem {
                             String nama = data[1];
                             String deskripsi = data[2];
                             int harga = Integer.parseInt(data[3]);
-                            String tipe = data[4];
                             int bonusStr = Integer.parseInt(data[5]);
                             int bonusDef = Integer.parseInt(data[6]);
                             int levelTempa = Integer.parseInt(data[7]);
-                            inventoryList.add(new Equipment(id, nama, harga, deskripsi, itemType.EQUIPMENT, bonusStr, bonusDef, levelTempa));
+                            tipeEquipment slot = parseSlot(data[4], bonusStr, bonusDef);
+                            ClassType requiredClassType = data.length >= 9 ? parseClassType(data[8]) : ClassType.CLASSLESS;
+                            inventoryList.add(createEquipment(id, nama, harga, deskripsi, slot, bonusStr, bonusDef, levelTempa, requiredClassType));
                         }
                     } else if (line.startsWith("consumableFood=")) {
                         String[] data = line.substring("consumableFood=".length()).split("\\^");
@@ -363,6 +378,79 @@ public class SaveLoadSystem {
         } catch (Exception e) {
             System.out.println("Error loading game: " + e.getMessage());
             return null;
+        }
+    }
+
+    private void trySetEquipmentSlot(PlayerCharacter karakter, String rawId, String slot) {
+        try {
+            int equipmentId = Integer.parseInt(rawId);
+            if (equipmentId <= 0) {
+                return;
+            }
+
+            Item equipmentItem = getEquipmentBySlotAndId(slot, equipmentId);
+            if (equipmentItem instanceof Equipment loadedEquipment) {
+                karakter.setEquipmentBySlot(slot, loadedEquipment);
+            }
+        } catch (NumberFormatException ignored) {
+        }
+    }
+
+    private Item getEquipmentBySlotAndId(String slot, int id) {
+        if (slot == null) {
+            return null;
+        }
+
+        switch (slot.trim().toUpperCase()) {
+            case "WEAPON":
+                return DummyData.weapon.getDummyWeaponsMap().get(id);
+            case "ARMOR":
+                return DummyData.armor.getDummyArmorsMap().get(id);
+            case "ACCESSORY":
+                return DummyData.accessory.getDummyAccessoriesMap().get(id);
+            default:
+                return null;
+        }
+    }
+
+    private tipeEquipment parseSlot(String rawSlot, int bonusStr, int bonusDef) {
+        if (rawSlot != null) {
+            try {
+                return tipeEquipment.valueOf(rawSlot.trim().toUpperCase());
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+
+        if (bonusStr > 0 && bonusDef == 0) {
+            return tipeEquipment.WEAPON;
+        }
+        if (bonusDef > 0 && bonusStr == 0) {
+            return tipeEquipment.ARMOR;
+        }
+        return tipeEquipment.ACCESSORY;
+    }
+
+    private ClassType parseClassType(String rawClassType) {
+        if (rawClassType == null || rawClassType.isBlank()) {
+            return ClassType.CLASSLESS;
+        }
+
+        try {
+            return ClassType.valueOf(rawClassType.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return ClassType.CLASSLESS;
+        }
+    }
+
+    private Equipment createEquipment(int id, String nama, int harga, String deskripsi, tipeEquipment slot, int bonusStr, int bonusDef, int levelTempa, ClassType requiredClassType) {
+        switch (slot) {
+            case ARMOR:
+                return new Armor(id, nama, harga, deskripsi, bonusDef, levelTempa, requiredClassType);
+            case ACCESSORY:
+                return new Accessory(id, nama, harga, deskripsi, bonusStr, bonusDef, levelTempa);
+            case WEAPON:
+            default:
+                return new Weapon(id, nama, harga, deskripsi, bonusStr, levelTempa, requiredClassType);
         }
     }
 }

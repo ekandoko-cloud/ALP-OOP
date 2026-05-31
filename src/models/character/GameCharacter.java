@@ -7,15 +7,13 @@ public abstract class GameCharacter {
     protected int currentMp;
     protected int kekuatan;
     protected int defense;
-    protected int level;
 
-    protected GameCharacter(String nama, int maxHp, int currentHp, int kekuatan, int defense, int level) {
+    protected GameCharacter(String nama, int maxHp, int currentHp, int kekuatan, int defense) {
         this.nama = nama;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
         this.kekuatan = kekuatan;
         this.defense = defense;
-        this.level = level;
     }
 
 
@@ -75,18 +73,7 @@ public abstract class GameCharacter {
         this.defense = defense;
     }
 
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
     public void serang(GameCharacter target) {
-    }
-
-    public void gunakanSkillUnik(GameCharacter target) {
     }
 
     public void modifikasiStat(int hp, int mp, int atk, int def) {

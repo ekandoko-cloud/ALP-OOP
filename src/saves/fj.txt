@@ -1,0 +1,31 @@
+[BASIC INFO]
+username=fj
+totalGold=0
+totalPlaytime=0:00
+maxInventorySlots=200
+areaName=
+
+[PARTY INFO]
+karakter=Xander^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Fenril^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Helm^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Merrin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+
+[INVENTORY INFO]
+
+[QUEST INFO]
+questTracker=null
+
+
+[CRAFTING INFO]
+resep=1
+resep=2
+resep=3
+resep=4
+resep=5
+resep=6
+resep=7
+resep=8
+resep=9
+resep=10
+resep=11

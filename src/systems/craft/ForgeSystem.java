@@ -149,15 +149,20 @@ public class ForgeSystem {
 
         equipment.setLevelTempa(nextLevel);
 
-        int newAtk = equipment.getBonusKekuatan() + formula.getAtkIncrease();
-        int newDef = equipment.getBonusDefense() + formula.getDefIncrease();
-
-        equipment.setBonusKekuatan(newAtk);
-        equipment.setBonusDefense(newDef);
+        int appliedAtk = 0;
+        int appliedDef = 0;
+        if (equipment instanceof models.item.Weapon || equipment instanceof models.item.Accessory) {
+            appliedAtk = formula.getAtkIncrease();
+            equipment.setBonusKekuatan(equipment.getBonusKekuatan() + appliedAtk);
+        }
+        if (equipment instanceof models.item.Armor || equipment instanceof models.item.Accessory) {
+            appliedDef = formula.getDefIncrease();
+            equipment.setBonusDefense(equipment.getBonusDefense() + appliedDef);
+        }
 
         System.out.println("Stats Equipment ditingkatkan:");
-        System.out.println("ATK: " + equipment.getBonusKekuatan() + " (+" + formula.getAtkIncrease() + ")");
-        System.out.println("DEF: " + equipment.getBonusDefense() + " (+" + formula.getDefIncrease() + ")");
+        System.out.println("ATK: " + equipment.getBonusKekuatan() + " (+" + appliedAtk + ")");
+        System.out.println("DEF: " + equipment.getBonusDefense() + " (+" + appliedDef + ")");
 
         System.out.println("\nUpgrade berhasil!");
         System.out.println(equipment.getNamaItem() + " sekarang Level +" + nextLevel);
@@ -168,7 +173,7 @@ public class ForgeSystem {
     private int countItemInInventory(LinkedList<Item> inventory, String itemName) {
         int count = 0;
         for (Item item : inventory) {
-            if (item.getNamaItem().equalsIgnoreCase(itemName)) {
+            if (item != null && item.getNamaItem().equalsIgnoreCase(itemName)) {
                 count++;
             }
         }

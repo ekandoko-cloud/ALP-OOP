@@ -5,9 +5,9 @@ public class NPC extends GameCharacter {
     private String unitTaktis;
     private String[] arrayDialog;
 
-    public NPC(String nama, int maxHp, int currentHp, int kekuatan, int defense, int level,
+    public NPC(String nama, int maxHp, int currentHp, int kekuatan, int defense,
                String pangkat, String unitTaktis, String[] arrayDialog) {
-        super(nama, maxHp, currentHp, kekuatan, defense, level);
+        super(nama, maxHp, currentHp, kekuatan, defense);
         this.pangkat = pangkat;
         this.unitTaktis = unitTaktis;
         this.arrayDialog = arrayDialog;

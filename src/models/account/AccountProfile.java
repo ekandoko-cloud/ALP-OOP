@@ -6,7 +6,7 @@ import systems.quest.QuestTracker;
 
 public class AccountProfile {
     private static final int MAX_PARTY_SIZE = 4;
-    public static final int DEFAULT_MAX_INVENTORY_SLOTS = 20;
+    public static final int DEFAULT_MAX_INVENTORY_SLOTS = 200;
 
     private String username;
     private String password;

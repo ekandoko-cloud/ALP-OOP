@@ -1,4 +1,6 @@
 package minigames;
+import models.account.AccountProfile;
+
 import java.util.*;
 public abstract class MiniGame {
     protected String namaGame;
@@ -26,7 +28,7 @@ public abstract class MiniGame {
         this.rewardKoin = rewardKoin;
     }
 
-    public void startGame() {
+    public void startGame(AccountProfile currentProfile) {
     }
 }
 
