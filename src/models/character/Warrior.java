@@ -18,16 +18,6 @@ public class Warrior extends PlayerCharacter {
 		this.setStatusTubuhNirlelah(statusTubuhNirlelah);
 	}
 
-	@Override
-	public void gunakanSkillUnik(GameCharacter target) {
-		if (target == null) {
-			return;
-		}
-
-		int damage = Math.max(1, (int) Math.round(getKekuatan() * 1.9) - (target.getDefense() / 2));
-		target.terimaDamage(damage);
-	}
-
 }
 
 

@@ -53,6 +53,37 @@ public class Inventory {
         System.out.println("Total item: " + sorted.size());
     }
 
+    public void displayInventoryByCategory(String category) {
+        LinkedList<Item> sorted = getSortedInventory();
+        LinkedList<Item> filtered = new LinkedList<>();
+        String lowerCat = category.toLowerCase();
+
+        for (Item item : sorted) {
+            String tipe = item.getItemType().toString().toLowerCase();
+            if (tipe.contains(lowerCat) || item.getItemType().name().toLowerCase().contains(lowerCat)) {
+                filtered.add(item);
+            }
+        }
+
+        if (filtered.isEmpty()) {
+            System.out.println("\n=== FILTER: " + category.toUpperCase() + " ===");
+            System.out.println("Tidak ada item dengan kategori '" + category + "'.");
+            return;
+        }
+
+        System.out.println("\n=== FILTER: " + category.toUpperCase() + " ===");
+        System.out.printf("%-4s %-30s %-15s %s%n", "No.", "Nama Item", "Tipe", "Harga");
+        System.out.println("-".repeat(65));
+
+        int index = 1;
+        for (Item item : filtered) {
+            String tipe = item.getItemType().toString();
+            System.out.printf("%-4s %-30.30s %-15s %s%n", index + ".", item.getNamaItem(), tipe, item.getHargaJual() + " gold");
+            index++;
+        }
+        System.out.println("Total item: " + filtered.size());
+    }
+
     public void cariItem(String keyword) {
         LinkedList<Item> hasil = new LinkedList<>();
         String lowerKeyword = keyword.toLowerCase();

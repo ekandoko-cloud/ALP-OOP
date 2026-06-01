@@ -2,8 +2,6 @@ package systems.battle;
 
 import models.character.GameCharacter;
 import models.character.PlayerCharacter;
-import models.character.Skill;
-import models.character.Support;
 import models.item.ConsumableFood;
 import models.item.Item;
 import systems.quest.QuestTracker;
@@ -118,17 +116,12 @@ public class BattleSystem {
                         battleLog.tambahEntri(log);
                         aksiSelesai = true;
                     } else if (choice == 3) {
-                            if (!(currentCharacter instanceof Skill)) {
+                            if (currentCharacter.getSkill() == null) {
                             String log = currentCharacter.getNama() + " tidak punya skill.";
                             System.out.println(log);
                             battleLog.tambahEntri(log);
                             aksiSelesai = true;
-                        } else if (currentCharacter instanceof models.character.Mage && currentCharacter.getCurrentMp() < 10) {
-                            String log = currentCharacter.getNama() + " MP kurang.";
-                            System.out.println(log);
-                            battleLog.tambahEntri(log);
-                            aksiSelesai = true;
-                        } else if (currentCharacter instanceof Support) {
+                        } else if (isHealClass(currentCharacter.getNamaClass())) {
                             int allyIndex = pilihTargetParty(input, true);
                             if (allyIndex == -1) {
                                 System.out.println("Tidak ada target ally.");
@@ -136,7 +129,7 @@ public class BattleSystem {
                             } else {
                                 GameCharacter ally = partyPlayer[allyIndex];
                                 int beforeHp = ally.getCurrentHp();
-                                ((Skill) currentCharacter).gunakanSkillUnik(ally);
+                                currentCharacter.gunakanSkillUnik(ally);
                                 int healed = ally.getCurrentHp() - beforeHp;
                                 String log = currentCharacter.getNama() + " menyembuhkan " + ally.getNama() + " \u2192 +" + Math.max(0, healed) + " HP";
                                 System.out.println(log);
@@ -151,9 +144,9 @@ public class BattleSystem {
                             } else {
                                 GameCharacter target = partyEnemy[targetIndex];
                                 int beforeHp = target.getCurrentHp();
-                                ((Skill) currentCharacter).gunakanSkillUnik(target);
+                                currentCharacter.gunakanSkillUnik(target);
                                 int damage = beforeHp - target.getCurrentHp();
-                                String log = currentCharacter.getNama() + " menggunakan skill \"Skill Unik\" \u2192 " + Math.max(0, damage) + " damage ke " + target.getNama();
+                                String log = currentCharacter.getNama() + " menggunakan skill \u2192 " + Math.max(0, damage) + " damage ke " + target.getNama();
                                 System.out.println(log);
                                 battleLog.tambahEntri(log);
                                 cekMusuhKalah(targetIndex, questTracker);
@@ -291,10 +284,8 @@ public class BattleSystem {
         System.out.println("5. Lewati");
         System.out.println("6. Lihat Log");
         System.out.println("7. Kabur");
-        if (!(currentCharacter instanceof Skill)) {
+        if (currentCharacter.getSkill() == null) {
             System.out.println("(Karakter ini tidak punya skill)");
-        } else if (currentCharacter instanceof models.character.Mage && currentCharacter.getCurrentMp() < 10) {
-            System.out.println("(MP kurang untuk skill)");
         }
         if (inventory == null || inventory.isEmpty()) {
             System.out.println("(Inventory kosong)");
@@ -375,6 +366,14 @@ public class BattleSystem {
             }
             System.out.print("Input tidak valid. Masukkan angka " + min + " - " + max + ": ");
         }
+    }
+
+    private boolean isHealClass(String className) {
+        return className != null && (className.equalsIgnoreCase("Support") ||
+               className.equalsIgnoreCase("Shieldman") ||
+               className.equalsIgnoreCase("Angel") ||
+               className.equalsIgnoreCase("Paladin") ||
+               className.equalsIgnoreCase("Archangel"));
     }
 
     private int pilihTargetPartyAcak() {

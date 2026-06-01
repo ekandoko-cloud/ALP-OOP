@@ -18,16 +18,6 @@ public class Archer extends PlayerCharacter {
 		this.setStatusTubuhNirlelah(statusTubuhNirlelah);
 	}
 
-	@Override
-	public void gunakanSkillUnik(GameCharacter target) {
-		if (target == null) {
-			return;
-		}
-
-		int damage = Math.max(1, (int) Math.round(getKekuatan() * 1.6) - (int) Math.round(target.getDefense() * 0.25));
-		target.terimaDamage(damage);
-	}
-
 }
 
 

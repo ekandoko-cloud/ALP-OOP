@@ -147,7 +147,10 @@ public class MainQuest extends Quest {
         if (!adaOngoing) {
             System.out.println(ANSI_YELLOW + "Tidak ada quest aktif. Ambil quest dari Quest Board!" + ANSI_RESET);
         }
+    }
 
+    public static void displayCompletedQuests(QuestTracker qt) {
+        if (qt == null) return;
         ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
         if (riwayat != null && !riwayat.isEmpty()) {
             System.out.println(ANSI_GREEN + ANSI_BOLD + "\n=== QUEST SELESAI ===" + ANSI_RESET);

@@ -2,12 +2,13 @@ package models.character;
 
 import models.item.Equipment;
 
-public class PlayerCharacter extends GameCharacter implements Skill {
+public class PlayerCharacter extends GameCharacter {
     private int currentExp;
     private int maxExp;
     private String namaClass;
     private boolean statusTubuhNirlelah;
     protected int level;
+    private Skill skill;
     private Equipment currentWeapon;
     private Equipment currentArmor;
     private Equipment currentAccessory;
@@ -68,6 +69,14 @@ public class PlayerCharacter extends GameCharacter implements Skill {
         this.level = level;
     }
 
+
+    public Skill getSkill() {
+        return skill;
+    }
+
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
 
     public Equipment getCurrentWeapon() {
         return currentWeapon;
@@ -164,12 +173,12 @@ public class PlayerCharacter extends GameCharacter implements Skill {
         System.out.println("LEVEL UP! " + this.nama + " sekarang level " + this.level + "!");
     }
 
-    @Override
     public void gunakanSkillUnik(GameCharacter target) {
-        if (target == null) {
+        if (target == null) return;
+        if (skill != null) {
+            skill.gunakanSkill(this, target);
             return;
         }
-
         int damage = Math.max(1, (int) Math.round(getKekuatan() * 1.5) - target.getDefense());
         target.terimaDamage(damage);
     }

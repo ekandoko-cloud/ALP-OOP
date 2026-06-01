@@ -6,6 +6,7 @@ import java.util.*;
 import enums.itemType;
 import enums.ClassType;
 import enums.tipeEquipment;
+import enums.StatusLokasi;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import models.item.ConsumableFood;
@@ -27,6 +28,8 @@ public class SaveLoadSystem {
     public String party = "[PARTY INFO]";
     public String inventory = "[INVENTORY INFO]";
     public String quest = "[QUEST INFO]";
+    public String skillSection = "[SKILL INFO]";
+    public String locationSection = "[LOCATION INFO]";
 
     public void save(AccountProfile profile) {
         File saveFolder = new File(SAVE_FOLDER);
@@ -132,6 +135,26 @@ public class SaveLoadSystem {
             }
             writer.newLine();
 
+            //skill
+            writer.write(skillSection);
+            writer.newLine();
+            Set<String> unlockedSkills = profile.getUnlockedSkillNames();
+            if (unlockedSkills != null && !unlockedSkills.isEmpty()) {
+                writer.write("unlockedSkills=" + String.join(",", unlockedSkills));
+                writer.newLine();
+            }
+            writer.newLine();
+
+            //location
+            writer.write(locationSection);
+            writer.newLine();
+            ArrayList<String> visited = profile.getVisitedLocationNames();
+            if (visited != null && !visited.isEmpty()) {
+                writer.write("visitedLocations=" + String.join(",", visited));
+                writer.newLine();
+            }
+            writer.newLine();
+
             System.out.println("Game Saved! Progres berhasil disimpan ke \"" + fileName + "\".");
 
         } catch (Exception e) {
@@ -162,6 +185,8 @@ public class SaveLoadSystem {
         ArrayList<SubQuest> subQuestAktif = new ArrayList<>();
         ArrayList<Quest> riwayatMisiSelesai = new ArrayList<>();
         boolean explicitQuestTrackerNull = false;
+        Set<String> unlockedSkills = new HashSet<>();
+        Set<String> visitedLocations = new HashSet<>();
 
         String currentSection = "";
 
@@ -357,6 +382,26 @@ public class SaveLoadSystem {
                         subQuestAktif.clear();
                         riwayatMisiSelesai.clear();
                     }
+                } else if (currentSection.equals(skillSection)) {
+                    if (line.startsWith("unlockedSkills=")) {
+                        String val = line.substring("unlockedSkills=".length());
+                        if (!val.isEmpty()) {
+                            String[] names = val.split(",");
+                            for (String n : names) {
+                                if (!n.trim().isEmpty()) unlockedSkills.add(n.trim());
+                            }
+                        }
+                    }
+                } else if (currentSection.equals(locationSection)) {
+                    if (line.startsWith("visitedLocations=")) {
+                        String val = line.substring("visitedLocations=".length());
+                        if (!val.isEmpty()) {
+                            String[] locs = val.split(",");
+                            for (String l : locs) {
+                                if (!l.trim().isEmpty()) visitedLocations.add(l.trim().toLowerCase());
+                            }
+                        }
+                    }
                 }
             }
 
@@ -375,6 +420,10 @@ public class SaveLoadSystem {
             if (maxInventorySlots > 0) profile.setMaxInventorySlots(maxInventorySlots);
             profile.setTotalPlaytime(totalPlaytime);
             profile.setAreaName(areaName);
+            profile.setUnlockedSkillNames(unlockedSkills);
+            for (String loc : visitedLocations) {
+                profile.kunjungiLokasi(loc);
+            }
             return profile;
         } catch (Exception e) {
             System.out.println("Error loading game: " + e.getMessage());

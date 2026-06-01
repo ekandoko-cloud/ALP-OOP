@@ -2,7 +2,9 @@ package models.account;
 import java.util.*;
 import models.character.PlayerCharacter;
 import models.item.Item;
+import models.location.Location;
 import systems.quest.QuestTracker;
+import enums.StatusLokasi;
 
 public class AccountProfile {
     private static final int MAX_PARTY_SIZE = 4;
@@ -18,6 +20,8 @@ public class AccountProfile {
     private LinkedList<Item> inventory;
     private QuestTracker questTracker;
     private int maxInventorySlots = DEFAULT_MAX_INVENTORY_SLOTS;
+    private Set<String> unlockedSkillNames = new HashSet<>();
+    private HashMap<String, StatusLokasi> statusLokasi = new HashMap<>();
 
     public AccountProfile(String username, String password, int totalGold, PlayerCharacter[] party, LinkedList<Item> inventory, QuestTracker questTracker) {
         this.username = username;
@@ -170,6 +174,56 @@ public class AccountProfile {
         while (this.inventory.size() > this.maxInventorySlots) {
             this.inventory.removeLast();
         }
+    }
+
+    public Set<String> getUnlockedSkillNames() {
+        return unlockedSkillNames;
+    }
+
+    public void setUnlockedSkillNames(Set<String> unlockedSkillNames) {
+        this.unlockedSkillNames = unlockedSkillNames != null ? unlockedSkillNames : new HashSet<>();
+    }
+
+    public void addUnlockedSkillName(String skillName) {
+        if (skillName != null) {
+            this.unlockedSkillNames.add(skillName);
+        }
+    }
+
+    public boolean isSkillUnlocked(String skillName) {
+        return unlockedSkillNames.contains(skillName);
+    }
+
+    public HashMap<String, StatusLokasi> getStatusLokasi() {
+        return statusLokasi;
+    }
+
+    public void setStatusLokasi(HashMap<String, StatusLokasi> statusLokasi) {
+        this.statusLokasi = statusLokasi != null ? statusLokasi : new HashMap<>();
+    }
+
+    public void kunjungiLokasi(String namaLokasi) {
+        if (namaLokasi != null) {
+            statusLokasi.put(namaLokasi.toLowerCase(), StatusLokasi.TERBUKA);
+        }
+    }
+
+    public boolean sudahMengunjungi(String namaLokasi) {
+        return namaLokasi != null && statusLokasi.containsKey(namaLokasi.toLowerCase());
+    }
+
+    public StatusLokasi getStatusLokasi(String namaLokasi) {
+        return statusLokasi.getOrDefault(namaLokasi != null ? namaLokasi.toLowerCase() : "", StatusLokasi.TERKUNCI);
+    }
+
+    public ArrayList<String> getVisitedLocationNames() {
+        ArrayList<String> visited = new ArrayList<>();
+        for (Map.Entry<String, StatusLokasi> entry : statusLokasi.entrySet()) {
+            if (entry.getValue() == StatusLokasi.TERBUKA) {
+                visited.add(entry.getKey());
+            }
+        }
+        return visited;
     }
 }
 

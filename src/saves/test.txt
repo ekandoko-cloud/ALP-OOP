@@ -1,0 +1,77 @@
+[BASIC INFO]
+username=test
+totalGold=1068
+totalPlaytime=0:12
+maxInventorySlots=200
+areaName=Asgard
+
+[PARTY INFO]
+karakter=Fenn^Warrior^5^109^109^54^54^42^10^30^500^false^0^0^0
+karakter=Aldric^Archer^5^104^104^56^56^41^10^30^500^false^0^0^0
+karakter=Fenril^Mage^5^104^104^59^59^40^9^30^500^false^0^0^0
+karakter=Eamon^Support^5^107^107^54^54^39^12^30^500^false^0^0^0
+
+[INVENTORY INFO]
+inqredient=100^Miracle Sprout^Tunas ajaib yang tumbuh di tanah paling tandus sekalipun.^406
+consumableFood=44^Potato Wedges Deep-Fry^Bahan: Kentang, Minyak Jenuh, Garam Ekstra | Efek: +20 Attack, tetapi -10 Defense^100^0^0^20^-10^Penggorengan suhu tinggi memicu terbentuknya senyawa akrilamida yang bersifat merusak integritas sel sehat.
+equipment=1^Rusted Iron Sword^Tier: Common | Pedang tua berkarat yang sudah tumpul dimakan waktu.^60^WEAPON^15^0^0^WARRIOR
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=2^Iron^Logam keras yang menjadi tulang punggung persenjataan dasar.^14
+inqredient=2^Iron^Logam keras yang menjadi tulang punggung persenjataan dasar.^14
+inqredient=2^Iron^Logam keras yang menjadi tulang punggung persenjataan dasar.^14
+inqredient=2^Iron^Logam keras yang menjadi tulang punggung persenjataan dasar.^14
+inqredient=2^Iron^Logam keras yang menjadi tulang punggung persenjataan dasar.^14
+inqredient=31^Withered Herb^Tanaman herbal yang hampir mati terkena wabah The Great Blight.^130
+inqredient=31^Withered Herb^Tanaman herbal yang hampir mati terkena wabah The Great Blight.^130
+inqredient=31^Withered Herb^Tanaman herbal yang hampir mati terkena wabah The Great Blight.^130
+inqredient=31^Withered Herb^Tanaman herbal yang hampir mati terkena wabah The Great Blight.^130
+inqredient=31^Withered Herb^Tanaman herbal yang hampir mati terkena wabah The Great Blight.^130
+inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
+inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
+inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
+inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
+inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
+inqredient=201^Blight-Root Core^Inti dari akar Blight yang menjadi sumber kontaminasi di Valerion. Berdenyut dengan energi kegelapan purba.^850
+inqredient=66^Filtered Water^Air hasil saringan kasar penawar haus sederhana.^270
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=1^Copper^Logam dasar kemerahan yang sering ditemukan di permukaan bumi.^10
+inqredient=10^Obsidian^Kaca vulkanik hitam pekat dengan ketajaman mematikan.^46
+inqredient=100^Miracle Sprout^Tunas ajaib yang tumbuh di tanah paling tandus sekalipun.^406
+consumableFood=44^Potato Wedges Deep-Fry^Bahan: Kentang, Minyak Jenuh, Garam Ekstra | Efek: +20 Attack, tetapi -10 Defense^100^0^0^20^-10^Penggorengan suhu tinggi memicu terbentuknya senyawa akrilamida yang bersifat merusak integritas sel sehat.
+equipment=25^Crimson Stalker Garb^Tier: Epic | Pakaian berburu merah darah yang menyerap hawa keberadaan penggunanya.^360^ARMOR^0^65^0^ARCHER
+
+[QUEST INFO]
+mainQuest=6^Analisis Miasma^Main Quest Asgard - Quest 1.^3x Swamplands Leech, 1x Miasma Husk^4^0^250^2^BELUM_DIAMBIL^^Asgard^1^5x Murky Sludge^Swamplands Leech~Swamplands Leech~Swamplands Leech~Miasma Husk
+mainQuest=7^Mencari Filter Crystal^Main Quest Asgard - Quest 2.^2x Sludge Mutant, 2x Swamplands Leech^4^0^300^2^BELUM_DIAMBIL^^Asgard^2^2x Crystal Shard^Sludge Mutant~Sludge Mutant~Swamplands Leech~Swamplands Leech
+mainQuest=8^Menyelamatkan Penduduk^Main Quest Asgard - Quest 3.^1x Miasma Husk, 3x Sludge Mutant^4^0^400^2^BELUM_DIAMBIL^^Asgard^3^5x Sanguine Herb^Miasma Husk~Sludge Mutant~Sludge Mutant~Sludge Mutant
+mainQuest=9^Melumpuhkan Sumber Limbah^Main Quest Asgard - Quest 4.^2x Miasma Husk, 2x Sludge Mutant^4^0^0^2^BELUM_DIAMBIL^^Asgard^4^10x Titanium + 5x Purified Sap^Miasma Husk~Miasma Husk~Sludge Mutant~Sludge Mutant
+mainQuest=10^Melawan Goliath Toad^Main Quest Asgard - Quest 5.^2x Swamplands Leech, 2x Sludge Mutant, 1x Boss: Goliath Toad^5^0^500^2^BELUM_DIAMBIL^^Asgard^5^Miasma Gland^Swamplands Leech~Swamplands Leech~Sludge Mutant~Sludge Mutant~Goliath Toad
+mainQuest=11^Menyusup ke Sektor Luar^Main Quest Grandis - Quest 1.^3x Security Drone, 1x Enath Trooper^4^0^400^3^BELUM_DIAMBIL^^Grandis^1^10x Iron^Security Drone~Security Drone~Security Drone~Enath Trooper
+mainQuest=12^Membuka Gerbang Gudang^Main Quest Grandis - Quest 2.^2x Elite Guard, 2x Security Drone^4^0^500^3^BELUM_DIAMBIL^^Grandis^2^10x Bread^Elite Guard~Elite Guard~Security Drone~Security Drone
+mainQuest=13^Memutus Distribusi Ilegal^Main Quest Grandis - Quest 3.^1x Enath Trooper, 3x Elite Guard^4^0^600^3^BELUM_DIAMBIL^^Grandis^3^5x Silver^Enath Trooper~Elite Guard~Elite Guard~Elite Guard
+mainQuest=14^Melawan Pengawal Baron^Main Quest Grandis - Quest 4.^2x Elite Guard, 2x Heavy Enath Trooper^4^0^800^3^BELUM_DIAMBIL^^Grandis^4^5x Tough Leather^Elite Guard~Elite Guard~Heavy Enath Trooper~Heavy Enath Trooper
+mainQuest=15^Melawan Baron Gluttony^Main Quest Grandis - Quest 5.^2x Security Drone, 2x Elite Guard, 1x Boss: Baron Gluttony^5^0^1000^3^BELUM_DIAMBIL^^Grandis^5^Silo Vault Key^Security Drone~Security Drone~Elite Guard~Elite Guard~Baron Gluttony
+mainQuest=16^Mencari Data Vaksin^Main Quest Lumina - Quest 1.^3x Test Subject X, 1x Alchemist Cultist^4^0^700^4^BELUM_DIAMBIL^^Lumina^1^10x Quartz^Test Subject X~Test Subject X~Test Subject X~Alchemist Cultist
+mainQuest=17^Menguji Sampel Klinis^Main Quest Lumina - Quest 2.^2x Failed Experiment, 2x Test Subject X^4^0^800^4^BELUM_DIAMBIL^^Lumina^2^5x Purified Herb^Failed Experiment~Failed Experiment~Test Subject X~Test Subject X
+mainQuest=18^Pembebasan Tahanan^Main Quest Lumina - Quest 3.^1x Alchemist Cultist, 3x Failed Experiment^4^0^900^4^BELUM_DIAMBIL^^Lumina^3^5x Mana Petal^Alchemist Cultist~Failed Experiment~Failed Experiment~Failed Experiment
+mainQuest=19^Menembus Lab Utama^Main Quest Lumina - Quest 4.^2x Alchemist Cultist, 2x Failed Experiment^4^0^1200^4^BELUM_DIAMBIL^^Lumina^4^5x Adamantite^Alchemist Cultist~Alchemist Cultist~Failed Experiment~Failed Experiment
+mainQuest=20^Melawan Dr. Mortis^Main Quest Lumina - Quest 5.^2x Test Subject X, 2x Alchemist Cultist, 1x Boss: Dr. Mortis^5^0^1500^4^BELUM_DIAMBIL^^Lumina^5^Vaccine Formula^Test Subject X~Test Subject X~Alchemist Cultist~Alchemist Cultist~Dr. Mortis
+mainQuest=21^Menstabilkan Radiasi^Main Quest Aldoria - Quest 1.^3x Ash Beast, 1x Radiant Sentinel^4^0^1500^5^BELUM_DIAMBIL^^Aldoria^1^10x Obsidian^Ash Beast~Ash Beast~Ash Beast~Radiant Sentinel
+mainQuest=22^Mengaktifkan Seed^Main Quest Aldoria - Quest 2.^2x Flare Crawler, 2x Ash Beast^4^0^2000^5^BELUM_DIAMBIL^^Aldoria^2^10x Genesis Bloom^Flare Crawler~Flare Crawler~Ash Beast~Ash Beast
+mainQuest=23^Menggabungkan Formula^Main Quest Aldoria - Quest 3.^1x Radiant Sentinel, 3x Flare Crawler^4^0^2500^5^BELUM_DIAMBIL^^Aldoria^3^5x Mithril^Radiant Sentinel~Flare Crawler~Flare Crawler~Flare Crawler
+mainQuest=24^Penghancur Pelindung^Main Quest Aldoria - Quest 4.^2x Radiant Sentinel, 2x Flare Crawler^4^0^3000^5^BELUM_DIAMBIL^^Aldoria^4^10x Meteorite Dust^Radiant Sentinel~Radiant Sentinel~Flare Crawler~Flare Crawler
+mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flare Crawler, 1x Boss: Crimson Chimera^5^0^5000^5^BELUM_DIAMBIL^^Aldoria^5^Core of Purified Earth^Ash Beast~Ash Beast~Flare Crawler~Flare Crawler~Crimson Chimera
+subQuest=1^Bersihkan Dermaga Tua^Sub Quest Valerion.^Kalahkan 3x Infected Rat^3^0^60^ONGOING^^Valerion
+subQuest=2^Cari Hasil Laut Aman^Sub Quest Valerion.^Kumpulkan 4x bahan dari area pantai^4^0^80^ONGOING^^Valerion
+subQuest=3^Lindungi Gudang Pasar^Sub Quest Valerion.^Kalahkan 2x Scavenger Scout^2^0^100^ONGOING^^Valerion
+questHistory=4^Pemetaan Area Blight^Main Quest Valerion - Quest 4.^2x Blight Spore, 2x Corrupted Crawler^4^4^0^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/4)~[MainQuest] Mengalahkan Blight Spore (2/4)~[MainQuest] Mengalahkan Corrupted Crawler (3/4)~[MainQuest] Mengalahkan Corrupted Crawler (4/4)
+questHistory=2^Melacak Akar Parasit^Main Quest Valerion - Quest 2.^2x Corrupted Crawler, 2x Blight Spore^4^4^150^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/4)~[MainQuest] Mengalahkan Blight Spore (2/4)~[MainQuest] Mengalahkan Corrupted Crawler (3/4)~[MainQuest] Mengalahkan Corrupted Crawler (4/4)
+questHistory=5^Melawan Blight-Root^Main Quest Valerion - Quest 5.^2x Blight Spore, 2x Corrupted Crawler, 1x Boss: Blight-Root^5^5^300^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/5)~[MainQuest] Mengalahkan Blight Spore (2/5)~[MainQuest] Mengalahkan Corrupted Crawler (3/5)~[MainQuest] Mengalahkan Corrupted Crawler (4/5)~[MainQuest] Mengalahkan Blight-Root (5/5)
+questHistory=3^Mengamankan Air Bersih^Main Quest Valerion - Quest 3.^1x Scavenger Hunter, 3x Infected Rat^4^4^200^COMPLETED^[MainQuest] Mengalahkan Scavenger Hunter (1/4)~[MainQuest] Mengalahkan Infected Rat (2/4)~[MainQuest] Mengalahkan Infected Rat (3/4)~[MainQuest] Mengalahkan Infected Rat (4/4)
+questHistory=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^4^100^COMPLETED^[MainQuest] Mengalahkan Infected Rat (1/4)~[MainQuest] Mengalahkan Infected Rat (2/4)~[MainQuest] Mengalahkan Infected Rat (3/4)~[MainQuest] Mengalahkan Infected Rat (4/4)
+

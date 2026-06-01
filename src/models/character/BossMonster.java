@@ -38,12 +38,12 @@ public class BossMonster extends GameCharacter implements Skill {
     }
 
     @Override
-    public void gunakanSkillUnik(GameCharacter target) {
+    public void gunakanSkill(GameCharacter source, GameCharacter target) {
         if (target == null) {
             return;
         }
 
-        int damage = Math.max(1, getKekuatan() + (getDefense() / 2) - target.getDefense());
+        int damage = Math.max(1, source.getKekuatan() + (source.getDefense() / 2) - target.getDefense());
         target.setCurrentHp(Math.max(0, target.getCurrentHp() - damage));
     }
 }

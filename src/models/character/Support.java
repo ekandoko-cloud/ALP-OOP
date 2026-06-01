@@ -18,18 +18,6 @@ public class Support extends PlayerCharacter {
 		this.setStatusTubuhNirlelah(statusTubuhNirlelah);
 	}
 
-	@Override
-	public void gunakanSkillUnik(GameCharacter target) {
-		if (target == null) {
-			return;
-		}
-
-		int healHp = Math.max(1, (int) Math.round(target.getMaxHp() * 0.30));
-		int healMp = Math.max(1, (int) Math.round(target.getMaxMp() * 0.20));
-		target.setCurrentHp(Math.min(target.getMaxHp(), target.getCurrentHp() + healHp));
-		target.setCurrentMp(Math.min(target.getMaxMp(), target.getCurrentMp() + healMp));
-	}
-
 }
 
 
