@@ -68,19 +68,48 @@ public class SubQuest extends Quest {
         }
 
         // Build available list from the global DummyData catalog so new accounts can see/accept subquests
-        List<SubQuest> available = new ArrayList<>();
-        try {
-            List<SubQuest> catalog = DummyData.subquest.getDummySubQuestByWilayah(area);
-            if (catalog != null) {
-                for (SubQuest sq : catalog) {
-                    if (sq != null && sq.getStatusQuest() == enums.StatusQuest.BELUM_DIAMBIL) {
-                        available.add(sq);
-                    }
-                }
-            }
-        } catch (Throwable t) {
-            available = getAvailableSubQuests(qt, area);
-        }
+         List<SubQuest> available = new ArrayList<>();
+         try {
+             List<SubQuest> catalog = DummyData.subquest.getDummySubQuestByWilayah(area);
+             if (catalog != null) {
+                 for (SubQuest sq : catalog) {
+                     if (sq == null) continue;
+
+                     // Only show BELUM_DIAMBIL quests
+                     if (sq.getStatusQuest() != enums.StatusQuest.BELUM_DIAMBIL) continue;
+
+                     // Skip if already active (already taken)
+                     List<SubQuest> aktif = qt.getDaftarSubQuestAktif();
+                     boolean alreadyActive = false;
+                     if (aktif != null) {
+                         for (SubQuest a : aktif) {
+                             if (a != null && a.getIdQuest() == sq.getIdQuest()) {
+                                 alreadyActive = true;
+                                 break;
+                             }
+                         }
+                     }
+                     if (alreadyActive) continue;
+
+                     // Skip if already completed (in history)
+                     List<Quest> selesai = qt.getRiwayatMisiSelesai();
+                     boolean alreadyDone = false;
+                     if (selesai != null) {
+                         for (Quest q : selesai) {
+                             if (q != null && q.getIdQuest() == sq.getIdQuest()) {
+                                 alreadyDone = true;
+                                 break;
+                             }
+                         }
+                     }
+                     if (alreadyDone) continue;
+
+                     available.add(sq);
+                 }
+             }
+         } catch (Throwable t) {
+             available = getAvailableSubQuests(qt, area);
+         }
 
         if (available == null || available.isEmpty()) {
             System.out.println("\u001B[33mTidak ada subquest yang tersedia di area ini.\u001B[0m");

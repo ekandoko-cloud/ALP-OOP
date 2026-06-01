@@ -176,7 +176,7 @@ public class MainQuest extends Quest {
         System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "                 Q U E S T   B O A R D                  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
 
-        String[] wilayahs = {"Valerion", "Aethelgard", "Grandis", "Lumina", "Aldoria"};
+            String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
         for (String wil : wilayahs) {
             boolean hasQuests = false;
             StringBuilder sb = new StringBuilder();
@@ -229,12 +229,13 @@ public class MainQuest extends Quest {
         System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
 
         java.util.List<MainQuest> available = new java.util.ArrayList<>();
-        for (MainQuest mq : daftar) {
-            if (mq == null) continue;
-            if (mq.getWilayah() != null && mq.getWilayah().equalsIgnoreCase(currentArea) && mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) {
-                available.add(mq);
-            }
-        }
+         for (MainQuest mq : daftar) {
+             if (mq == null) continue;
+             // Only show quests in current area with BELUM_DIAMBIL status
+             if (mq.getWilayah() != null && mq.getWilayah().equalsIgnoreCase(currentArea) && mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) {
+                 available.add(mq);
+             }
+         }
 
         if (available.isEmpty()) {
             System.out.println(ANSI_YELLOW + "Tidak ada quest yang tersedia di " + currentArea + "." + ANSI_RESET);
@@ -348,7 +349,7 @@ public class MainQuest extends Quest {
             case "valerion":
                 monsterNames = new String[]{"Infected Rat", "Scavenger Scout", "Corrupted Crawler", "Blight Spore", "Scavenger Hunter", "Blight-Root"};
                 break;
-            case "aethelgard":
+                  case "asgard":
                 monsterNames = new String[]{"Swamplands Leech", "Miasma Husk", "Sludge Mutant", "Goliath Toad"};
                 break;
             case "grandis":
@@ -387,7 +388,7 @@ public class MainQuest extends Quest {
         switch (wilayah.toLowerCase()) {
             case "valerion":
                 return Arrays.asList("Infected Rat", "Scavenger Scout", "Corrupted Crawler", "Blight Spore", "Scavenger Hunter", "Blight-Root");
-            case "aethelgard":
+                  case "asgard":
                 return Arrays.asList("Swamplands Leech", "Miasma Husk", "Sludge Mutant", "Goliath Toad");
             case "grandis":
                 return Arrays.asList("Security Drone", "Enath Trooper", "Elite Guard", "Heavy Enath Trooper", "Baron Gluttony");
@@ -405,7 +406,7 @@ public class MainQuest extends Quest {
         System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "            D A F T A R   S E M U A   Q U E S T             " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
 
-        String[] wilayahs = {"Valerion", "Aethelgard", "Grandis", "Lumina", "Aldoria"};
+            String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
         for (String wil : wilayahs) {
             boolean hasQuests = false;
             System.out.println(ANSI_MAGENTA + ANSI_BOLD + "\n[" + wil + "]" + ANSI_RESET);

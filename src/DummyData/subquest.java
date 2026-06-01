@@ -16,9 +16,9 @@ public class subquest {
 		add(q(2, "Valerion", "Cari Hasil Laut Aman", "Kumpulkan 4x bahan dari area pantai", 4, 80));
 		add(q(3, "Valerion", "Lindungi Gudang Pasar", "Kalahkan 2x Scavenger Scout", 2, 100));
 
-		add(q(4, "Aethelgard", "Baca Catatan Perpustakaan", "Kumpulkan 3x informasi dari area kota", 3, 90));
-		add(q(5, "Aethelgard", "Amankan Jalur Kebun", "Kalahkan 3x Swamplands Leech", 3, 110));
-		add(q(6, "Aethelgard", "Ambil Sampel Murni", "Kumpulkan 4x bahan penelitian", 4, 130));
+		add(q(4, "Asgard", "Baca Catatan Perpustakaan", "Kumpulkan 3x informasi dari area kota", 3, 90));
+		add(q(5, "Asgard", "Amankan Jalur Kebun", "Kalahkan 3x Swamplands Leech", 3, 110));
+		add(q(6, "Asgard", "Ambil Sampel Murni", "Kumpulkan 4x bahan penelitian", 4, 130));
 
 		add(q(7, "Grandis", "Perbaiki Lumbung", "Kumpulkan 4x bahan bangunan", 4, 120));
 		add(q(8, "Grandis", "Usir Hama Ladang", "Kalahkan 3x Security Drone", 3, 140));

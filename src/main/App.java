@@ -29,6 +29,8 @@ import systems.shop.Shop;
 import systems.map.MapTraversal;
 import systems.map.WaypointSystem;
 import systems.quest.QuestTracker;
+import systems.skill.SkillSystem;
+import systems.classSystem.ClassSystem;
 
 public class App {
     //ANSI COLORS
@@ -659,8 +661,8 @@ public class App {
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [ 9] Encyclopedia                   " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [10] Skill Tree                      " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [11] Class Tree                     " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [12] Gacha                           " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println("\u001B[38;2;180;100;255m" + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println("\u001B[38;2;180;100;255m" + ANSI_BOLD + "║" + ANSI_RESET + "\u001B[38;2;200;160;255m" + "  >  [13] Waypoint                       " + "\u001B[38;2;180;100;255m" + ANSI_BOLD + "║" + ANSI_RESET + "\u001B[38;2;200;160;255m" + "  >  [14] Profil Akun                     " + "\u001B[38;2;180;100;255m" + ANSI_BOLD + "║" + ANSI_RESET);
+//        System.out.println(C_180_100_255 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+//        System.out.println(C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [13] Waypoint                       " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_255 + "  >  [14] Profil Akun                     " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
 //        System.out.println(C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET + C_220_180_80 + "                         [15] Save Game        [16] Logout                          " + C_180_100_255 + ANSI_BOLD + "║" + ANSI_RESET);
@@ -703,7 +705,7 @@ public class App {
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [11] Class Tree                     " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [12] Gacha                           " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [13] Waypoint                       " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [ 14] Profil Akun                     " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET);
+//        System.out.println(C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [13] Waypoint                       " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_120_210_90 + "  >  [14] Profil Akun                     " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
 //        System.out.println(C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET + C_200_160_60 + "                         [15] Save Game        [16] Logout                          " + C_80_200_80 + ANSI_BOLD + "║" + ANSI_RESET);
@@ -722,7 +724,7 @@ public class App {
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_240_200_60 + "                 ##       ##     ## ###   ###  ##  ###   ##   ## ##                 " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_100_220_120 + "                ##       ##     ## #### ####  ##  ####  ##  ##   ##                 " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_80_190_100 + "                ##       ##     ## ## ### ##  ##  ## ## ## ##     ##                " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_240_255_220 + "                ##       ##     ## ##     ##  ##  ##  #### #########                " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
+//        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_240_255_220 + "                ##       ##     ## ##     ##  ##  ##   ### ##     ##                " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_200_240_180 + "                ##       ##     ## ##     ##  ##  ##   ### ##     ##                " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_200_240_180 + "                ########  #######  ##     ## #### ##    ## ##     ##                " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println("\u001B[38;2;255;230;80m" + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
@@ -745,7 +747,7 @@ public class App {
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [11] Class Tree                     " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [12] Gacha                           " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [13] Waypoint                       " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [ 14] Profil Akun                     " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
+//        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [13] Waypoint                       " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_150_230_130 + "  >  [14] Profil Akun                     " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
 //        System.out.println(C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET + C_255_230_80 + "                         [15] Save Game        [16] Logout                          " + C_255_230_80 + ANSI_BOLD + "║" + ANSI_RESET);
@@ -799,9 +801,21 @@ public class App {
 
 
     // MAIN MENU NUTRITALE
-    public void displayMainMenu() {
-
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                              -  M A I N   M E N U  -                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+    public void displayMainMenuValerion() {
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + ANSI_BOLD + "                              -  V A L E R I O N  -                               " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
@@ -816,63 +830,16 @@ public class App {
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
         System.out.println();
-    }
 
-//    public void displayMainMenu() {
-//        System.out.println();
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                              -  M A I N   M E N U  -                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 3] Inventory                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 4] Shop                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 5] Crafting                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 6] Forge                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 7] Quest Board                    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 8] Mini Game                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 9] Encyclopedia                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Skill Tree                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-//        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
-//        System.out.println();
-//    }
-
-    public static final String INVALID_INPUT_BOX =
-            "\n" +
-                    ANSI_RED + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════╗" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "║                ✖  I N V A L I D   I N P U T  ✖                 ║" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED_BRIGHT + "            Masukkan input yang tersedia pada menu!             " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════╝" + ANSI_RESET + "\n";
-
-
-    public void mainMenu() {
         while (true) {
-            displayMainMenu();
+            displayMainMenuValerion();
             System.out.print("Choose an option: ");
             int choice;
 
@@ -885,6 +852,8 @@ public class App {
                     if (currentAccount != null) {
                         MainQuest.displayQuestTracker(currentAccount.getQuestTracker());
                         SubQuest.displayQuestTracker(currentAccount.getQuestTracker());
+                    } else {
+                        System.out.println("Belum login.");
                     }
                 } else if (choice == 3) {
                     inventoryMenu();
@@ -896,9 +865,7 @@ public class App {
                     forgeMenu();
                 } else if (choice == 7) {
                     if (currentAccount != null) {
-                        String areaNow = mapTraversal != null && mapTraversal.areaSaatIni() != null ? mapTraversal.areaSaatIni().getNamaLokasi() : "";
-                        MainQuest.displayQuestBoardForArea(currentAccount.getQuestTracker(), areaNow, inpStr);
-                        SubQuest.displayQuestBoardForArea(currentAccount.getQuestTracker(), areaNow, inpStr);
+                        questBoardMenu();
                     } else {
                         System.out.println("Belum login.");
                     }
@@ -907,9 +874,268 @@ public class App {
                 } else if (choice == 9) {
                     ensiklopediaMenu();
                 } else if (choice == 10) {
-                    System.out.println("Skill Tree belum tersedia.");
+                    SkillSystem.skillTreeMenu(currentAccount, inpInt, inpStr);
                 } else if (choice == 11) {
-                    System.out.println("Class Tree belum tersedia.");
+                    ClassSystem.classTreeMenu(currentAccount, inpInt, inpStr);
+                } else if (choice == 12) {
+                    gachaMenu();
+                } else if (choice == 13) {
+                    waypointMenu();
+                } else if (choice == 14) {
+                    accProfileMenu();
+                } else if (choice == 15) {
+                    if (currentAccount != null) {
+                        currentAccount.stopPlaytimeAndAccumulate();
+                        saveCurrentAccountWithRecipes();
+                        System.out.println("Game saved successfully. (playtime updated: " + currentAccount.getTotalPlaytimeFormatted() + ")");
+                        currentAccount.startPlaytime();
+                    } else {
+                        System.out.println("No account loaded to save.");
+                    }
+                } else if (choice == 16) {
+                    if (currentAccount != null) {
+                        currentAccount.stopPlaytimeAndAccumulate();
+                        saveCurrentAccountWithRecipes();
+                        System.out.println("Logging out... Playtime saved: " + currentAccount.getTotalPlaytimeFormatted());
+                    } else {
+                        System.out.println("Logging out...");
+                    }
+                    currentAccount = null;
+                    usernameLogin = "";
+                    craftingSystem = null;
+                    party = new PlayerCharacter[0];
+                    if (forgeSystem != null) forgeSystem.setCurrentAccount(null);
+                    startMenu();
+                } else {
+                    System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
+                    continue;
+                }
+            } catch (Exception e) {
+                System.out.println("Invalid Input");
+                continue;
+            }
+        }
+    }
+
+    //class tree menu
+    public void classTreeMenu(){
+
+    }
+
+    //skill tree menu
+    public void skillTreeMenu(){
+
+    }
+
+    public void displayMenuAsgard(){
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "                              -  A S G A R D  -                               " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 3] Inventory                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 4] Shop                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 5] Crafting                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 6] Forge                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 7] Quest Board                    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 8] Mini Game                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 9] Encyclopedia                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Skill Tree                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println();
+    }
+
+    public void displayMenuGrandis(){
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "                              -  G R A N D I S  -                               " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 3] Inventory                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 4] Shop                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 5] Crafting                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 6] Forge                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 7] Quest Board                    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 8] Mini Game                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 9] Encyclopedia                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Skill Tree                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println();
+    }
+
+    public void displayMenuLumina(){
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + ANSI_CYAN + ANSI_BOLD + "                              -  L U M I N A  -                               " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 3] Inventory                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 4] Shop                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 5] Crafting                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 6] Forge                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 7] Quest Board                    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 8] Mini Game                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 9] Encyclopedia                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Skill Tree                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println();
+    }
+
+    public void displayMenuAldoria(){
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███╗   ██╗██╗   ██╗████████╗██████╗ ██╗████████╗ █████╗ ██╗     ███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ████╗  ██║██║   ██║╚══██╔══╝██╔══██╗██║╚══██╔══╝██╔══██╗██║     ██╔════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔██╗ ██║██║   ██║   ██║   ██████╔╝██║   ██║   ███████║██║     █████╗            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██║╚██╗██║██║   ██║   ██║   ██╔══██╗██║   ██║   ██╔══██║██║     ██╔══╝            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ██║ ╚████║╚██████╔╝   ██║   ██║  ██║██║   ██║   ██║  ██║███████╗███████╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚═╝  ╚═══╝ ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚══════╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                  *  Learn Nutrition. Grow Strong. End Hunger.  *                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                              -  A L D O R I A  -                               " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╦══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 1] Play                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 2] Quest Tracker                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 3] Inventory                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 4] Shop                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 5] Crafting                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 6] Forge                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 7] Quest Board                    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 8] Mini Game                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [ 9] Encyclopedia                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Skill Tree                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Class Tree                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [12] Gacha                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [13] Waypoint                       " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [14] Profil Akun                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                         ║                                          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════╩══════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                         [15] Save Game        [16] Logout                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + DIM_GRAY   + "                    SDG 2: Zero Hunger  —  Eat Smart, Live Well                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println();
+    }
+
+    public static final String INVALID_INPUT_BOX =
+            "\n" +
+                    ANSI_RED + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════╗" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║                ✖  I N V A L I D   I N P U T  ✖                 ║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED_BRIGHT + "            Masukkan input yang tersedia pada menu!             " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════╝" + ANSI_RESET + "\n";
+
+
+    public void mainMenu() {
+        while (true) {
+            displayMainMenuValerion();
+            System.out.print("Choose an option: ");
+            int choice;
+
+            try {
+                choice = inpInt.nextInt();
+
+                if (choice == 1) {
+                    mapTraversalMenu();
+                } else if (choice == 2) {
+                    if (currentAccount != null) {
+                        MainQuest.displayQuestTracker(currentAccount.getQuestTracker());
+                        SubQuest.displayQuestTracker(currentAccount.getQuestTracker());
+                    } else {
+                        System.out.println("Belum login.");
+                    }
+                } else if (choice == 3) {
+                    inventoryMenu();
+                } else if (choice == 4) {
+                    shop1();
+                } else if (choice == 5) {
+                    craftingMenu();
+                } else if (choice == 6) {
+                    forgeMenu();
+                } else if (choice == 7) {
+                    if (currentAccount != null) {
+                        questBoardMenu();
+                    } else {
+                        System.out.println("Belum login.");
+                    }
+                } else if (choice == 8) {
+                    miniGameMenu();
+                } else if (choice == 9) {
+                    ensiklopediaMenu();
+                } else if (choice == 10) {
+                    if (currentAccount != null) {
+                        SkillSystem.skillTreeMenu(currentAccount, inpInt, inpStr);
+                    } else {
+                        System.out.println("Belum login.");
+                    }
+                } else if (choice == 11) {
+                    if (currentAccount != null) {
+                        ClassSystem.classTreeMenu(currentAccount, inpInt, inpStr);
+                    } else {
+                        System.out.println("Belum login.");
+                    }
                 } else if (choice == 12) {
                     gachaMenu();
                 } else if (choice == 13) {
@@ -1030,7 +1256,7 @@ public class App {
             System.out.println(ANSI_CYAN + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
             System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + "                          E N C Y C L O P E D I A                           " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "  _____ _   _ _______   _______  _     ___________ ___________ _____  ___   " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "  _____ _   _ _______   _______  _     ___________ ___________ ___________ " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " |  ___| \\ | /  __ \\ \\ / /  __ \\| |   |  _  | ___ \\  ___|  _  \\_   _|/ _ \\  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " | |__ |  \\| | /  \\/\\ V /| /  \\/| |   | | | | |_/ / |__ | | | | | | / /_\\ \\ " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
             System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " |  __|| . ` | |     \\ / | |    | |   | | | |  __/|  __|| | | | | | |  _  | " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
@@ -1364,8 +1590,12 @@ public class App {
     // WAYPOINT MENU
     public void waypointMenu() {
         if (waypointSystem == null) {
-            System.out.println("Waypoint system belum diinisialisasi.");
-            return;
+            waypointSystem = new WaypointSystem();
+            if (mapTraversal != null && mapTraversal.areaSaatIni() != null) {
+                Location currentLoc = mapTraversal.areaSaatIni();
+                waypointSystem.tambahLokasi(currentLoc);
+                waypointSystem.setLokasiSaatIni(currentLoc);
+            }
         }
 
         while (true) {
@@ -1673,12 +1903,23 @@ public class App {
                     PlayerCharacter[] acctParty = currentAccount == null ? null : currentAccount.getParty();
                     if (acctParty == null || acctParty.length == 0) {
                         System.out.println("Party kosong.");
-                        continue;
-                    }
-                    for (int i = 0; i < acctParty.length; i++) {
-                        PlayerCharacter pc = acctParty[i];
-                        if (pc == null) continue;
-                        System.out.println((i + 1) + ". " + pc.getNama() + " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() + " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp());
+                    } else {
+                        for (int i = 0; i < acctParty.length; i++) {
+                            PlayerCharacter pc = acctParty[i];
+                            if (pc == null) continue;
+                            System.out.println((i + 1) + ". " + pc.getNama() +
+                                    " | Class: " + pc.getNamaClass() +
+                                    " | Level: " + pc.getLevel() +
+                                    " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() +
+                                    " | MP: " + pc.getCurrentMp() + "/" + pc.getMaxMp() +
+                                    " | STR: " + pc.getKekuatan() +
+                                    " | DEF: " + pc.getDefense() +
+                                    " | EXP: " + pc.getCurrentExp() + "/" + pc.getMaxExp() +
+                                    " | Nirlelah: " + pc.isStatusTubuhNirlelah() +
+                                    " | Weapon: " + (pc.getCurrentWeapon() == null ? "None" : pc.getCurrentWeapon().getNamaItem()) +
+                                    " | Armor: " + (pc.getCurrentArmor() == null ? "None" : pc.getCurrentArmor().getNamaItem()) +
+                                    " | Accessory: " + (pc.getCurrentAccessory() == null ? "None" : pc.getCurrentAccessory().getNamaItem()));
+                        }
                     }
 
                     int targetIndex = -1;
@@ -1723,6 +1964,125 @@ public class App {
     }
 
 
+    private void questBoardMenu() {
+        if (currentAccount == null) {
+            System.out.println("Belum login.");
+            return;
+        }
+
+        String areaNow = mapTraversal != null && mapTraversal.areaSaatIni() != null ? mapTraversal.areaSaatIni().getNamaLokasi() : "";
+        QuestTracker qt = currentAccount.getQuestTracker();
+        
+        while (true) {
+            System.out.println();
+            System.out.println("═══════════════════════════════════════");
+            System.out.println("          QUEST BOARD MENU");
+            System.out.println("═══════════════════════════════════════");
+            System.out.println("[1] Main Quest Available");
+            System.out.println("[2] Sub Quest Available");
+            System.out.println("[3] Accept Reward");
+            System.out.println("[4] Back to Main Menu");
+            System.out.print("Pilihan: ");
+            
+            try {
+                int choice = inpInt.nextInt();
+                
+                if (choice == 1) {
+                    // Display main quest board
+                    MainQuest.displayQuestBoardForArea(qt, areaNow, inpStr);
+                } else if (choice == 2) {
+                    // Display sub quest board
+                    SubQuest.displayQuestBoardForArea(qt, areaNow, inpStr);
+                } else if (choice == 3) {
+                    // Accept rewards for completed quests
+                    acceptQuestRewards();
+                } else if (choice == 4) {
+                    // Back to main menu
+                    break;
+                } else {
+                    System.out.println("Pilihan tidak valid.");
+                }
+            } catch (Exception e) {
+                System.out.println("Input tidak valid.");
+                inpStr.nextLine(); // consume invalid input
+            }
+        }
+    }
+
+    private void acceptQuestRewards() {
+        if (currentAccount == null) {
+            System.out.println("Belum login.");
+            return;
+        }
+
+        QuestTracker qt = currentAccount.getQuestTracker();
+        if (qt == null) {
+            System.out.println("\u001B[33mBelum ada quest tracker.\u001B[0m");
+            return;
+        }
+
+        ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
+        if (riwayat == null) {
+            System.out.println("\u001B[33mTidak ada quest yang selesai.\u001B[0m");
+            return;
+        }
+
+        // Find completed quests that haven't been rewarded yet
+        ArrayList<Quest> completedQuests = new ArrayList<>();
+        for (Quest q : riwayat) {
+            if (q != null && q.getStatusQuest() == enums.StatusQuest.COMPLETED) {
+                completedQuests.add(q);
+            }
+        }
+
+        if (completedQuests.isEmpty()) {
+            System.out.println("\u001B[33mTidak ada hadiah yang siap diambil.\u001B[0m");
+            return;
+        }
+
+        System.out.println("\u001B[36m\u001B[1m\n╔═══════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[36m\u001B[1m║\u001B[0m         QUEST REWARDS AVAILABLE         \u001B[36m\u001B[1m║\u001B[0m");
+        System.out.println("\u001B[36m\u001B[1m╚═══════════════════════════════════════╝\u001B[0m");
+
+        for (int i = 0; i < completedQuests.size(); i++) {
+            Quest q = completedQuests.get(i);
+            System.out.println((i + 1) + ". " + q.getNamaQuest() + " - Status: " + q.getStatusQuest());
+        }
+
+        System.out.print("Pilih quest yang ingin ambil hadiahnya (0 untuk batal): ");
+        try {
+            int choice = inpInt.nextInt();
+            if (choice < 1 || choice > completedQuests.size()) {
+                System.out.println("Pembatalan.");
+                return;
+            }
+
+            Quest picked = completedQuests.get(choice - 1);
+            
+            // Give reward based on quest type
+            if (picked instanceof MainQuest) {
+                MainQuest mq = (MainQuest) picked;
+                MainQuest.berikanHadiah(mq, currentAccount, ingredientAlamCatalog, ingredientMonsterCatalog, consumables);
+            } else if (picked instanceof SubQuest) {
+                SubQuest sq = (SubQuest) picked;
+                // Give basic reward for subquest
+                int gold = sq.getHadiahKoin();
+                if (gold > 0) {
+                    currentAccount.setTotalGold(currentAccount.getTotalGold() + gold);
+                }
+                System.out.println("\u001B[32m\u001B[1m╔══════════════════════════════════════╗\u001B[0m");
+                System.out.println("\u001B[32m\u001B[1m║\u001B[0m\u001B[33m\u001B[1m         QUEST SELESAI! MENDAPATKAN:      \u001B[32m\u001B[1m║\u001B[0m");
+                System.out.println("\u001B[32m\u001B[1m╚══════════════════════════════════════╝\u001B[0m");
+                if (gold > 0) {
+                    System.out.println("  \u001B[33m" + gold + " Gold\u001B[0m");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Input tidak valid.");
+            inpStr.nextLine();
+        }
+    }
+
     private void berikanHadiahQuestSelesai() {
         if (currentAccount == null) return;
         QuestTracker qt = currentAccount.getQuestTracker();
@@ -1765,6 +2125,20 @@ public class App {
         if (qt.getRiwayatMisiSelesai() == null) {
             qt.setRiwayatMisiSelesai(new ArrayList<Quest>());
         }
+    }
+
+    private int countQuestsByStatus(ArrayList<? extends Quest> quests, enums.StatusQuest targetStatus) {
+        if (quests == null || targetStatus == null) {
+            return 0;
+        }
+
+        int count = 0;
+        for (Quest quest : quests) {
+            if (quest != null && quest.getStatusQuest() == targetStatus) {
+                count++;
+            }
+        }
+        return count;
     }
 
     //Fitur 3.2.5 Profil Akun
@@ -1825,8 +2199,8 @@ public class App {
             if (qt == null) {
                 System.out.println("Belum ada quest tracker.");
             } else {
-                System.out.println("Main Quest Aktif : " + (qt.getDaftarMainQuestAktif() == null ? 0 : qt.getDaftarMainQuestAktif().size()));
-                System.out.println("Sub Quest Aktif  : " + (qt.getDaftarSubQuestAktif() == null ? 0 : qt.getDaftarSubQuestAktif().size()));
+                System.out.println("Main Quest Aktif : " + countQuestsByStatus(qt.getDaftarMainQuestAktif(), enums.StatusQuest.ONGOING));
+                System.out.println("Sub Quest Aktif  : " + countQuestsByStatus(qt.getDaftarSubQuestAktif(), enums.StatusQuest.ONGOING));
                 System.out.println("Riwayat Quest    : " + (qt.getRiwayatMisiSelesai() == null ? 0 : qt.getRiwayatMisiSelesai().size()));
             }
 

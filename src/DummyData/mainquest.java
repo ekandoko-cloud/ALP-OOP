@@ -24,15 +24,15 @@ public class mainquest {
 		add(q(5, "Valerion", 5, "Melawan Blight-Root", "2x Blight Spore, 2x Corrupted Crawler, 1x Boss: Blight-Root", 5, 300, "Blight-Root Core", 1,
 				"Blight Spore", "Blight Spore", "Corrupted Crawler", "Corrupted Crawler", "Blight-Root"));
 
-		add(q(6, "Aethelgard", 1, "Analisis Miasma", "3x Swamplands Leech, 1x Miasma Husk", 4, 250, "5x Murky Sludge", 2,
+		add(q(6, "Asgard", 1, "Analisis Miasma", "3x Swamplands Leech, 1x Miasma Husk", 4, 250, "5x Murky Sludge", 2,
 				"Swamplands Leech", "Swamplands Leech", "Swamplands Leech", "Miasma Husk"));
-		add(q(7, "Aethelgard", 2, "Mencari Filter Crystal", "2x Sludge Mutant, 2x Swamplands Leech", 4, 300, "2x Crystal Shard", 2,
+		add(q(7, "Asgard", 2, "Mencari Filter Crystal", "2x Sludge Mutant, 2x Swamplands Leech", 4, 300, "2x Crystal Shard", 2,
 				"Sludge Mutant", "Sludge Mutant", "Swamplands Leech", "Swamplands Leech"));
-		add(q(8, "Aethelgard", 3, "Menyelamatkan Penduduk", "1x Miasma Husk, 3x Sludge Mutant", 4, 400, "5x Sanguine Herb", 2,
+		add(q(8, "Asgard", 3, "Menyelamatkan Penduduk", "1x Miasma Husk, 3x Sludge Mutant", 4, 400, "5x Sanguine Herb", 2,
 				"Miasma Husk", "Sludge Mutant", "Sludge Mutant", "Sludge Mutant"));
-		add(q(9, "Aethelgard", 4, "Melumpuhkan Sumber Limbah", "2x Miasma Husk, 2x Sludge Mutant", 4, 0, "10x Titanium + 5x Purified Sap", 2,
+		add(q(9, "Asgard", 4, "Melumpuhkan Sumber Limbah", "2x Miasma Husk, 2x Sludge Mutant", 4, 0, "10x Titanium + 5x Purified Sap", 2,
 				"Miasma Husk", "Miasma Husk", "Sludge Mutant", "Sludge Mutant"));
-		add(q(10, "Aethelgard", 5, "Melawan Goliath Toad", "2x Swamplands Leech, 2x Sludge Mutant, 1x Boss: Goliath Toad", 5, 500, "Miasma Gland", 2,
+		add(q(10, "Asgard", 5, "Melawan Goliath Toad", "2x Swamplands Leech, 2x Sludge Mutant, 1x Boss: Goliath Toad", 5, 500, "Miasma Gland", 2,
 				"Swamplands Leech", "Swamplands Leech", "Sludge Mutant", "Sludge Mutant", "Goliath Toad"));
 
 		add(q(11, "Grandis", 1, "Menyusup ke Sektor Luar", "3x Security Drone, 1x Enath Trooper", 4, 400, "10x Iron", 3,

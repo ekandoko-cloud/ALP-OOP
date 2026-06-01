@@ -120,7 +120,7 @@ public class monster {
         DUMMY_MONSTERS.add(m("Blight Spore", 42, 42, 11, 9, "Gumpalan spora terapung dari jamur yang terinfeksi Blight. Menyebarkan mikotoksin aflatoksin pemicu kanker hati."));
         DUMMY_MONSTERS.add(m("Scavenger Hunter", 55, 55, 16, 12, "Pemulung yang lebih agresif dan terorganisir. Terinfeksi bakteri Campylobacter dari daging bangkai yang dikonsumsinya."));
 
-        // Aethelgard (Chapter 2) monsters
+            // Asgard (Chapter 2) monsters
         DUMMY_MONSTERS.add(m("Swamplands Leech", 60, 60, 16, 11, "Lintah raksasa dari rawa beracun yang mengisap darah korbannya. Vektor penyakit Leptospirosis dari genangan air kotor."));
         DUMMY_MONSTERS.add(m("Miasma Husk", 68, 68, 18, 13, "Tubuh kering terbungkus kabut miasma beracun. Menyebabkan keracunan hidrogen sulfida akut pada makhluk di sekitarnya."));
         DUMMY_MONSTERS.add(m("Sludge Mutant", 72, 72, 17, 14, "Mutan yang terbentuk dari lumpur limbah industri. Terpapar logam berat merkuri penyebab penyakit Minamata."));
@@ -143,7 +143,7 @@ public class monster {
 
         // === BOSS MONSTERS ===
         DUMMY_MONSTERS.add(m("Blight-Root", 120, 120, 28, 20, "BOSS: Akar raksasa yang menjadi sumber Blight di Valerion. Menyebabkan Sindrom Uremia Hemolitik melalui toksin yang meracuni sumber air."));
-        DUMMY_MONSTERS.add(m("Goliath Toad", 160, 160, 35, 25, "BOSS: Katak raksasa mutan di rawa Aethelgard. Kulitnya mengeluarkan racun batrachotoxin yang memicu fibrilasi jantung fatal."));
+        DUMMY_MONSTERS.add(m("Goliath Toad", 160, 160, 35, 25, "BOSS: Katak raksasa mutan di rawa Asgard. Kulitnya mengeluarkan racun batrachotoxin yang memicu fibrilasi jantung fatal."));
         DUMMY_MONSTERS.add(m("Baron Gluttony", 200, 200, 45, 28, "BOSS: Penguasa kartel pangan ilegal Grandis. Menderita obesitas morbid dan diabetes tipe 2 akibat kerakusan tak terkendali."));
         DUMMY_MONSTERS.add(m("Dr. Mortis", 230, 230, 50, 32, "BOSS: Ilmuwan gila di balik vaksin palsu Lumina. Terinfeksi virus laboratorium hasil rekayasanya sendiri yang tak terkendali."));
         DUMMY_MONSTERS.add(m("Crimson Chimera", 280, 280, 60, 38, "BOSS FINAL: Makhluk gabungan hasil mutasi radiasi Aldoria. Menjadi inang segala penyakit yang pernah ada, siap menyebarkan wabah final."));
