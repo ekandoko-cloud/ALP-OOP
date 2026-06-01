@@ -1,5 +1,5 @@
 package enums;
 
-public enum itemType {
+public enum ItemType {
     CONSUMABLE, EQUIPMENT, INQREDIENT;
 }

@@ -3,13 +3,7 @@ package systems.skill;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
 import java.util.*;
-import java.util.Set;
 
-/**
- * Simplified skill system UI and effect applier.
- * - Keeps method signature so existing callers are unaffected.
- * - Easier to read: clear variable names and simpler number parsing.
- */
 public class SkillSystem {
 
     public static List<SkillNode> getSkillTree() {

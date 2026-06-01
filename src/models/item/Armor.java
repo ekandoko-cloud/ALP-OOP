@@ -1,7 +1,7 @@
 package models.item;
 
 import enums.ClassType;
-import enums.tipeEquipment;
+import enums.EquipmentType;
 
 public class Armor extends Equipment {
     private int bonusDefense;
@@ -12,7 +12,7 @@ public class Armor extends Equipment {
     }
 
     public Armor(int idItem, String namaItem, int hargaJual, String deskripsi, int bonusDefense, int levelTempa, ClassType requiredClassType) {
-        super(idItem, namaItem, hargaJual, deskripsi, tipeEquipment.ARMOR, levelTempa);
+        super(idItem, namaItem, hargaJual, deskripsi, EquipmentType.ARMOR, levelTempa);
         this.bonusDefense = bonusDefense;
         this.requiredClassType = requiredClassType == null ? ClassType.CLASSLESS : requiredClassType;
     }

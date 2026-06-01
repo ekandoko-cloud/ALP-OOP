@@ -1,6 +1,6 @@
 package DummyData;
 
-import enums.itemType;
+import enums.ItemType;
 
 import models.item.ConsumableFood;
 import models.item.Item;
@@ -159,7 +159,7 @@ public class consumables {
 
     private static ConsumableFood c(int id, String nama, int hargaJual, String deskripsi,
                                      int healHpAmount, int healMpAmount, int strBuff, int defBuff, String infoGiziSDG) {
-        return new ConsumableFood(id, nama, hargaJual, deskripsi, itemType.CONSUMABLE, healHpAmount, healMpAmount, strBuff, defBuff, infoGiziSDG);
+        return new ConsumableFood(id, nama, hargaJual, deskripsi, ItemType.CONSUMABLE, healHpAmount, healMpAmount, strBuff, defBuff, infoGiziSDG);
     }
 
     public static List<ConsumableFood> getDummyConsumables() {

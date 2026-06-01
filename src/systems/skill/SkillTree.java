@@ -1,5 +1,4 @@
 package systems.skill;
-import java.util.*;
 public class SkillTree {
     private SkillNode root;
 
@@ -16,11 +15,6 @@ public class SkillTree {
         this.root = root;
     }
 
-    public void unlockSkill(SkillNode node) {
-    }
-
-    public void traverse() {
-    }
 }
 
 

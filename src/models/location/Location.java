@@ -1,5 +1,4 @@
 package models.location;
-import java.util.*;
 public class Location {
     private String namaLokasi;
     private String deskripsiLokasi;

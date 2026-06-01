@@ -1,6 +1,6 @@
 package models.item;
 
-import enums.itemType;
+import enums.ItemType;
 import models.character.GameCharacter;
 public class ConsumableFood extends Item implements IConsumable {
     private int healHpAmount;
@@ -9,7 +9,7 @@ public class ConsumableFood extends Item implements IConsumable {
     private int defBuff;
     private String infoGiziSDG;
 
-    public ConsumableFood(int idItem, String namaItem, int hargaJual, String deskripsi, itemType itemType, int healHpAmount, int healMpAmount, int strBuff, int defBuff, String infoGiziSDG) {
+    public ConsumableFood(int idItem, String namaItem, int hargaJual, String deskripsi, ItemType itemType, int healHpAmount, int healMpAmount, int strBuff, int defBuff, String infoGiziSDG) {
         super(idItem, namaItem, hargaJual, deskripsi, itemType);
         this.healHpAmount = healHpAmount;
         this.healMpAmount = healMpAmount;

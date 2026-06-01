@@ -1,13 +1,13 @@
 package models.item;
-import enums.itemType;
+import enums.ItemType;
 public abstract class Item {
     protected int idItem;
     protected String namaItem;
     protected int hargaJual;
     protected String deskripsi;
-    protected itemType itemType;
+    protected ItemType itemType;
 
-    protected Item(int idItem, String namaItem, int hargaJual, String deskripsi,  itemType itemType) {
+    protected Item(int idItem, String namaItem, int hargaJual, String deskripsi,  ItemType itemType) {
         this.idItem = idItem;
         this.namaItem = namaItem;
         this.hargaJual = hargaJual;
@@ -47,10 +47,10 @@ public abstract class Item {
         this.deskripsi = deskripsi;
     }
 
-    public itemType getItemType() {
+    public ItemType getItemType() {
         return itemType;
     }
-    public void setItemType(itemType itemType) {
+    public void setItemType(ItemType itemType) {
         this.itemType = itemType;
     }
 }

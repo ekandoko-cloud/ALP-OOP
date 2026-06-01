@@ -1,15 +1,15 @@
 [BASIC INFO]
 username=test
-totalGold=1068
-totalPlaytime=0:12
+totalGold=504
+totalPlaytime=0:14
 maxInventorySlots=200
 areaName=Asgard
 
 [PARTY INFO]
-karakter=Fenn^Warrior^5^109^109^54^54^42^10^30^500^false^0^0^0
-karakter=Aldric^Archer^5^104^104^56^56^41^10^30^500^false^0^0^0
-karakter=Fenril^Mage^5^104^104^59^59^40^9^30^500^false^0^0^0
-karakter=Eamon^Support^5^107^107^54^54^39^12^30^500^false^0^0^0
+karakter=Fenn^Warrior^5^109^101^54^39^62^10^262^500^false^0^0^0
+karakter=Aldric^Archer^5^104^96^56^56^61^10^262^500^false^0^0^0
+karakter=Fenril^Mage^5^104^104^59^59^60^9^262^500^false^0^0^0
+karakter=Eamon^Support^5^107^107^54^54^59^12^262^500^false^0^0^0
 
 [INVENTORY INFO]
 inqredient=100^Miracle Sprout^Tunas ajaib yang tumbuh di tanah paling tandus sekalipun.^406
@@ -46,11 +46,11 @@ consumableFood=44^Potato Wedges Deep-Fry^Bahan: Kentang, Minyak Jenuh, Garam Eks
 equipment=25^Crimson Stalker Garb^Tier: Epic | Pakaian berburu merah darah yang menyerap hawa keberadaan penggunanya.^360^ARMOR^0^65^0^ARCHER
 
 [QUEST INFO]
-mainQuest=6^Analisis Miasma^Main Quest Asgard - Quest 1.^3x Swamplands Leech, 1x Miasma Husk^4^0^250^2^BELUM_DIAMBIL^^Asgard^1^5x Murky Sludge^Swamplands Leech~Swamplands Leech~Swamplands Leech~Miasma Husk
-mainQuest=7^Mencari Filter Crystal^Main Quest Asgard - Quest 2.^2x Sludge Mutant, 2x Swamplands Leech^4^0^300^2^BELUM_DIAMBIL^^Asgard^2^2x Crystal Shard^Sludge Mutant~Sludge Mutant~Swamplands Leech~Swamplands Leech
-mainQuest=8^Menyelamatkan Penduduk^Main Quest Asgard - Quest 3.^1x Miasma Husk, 3x Sludge Mutant^4^0^400^2^BELUM_DIAMBIL^^Asgard^3^5x Sanguine Herb^Miasma Husk~Sludge Mutant~Sludge Mutant~Sludge Mutant
-mainQuest=9^Melumpuhkan Sumber Limbah^Main Quest Asgard - Quest 4.^2x Miasma Husk, 2x Sludge Mutant^4^0^0^2^BELUM_DIAMBIL^^Asgard^4^10x Titanium + 5x Purified Sap^Miasma Husk~Miasma Husk~Sludge Mutant~Sludge Mutant
-mainQuest=10^Melawan Goliath Toad^Main Quest Asgard - Quest 5.^2x Swamplands Leech, 2x Sludge Mutant, 1x Boss: Goliath Toad^5^0^500^2^BELUM_DIAMBIL^^Asgard^5^Miasma Gland^Swamplands Leech~Swamplands Leech~Sludge Mutant~Sludge Mutant~Goliath Toad
+mainQuest=6^Analisis Miasma^Main Quest Asgard - Quest 1.^3x Swamplands Leech, 1x Miasma Husk^4^0^250^2^ONGOING^^Asgard^1^5x Murky Sludge^Swamplands Leech~Swamplands Leech~Swamplands Leech~Miasma Husk
+mainQuest=7^Mencari Filter Crystal^Main Quest Asgard - Quest 2.^2x Sludge Mutant, 2x Swamplands Leech^4^0^300^2^ONGOING^^Asgard^2^2x Crystal Shard^Sludge Mutant~Sludge Mutant~Swamplands Leech~Swamplands Leech
+mainQuest=8^Menyelamatkan Penduduk^Main Quest Asgard - Quest 3.^1x Miasma Husk, 3x Sludge Mutant^4^0^400^2^ONGOING^^Asgard^3^5x Sanguine Herb^Miasma Husk~Sludge Mutant~Sludge Mutant~Sludge Mutant
+mainQuest=9^Melumpuhkan Sumber Limbah^Main Quest Asgard - Quest 4.^2x Miasma Husk, 2x Sludge Mutant^4^0^0^2^ONGOING^^Asgard^4^10x Titanium + 5x Purified Sap^Miasma Husk~Miasma Husk~Sludge Mutant~Sludge Mutant
+mainQuest=10^Melawan Goliath Toad^Main Quest Asgard - Quest 5.^2x Swamplands Leech, 2x Sludge Mutant, 1x Boss: Goliath Toad^5^0^500^2^ONGOING^^Asgard^5^Miasma Gland^Swamplands Leech~Swamplands Leech~Sludge Mutant~Sludge Mutant~Goliath Toad
 mainQuest=11^Menyusup ke Sektor Luar^Main Quest Grandis - Quest 1.^3x Security Drone, 1x Enath Trooper^4^0^400^3^BELUM_DIAMBIL^^Grandis^1^10x Iron^Security Drone~Security Drone~Security Drone~Enath Trooper
 mainQuest=12^Membuka Gerbang Gudang^Main Quest Grandis - Quest 2.^2x Elite Guard, 2x Security Drone^4^0^500^3^BELUM_DIAMBIL^^Grandis^2^10x Bread^Elite Guard~Elite Guard~Security Drone~Security Drone
 mainQuest=13^Memutus Distribusi Ilegal^Main Quest Grandis - Quest 3.^1x Enath Trooper, 3x Elite Guard^4^0^600^3^BELUM_DIAMBIL^^Grandis^3^5x Silver^Enath Trooper~Elite Guard~Elite Guard~Elite Guard
@@ -69,9 +69,16 @@ mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flar
 subQuest=1^Bersihkan Dermaga Tua^Sub Quest Valerion.^Kalahkan 3x Infected Rat^3^0^60^ONGOING^^Valerion
 subQuest=2^Cari Hasil Laut Aman^Sub Quest Valerion.^Kumpulkan 4x bahan dari area pantai^4^0^80^ONGOING^^Valerion
 subQuest=3^Lindungi Gudang Pasar^Sub Quest Valerion.^Kalahkan 2x Scavenger Scout^2^0^100^ONGOING^^Valerion
-questHistory=4^Pemetaan Area Blight^Main Quest Valerion - Quest 4.^2x Blight Spore, 2x Corrupted Crawler^4^4^0^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/4)~[MainQuest] Mengalahkan Blight Spore (2/4)~[MainQuest] Mengalahkan Corrupted Crawler (3/4)~[MainQuest] Mengalahkan Corrupted Crawler (4/4)
+subQuest=6^Ambil Sampel Murni^Sub Quest Asgard.^Kumpulkan 4x bahan penelitian^4^0^130^ONGOING^^Asgard
+questHistory=4^Pemetaan Area Blight^Main Quest Valerion - Quest 4.^2x Blight Spore, 2x Corrupted Crawler^4^4^0^REWARDED^[MainQuest] Mengalahkan Blight Spore (1/4)~[MainQuest] Mengalahkan Blight Spore (2/4)~[MainQuest] Mengalahkan Corrupted Crawler (3/4)~[MainQuest] Mengalahkan Corrupted Crawler (4/4)
 questHistory=2^Melacak Akar Parasit^Main Quest Valerion - Quest 2.^2x Corrupted Crawler, 2x Blight Spore^4^4^150^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/4)~[MainQuest] Mengalahkan Blight Spore (2/4)~[MainQuest] Mengalahkan Corrupted Crawler (3/4)~[MainQuest] Mengalahkan Corrupted Crawler (4/4)
 questHistory=5^Melawan Blight-Root^Main Quest Valerion - Quest 5.^2x Blight Spore, 2x Corrupted Crawler, 1x Boss: Blight-Root^5^5^300^COMPLETED^[MainQuest] Mengalahkan Blight Spore (1/5)~[MainQuest] Mengalahkan Blight Spore (2/5)~[MainQuest] Mengalahkan Corrupted Crawler (3/5)~[MainQuest] Mengalahkan Corrupted Crawler (4/5)~[MainQuest] Mengalahkan Blight-Root (5/5)
 questHistory=3^Mengamankan Air Bersih^Main Quest Valerion - Quest 3.^1x Scavenger Hunter, 3x Infected Rat^4^4^200^COMPLETED^[MainQuest] Mengalahkan Scavenger Hunter (1/4)~[MainQuest] Mengalahkan Infected Rat (2/4)~[MainQuest] Mengalahkan Infected Rat (3/4)~[MainQuest] Mengalahkan Infected Rat (4/4)
 questHistory=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^4^100^COMPLETED^[MainQuest] Mengalahkan Infected Rat (1/4)~[MainQuest] Mengalahkan Infected Rat (2/4)~[MainQuest] Mengalahkan Infected Rat (3/4)~[MainQuest] Mengalahkan Infected Rat (4/4)
+
+[SKILL INFO]
+unlockedSkills=Aura Serang I,Aura Serang II
+
+[LOCATION INFO]
+visitedLocations=asgard
 

@@ -1,6 +1,6 @@
 package models.character;
 
-import java.util.*;
+
 
 public class Monster extends GameCharacter {
     private String triviaPenyakit;

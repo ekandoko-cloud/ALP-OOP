@@ -1,6 +1,6 @@
 package systems.craft;
 
-import models.item.Inqredients;
+import models.item.Ingredients;
 import models.item.Item;
 
 import java.util.ArrayList;
@@ -10,15 +10,15 @@ public class craftingRecipe {
     private Item resultItem;
 
     public static class IngredientReq {
-        private Inqredients ingredient;
+        private Ingredients ingredient;
         private int amount;
 
-        public IngredientReq(Inqredients ingredient, int amount) {
+        public IngredientReq(Ingredients ingredient, int amount) {
             this.ingredient = ingredient;
             this.amount = amount;
         }
 
-        public Inqredients getIngredient() { return ingredient; }
+        public Ingredients getIngredient() { return ingredient; }
         public int getAmount() { return amount; }
     }
 

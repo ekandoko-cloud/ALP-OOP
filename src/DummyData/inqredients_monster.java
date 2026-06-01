@@ -1,14 +1,14 @@
 package DummyData;
 
-import enums.itemType;
-import models.item.Inqredients;
+import enums.ItemType;
+import models.item.Ingredients;
 import models.item.Item;
 
 import java.util.*;
 
 public class inqredients_monster {
 
-    private static final Inqredients[] DUMMY_INQREDIENTS_MONSTER = new Inqredients[]{
+    private static final Ingredients[] DUMMY_INQREDIENTS_MONSTER = new Ingredients[]{
             i(101, "Starving Zombie Flesh", 410, "Potongan daging busuk dari zombie kelaparan."),
             i(102, "Starving Scavenger Rags", 414, "Kain kotor dari pemulung yang kelaparan."),
             i(103, "Decayed Wolf Fang", 418, "Taring serigala yang sudah membusuk."),
@@ -120,21 +120,21 @@ public class inqredients_monster {
 
     private static HashMap<Integer, Item> initializeMap() {
         HashMap<Integer, Item> map = new HashMap<>();
-        for (Inqredients ingredient : DUMMY_INQREDIENTS_MONSTER) {
+        for (Ingredients ingredient : DUMMY_INQREDIENTS_MONSTER) {
             map.put(ingredient.getIdItem(), ingredient);
         }
         return map;
     }
 
-    private static Inqredients i(int id, String nama, int hargaJual, String deskripsi) {
-        return new Inqredients(id, nama, hargaJual, deskripsi, itemType.INQREDIENT);
+    private static Ingredients i(int id, String nama, int hargaJual, String deskripsi) {
+        return new Ingredients(id, nama, hargaJual, deskripsi, ItemType.INQREDIENT);
     }
 
-    public static List<Inqredients> getDummyInqredientsMonster() {
+    public static List<Ingredients> getDummyIngredientsMonster() {
         return List.of(DUMMY_INQREDIENTS_MONSTER);
     }
 
-    public static HashMap<Integer, Item> getDummyInqredientsMonsterMap() {
+    public static HashMap<Integer, Item> getDummyIngredientsMonsterMap() {
         return DUMMY_INQREDIENTS_MONSTER_MAP;
     }
 }

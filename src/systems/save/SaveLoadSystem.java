@@ -3,9 +3,9 @@ package systems.save;
 import java.io.*;
 import java.util.*;
 
-import enums.itemType;
+import enums.ItemType;
 import enums.ClassType;
-import enums.tipeEquipment;
+import enums.EquipmentType;
 import enums.StatusLokasi;
 import models.account.AccountProfile;
 import models.character.PlayerCharacter;
@@ -13,7 +13,7 @@ import models.item.ConsumableFood;
 import models.item.Accessory;
 import models.item.Armor;
 import models.item.Equipment;
-import models.item.Inqredients;
+import models.item.Ingredients;
 import models.item.Item;
 import models.item.Weapon;
 import models.quest.MainQuest;
@@ -78,7 +78,7 @@ public class SaveLoadSystem {
             LinkedList<Item> inven = profile.getInventory();
             if (inven != null) {
                 for (Item item : inven) {
-                    if (item instanceof Inqredients) {
+                    if (item instanceof Ingredients) {
                         writer.write("inqredient=" + item.getIdItem() + "^" + item.getNamaItem() + "^" + item.getDeskripsi() + "^" + item.getHargaJual());
                         writer.newLine();
                     } else if (item instanceof Equipment equipment) {
@@ -272,7 +272,7 @@ public class SaveLoadSystem {
                             String nama = data[1];
                             String deskripsi = data[2];
                             int harga = Integer.parseInt(data[3]);
-                            inventoryList.add(new Inqredients(id, nama, harga, deskripsi, itemType.INQREDIENT));
+                            inventoryList.add(new Ingredients(id, nama, harga, deskripsi, ItemType.INQREDIENT));
                         }
                     } else if (line.startsWith("equipment=")) {
                         String[] data = line.substring("equipment=".length()).split("\\^");
@@ -284,7 +284,7 @@ public class SaveLoadSystem {
                             int bonusStr = Integer.parseInt(data[5]);
                             int bonusDef = Integer.parseInt(data[6]);
                             int levelTempa = Integer.parseInt(data[7]);
-                            tipeEquipment slot = parseSlot(data[4], bonusStr, bonusDef);
+                            EquipmentType slot = parseSlot(data[4], bonusStr, bonusDef);
                             ClassType requiredClassType = data.length >= 9 ? parseClassType(data[8]) : ClassType.CLASSLESS;
                             inventoryList.add(createEquipment(id, nama, harga, deskripsi, slot, bonusStr, bonusDef, levelTempa, requiredClassType));
                         }
@@ -300,7 +300,7 @@ public class SaveLoadSystem {
                             int strBuff = Integer.parseInt(data[6]);
                             int defBuff = Integer.parseInt(data[7]);
                             String info = data[8];
-                            inventoryList.add(new ConsumableFood(id, nama, harga, deskripsi, itemType.CONSUMABLE, healHp, healMp, strBuff, defBuff, info));
+                            inventoryList.add(new ConsumableFood(id, nama, harga, deskripsi, ItemType.CONSUMABLE, healHp, healMp, strBuff, defBuff, info));
                         }
                     }
                 } else if (currentSection.equals(quest)) {
@@ -463,21 +463,21 @@ public class SaveLoadSystem {
         }
     }
 
-    private tipeEquipment parseSlot(String rawSlot, int bonusStr, int bonusDef) {
+    private EquipmentType parseSlot(String rawSlot, int bonusStr, int bonusDef) {
         if (rawSlot != null) {
             try {
-                return tipeEquipment.valueOf(rawSlot.trim().toUpperCase());
+                return EquipmentType.valueOf(rawSlot.trim().toUpperCase());
             } catch (IllegalArgumentException ignored) {
             }
         }
 
         if (bonusStr > 0 && bonusDef == 0) {
-            return tipeEquipment.WEAPON;
+            return EquipmentType.WEAPON;
         }
         if (bonusDef > 0 && bonusStr == 0) {
-            return tipeEquipment.ARMOR;
+            return EquipmentType.ARMOR;
         }
-        return tipeEquipment.ACCESSORY;
+        return EquipmentType.ACCESSORY;
     }
 
     private ClassType parseClassType(String rawClassType) {
@@ -492,7 +492,7 @@ public class SaveLoadSystem {
         }
     }
 
-    private Equipment createEquipment(int id, String nama, int harga, String deskripsi, tipeEquipment slot, int bonusStr, int bonusDef, int levelTempa, ClassType requiredClassType) {
+    private Equipment createEquipment(int id, String nama, int harga, String deskripsi, EquipmentType slot, int bonusStr, int bonusDef, int levelTempa, ClassType requiredClassType) {
         switch (slot) {
             case ARMOR:
                 return new Armor(id, nama, harga, deskripsi, bonusDef, levelTempa, requiredClassType);

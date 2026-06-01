@@ -1,13 +1,13 @@
 package models.item;
 
-import enums.tipeEquipment;
+import enums.EquipmentType;
 
 public class Accessory extends Equipment {
     private int bonusKekuatan;
     private int bonusDefense;
 
     public Accessory(int idItem, String namaItem, int hargaJual, String deskripsi, int bonusKekuatan, int bonusDefense, int levelTempa) {
-        super(idItem, namaItem, hargaJual, deskripsi, tipeEquipment.ACCESSORY, levelTempa);
+        super(idItem, namaItem, hargaJual, deskripsi, EquipmentType.ACCESSORY, levelTempa);
         this.bonusKekuatan = bonusKekuatan;
         this.bonusDefense = bonusDefense;
     }

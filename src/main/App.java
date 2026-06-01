@@ -969,6 +969,7 @@ public class App {
                     continue;
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.println("Invalid Input");
                 continue;
             }
@@ -1112,6 +1113,7 @@ public class App {
                     System.out.println(INVALID_INPUT_BOX);
                 }
             } catch (Exception ex) {
+                inpInt.nextLine();
                 System.out.println(INVALID_INPUT_BOX);
             }
         }
@@ -1162,6 +1164,7 @@ public class App {
                     System.out.println(INVALID_INPUT_BOX);
                 }
             } catch (Exception ex) {
+                inpInt.nextLine();
                 System.out.println(INVALID_INPUT_BOX);
             }
         }
@@ -1216,6 +1219,7 @@ public class App {
                     mainMenu();
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.print(INVALID_INPUT_BOX);
             }
         }
@@ -1244,11 +1248,12 @@ public class App {
                     return;
                 } else {
                     System.out.println(INVALID_INPUT_BOX);
-                    miniGameMenu();
+                    continue;
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.println(INVALID_INPUT_BOX);
-                miniGameMenu();
+                continue;
             }
         }
 
@@ -1523,6 +1528,7 @@ public class App {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.println("Invalid Input");
             }
 
@@ -1562,6 +1568,7 @@ public class App {
                     System.out.println("Pilihan tidak valid.");
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.println("Input tidak valid.");
             }
         }
@@ -1679,6 +1686,7 @@ public class App {
                     System.out.println("Invalid Input. Please pick according to the index");
                 }
             } catch (Exception ignored) {
+                inpInt.nextLine();
                 System.out.println("Invalid Input");
             }
         }
@@ -1785,14 +1793,11 @@ public class App {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
                 }
             } catch (Exception e) {
-                try {
-                } catch (Exception ignored) {
-                }
+                inpInt.nextLine();
                 System.out.println("Invalid input");
             }
         }
     }
-
 
     private void questBoardMenu() {
         if (currentAccount == null) {
@@ -1829,8 +1834,8 @@ public class App {
                     System.out.println("Pilihan tidak valid.");
                 }
             } catch (Exception e) {
+                inpInt.nextLine();
                 System.out.println("Input tidak valid.");
-                inpStr.nextLine(); // consume invalid input
             }
         }
     }
@@ -1903,8 +1908,7 @@ public class App {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Input tidak valid.");
-            inpStr.nextLine();
+            inpInt.nextLine();
         }
     }
 
@@ -2038,10 +2042,6 @@ public class App {
             try {
                 int choice = inpInt.nextInt();
 
-                try {
-
-                } catch (Exception ignored) {
-                }
                 if (choice == 1) {
                     System.out.print("Masukkan username baru: ");
                     String usernameBaru = inpStr.nextLine();
@@ -2077,10 +2077,6 @@ public class App {
                         try {
                             int choiceDetail = inpInt.nextInt();
 
-                            try {
-
-                            } catch (Exception ignored) {
-                            }
                             if (choiceDetail < 1 || choiceDetail > party.length) {
                                 System.out.println("Pilihan tidak valid.");
                                 continue;
@@ -2108,10 +2104,7 @@ public class App {
                                 System.out.println("Accessory  : " + (accessory == null ? "Tidak ada" : accessory.getNamaItem() + " (ID: " + accessory.getIdItem() + ")"));
                             }
                         } catch (Exception e) {
-                            try {
-
-                            } catch (Exception ignored) {
-                            }
+                            inpInt.nextLine();
                             System.out.println("Input tidak valid.");
                             continue;
                         }
@@ -2128,10 +2121,6 @@ public class App {
                         try {
                             int choiceEditNamaChara = inpInt.nextInt();
 
-                            try {
-
-                            } catch (Exception ignored) {
-                            }
                             if (choiceEditNamaChara < 1 || choiceEditNamaChara > party.length) {
                                 System.out.println("Pilihan tidak valid.");
                                 continue;
@@ -2152,10 +2141,7 @@ public class App {
                                 System.out.println("Nama karakter berhasil diubah menjadi '" + namaBaru + "'");
                             }
                         } catch (Exception e) {
-                            try {
-
-                            } catch (Exception ignored) {
-                            }
+                            inpInt.nextLine();
                             System.out.println("Input tidak valid.");
                             continue;
                         }
@@ -2168,10 +2154,7 @@ public class App {
                     continue;
                 }
             } catch (Exception e) {
-                try {
-
-                } catch (Exception ignored) {
-                }
+                inpInt.nextLine();
                 System.out.println("Input tidak valid.");
                 continue;
             }

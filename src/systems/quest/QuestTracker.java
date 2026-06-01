@@ -42,13 +42,6 @@ public class QuestTracker {
     public void sinkronisasiChapterTerbuka(int chapterAktif) {
     }
 
-    public void bukaQuestUntukChapter(int chapterAktif) {
-    }
-
-    public ArrayList<String> catatKemenanganMusuh(String namaMusuh) {
-        return catatMusuhKalah(namaMusuh);
-    }
-
     public ArrayList<String> catatMusuhKalah(String namaMusuh) {
         ArrayList<String> catatan = new ArrayList<>();
         if (namaMusuh == null || daftarMainQuestAktif == null) {
@@ -72,7 +65,7 @@ public class QuestTracker {
                         riwayatMisiSelesai = new ArrayList<>();
                     }
                     riwayatMisiSelesai.add(mq);
-                    catatan.add("Quest selesai: " + mq.getNamaQuest());
+                    catatan.add("Quest selesai: " + mq.getNamaQuest() + " — Kunjungi Quest Board untuk klaim hadiah!");
                 }
             }
         }

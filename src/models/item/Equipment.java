@@ -1,34 +1,34 @@
 package models.item;
 
-import enums.itemType;
+import enums.ItemType;
 import enums.ClassType;
-import enums.tipeEquipment;
+import enums.EquipmentType;
 import models.character.PlayerCharacter;
 
 public abstract class Equipment extends Item implements IEquippable {
-    private tipeEquipment tipeEquipment;
+    private EquipmentType equipmentType;
     private int levelTempa;
 
-    protected Equipment(int idItem, String namaItem, int hargaJual, String deskripsi, tipeEquipment tipeEquipment, int levelTempa) {
-        super(idItem, namaItem, hargaJual, deskripsi, enums.itemType.EQUIPMENT);
-        this.tipeEquipment = tipeEquipment;
+    protected Equipment(int idItem, String namaItem, int hargaJual, String deskripsi, EquipmentType equipmentType, int levelTempa) {
+        super(idItem, namaItem, hargaJual, deskripsi, enums.ItemType.EQUIPMENT);
+        this.equipmentType = equipmentType;
         this.levelTempa = levelTempa;
     }
 
-    public tipeEquipment getTipeEquipment() {
-        return tipeEquipment;
+    public EquipmentType getTipeEquipment() {
+        return equipmentType;
     }
 
-    public void setTipeEquipment(tipeEquipment tipeEquipment) {
-        this.tipeEquipment = tipeEquipment;
+    public void setTipeEquipment(EquipmentType equipmentType) {
+        this.equipmentType = equipmentType;
     }
 
-    public void setTipeEquipment(String tipeEquipment) {
-        if (tipeEquipment == null) {
+    public void setTipeEquipment(String equipmentType) {
+        if (equipmentType == null) {
             return;
         }
         try {
-            this.tipeEquipment = enums.tipeEquipment.valueOf(tipeEquipment.trim().toUpperCase());
+            this.equipmentType = enums.EquipmentType.valueOf(equipmentType.trim().toUpperCase());
         } catch (IllegalArgumentException ignored) {
         }
     }
@@ -111,7 +111,7 @@ public abstract class Equipment extends Item implements IEquippable {
     }
 
     private String slotName() {
-        return tipeEquipment == null ? "WEAPON" : tipeEquipment.name();
+        return equipmentType == null ? "WEAPON" : equipmentType.name();
     }
 
     private ClassType getPlayerClassType(PlayerCharacter target) {

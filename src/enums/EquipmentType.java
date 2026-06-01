@@ -1,5 +1,5 @@
 package enums;
 
-public enum tipeEquipment {
+public enum EquipmentType {
     WEAPON, ARMOR, ACCESSORY;
 }

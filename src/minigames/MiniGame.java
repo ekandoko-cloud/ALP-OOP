@@ -1,7 +1,6 @@
 package minigames;
 import models.account.AccountProfile;
 
-import java.util.*;
 public abstract class MiniGame {
     protected String namaGame;
     protected int rewardKoin;

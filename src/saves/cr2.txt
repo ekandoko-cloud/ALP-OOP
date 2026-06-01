@@ -1,22 +1,17 @@
 [BASIC INFO]
-username=q
-totalGold=190
+username=cr2
+totalGold=0
 totalPlaytime=0:00
-maxInventorySlots=20
-areaName=Valerion
+maxInventorySlots=200
+areaName=
 
 [PARTY INFO]
-karakter=Varen^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Tarin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Jorin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Wulfric^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Sylas^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Xylen^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Zorin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Aldric^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
 
 [INVENTORY INFO]
-consumableFood=1^Daging Orc Goreng Lemak^Resep: 2x Tulang Belulang Orc dan 2x Minyak Lemak Hewan. Hidangan berat dengan cita rasa gurih. Efek: HP +180, STR -6, DEF -2.^120^180^0^-6^-2^Tidak Sehat - Tinggi lemak jenuh, risiko obesitas.
-consumableFood=2^Roti Gandum Berjamur^Resep: 2x Sisa Roti Keras dan 1x Spora Jamur Gua. Roti lama dengan aroma tajam. Efek: HP +120, DEF -4.^80^120^0^0^-4^Tidak Sehat - Kontaminasi mikotoksin berbahaya.
-consumableFood=3^Burger Lendir Goblin^Resep: 1x Sisa Roti Keras dan 2x Lendir Slime Biasa. Burger aneh dengan tekstur licin. Efek: HP +20, DEF -3.^150^20^0^0^-3^Tidak Sehat - Bahan baku tidak higienis dan korosif.
-equipment=1^Pedang Besar Vanguard^[Warrior] Pedang dua tangan berat khusus untuk mendobrak lini depan.^500^ACCESSORY^50^7^1^CLASSLESS
-equipment=2^Zirah Pelat Baja Berat^[Warrior] Pelindung dada tebal yang memberikan pertahanan fisik mutlak.^650^ARMOR^0^50^0^CLASSLESS
 
 [QUEST INFO]
 mainQuest=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^0^100^1^BELUM_DIAMBIL^^Valerion^1^5x Copper^Infected Rat~Infected Rat~Infected Rat~Scavenger Scout
@@ -44,24 +39,8 @@ mainQuest=22^Mengaktifkan Seed^Main Quest Aldoria - Quest 2.^2x Flare Crawler, 2
 mainQuest=23^Menggabungkan Formula^Main Quest Aldoria - Quest 3.^1x Radiant Sentinel, 3x Flare Crawler^4^0^2500^5^BELUM_DIAMBIL^^Aldoria^3^5x Mithril^Radiant Sentinel~Flare Crawler~Flare Crawler~Flare Crawler
 mainQuest=24^Penghancur Pelindung^Main Quest Aldoria - Quest 4.^2x Radiant Sentinel, 2x Flare Crawler^4^0^3000^5^BELUM_DIAMBIL^^Aldoria^4^10x Meteorite Dust^Radiant Sentinel~Radiant Sentinel~Flare Crawler~Flare Crawler
 mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flare Crawler, 1x Boss: Crimson Chimera^5^0^5000^5^BELUM_DIAMBIL^^Aldoria^5^Core of Purified Earth^Ash Beast~Ash Beast~Flare Crawler~Flare Crawler~Crimson Chimera
-subQuest=1^Bersihkan Dermaga Tua^Sub Quest Valerion.^Kalahkan 3x Infected Rat^3^0^60^BELUM_DIAMBIL^^Valerion
-subQuest=2^Cari Hasil Laut Aman^Sub Quest Valerion.^Kumpulkan 4x bahan dari area pantai^4^0^80^BELUM_DIAMBIL^^Valerion
-subQuest=3^Lindungi Gudang Pasar^Sub Quest Valerion.^Kalahkan 2x Scavenger Scout^2^0^100^BELUM_DIAMBIL^^Valerion
-subQuest=4^Baca Catatan Perpustakaan^Sub Quest Asgard.^Kumpulkan 3x informasi dari area kota^3^0^90^BELUM_DIAMBIL^^Asgard
-subQuest=5^Amankan Jalur Kebun^Sub Quest Asgard.^Kalahkan 3x Swamplands Leech^3^0^110^BELUM_DIAMBIL^^Asgard
-subQuest=6^Ambil Sampel Murni^Sub Quest Asgard.^Kumpulkan 4x bahan penelitian^4^0^130^BELUM_DIAMBIL^^Asgard
-subQuest=7^Perbaiki Lumbung^Sub Quest Grandis.^Kumpulkan 4x bahan bangunan^4^0^120^BELUM_DIAMBIL^^Grandis
-subQuest=8^Usir Hama Ladang^Sub Quest Grandis.^Kalahkan 3x Security Drone^3^0^140^BELUM_DIAMBIL^^Grandis
-subQuest=9^Panen Cepat^Sub Quest Grandis.^Kumpulkan 5x hasil panen^5^0^170^BELUM_DIAMBIL^^Grandis
-subQuest=10^Racik Ramuan Ringan^Sub Quest Lumina.^Kumpulkan 3x bahan herbal^3^0^150^BELUM_DIAMBIL^^Lumina
-subQuest=11^Jaga Laboratorium^Sub Quest Lumina.^Kalahkan 2x Failed Experiment^2^0^180^BELUM_DIAMBIL^^Lumina
-subQuest=12^Distribusi Obat^Sub Quest Lumina.^Antarkan 4x paket obat^4^0^220^BELUM_DIAMBIL^^Lumina
-subQuest=13^Perkuat Benteng^Sub Quest Aldoria.^Kumpulkan 5x material pertahanan^5^0^220^BELUM_DIAMBIL^^Aldoria
-subQuest=14^Tahan Serangan Abu^Sub Quest Aldoria.^Kalahkan 3x Ash Beast^3^0^260^BELUM_DIAMBIL^^Aldoria
-subQuest=15^Sterilkan Gudang Utama^Sub Quest Aldoria.^Kumpulkan 4x material pemurnian^4^0^320^BELUM_DIAMBIL^^Aldoria
 
 [SKILL INFO]
 
 [LOCATION INFO]
-visitedLocations=valerion
 

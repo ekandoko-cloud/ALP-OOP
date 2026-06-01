@@ -1,7 +1,7 @@
 package DummyData;
 
 import java.util.*;
-import models.item.Inqredients;
+import models.item.Ingredients;
 
 public class craftingRecipe {
 
@@ -148,11 +148,11 @@ public class craftingRecipe {
     }
 
     private static systems.craft.craftingRecipe.IngredientReq ing(int ingredientId, int qty) {
-        Inqredients ingredient = ingredientId <= 100
-                ? (Inqredients) inqredients_alam.getDummyInqredientsAlamMap().get(ingredientId)
+        Ingredients ingredient = ingredientId <= 100
+                ? (Ingredients) inqredients_alam.getDummyIngredientsAlamMap().get(ingredientId)
                 : ingredientId <= 200
-                ? (Inqredients) inqredients_monster.getDummyInqredientsMonsterMap().get(ingredientId)
-                : (Inqredients) inqredients_consumables.getDummyInqredientsConsumablesMap().get(ingredientId);
+                ? (Ingredients) inqredients_monster.getDummyIngredientsMonsterMap().get(ingredientId)
+                : (Ingredients) inqredients_consumables.getDummyIngredientsConsumablesMap().get(ingredientId);
         return new systems.craft.craftingRecipe.IngredientReq(ingredient, qty);
     }
 

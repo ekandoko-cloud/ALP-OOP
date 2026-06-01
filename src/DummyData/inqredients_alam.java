@@ -1,14 +1,14 @@
 package DummyData;
 
-import enums.itemType;
-import models.item.Inqredients;
+import enums.ItemType;
+import models.item.Ingredients;
 import models.item.Item;
 
 import java.util.*;
 
 public class inqredients_alam {
 
-    private static final Inqredients[] DUMMY_INQREDIENTS_ALAM = new Inqredients[]{
+    private static final Ingredients[] DUMMY_INQREDIENTS_ALAM = new Ingredients[]{
             i(1, "Copper", 10, "Logam dasar kemerahan yang sering ditemukan di permukaan bumi."),
             i(2, "Iron", 14, "Logam keras yang menjadi tulang punggung persenjataan dasar."),
             i(3, "Silver", 18, "Logam berkilau yang memiliki konduktivitas sihir ringan."),
@@ -117,21 +117,21 @@ public class inqredients_alam {
 
     private static HashMap<Integer, Item> initializeMap() {
         HashMap<Integer, Item> map = new HashMap<>();
-        for (Inqredients ingredient : DUMMY_INQREDIENTS_ALAM) {
+        for (Ingredients ingredient : DUMMY_INQREDIENTS_ALAM) {
             map.put(ingredient.getIdItem(), ingredient);
         }
         return map;
     }
 
-    private static Inqredients i(int id, String nama, int hargaJual, String deskripsi) {
-        return new Inqredients(id, nama, hargaJual, deskripsi, itemType.INQREDIENT);
+    private static Ingredients i(int id, String nama, int hargaJual, String deskripsi) {
+        return new Ingredients(id, nama, hargaJual, deskripsi, ItemType.INQREDIENT);
     }
 
-    public static List<Inqredients> getDummyInqredientsAlam() {
+    public static List<Ingredients> getDummyIngredientsAlam() {
         return List.of(DUMMY_INQREDIENTS_ALAM);
     }
 
-    public static HashMap<Integer, Item> getDummyInqredientsAlamMap() {
+    public static HashMap<Integer, Item> getDummyIngredientsAlamMap() {
         return DUMMY_INQREDIENTS_ALAM_MAP;
     }
 }

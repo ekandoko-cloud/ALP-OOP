@@ -1,14 +1,14 @@
 package DummyData;
 
-import enums.itemType;
-import models.item.Inqredients;
+import enums.ItemType;
+import models.item.Ingredients;
 import models.item.Item;
 
 import java.util.*;
 
 public class inqredients_consumables {
 
-    private static final Inqredients[] DUMMY_INQREDIENTS_CONSUMABLES = new Inqredients[]{
+    private static final Ingredients[] DUMMY_INQREDIENTS_CONSUMABLES = new Ingredients[]{
             i(201, "Wortel", 15, "Meningkatkan akurasi dan ketajaman penglihatan (Buff Accuracy)."),
             i(202, "Selada", 10, "Menambah sedikit regenerasi HP saat dikonsumsi dalam salad."),
             i(203, "Dada Ayam", 40, "Sumber protein utama untuk meningkatkan Attack fisik."),
@@ -69,21 +69,21 @@ public class inqredients_consumables {
 
     private static HashMap<Integer, Item> initializeMap() {
         HashMap<Integer, Item> map = new HashMap<>();
-        for (Inqredients ingredient : DUMMY_INQREDIENTS_CONSUMABLES) {
+        for (Ingredients ingredient : DUMMY_INQREDIENTS_CONSUMABLES) {
             map.put(ingredient.getIdItem(), ingredient);
         }
         return map;
     }
 
-    private static Inqredients i(int id, String nama, int hargaJual, String deskripsi) {
-        return new Inqredients(id, nama, hargaJual, deskripsi, itemType.INQREDIENT);
+    private static Ingredients i(int id, String nama, int hargaJual, String deskripsi) {
+        return new Ingredients(id, nama, hargaJual, deskripsi, ItemType.INQREDIENT);
     }
 
-    public static List<Inqredients> getDummyInqredientsConsumables() {
+    public static List<Ingredients> getDummyIngredientsConsumables() {
         return List.of(DUMMY_INQREDIENTS_CONSUMABLES);
     }
 
-    public static HashMap<Integer, Item> getDummyInqredientsConsumablesMap() {
+    public static HashMap<Integer, Item> getDummyIngredientsConsumablesMap() {
         return DUMMY_INQREDIENTS_CONSUMABLES_MAP;
     }
 }

@@ -1,5 +1,4 @@
 package systems.classSystem;
-import java.util.*;
 import models.character.PlayerCharacter;
 public class ClassTree {
     private ClassNode root;
@@ -11,12 +10,6 @@ public class ClassTree {
 
     public ClassNode getRoot() {
         return root;
-    }
-
-    public void pilihClass(ClassNode node, PlayerCharacter karakter) {
-    }
-
-    public void traverse() {
     }
 
     public void setRoot(ClassNode root) {

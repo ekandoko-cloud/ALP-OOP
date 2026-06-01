@@ -1,7 +1,6 @@
 package systems.map;
 import java.util.*;
 import models.location.Location;
-import java.util.Scanner;
 
 /**
  * Waypoint System:

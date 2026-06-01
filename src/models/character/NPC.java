@@ -1,5 +1,4 @@
 package models.character;
-import java.util.*;
 public class NPC extends GameCharacter {
     private String pangkat;
     private String unitTaktis;

@@ -5,6 +5,7 @@ import models.character.Monster;
 import models.item.Item;
 import enums.StatusQuest;
 import systems.quest.QuestTracker;
+import static utils.AnsiColors.*;
 
 import java.util.*;
 
@@ -14,14 +15,6 @@ public class MainQuest extends Quest {
     private int nomorQuest;
     private String hadiahUtama;
     private ArrayList<String> lineUpMusuh;
-
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_MAGENTA = "\u001B[35m";
 
     public MainQuest(int idQuest, String namaQuest, String deskripsiQuest, String objectiveMainQuest, int objectiveTarget, int hadiahKoin, int chapterTerbuka) {
         this(idQuest, namaQuest, deskripsiQuest, objectiveMainQuest, objectiveTarget, hadiahKoin, chapterTerbuka, null, 0, null, null);
@@ -157,7 +150,8 @@ public class MainQuest extends Quest {
             for (Quest q : riwayat) {
                 if (q instanceof MainQuest) {
                     MainQuest mq = (MainQuest) q;
-                    System.out.println("- " + mq.getNamaQuest() + " (" + mq.getWilayah() + ")");
+                    String statusLabel = (mq.getStatusQuest() == StatusQuest.COMPLETED) ? ANSI_GREEN + "[Siap Klaim]" : ANSI_CYAN + "[Sudah Diklaim]";
+                    System.out.println("- " + mq.getNamaQuest() + " (" + mq.getWilayah() + ") " + statusLabel + ANSI_RESET);
                 }
             }
         }
@@ -189,7 +183,8 @@ public class MainQuest extends Quest {
                 if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
                 hasQuests = true;
                 String statusIcon;
-                if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = ANSI_GREEN + "[✓]";
+                if (mq.getStatusQuest() == StatusQuest.REWARDED) statusIcon = ANSI_CYAN + "[★]";
+                else if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = ANSI_GREEN + "[✓]";
                 else if (mq.getStatusQuest() == StatusQuest.ONGOING) statusIcon = ANSI_YELLOW + "[▶]";
                 else if (mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) statusIcon = ANSI_RED + "[🔒]";
                 else statusIcon = ANSI_RED + "[✗]";
