@@ -1,6 +1,7 @@
 package systems.battle;
 
 import DummyData.mainquest;
+import enums.BattleResult;
 import models.account.AccountProfile;
 import models.character.GameCharacter;
 import models.location.Location;

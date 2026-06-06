@@ -2,14 +2,28 @@ package models.quest;
 
 import models.account.AccountProfile;
 import models.character.Monster;
+import models.character.PlayerCharacter;
 import models.item.Item;
 import enums.StatusQuest;
 import systems.quest.QuestTracker;
-import static utils.AnsiColors.*;
 
 import java.util.*;
 
 public class MainQuest extends Quest {
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_MAGENTA = "\u001B[35m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
+    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
+    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
+    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
+    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
+    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
+
     private int chapterTerbuka;
     private String wilayah;
     private int nomorQuest;
@@ -271,6 +285,8 @@ public class MainQuest extends Quest {
             return;
         }
 
+        quest.setStatusQuest(StatusQuest.REWARDED);
+
         System.out.println(ANSI_GREEN + ANSI_BOLD + "\n╔══════════════════════════════════════╗" + ANSI_RESET);
         System.out.println(ANSI_GREEN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "         QUEST SELESAI! MENDAPATKAN:      " + ANSI_GREEN + ANSI_BOLD + "║" + ANSI_RESET);
         System.out.println(ANSI_GREEN + ANSI_BOLD + "╚══════════════════════════════════════╝" + ANSI_RESET);
@@ -279,6 +295,17 @@ public class MainQuest extends Quest {
         if (gold > 0) {
             akun.setTotalGold(akun.getTotalGold() + gold);
             System.out.println("  " + ANSI_YELLOW + gold + " Gold" + ANSI_RESET);
+        }
+
+        int expReward = 50 + (quest.getChapterTerbuka() * 30);
+        PlayerCharacter[] party = akun.getParty();
+        if (party != null) {
+            for (PlayerCharacter pc : party) {
+                if (pc != null) {
+                    pc.tambahExp(expReward);
+                }
+            }
+            System.out.println("  " + ANSI_MAGENTA + expReward + " EXP (setiap anggota party)" + ANSI_RESET);
         }
 
         String hadiahStr = quest.getHadiahUtama();
@@ -312,18 +339,6 @@ public class MainQuest extends Quest {
                 } else {
                     System.out.println("  " + ANSI_MAGENTA + part + " (hadiah khusus)" + ANSI_RESET);
                 }
-            }
-        }
-
-        QuestTracker qt = akun.getQuestTracker();
-        if (qt != null) {
-            ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
-            if (riwayat == null) {
-                riwayat = new ArrayList<>();
-                qt.setRiwayatMisiSelesai(riwayat);
-            }
-            if (!riwayat.contains(quest)) {
-                riwayat.add(quest);
             }
         }
     }

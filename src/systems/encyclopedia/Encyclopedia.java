@@ -1,14 +1,28 @@
 package systems.encyclopedia;
 
-import static utils.AnsiColors.*;
-
 import java.util.*;
 import models.character.Monster;
 import models.item.Item;
 import models.item.Equipment;
 import models.location.Location;
+import systems.classSystem.ClassNode;
+import systems.skill.SkillNode;
 
 public class Encyclopedia {
+
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_MAGENTA = "\u001B[35m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
+    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
+    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
+    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
+    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
+    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
 
     private final HashMap<String, Object> indexMonster = new HashMap<>();
     private final HashMap<String, Object> indexIngredientAlam = new HashMap<>();
@@ -20,7 +34,11 @@ public class Encyclopedia {
     private final HashMap<String, Object> indexAccessory = new HashMap<>();
     private final HashMap<String, Object> indexResep = new HashMap<>();
     private final HashMap<String, Object> indexLokasi = new HashMap<>();
+    private final HashMap<String, Object> indexClassTree = new HashMap<>();
+    private final HashMap<String, Object> indexSkillTree = new HashMap<>();
     private final HashMap<String, Object> indexUtama = new HashMap<>();
+    private ClassNode classTreeRoot;
+    private List<SkillNode> skillTreeList;
     public Encyclopedia() {}
 
     public HashMap<String, Object> getIndexMonster() { return indexMonster; }
@@ -33,8 +51,30 @@ public class Encyclopedia {
     public HashMap<String, Object> getIndexAccessory() { return indexAccessory; }
     public HashMap<String, Object> getIndexResep() { return indexResep; }
     public HashMap<String, Object> getIndexLokasi() { return indexLokasi; }
+    public HashMap<String, Object> getIndexClassTree() { return indexClassTree; }
+    public HashMap<String, Object> getIndexSkillTree() { return indexSkillTree; }
     public HashMap<String, Object> getIndexUtama() { return indexUtama; }
     public int getTotalEntri() { return indexUtama.size(); }
+
+    public void setClassTreeRoot(ClassNode root) {
+        this.classTreeRoot = root;
+        traverseAndAddClassNode(root);
+    }
+
+    public void setSkillTreeList(List<SkillNode> list) {
+        this.skillTreeList = list;
+        for (SkillNode sn : list) {
+            indexSkillTree.put(sn.getNamaSkill(), sn);
+        }
+    }
+
+    private void traverseAndAddClassNode(ClassNode node) {
+        if (node == null) return;
+        indexClassTree.put(node.getNamaClass(), node);
+        for (ClassNode child : node.getChildren()) {
+            traverseAndAddClassNode(child);
+        }
+    }
 
     private void printItemEntry(int i, Item item) {
         System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " ID: " + item.getIdItem() + " | " + ANSI_YELLOW + item.getNamaItem() + ANSI_RESET);
@@ -206,6 +246,46 @@ public class Encyclopedia {
         }
     }
 
+    public void displayClassTreeSector() {
+        if (classTreeRoot == null || indexClassTree.isEmpty()) {
+            System.out.println(ANSI_YELLOW + "Belum ada data Class Tree." + ANSI_RESET);
+            return;
+        }
+        System.out.println("\n" + ANSI_BOLD + ANSI_CYAN + "~~ CLASS TREE ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        printClassTreeRecursive(classTreeRoot, 0);
+    }
+
+    private void printClassTreeRecursive(ClassNode node, int depth) {
+        String indent = "  ".repeat(depth);
+        String status = node.isUnlocked() ? ANSI_GREEN + "[UNLOCKED]" + ANSI_RESET : ANSI_RED + "[LOCKED]" + ANSI_RESET;
+        System.out.println(indent + "- " + ANSI_YELLOW + node.getNamaClass() + ANSI_RESET + " (Level " + node.getSyaratLevel() + ") " + status);
+        System.out.println(indent + "  " + node.getDeskripsi());
+        for (ClassNode child : node.getChildren()) {
+            printClassTreeRecursive(child, depth + 1);
+        }
+    }
+
+    public void displaySkillTreeSector() {
+        if (indexSkillTree.isEmpty()) {
+            System.out.println(ANSI_YELLOW + "Belum ada data Skill Tree." + ANSI_RESET);
+            return;
+        }
+        System.out.println("\n" + ANSI_BOLD + ANSI_GREEN + "~~ SKILL TREE ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        int i = 1;
+        for (Map.Entry<String, Object> entry : indexSkillTree.entrySet()) {
+            SkillNode s = (SkillNode) entry.getValue();
+            String status = s.isUnlocked() ? ANSI_GREEN + "[UNLOCKED]" + ANSI_RESET : ANSI_RED + "[LOCKED]" + ANSI_RESET;
+            System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " " + ANSI_YELLOW + s.getNamaSkill() + ANSI_RESET + " " + status);
+            System.out.println("   " + s.getDeskripsi());
+            System.out.println("   Biaya: " + s.getBiayaGold() + " gold");
+            if (s.getParent() != null) {
+                System.out.println("   Prasyarat: " + s.getParent().getNamaSkill());
+            }
+            System.out.println();
+            i++;
+        }
+    }
+
     public void displayDetail(Object obj) {
         if (obj == null) {
             System.out.println(ANSI_RED + "Data tidak ditemukan." + ANSI_RESET);
@@ -244,6 +324,41 @@ public class Encyclopedia {
                     String namaBahan = (req.getIngredient() != null ? req.getIngredient().getNamaItem() : "?");
                     System.out.println("   " + (i + 1) + ". " + namaBahan + " x" + req.getAmount());
                 }
+            }
+        } else if (obj instanceof ClassNode cn) {
+            System.out.println(ANSI_BOLD + ANSI_CYAN + "=== DETAIL CLASS ===" + ANSI_RESET);
+            System.out.println("Nama Class       : " + cn.getNamaClass());
+            System.out.println("Deskripsi        : " + cn.getDeskripsi());
+            System.out.println("Syarat Level     : " + cn.getSyaratLevel());
+            System.out.println("Tipe Class       : " + cn.getTipeClass());
+            System.out.println("Status           : " + (cn.isUnlocked() ? "Unlocked" : "Locked"));
+            if (cn.getParent() != null) {
+                System.out.println("Parent Class     : " + cn.getParent().getNamaClass());
+            }
+            if (cn.getChildren() != null && !cn.getChildren().isEmpty()) {
+                System.out.print("Evolusi ke       : ");
+                for (int i = 0; i < cn.getChildren().size(); i++) {
+                    if (i > 0) System.out.print(", ");
+                    System.out.print(cn.getChildren().get(i).getNamaClass());
+                }
+                System.out.println();
+            }
+        } else if (obj instanceof SkillNode sn) {
+            System.out.println(ANSI_BOLD + ANSI_GREEN + "=== DETAIL SKILL ===" + ANSI_RESET);
+            System.out.println("Nama Skill       : " + sn.getNamaSkill());
+            System.out.println("Deskripsi        : " + sn.getDeskripsi());
+            System.out.println("Biaya Gold       : " + sn.getBiayaGold());
+            System.out.println("Status           : " + (sn.isUnlocked() ? "Unlocked" : "Locked"));
+            if (sn.getParent() != null) {
+                System.out.println("Prasyarat        : " + sn.getParent().getNamaSkill());
+            }
+            if (sn.getChildren() != null && !sn.getChildren().isEmpty()) {
+                System.out.print("Skill Turunan    : ");
+                for (int i = 0; i < sn.getChildren().size(); i++) {
+                    if (i > 0) System.out.print(", ");
+                    System.out.print(sn.getChildren().get(i).getNamaSkill());
+                }
+                System.out.println();
             }
         } else if (obj instanceof Item item) {
             System.out.println(ANSI_BOLD + ANSI_GREEN + "=== DETAIL ITEM ===" + ANSI_RESET);
@@ -334,6 +449,10 @@ public class Encyclopedia {
         } else if (obj instanceof systems.craft.forgeFormula) {
             systems.craft.forgeFormula f = (systems.craft.forgeFormula) obj;
             System.out.println("   Tipe: Forge Formula | Level " + f.getLevel() + " | Material: " + f.getMaterialName());
+        } else if (obj instanceof ClassNode cn) {
+            System.out.println("   Tipe: Class Tree | Level Requirement: " + cn.getSyaratLevel());
+        } else if (obj instanceof SkillNode sn) {
+            System.out.println("   Tipe: Skill Tree | Biaya: " + sn.getBiayaGold() + " gold");
         } else if (obj instanceof Item) {
             Item item = (Item) obj;
             if (item instanceof Equipment) {

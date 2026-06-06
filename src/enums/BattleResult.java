@@ -1,4 +1,4 @@
-package systems.battle;
+package enums;
 
 public enum BattleResult {
     VICTORY,

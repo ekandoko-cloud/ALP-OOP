@@ -210,6 +210,80 @@ public class Inventory {
         }
     }
 
+    public boolean equipItem(int itemIndex, int targetIndex) {
+        try {
+            LinkedList<Item> sortedInventory = getSortedInventory();
+
+            if (itemIndex < 1 || itemIndex > sortedInventory.size()) {
+                System.out.println("Index item tidak valid. (Valid: 1 - " + sortedInventory.size() + ")");
+                return false;
+            }
+
+            Item item = sortedInventory.get(itemIndex - 1);
+            if (!(item instanceof Equipment equipment)) {
+                System.out.println("Item tersebut bukan equipment.");
+                return false;
+            }
+
+            String slot = equipment.getTipeEquipment().name();
+
+            if (currentAccount == null || currentAccount.getParty() == null) {
+                System.out.println("Party tidak tersedia.");
+                return false;
+            }
+
+            List<PlayerCharacter> members = new ArrayList<>();
+            for (PlayerCharacter pc : currentAccount.getParty()) {
+                if (pc != null) members.add(pc);
+            }
+
+            if (members.isEmpty()) {
+                System.out.println("Party kosong.");
+                return false;
+            }
+
+            if (targetIndex < 1 || targetIndex > members.size()) {
+                System.out.println("Index member tidak valid.");
+                return false;
+            }
+
+            PlayerCharacter target = members.get(targetIndex - 1);
+
+            Equipment oldEquip = target.getEquipmentBySlot(slot);
+
+            if (oldEquip != null && oldEquip.getIdItem() == equipment.getIdItem()) {
+                System.out.println(equipment.getNamaItem() + " sudah ter-equip pada " + target.getNama() + ".");
+                return false;
+            }
+
+            equipment.equip(target);
+
+            Equipment nowEquipped = target.getEquipmentBySlot(slot);
+            if (nowEquipped == null || nowEquipped.getIdItem() != equipment.getIdItem()) {
+                return false;
+            }
+
+            listBarang.remove(equipment);
+            if (currentAccount.getInventory() != null) {
+                currentAccount.getInventory().remove(equipment);
+            }
+
+            if (oldEquip != null) {
+                currentAccount.addItemToInventory(oldEquip);
+                listBarang.add(oldEquip);
+            }
+
+            System.out.println(equipment.getNamaItem() + " berhasil di-equip ke " + target.getNama() + " (slot " + slot + ").");
+            if (oldEquip != null) {
+                System.out.println(oldEquip.getNamaItem() + " dilepas dan dikembalikan ke inventory.");
+            }
+            return true;
+        } catch (Exception e) {
+            System.out.println("Error equip item: " + e.getMessage());
+            return false;
+        }
+    }
+
     public LinkedList<Item> getListBarang() {
         return listBarang;
     }

@@ -1,5 +1,6 @@
 package systems.battle;
 
+import enums.BattleResult;
 import models.character.GameCharacter;
 import models.character.PlayerCharacter;
 import models.item.ConsumableFood;

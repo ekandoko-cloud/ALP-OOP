@@ -52,65 +52,15 @@ public class App {
     private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
     private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
 
-    private static final String C_64_196_255   = "\u001B[38;2;64;196;255m";
-    private static final String C_32_160_220   = "\u001B[38;2;32;160;220m";
-    private static final String C_80_220_160   = "\u001B[38;2;80;220;160m";
-    private static final String C_100_230_180  = "\u001B[38;2;100;230;180m";
-    private static final String C_200_240_255  = "\u001B[38;2;200;240;255m";
-    private static final String C_160_220_240  = "\u001B[38;2;160;220;240m";
-    private static final String C_160_230_255  = "\u001B[38;2;160;230;255m";
-    private static final String C_80_130_160   = "\u001B[38;2;80;130;160m";
-
-    private static final String C_180_100_255  = "\u001B[38;2;180;100;255m";
-    private static final String C_150_80_230   = "\u001B[38;2;150;80;230m";
-    private static final String C_220_180_80   = "\u001B[38;2;220;180;80m";
-    private static final String C_200_160_60   = "\u001B[38;2;200;160;60m";
-    private static final String C_220_220_240  = "\u001B[38;2;220;220;240m";
-    private static final String C_180_180_210  = "\u001B[38;2;180;180;210m";
-    private static final String C_200_160_255  = "\u001B[38;2;200;160;255m";
-    private static final String C_100_80_140   = "\u001B[38;2;100;80;140m";
-    private static final String C_220_200_255  = "\u001B[38;2;220;200;255m";
-
-    private static final String C_80_200_80    = "\u001B[38;2;80;200;80m";
-    private static final String C_60_170_60    = "\u001B[38;2;60;170;60m";
-    private static final String C_180_130_40   = "\u001B[38;2;180;130;40m";
-    private static final String C_160_100_40   = "\u001B[38;2;160;100;40m";
-    private static final String C_130_80_30    = "\u001B[38;2;130;80;30m";
-    private static final String C_180_230_140  = "\u001B[38;2;180;230;140m";
-    private static final String C_200_230_150  = "\u001B[38;2;200;230;150m";
-    private static final String C_120_210_90   = "\u001B[38;2;120;210;90m";
-    private static final String C_80_110_50    = "\u001B[38;2;80;110;50m";
-
-    private static final String C_255_230_80   = "\u001B[38;2;255;230;80m";
-    private static final String C_240_200_60   = "\u001B[38;2;240;200;60m";
-    private static final String C_100_220_120  = "\u001B[38;2;100;220;120m";
-    private static final String C_80_190_100   = "\u001B[38;2;80;190;100m";
-    private static final String C_240_255_220  = "\u001B[38;2;240;255;220m";
-    private static final String C_200_240_180  = "\u001B[38;2;200;240;180m";
-    private static final String C_150_230_130  = "\u001B[38;2;150;230;130m";
-    private static final String C_120_130_70   = "\u001B[38;2;120;130;70m";
-    private static final String C_255_245_160  = "\u001B[38;2;255;245;160m";
-    private static final String C_240_255_180  = "\u001B[38;2;240;255;180m";
-
-    private static final String C_100_180_220  = "\u001B[38;2;100;180;220m";
-    private static final String C_70_150_190   = "\u001B[38;2;70;150;190m";
-    private static final String C_160_180_200  = "\u001B[38;2;160;180;200m";
-    private static final String C_130_150_170  = "\u001B[38;2;130;150;170m";
-    private static final String C_80_220_240   = "\u001B[38;2;80;220;240m";
-    private static final String C_60_190_210   = "\u001B[38;2;60;190;210m";
-    private static final String C_180_220_240  = "\u001B[38;2;180;220;240m";
-    private static final String C_100_200_220  = "\u001B[38;2;100;200;220m";
-    private static final String C_70_100_120   = "\u001B[38;2;70;100;120m";
-
     //SCANNER
     public Scanner inpInt = new Scanner(System.in);
     public Scanner inpStr = new Scanner(System.in);
 
     Inventory inventory;
     //ensiklopedia
-    private HashMap<Integer, Item> ingredientAlamCatalog = inqredients_alam.getDummyInqredientsAlamMap();
-    private HashMap<Integer, Item> ingredientMonsterCatalog = inqredients_monster.getDummyInqredientsMonsterMap();
-    private HashMap<Integer, Item> ingredientConsumablesCatalog = inqredients_consumables.getDummyInqredientsConsumablesMap();
+    private HashMap<Integer, Item> ingredientAlamCatalog = inqredients_alam.getDummyIngredientsAlamMap();
+    private HashMap<Integer, Item> ingredientMonsterCatalog = inqredients_monster.getDummyIngredientsMonsterMap();
+    private HashMap<Integer, Item> ingredientConsumablesCatalog = inqredients_consumables.getDummyIngredientsConsumablesMap();
     private HashMap<Integer, Item> consumables = DummyData.consumables.getDummyConsumablesMap();
     private HashMap<Integer, Item> weaponCatalog = DummyData.weapon.getDummyWeaponsMap();
     private HashMap<Integer, Item> armorCatalog = DummyData.armor.getDummyArmorsMap();
@@ -126,9 +76,6 @@ public class App {
     private ForgeSystem forgeSystem;
     private CraftingSystem craftingSystem;
     private PlayerCharacter[] party = new PlayerCharacter[4];
-
-    //minigame
-    SpaceGame SpaceGame = new SpaceGame();
 
     private static final Map<String, Skill> classSkills = new HashMap<>();
     static {
@@ -173,12 +120,13 @@ public class App {
         classSkills.put("Paladin", healSkill);
         classSkills.put("Archangel", healSkill);
     }
+
+    //minigame
+    SpaceGame SpaceGame = new SpaceGame();
     QuizGame QuizGame = new QuizGame();
 
     //GACHA
     GachaSystem gachaSystem = new GachaSystem();
-
-    private HashSet<Integer> questRewarded = new HashSet<>();
 
     //utk nyimpan akun
     String ACCOUNT_FILE = "src/main/accounts.txt";
@@ -252,8 +200,19 @@ public class App {
     public void register() {
         while (true) {
             System.out.println();
-            System.out.println("--- REGISTER ---");
-            System.out.print("Username: ");
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "     ██████╗ ███████╗ ██████╗ ██╗███████╗████████╗███████╗██████╗           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "     ██╔══██╗██╔════╝██╔════╝ ██║██╔════╝╚══██╔══╝██╔════╝██╔══██╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "     ██████╔╝█████╗  ██║  ███╗██║███████╗   ██║   █████╗  ██████╔╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "     ██╔══██╗██╔══╝  ██║   ██║██║╚════██║   ██║   ██╔══╝  ██╔══██╗          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "     ██║  ██║███████╗╚██████╔╝██║███████║   ██║   ███████╗██║  ██║          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "     ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+
+            System.out.println();
+            System.out.print(SOFT_WHITE + "   Username  : " + ANSI_RESET);
             String username = inpStr.nextLine();
 
             if (username.isEmpty()) {
@@ -283,8 +242,19 @@ public class App {
 
     public void login() {
         while (true) {
-            System.out.println("--- LOGIN ---");
-            System.out.print("Username: ");
+            System.out.println();
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "                  ██╗      ██████╗  ██████╗ ██╗███╗   ██╗                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "                  ██║     ██╔═══██╗██╔════╝ ██║████╗  ██║                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "                  ██║     ██║   ██║██║  ███╗██║██╔██╗ ██║                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "                  ██║     ██║   ██║██║   ██║██║██║╚██╗██║                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                  ███████╗╚██████╔╝╚██████╔╝██║██║ ╚████║                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                  ╚══════╝ ╚═════╝  ╚═════╝ ╚═╝╚═╝  ╚═══╝                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println();
+            System.out.print(SOFT_WHITE + "   Username  : " + ANSI_RESET);
             usernameLogin = inpStr.nextLine();
 
             if (usernameLogin.isEmpty()) {
@@ -887,12 +857,18 @@ public class App {
 
     public static final String INVALID_INPUT_BOX =
             "\n" +
-                    ANSI_RED + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════╗" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "║                ✖  I N V A L I D   I N P U T  ✖                 ║" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED_BRIGHT + "            Masukkan input yang tersedia pada menu!             " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
-                    ANSI_RED + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════╝" + ANSI_RESET + "\n";
-
+                    ANSI_RED + ANSI_BOLD + "╔══════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "                                                                          " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ██╗███╗   ██╗██╗   ██╗ █████╗ ██╗     ██╗██████╗                         " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ██║████╗  ██║██║   ██║██╔══██╗██║     ██║██╔══██╗                        " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ██║██╔██╗ ██║██║   ██║███████║██║     ██║██║  ██║                        " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ██║██║╚██╗██║╚██╗ ██╔╝██╔══██║██║     ██║██║  ██║                        " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ██║██║ ╚████║ ╚████╔╝ ██║  ██║███████╗██║██████╔╝                        " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + ANSI_BOLD + "  ╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚═╝  ╚═╝╚══════╝╚═╝╚═════╝                         " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "                                                                          " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "╠══════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + ANSI_RED + "               Masukkan input yang tersedia pada menu!                    " + ANSI_RED + ANSI_BOLD + "║" + ANSI_RESET + "\n" +
+                    ANSI_RED + ANSI_BOLD + "╚══════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET + "\n";
 
     public void mainMenu() {
         while (true) {
@@ -1043,6 +1019,16 @@ public class App {
                 ensiklopediaInstance.getIndexResep().put(k, v);
                 ensiklopediaInstance.getIndexUtama().put(k, v);
             }
+            ClassNode classTreeRoot = DummyData.classtree.generateClassTree();
+            ensiklopediaInstance.setClassTreeRoot(classTreeRoot);
+            for (Map.Entry<String, Object> entry : ensiklopediaInstance.getIndexClassTree().entrySet()) {
+                ensiklopediaInstance.getIndexUtama().put(entry.getKey(), entry.getValue());
+            }
+            List<SkillNode> skillTreeNodes = DummyData.skilltree.generateSkillTree();
+            ensiklopediaInstance.setSkillTreeList(skillTreeNodes);
+            for (Map.Entry<String, Object> entry : ensiklopediaInstance.getIndexSkillTree().entrySet()) {
+                ensiklopediaInstance.getIndexUtama().put(entry.getKey(), entry.getValue());
+            }
             ensiklopedia.put(1, ensiklopediaInstance);
         }
     }
@@ -1053,25 +1039,30 @@ public class App {
 
         while (true) {
             System.out.println();
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + "                          E N C Y C L O P E D I A                           " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "  _____ _   _ _______   _______  _     ___________ ___________ ___________ " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " |  ___| \\ | /  __ \\ \\ / /  __ \\| |   |  _  | ___ \\  ___|  _  \\_   _|/ _ \\  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " | |__ |  \\| | /  \\/\\ V /| /  \\/| |   | | | | |_/ / |__ | | | | | | / /_\\ \\ " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " |  __|| . ` | |     \\ / | |    | |   | | | |  __/|  __|| | | | | | |  _  | " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " | |___| |\\  | \\__/\\ | | | \\__/\\| |___\\ \\_/ / |   | |___| |/ / _| |_| | | | " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + " \\____/\\_| \\_/\\____/ \\_/  \\____/\\_____/\\___/\\_|   \\____/|___/  \\___/\\_| |_/ " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[1] Monster                          " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[2] Ingredient Alam                   " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[3] Ingredient Monster               " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[4] Ingredient Consumables            " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[5] Consumables                      " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[6] Weapon                            " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[7] Armor                            " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[8] Accessory                         " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[9] Location                         " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[10] Crafting Recipes                 " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[11] Search Keyword                  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "[12] Back to Main Menu                " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔══════════════════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                                                  " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ███████╗███╗   ██╗ ██████╗██╗   ██╗ ██████╗██╗      ██████╗ ██████╗ ███████╗██████╗ ██╗ █████╗  " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ██╔════╝████╗  ██║██╔════╝╚██╗ ██╔╝██╔════╝██║     ██╔═══██╗██╔══██╗██╔════╝██╔══██╗██║██╔══██╗ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  █████╗  ██╔██╗ ██║██║      ╚████╔╝ ██║     ██║     ██║   ██║██████╔╝█████╗  ██║  ██║██║███████║ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██╔══╝  ██║╚██╗██║██║       ╚██╔╝  ██║     ██║     ██║   ██║██╔═══╝ ██╔══╝  ██║  ██║██║██╔══██║ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ███████╗██║ ╚████║╚██████╗   ██║   ╚██████╗███████╗╚██████╔╝██║     ███████╗██████╔╝██║██║  ██║ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "  ╚══════╝╚═╝  ╚═══╝ ╚═════╝   ╚═╝    ╚═════╝╚══════╝ ╚═════╝ ╚═╝     ╚══════╝╚═════╝ ╚═╝╚═╝  ╚═╝ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                                                  " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠══════════════════════════════════════════════╦═══════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [1]  Monster                             " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [2]  Ingredient Alam                        " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(46) + "║" + " ".repeat(49) + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [3]  Ingredient Monster                  " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [4]  Ingredient Consumables                 " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(46) + "║" + " ".repeat(49) + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [5]  Consumables                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [6]  Weapon                                 " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(46) + "║" + " ".repeat(49) + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [7]  Armor                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [8]  Accessory                              " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(46) + "║" + " ".repeat(49) + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [9]  Location                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [10] Crafting Recipes                       " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(46) + "║" + " ".repeat(49) + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [11] Search Keyword                      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "  >  [12] Back to Main Menu                      " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚══════════════════════════════════════════════╩═══════════════════════════════════════════════════╝" + ANSI_RESET);
             System.out.println();
-            System.out.print("Choose an option: ");
+            System.out.print(SOFT_WHITE + "Choose an option: " + ANSI_RESET);
 
             try {
                 int choice = inpInt.nextInt();
@@ -1106,8 +1097,14 @@ public class App {
                     e.displayRecipeSector();
                     encyclopediaSubMenu(e, e.getIndexResep());
                 } else if (choice == 11) {
-                    e.searchEncyclopedia(inpStr);
+                    e.displayClassTreeSector();
+                    encyclopediaSubMenu(e, e.getIndexClassTree());
                 } else if (choice == 12) {
+                    e.displaySkillTreeSector();
+                    encyclopediaSubMenu(e, e.getIndexSkillTree());
+                } else if (choice == 13) {
+                    e.searchEncyclopedia(inpStr);
+                } else if (choice == 14) {
                     return;
                 } else {
                     System.out.println(INVALID_INPUT_BOX);
@@ -1174,23 +1171,30 @@ public class App {
     public void gachaMenu() {
         while (true) {
             System.out.println();
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + "            ✦ ✦ ✦  S E L A M A T  D A T A N G  ✦ ✦ ✦            " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "                 ____    _    ____ _   _    _                   " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "                / ___|  / \\  / ___| | | |  / \\                  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "               | |  _  / _ \\| |   | |_| | / _ \\                 " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "               | |_| |/ ___ \\ |___|  _  |/ ___ \\                " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_MAGENTA + "                \\____/_/   \\_\\____|_| |_/_/   \\_\\               " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "                     [ 1] Cek Daftar Hadiah                     " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "                     [ 2] Pull 1x   (50 Gold)                   " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_GREEN + "                     [ 3] Pull 10x  (500 Gold)                  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + "                     [ 4] Back to Main Menu                     " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_CYAN + "                      Choose an option :                        " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "       ██████╗  █████╗  ██████╗██╗  ██╗ █████╗                          " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "      ██╔════╝ ██╔══██╗██╔════╝██║  ██║██╔══██╗                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "      ██║  ███╗███████║██║     ███████║███████║                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "      ██║   ██║██╔══██║██║     ██╔══██║██╔══██║                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "      ╚██████╔╝██║  ██║╚██████╗██║  ██║██║  ██║                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "       ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD + "                  - - -  S E L A M A T  D A T A N G  - - -                 " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "                       >  [ 1] Cek Daftar Hadiah                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "                       >  [ 2] Pull 1x   (50 Gold)                         " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "                       >  [ 3] Pull 10x  (500 Gold)                        " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "                       >  [ 4] Back to Main Menu                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "                          Choose an option :                                " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
             System.out.println();
 
             try {
@@ -1379,7 +1383,6 @@ public class App {
                         System.out.println("Mulai menjelajah...");
                         AdventureSystem adventureSystem = new AdventureSystem();
                         boolean lanjutExplore = adventureSystem.jalankanEksplorasi(currentAccount, mapTraversal, inpInt);
-                        berikanHadiahQuestSelesai();
                         if (!lanjutExplore) {
                             return;
                         }
@@ -1703,13 +1706,24 @@ public class App {
             Inventory inventoryView = new Inventory(currentAccount);
             inventoryView.displayInventory();
             System.out.println();
-            System.out.println("=== INVENTORY MENU===");
-            System.out.println("1. Search Item");
-            System.out.println("2. View Item Details");
-            System.out.println("3. Use Items");
-            System.out.println("4. Filter by Category");
-            System.out.println("5. Back to Main Menu");
-            System.out.print("Choose an option: ");
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ██╗███╗   ██╗██╗   ██╗███████╗███╗   ██╗████████╗ ██████╗ ██████╗ ██╗   ██╗" + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ██║████╗  ██║██║   ██║██╔════╝████╗  ██║╚══██╔══╝██╔═══██╗██╔══██╗╚██╗ ██╔╝" + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██║██╔██╗ ██║██║   ██║█████╗  ██╔██╗ ██║   ██║   ██║   ██║██████╔╝ ╚████╔╝ " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██║██║╚██╗██║╚██╗ ██╔╝██╔══╝  ██║╚██╗██║   ██║   ██║   ██║██╔══██╗  ╚██╔╝  " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ██║██║ ╚████║ ╚████╔╝ ███████╗██║ ╚████║   ██║   ╚██████╔╝██║  ██║   ██║   " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ╚═╝╚═╝  ╚═══╝  ╚═══╝  ╚══════╝╚═╝  ╚═══╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝   ╚═╝   " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═══════════════════════════════════════╦════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [1] Search Item                   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [2] View Item Details              " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(39) + "║" + " ".repeat(36) + "    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [3] Use Items                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [4] Filter by Category             " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + " ".repeat(39) + "║" + " ".repeat(36) + "    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + "  >  [5] Equip Equipment               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + "  >  [6] Back to Main Menu              " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚═══════════════════════════════════════╩════════════════════════════════════════╝" + ANSI_RESET);
+            System.out.println();
+            System.out.print(SOFT_WHITE + "Choose an option: " + ANSI_RESET);
             try {
                 int invChoice = inpInt.nextInt();
 
@@ -1788,6 +1802,65 @@ public class App {
                     String category = inpStr.nextLine().trim();
                     inventoryView.displayInventoryByCategory(category);
                 } else if (invChoice == 5) {
+                    System.out.print("Masukkan index equipment yang ingin di-equip: ");
+                    String equipLine = inpStr.nextLine();
+                    int equipItemIndex;
+                    try {
+                        equipItemIndex = Integer.parseInt(equipLine.trim());
+                    } catch (Exception ex) {
+                        System.out.println("Input tidak valid. Kembali ke menu inventory.");
+                        continue;
+                    }
+
+                    PlayerCharacter[] acctParty = currentAccount == null ? null : currentAccount.getParty();
+                    if (acctParty == null || acctParty.length == 0) {
+                        System.out.println("Party kosong.");
+                        continue;
+                    }
+
+                    System.out.println("Pilih karakter untuk di-equip:");
+                    for (int i = 0; i < acctParty.length; i++) {
+                        PlayerCharacter pc = acctParty[i];
+                        if (pc == null) continue;
+                        System.out.println((i + 1) + ". " + pc.getNama() +
+                                " | Class: " + pc.getNamaClass() +
+                                " | Level: " + pc.getLevel() +
+                                " | HP: " + pc.getCurrentHp() + "/" + pc.getMaxHp() +
+                                " | STR: " + pc.getKekuatan() +
+                                " | DEF: " + pc.getDefense() +
+                                " | Weapon: " + (pc.getCurrentWeapon() == null ? "None" : pc.getCurrentWeapon().getNamaItem()) +
+                                " | Armor: " + (pc.getCurrentArmor() == null ? "None" : pc.getCurrentArmor().getNamaItem()) +
+                                " | Accessory: " + (pc.getCurrentAccessory() == null ? "None" : pc.getCurrentAccessory().getNamaItem()));
+                    }
+
+                    int targetIndex = -1;
+                    while (true) {
+                        System.out.print("Masukkan nomor karakter (0 untuk batal): ");
+                        String targetLine = inpStr.nextLine();
+                        if (targetLine == null || targetLine.trim().isEmpty()) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                        try {
+                            targetIndex = Integer.parseInt(targetLine.trim());
+                        } catch (NumberFormatException nfe) {
+                            System.out.println("Input tidak valid.");
+                            continue;
+                        }
+                        if (targetIndex == 0) {
+                            System.out.println("Batal equip.");
+                            break;
+                        }
+                        if (targetIndex < 1 || targetIndex > acctParty.length || acctParty[targetIndex - 1] == null) {
+                            System.out.println("Pilihan tidak valid.");
+                            continue;
+                        }
+                        break;
+                    }
+
+                    if (targetIndex == 0) continue;
+                    inventoryView.equipItem(equipItemIndex, targetIndex);
+                } else if (invChoice == 6) {
                     mainMenu();
                 } else {
                     System.out.println("Pilihan tidak valid. Silakan pilih sesuai dengan index yang tersedia.");
@@ -1895,7 +1968,7 @@ public class App {
                 MainQuest.berikanHadiah(mq, currentAccount, ingredientAlamCatalog, ingredientMonsterCatalog, consumables);
             } else if (picked instanceof SubQuest) {
                 SubQuest sq = (SubQuest) picked;
-                // Give basic reward for subquest
+                sq.setStatusQuest(enums.StatusQuest.REWARDED);
                 int gold = sq.getHadiahKoin();
                 if (gold > 0) {
                     currentAccount.setTotalGold(currentAccount.getTotalGold() + gold);
@@ -1906,28 +1979,17 @@ public class App {
                 if (gold > 0) {
                     System.out.println("  \u001B[33m" + gold + " Gold\u001B[0m");
                 }
+                int expReward = 30;
+                PlayerCharacter[] party = currentAccount.getParty();
+                if (party != null) {
+                    for (PlayerCharacter pc : party) {
+                        if (pc != null) pc.tambahExp(expReward);
+                    }
+                    System.out.println("  \u001B[35m" + expReward + " EXP (setiap anggota party)\u001B[0m");
+                }
             }
         } catch (Exception e) {
             inpInt.nextLine();
-        }
-    }
-
-    private void berikanHadiahQuestSelesai() {
-        if (currentAccount == null) return;
-        QuestTracker qt = currentAccount.getQuestTracker();
-        if (qt == null) return;
-
-        ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
-        if (riwayat == null) return;
-
-        for (Quest q : riwayat) {
-            if (q instanceof MainQuest) {
-                MainQuest mq = (MainQuest) q;
-                if (!questRewarded.contains(mq.getIdQuest())) {
-                    MainQuest.berikanHadiah(mq, currentAccount, ingredientAlamCatalog, ingredientMonsterCatalog, consumables);
-                    questRewarded.add(mq.getIdQuest());
-                }
-            }
         }
     }
 
@@ -1975,12 +2037,26 @@ public class App {
         while (true) {
             party = (currentAccount != null && currentAccount.getParty() != null) ? currentAccount.getParty() : new PlayerCharacter[0];
             System.out.println();
-            System.out.println("========== PROFIL AKUN ==========");
-            System.out.println("Username    : " + currentAccount.getUsername());
-            System.out.println("Total Gold  : " + currentAccount.getTotalGold());
-            System.out.println("Total Playtime : " + currentAccount.getTotalPlaytimeFormatted() + " (H:MM)");
-            System.out.println("Area Name   : " + (currentAccount.getAreaName() == null || currentAccount.getAreaName().isEmpty() ? "Belum menjelajah" : currentAccount.getAreaName()));
-            System.out.println("=================================");
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ██████╗ ██████╗  ██████╗ ███████╗██╗██╗                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ██╔══██╗██╔══██╗██╔═══██╗██╔════╝██║██║                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██████╔╝██████╔╝██║   ██║█████╗  ██║██║                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██╔═══╝ ██╔══██╗██║   ██║██╔══╝  ██║██║                               " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ██║     ██║  ██║╚██████╔╝██║     ██║███████╗                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ╚═╝     ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝                           " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Username      : " + WARM_GOLD + currentAccount.getUsername() + ANSI_RESET + "                                                        ".substring(currentAccount.getUsername().length()) + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Total Gold    : " + WARM_GOLD + currentAccount.getTotalGold() + ANSI_RESET + "                                                        ".substring(String.valueOf(currentAccount.getTotalGold()).length()) + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Total Playtime: " + WARM_GOLD + currentAccount.getTotalPlaytimeFormatted() + ANSI_RESET + " (H:MM)                                                 " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Area Name     : " + WARM_GOLD + (currentAccount.getAreaName() == null || currentAccount.getAreaName().isEmpty() ? "Belum menjelajah" : currentAccount.getAreaName()) + ANSI_RESET + "                                                " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
             System.out.println();
 
             System.out.println("--- PARTY ---");
