@@ -10,6 +10,20 @@ public class Shop {
     private String shopName;
     private AccountProfile linkedAccount;
 
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_ITALIC = "\u001b[3m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
+    private static final String SOFT_TEAL = "\u001B[38;2;64;200;180m";
+    private static final String WARM_GOLD = "\u001B[38;2;220;180;80m";
+    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
+    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
+    private static final String DIM_GRAY = "\u001B[38;2;130;145;160m";
+
 
     public Shop(ArrayList<Item> daftarItem, String shopName, AccountProfile account) {
         this.daftarItem = daftarItem;
@@ -35,21 +49,22 @@ public class Shop {
 
     public void tampilkanItem() {
         if (daftarItem.isEmpty()) {
-            System.out.println("\n=== " + shopName + " ===");
-            System.out.println("Toko sedang sepi! Tidak ada item tersedia.");
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + String.format("   %-73s", shopName) + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + String.format("   %-73s", "Toko sedang sepi! Tidak ada item tersedia.") + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
             return;
         }
 
-        System.out.println("\n=== " + shopName + " ===");
-        System.out.println("Selamat datang di " + shopName + "!");
-        System.out.printf("%-30s | %-15s | %-10s%n", "Nama Item", "Tipe", "Harga");
-        System.out.println("-".repeat(70));
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD + ANSI_BOLD + String.format("   %-73s", "Selamat datang di " + shopName + "!") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + String.format("   %-28s | %-15s | %-10s%s", "Nama Item", "Tipe", "Harga", "              ") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "   " + "-".repeat(71) + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
 
         int index = 1;
         for (Item item : daftarItem) {
             String tipe = item.getItemType().toString();
-            System.out.println(index + ". " + String.format("%-25s | %-15s | %d gold ",
-                    item.getNamaItem(), tipe, item.getHargaJual()));
+            String baris = String.format("   %d. %-24s | %-15s | %d gold", index, item.getNamaItem(), tipe, item.getHargaJual());
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("%-76s", baris) + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
             index++;
         }
     }
@@ -200,5 +215,3 @@ public class Shop {
         setLinkedAccount(account);
     }
 }
-
-

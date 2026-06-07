@@ -20,10 +20,14 @@ public class MusicPlayer {
         playlist.add("Pamungkas - To The Bone");
         playlist.add("Rex Orange County - Best Friend");
         playlist.add("Backstreet Boys - Shape Of My Heart");
+        playlist.add("Taylor Swift - You Belong with Me");
+        playlist.add("Gloria Gaynor - I Will Survive");
 
         filenames.add("Pamungkas - To The Bone (Official Music Video) (1).wav");
         filenames.add("Rex Orange County - Best Friend (Official Audio) (1).wav");
         filenames.add("YTDown_YouTube_Backstreet-Boys-Shape-Of-My-Heart-Offici_Media_OT5msu-dap8_009_128k (1).wav");
+        filenames.add("Taylor Swift - You Belong With Me (1).wav");
+        filenames.add("Gloria Gaynor - I Will Survive (Lyrics) (1).wav");
     }
 
     public ArrayList<String> getPlaylist() {

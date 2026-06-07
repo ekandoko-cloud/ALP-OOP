@@ -5,6 +5,20 @@ import java.util.*;
 
 public class GiziGame extends MiniGame {
 
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_BOLD = "\u001B[1m";
+    private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_MAGENTA = "\u001B[35m";
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
+    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
+    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
+    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
+    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
+    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
+
     private final int budgetBantuan = 1000;
     private final int targetKenyang = 100;
     private final int targetGizi = 100;
@@ -30,18 +44,37 @@ public class GiziGame extends MiniGame {
         Scanner scanner = new Scanner(System.in);
         boolean isSelesai = false;
 
-        System.out.println("\n=============================================================");
-        System.out.println("=== MINI-GAME: " + this.getNamaGame().toUpperCase() + " ===");
-        System.out.println("=============================================================");
-        System.out.println("Desa di Distrik 7 sedang mengalami krisis pangan!");
-        System.out.println("Anda diberikan Dana Hibah: " + this.budgetBantuan + " Koin.");
-        System.out.println("MISI: Buat desa kenyang (Poin >= " + this.targetKenyang + ") DAN sehat (Gizi >= " + this.targetGizi + ").");
-        System.out.println("-------------------------------------------------------------");
-        System.out.println("DAFTAR HARGA PASAR:");
-        System.out.println("1. Gandum (Karbo)  : " + hargaGandum + " Koin | +" + poinKenyangGandum + " Kenyang, +" + poinGiziGandum + " Gizi");
-        System.out.println("2. Daging (Protein): " + hargaDaging + " Koin | +" + poinKenyangDaging + " Kenyang, +" + poinGiziDaging + " Gizi");
-        System.out.println("3. Sayur  (Vitamin): " + hargaSayur + " Koin | +" + poinKenyangSayur + " Kenyang,  +" + poinGiziSayur + " Gizi");
-        System.out.println("=============================================================");
+        System.out.println();
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔═════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ███╗   ███╗██╗███╗   ██╗██╗      ██████╗  █████╗ ███╗   ███╗███████╗    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ████╗ ████║██║████╗  ██║██║     ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██╔████╔██║██║██╔██╗ ██║██║     ██║  ███╗███████║██╔████╔██║█████╗      " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██║╚██╔╝██║██║██║╚██╗██║██║     ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ██║ ╚═╝ ██║██║██║ ╚████║██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD + ANSI_BOLD + "                    " + this.getNamaGame().toUpperCase() + "                                               ".substring(this.getNamaGame().length()) + SOFT_TEAL + ANSI_BOLD + "          ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Desa di Distrik 7 sedang mengalami krisis pangan!                        " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Dana Hibah    : " + WARM_GOLD + "%-57s", this.budgetBantuan + " Koin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Target Kenyang: " + WARM_GOLD + "%-57s", ">= " + this.targetKenyang + " Poin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Target Gizi   : " + WARM_GOLD + "%-57s", ">= " + this.targetGizi + " Poin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   DAFTAR HARGA PASAR                                                       " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [1] Gandum (Karbo)  : " + WARM_GOLD + "%-49s", hargaGandum + " Koin | +" + poinKenyangGandum + " Kenyang,+" + poinGiziGandum + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [2] Daging (Protein): " + WARM_GOLD + "%-49s", hargaDaging + " Koin | +" + poinKenyangDaging + " Kenyang,+" + poinGiziDaging + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [3] Sayur  (Vitamin): " + WARM_GOLD + "%-49s", hargaSayur + " Koin | +" + poinKenyangSayur + " Kenyang,+" + poinGiziSayur + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
+        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚═════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println();
 
         while (!isSelesai) {
             System.out.print("\nBerapa karung Gandum yang dibeli? : ");
