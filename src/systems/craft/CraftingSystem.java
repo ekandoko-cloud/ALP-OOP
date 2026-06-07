@@ -22,10 +22,6 @@ public class CraftingSystem {
             return;
         }
 
-        System.out.println("\n=== CRAFTING MENU ===");
-        System.out.printf("%-4s %-30s %s%n", "No.", "Nama Resep", "Bahan yang dibutuhkan");
-        System.out.println("-".repeat(70));
-
         int idx = 1;
         for (craftingRecipe r : daftarResep) {
             System.out.printf("%-4s %-30.30s%n", idx + ".", r.getRecipeName());

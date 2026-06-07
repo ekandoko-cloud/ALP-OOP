@@ -3,7 +3,7 @@ username=qw
 totalGold=0
 totalPlaytime=0:00
 maxInventorySlots=200
-areaName=
+areaName=Valerion
 
 [PARTY INFO]
 karakter=Lorin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
@@ -43,4 +43,5 @@ mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flar
 [SKILL INFO]
 
 [LOCATION INFO]
+visitedLocations=valerion
 

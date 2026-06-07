@@ -1,21 +1,17 @@
 [BASIC INFO]
-username=fj
+username=123
 totalGold=0
 totalPlaytime=0:00
 maxInventorySlots=200
-areaName=Valerion
+areaName=
 
 [PARTY INFO]
-karakter=Xander^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
 karakter=Fenril^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Helm^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Merrin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Ishar^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Wystan^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Zorin^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
 
 [INVENTORY INFO]
-inqredient=30^Jade^Batu giok penyembuh yang menenangkan jiwa.^126
-inqredient=30^Jade^Batu giok penyembuh yang menenangkan jiwa.^126
-inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
-inqredient=32^Bitter Herb^Herbal pahit untuk obat penawar penyakit dasar.^134
 
 [QUEST INFO]
 mainQuest=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^0^100^1^BELUM_DIAMBIL^^Valerion^1^5x Copper^Infected Rat~Infected Rat~Infected Rat~Scavenger Scout
@@ -47,5 +43,4 @@ mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flar
 [SKILL INFO]
 
 [LOCATION INFO]
-visitedLocations=valerion
 

@@ -32,7 +32,7 @@ public class SkillSystem {
         applySkillEffect(chosen, account);
     }
 
-    public static void applySavedUnlocks(List<SkillNode> skills, Set<String> unlockedNames) {
+    public static void applySavedUnlocks(List<SkillNode> skills, List<String> unlockedNames) {
         if (skills == null || unlockedNames == null) return;
         for (SkillNode s : skills) {
             if (s != null && unlockedNames.contains(s.getNamaSkill())) {

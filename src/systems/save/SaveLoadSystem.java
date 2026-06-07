@@ -138,7 +138,7 @@ public class SaveLoadSystem {
             //skill
             writer.write(skillSection);
             writer.newLine();
-            Set<String> unlockedSkills = profile.getUnlockedSkillNames();
+            ArrayList<String> unlockedSkills = profile.getUnlockedSkillNames();
             if (unlockedSkills != null && !unlockedSkills.isEmpty()) {
                 writer.write("unlockedSkills=" + String.join(",", unlockedSkills));
                 writer.newLine();
@@ -185,8 +185,8 @@ public class SaveLoadSystem {
         ArrayList<SubQuest> subQuestAktif = new ArrayList<>();
         ArrayList<Quest> riwayatMisiSelesai = new ArrayList<>();
         boolean explicitQuestTrackerNull = false;
-        Set<String> unlockedSkills = new HashSet<>();
-        Set<String> visitedLocations = new HashSet<>();
+        ArrayList<String> unlockedSkills = new ArrayList<>();
+        ArrayList<String> visitedLocations = new ArrayList<>();
 
         String currentSection = "";
 

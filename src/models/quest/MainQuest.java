@@ -137,8 +137,19 @@ public class MainQuest extends Quest {
         ArrayList<MainQuest> daftar = qt.getDaftarMainQuestAktif();
         boolean adaOngoing = false;
         if (daftar != null && !daftar.isEmpty()) {
-            System.out.println(ANSI_CYAN + ANSI_BOLD + "\n=== MAIN QUEST AKTIF ===" + ANSI_RESET);
-            int no = 1;
+            System.out.println();
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ███╗   ███╗ █████╗ ██╗███╗   ██╗     ██████╗ ██╗   ██╗███████╗███████╗████████╗ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ████╗ ████║██╔══██╗██║████╗  ██║    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ██╔████╔██║███████║██║██╔██╗ ██║    ██║   ██║██║   ██║█████╗  ███████╗   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ╚██████╔╝╚██████╔╝███████╗███████║   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                        -  M A I N   Q U E S T   A C T I V E  -                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);            int no = 1;
             for (MainQuest mq : daftar) {
                 if (mq == null) continue;
                 if (mq.getStatusQuest() != StatusQuest.ONGOING) continue;

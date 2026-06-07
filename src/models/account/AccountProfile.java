@@ -20,8 +20,8 @@ public class AccountProfile {
     private LinkedList<Item> inventory;
     private QuestTracker questTracker;
     private int maxInventorySlots = DEFAULT_MAX_INVENTORY_SLOTS;
-    private Set<String> unlockedSkillNames = new HashSet<>();
-    private HashMap<String, StatusLokasi> statusLokasi = new HashMap<>();
+    private ArrayList<String> unlockedSkillNames = new ArrayList<>();
+    private ArrayList<String> statusLokasi = new ArrayList<>();
 
     public AccountProfile(String username, String password, int totalGold, PlayerCharacter[] party, LinkedList<Item> inventory, QuestTracker questTracker) {
         this.username = username;
@@ -176,54 +176,52 @@ public class AccountProfile {
         }
     }
 
-    public Set<String> getUnlockedSkillNames() {
+    public ArrayList<String> getUnlockedSkillNames() {
         return unlockedSkillNames;
     }
 
-    public void setUnlockedSkillNames(Set<String> unlockedSkillNames) {
-        this.unlockedSkillNames = unlockedSkillNames != null ? unlockedSkillNames : new HashSet<>();
+    public void setUnlockedSkillNames(ArrayList<String> unlockedSkillNames) {
+        this.unlockedSkillNames = unlockedSkillNames != null ? unlockedSkillNames : new ArrayList<>();
     }
 
     public void addUnlockedSkillName(String skillName) {
-        if (skillName != null) {
+        if (skillName != null && !this.unlockedSkillNames.contains(skillName)) {
             this.unlockedSkillNames.add(skillName);
         }
     }
 
     public boolean isSkillUnlocked(String skillName) {
-        return unlockedSkillNames.contains(skillName);
+        return skillName != null && unlockedSkillNames.contains(skillName);
     }
 
-    public HashMap<String, StatusLokasi> getStatusLokasi() {
+    public ArrayList<String> getStatusLokasi() {
         return statusLokasi;
     }
 
-    public void setStatusLokasi(HashMap<String, StatusLokasi> statusLokasi) {
-        this.statusLokasi = statusLokasi != null ? statusLokasi : new HashMap<>();
+    public void setStatusLokasi(ArrayList<String> statusLokasi) {
+        this.statusLokasi = statusLokasi != null ? statusLokasi : new ArrayList<>();
     }
 
     public void kunjungiLokasi(String namaLokasi) {
         if (namaLokasi != null) {
-            statusLokasi.put(namaLokasi.toLowerCase(), StatusLokasi.TERBUKA);
+            String key = namaLokasi.toLowerCase();
+            if (!this.statusLokasi.contains(key)) {
+                this.statusLokasi.add(key);
+            }
         }
     }
 
     public boolean sudahMengunjungi(String namaLokasi) {
-        return namaLokasi != null && statusLokasi.containsKey(namaLokasi.toLowerCase());
+        return namaLokasi != null && statusLokasi.contains(namaLokasi.toLowerCase());
     }
 
     public StatusLokasi getStatusLokasi(String namaLokasi) {
-        return statusLokasi.getOrDefault(namaLokasi != null ? namaLokasi.toLowerCase() : "", StatusLokasi.TERKUNCI);
+        if (namaLokasi == null) return StatusLokasi.TERKUNCI;
+        return statusLokasi.contains(namaLokasi.toLowerCase()) ? StatusLokasi.TERBUKA : StatusLokasi.TERKUNCI;
     }
 
     public ArrayList<String> getVisitedLocationNames() {
-        ArrayList<String> visited = new ArrayList<>();
-        for (Map.Entry<String, StatusLokasi> entry : statusLokasi.entrySet()) {
-            if (entry.getValue() == StatusLokasi.TERBUKA) {
-                visited.add(entry.getKey());
-            }
-        }
-        return visited;
+        return new ArrayList<>(statusLokasi);
     }
 }
 

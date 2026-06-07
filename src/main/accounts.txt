@@ -24,3 +24,6 @@ cr2:cr2
 maucoba:makan
 cobacoba:makanmakan
 qw:qw
+123:123
+stephen:curry
+ll:ll

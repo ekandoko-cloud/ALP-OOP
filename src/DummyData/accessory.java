@@ -48,13 +48,6 @@ public class accessory {
         return new Accessory(id, name, price, desc, bonusKekuatan, bonusDefense, 0);
     }
 
-    public static List<Accessory> getDummyAccessories() {
-        return new ArrayList<>(DUMMY_ACCESSORIES);
-    }
-
-    public static Accessory[] getDummyAccessoriesArray() {
-        return DUMMY_ACCESSORIES.toArray(new Accessory[0]);
-    }
 
     public static HashMap<Integer, Item> getDummyAccessoriesMap() {
         HashMap<Integer, Item> map = new HashMap<>();

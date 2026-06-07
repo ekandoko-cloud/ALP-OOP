@@ -31,7 +31,6 @@ public class ForgeSystem {
 
     public void tampilkanEquipment(AccountProfile playerAccount) {
         if (playerAccount == null) {
-            System.out.println("\n=== FORGE ===");
             System.out.println("Profil pemain tidak tersedia!");
             return;
         }
@@ -40,12 +39,10 @@ public class ForgeSystem {
         List<Equipment> upgradableEquips = collectEquipment(playerAccount.getInventory());
 
         if (upgradableEquips.isEmpty()) {
-            System.out.println("\n=== FORGE ===");
             System.out.println("Anda tidak memiliki equipment untuk di-upgrade!");
             return;
         }
 
-        System.out.println("\n=== FORGE ===");
         System.out.printf("%-30s | %-8s | %-6s | %-6s%n", "Nama Equipment", "Level", "ATK", "DEF");
         System.out.println("-".repeat(65));
 
