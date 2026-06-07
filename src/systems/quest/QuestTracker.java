@@ -54,7 +54,7 @@ public class QuestTracker {
                 continue;
             }
 
-            if (mq.butuhMusuh(namaMusuh)) {
+            if (mq.membutuhkanMusuh(namaMusuh)) {
                 mq.tambahProgress(1, "Mengalahkan " + namaMusuh);
                 catatan.add("Quest naik: " + mq.getNamaQuest() + " = " + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget());
 

@@ -433,11 +433,6 @@ public class BattleSystem {
         }
     }
 
-    private void catatLog(String teks) {
-        System.out.println(teks);
-        battleLog.tambahEntri(teks);
-    }
-
     private void berikanXpHadiah() {
         int totalXp = 0;
         for (GameCharacter enemy : partyEnemy) {

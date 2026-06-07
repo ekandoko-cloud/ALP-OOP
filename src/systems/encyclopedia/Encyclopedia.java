@@ -1,6 +1,7 @@
 package systems.encyclopedia;
 
 import java.util.*;
+import main.AnsiColors;
 import models.character.Monster;
 import models.item.Item;
 import models.item.Equipment;
@@ -9,20 +10,6 @@ import systems.classSystem.ClassNode;
 import systems.skill.SkillNode;
 
 public class Encyclopedia {
-
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_MAGENTA = "\u001B[35m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
-    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
-    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
-    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
-    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
-    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
 
     private final HashMap<String, Object> indexMonster = new HashMap<>();
     private final HashMap<String, Object> indexIngredientAlam = new HashMap<>();
@@ -77,27 +64,27 @@ public class Encyclopedia {
     }
 
     private void printItemEntry(int i, Item item) {
-        System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " ID: " + item.getIdItem() + " | " + ANSI_YELLOW + item.getNamaItem() + ANSI_RESET);
+        System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " ID: " + item.getIdItem() + " | " + AnsiColors.YELLOW + item.getNamaItem() + AnsiColors.RESET);
         System.out.println("   Harga: " + item.getHargaJual() + " | " + item.getDeskripsi());
     }
 
     private void printEquipEntry(int i, Item item) {
         String tipe = "";
         if (item instanceof Equipment) tipe = " | Type: " + ((Equipment) item).getTipeEquipment().name();
-        System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " ID: " + item.getIdItem() + " | " + ANSI_YELLOW + item.getNamaItem() + ANSI_RESET + tipe);
+        System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " ID: " + item.getIdItem() + " | " + AnsiColors.YELLOW + item.getNamaItem() + AnsiColors.RESET + tipe);
         System.out.println("   Harga: " + item.getHargaJual() + " | " + item.getDeskripsi());
     }
 
     public void displayMonsterSector() {
         if (indexMonster.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Monster." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Monster." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_RED + "~~ MONSTER ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.RED + "~~ MONSTER ENCYCLOPEDIA ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexMonster.entrySet()) {
             Monster m = (Monster) entry.getValue();
-            System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " " + ANSI_YELLOW + m.getNama() + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + m.getNama() + AnsiColors.RESET);
             System.out.println("   HP: " + m.getMaxHp() + " | STR: " + m.getKekuatan() + " | DEF: " + m.getDefense());
             System.out.println("   " + m.getTriviaPenyakit());
             System.out.println();
@@ -107,10 +94,10 @@ public class Encyclopedia {
 
     public void displayIngredientAlamSector() {
         if (indexIngredientAlam.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Ingredient Alam." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Ingredient Alam." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_GREEN + "~~ INGREDIENT ALAM ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.GREEN + "~~ INGREDIENT ALAM ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexIngredientAlam.entrySet()) {
             printItemEntry(i, (Item) entry.getValue());
@@ -121,10 +108,10 @@ public class Encyclopedia {
 
     public void displayIngredientMonsterSector() {
         if (indexIngredientMonster.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Ingredient Monster." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Ingredient Monster." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_RED + "~~ INGREDIENT MONSTER ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.RED + "~~ INGREDIENT MONSTER ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexIngredientMonster.entrySet()) {
             printItemEntry(i, (Item) entry.getValue());
@@ -135,10 +122,10 @@ public class Encyclopedia {
 
     public void displayIngredientConsumablesSector() {
         if (indexIngredientConsumables.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Ingredient Consumables." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Ingredient Consumables." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_YELLOW + "~~ INGREDIENT CONSUMABLES ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.YELLOW + "~~ INGREDIENT CONSUMABLES ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexIngredientConsumables.entrySet()) {
             printItemEntry(i, (Item) entry.getValue());
@@ -149,10 +136,10 @@ public class Encyclopedia {
 
     public void displayConsumablesSector() {
         if (indexConsumables.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Consumables." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Consumables." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_GREEN + "~~ CONSUMABLES ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.GREEN + "~~ CONSUMABLES ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexConsumables.entrySet()) {
             printItemEntry(i, (Item) entry.getValue());
@@ -163,10 +150,10 @@ public class Encyclopedia {
 
     public void displayWeaponSector() {
         if (indexWeapon.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Weapon." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Weapon." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_CYAN + "~~ WEAPON ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.CYAN + "~~ WEAPON ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexWeapon.entrySet()) {
             printEquipEntry(i, (Item) entry.getValue());
@@ -177,10 +164,10 @@ public class Encyclopedia {
 
     public void displayArmorSector() {
         if (indexArmor.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Armor." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Armor." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_CYAN + "~~ ARMOR ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.CYAN + "~~ ARMOR ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexArmor.entrySet()) {
             printEquipEntry(i, (Item) entry.getValue());
@@ -191,10 +178,10 @@ public class Encyclopedia {
 
     public void displayAccessorySector() {
         if (indexAccessory.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Accessory." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Accessory." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_MAGENTA + "~~ ACCESSORY ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.MAGENTA + "~~ ACCESSORY ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexAccessory.entrySet()) {
             printEquipEntry(i, (Item) entry.getValue());
@@ -205,14 +192,14 @@ public class Encyclopedia {
 
     public void displayLocationSector() {
         if (indexLokasi.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Location." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Location." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_MAGENTA + "~~ LOCATION ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.MAGENTA + "~~ LOCATION ENCYCLOPEDIA ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexLokasi.entrySet()) {
             Location l = (Location) entry.getValue();
-            System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " " + ANSI_YELLOW + l.getNamaLokasi() + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + l.getNamaLokasi() + AnsiColors.RESET);
             System.out.println("   " + l.getDeskripsiLokasi());
             System.out.println();
             i++;
@@ -221,14 +208,14 @@ public class Encyclopedia {
 
     public void displayRecipeSector() {
         if (indexResep.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Crafting Recipes." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Crafting Recipes." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_YELLOW + "~~ CRAFTING RECIPE ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.YELLOW + "~~ CRAFTING RECIPE ENCYCLOPEDIA ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexResep.entrySet()) {
             systems.craft.craftingRecipe r = (systems.craft.craftingRecipe) entry.getValue();
-            System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " " + ANSI_YELLOW + r.getRecipeName() + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + r.getRecipeName() + AnsiColors.RESET);
             String hasil = r.getResultItem() != null ? r.getResultItem().getNamaItem() : "?";
             System.out.println("   Hasil: " + hasil);
             ArrayList<systems.craft.craftingRecipe.IngredientReq> reqs = r.getRequiredIngredients();
@@ -248,17 +235,17 @@ public class Encyclopedia {
 
     public void displayClassTreeSector() {
         if (classTreeRoot == null || indexClassTree.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Class Tree." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Class Tree." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_CYAN + "~~ CLASS TREE ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.CYAN + "~~ CLASS TREE ENCYCLOPEDIA ~~" + AnsiColors.RESET + "\n");
         printClassTreeRecursive(classTreeRoot, 0);
     }
 
     private void printClassTreeRecursive(ClassNode node, int depth) {
         String indent = "  ".repeat(depth);
-        String status = node.isUnlocked() ? ANSI_GREEN + "[UNLOCKED]" + ANSI_RESET : ANSI_RED + "[LOCKED]" + ANSI_RESET;
-        System.out.println(indent + "- " + ANSI_YELLOW + node.getNamaClass() + ANSI_RESET + " (Level " + node.getSyaratLevel() + ") " + status);
+        String status = node.isUnlocked() ? AnsiColors.GREEN + "[UNLOCKED]" + AnsiColors.RESET : AnsiColors.RED + "[LOCKED]" + AnsiColors.RESET;
+        System.out.println(indent + "- " + AnsiColors.YELLOW + node.getNamaClass() + AnsiColors.RESET + " (Level " + node.getSyaratLevel() + ") " + status);
         System.out.println(indent + "  " + node.getDeskripsi());
         for (ClassNode child : node.getChildren()) {
             printClassTreeRecursive(child, depth + 1);
@@ -267,15 +254,15 @@ public class Encyclopedia {
 
     public void displaySkillTreeSector() {
         if (indexSkillTree.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada data Skill Tree." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada data Skill Tree." + AnsiColors.RESET);
             return;
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_GREEN + "~~ SKILL TREE ENCYCLOPEDIA ~~" + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.GREEN + "~~ SKILL TREE ENCYCLOPEDIA ~~" + AnsiColors.RESET + "\n");
         int i = 1;
         for (Map.Entry<String, Object> entry : indexSkillTree.entrySet()) {
             SkillNode s = (SkillNode) entry.getValue();
-            String status = s.isUnlocked() ? ANSI_GREEN + "[UNLOCKED]" + ANSI_RESET : ANSI_RED + "[LOCKED]" + ANSI_RESET;
-            System.out.println(ANSI_GREEN + "[" + i + "]" + ANSI_RESET + " " + ANSI_YELLOW + s.getNamaSkill() + ANSI_RESET + " " + status);
+            String status = s.isUnlocked() ? AnsiColors.GREEN + "[UNLOCKED]" + AnsiColors.RESET : AnsiColors.RED + "[LOCKED]" + AnsiColors.RESET;
+            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + s.getNamaSkill() + AnsiColors.RESET + " " + status);
             System.out.println("   " + s.getDeskripsi());
             System.out.println("   Biaya: " + s.getBiayaGold() + " gold");
             if (s.getParent() != null) {
@@ -288,12 +275,12 @@ public class Encyclopedia {
 
     public void displayDetail(Object obj) {
         if (obj == null) {
-            System.out.println(ANSI_RED + "Data tidak ditemukan." + ANSI_RESET);
+            System.out.println(AnsiColors.RED + "Data tidak ditemukan." + AnsiColors.RESET);
             return;
         }
 
         if (obj instanceof Monster m) {
-            System.out.println(ANSI_BOLD + ANSI_RED + "=== DETAIL MONSTER ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.RED + "=== DETAIL MONSTER ===" + AnsiColors.RESET);
             System.out.println("Nama              : " + m.getNama());
             System.out.println("HP                : " + m.getCurrentHp() + "/" + m.getMaxHp());
             System.out.println("MP                : " + m.getCurrentMp() + "/" + m.getMaxMp());
@@ -301,11 +288,11 @@ public class Encyclopedia {
             System.out.println("Defense           : " + m.getDefense());
             System.out.println("Trivia Penyakit   : " + m.getTriviaPenyakit());
         } else if (obj instanceof Location l) {
-            System.out.println(ANSI_BOLD + ANSI_MAGENTA + "=== DETAIL LOCATION ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.MAGENTA + "=== DETAIL LOCATION ===" + AnsiColors.RESET);
             System.out.println("Nama Lokasi       : " + l.getNamaLokasi());
             System.out.println("Deskripsi         : " + l.getDeskripsiLokasi());
         } else if (obj instanceof systems.craft.craftingRecipe r) {
-            System.out.println(ANSI_BOLD + ANSI_YELLOW + "=== DETAIL CRAFTING RECIPE ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.YELLOW + "=== DETAIL CRAFTING RECIPE ===" + AnsiColors.RESET);
             System.out.println("Nama Resep        : " + r.getRecipeName());
             System.out.println("Hasil             : " + (r.getResultItem() != null ? r.getResultItem().getNamaItem() : "?"));
             System.out.println("Detail Hasil      :");
@@ -326,7 +313,7 @@ public class Encyclopedia {
                 }
             }
         } else if (obj instanceof ClassNode cn) {
-            System.out.println(ANSI_BOLD + ANSI_CYAN + "=== DETAIL CLASS ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.CYAN + "=== DETAIL CLASS ===" + AnsiColors.RESET);
             System.out.println("Nama Class       : " + cn.getNamaClass());
             System.out.println("Deskripsi        : " + cn.getDeskripsi());
             System.out.println("Syarat Level     : " + cn.getSyaratLevel());
@@ -344,7 +331,7 @@ public class Encyclopedia {
                 System.out.println();
             }
         } else if (obj instanceof SkillNode sn) {
-            System.out.println(ANSI_BOLD + ANSI_GREEN + "=== DETAIL SKILL ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.GREEN + "=== DETAIL SKILL ===" + AnsiColors.RESET);
             System.out.println("Nama Skill       : " + sn.getNamaSkill());
             System.out.println("Deskripsi        : " + sn.getDeskripsi());
             System.out.println("Biaya Gold       : " + sn.getBiayaGold());
@@ -361,7 +348,7 @@ public class Encyclopedia {
                 System.out.println();
             }
         } else if (obj instanceof Item item) {
-            System.out.println(ANSI_BOLD + ANSI_GREEN + "=== DETAIL ITEM ===" + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + AnsiColors.GREEN + "=== DETAIL ITEM ===" + AnsiColors.RESET);
             System.out.println("ID                : " + item.getIdItem());
             System.out.println("Nama              : " + item.getNamaItem());
             System.out.println("Harga Jual        : " + item.getHargaJual() + " gold");
@@ -398,28 +385,28 @@ public class Encyclopedia {
                 System.out.println("Info Gizi SDG     : " + food.getInfoGiziSDG());
             }
         } else {
-            System.out.println(ANSI_YELLOW + "Tipe data: " + obj.getClass().getSimpleName() + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Tipe data: " + obj.getClass().getSimpleName() + AnsiColors.RESET);
         }
     }
 
     public LinkedHashMap<String, Object> searchEncyclopedia(Scanner inpStr) {
         if (indexUtama.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Encyclopedia kosong." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Encyclopedia kosong." + AnsiColors.RESET);
             return new LinkedHashMap<>();
         }
         System.out.print("Masukkan keyword: ");
         String keyword = inpStr.nextLine().trim().toLowerCase();
         if (keyword.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Keyword tidak boleh kosong." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Keyword tidak boleh kosong." + AnsiColors.RESET);
             return new LinkedHashMap<>();
         }
-        System.out.println("\n" + ANSI_BOLD + ANSI_MAGENTA + "HASIL PENCARIAN: " + keyword + ANSI_RESET + "\n");
+        System.out.println("\n" + AnsiColors.BOLD + AnsiColors.MAGENTA + "HASIL PENCARIAN: " + keyword + AnsiColors.RESET + "\n");
         int found = 0;
         LinkedHashMap<String, Object> searchResults = new LinkedHashMap<>();
         for (Map.Entry<String, Object> entry : indexUtama.entrySet()) {
             if (entry.getKey().toLowerCase().contains(keyword)) {
                 found++;
-                System.out.println(ANSI_GREEN + "[" + found + "]" + ANSI_RESET + " " + ANSI_YELLOW + entry.getKey() + ANSI_RESET);
+                System.out.println(AnsiColors.GREEN + "[" + found + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + entry.getKey() + AnsiColors.RESET);
                 displayDetail(entry.getValue());
                 System.out.println();
                 searchResults.put(entry.getKey(), entry.getValue());
@@ -427,9 +414,9 @@ public class Encyclopedia {
         }
 
         if (found == 0) {
-            System.out.println(ANSI_RED + "Tidak ada hasil yang ditemukan untuk '" + keyword + "'." + ANSI_RESET);
+            System.out.println(AnsiColors.RED + "Tidak ada hasil yang ditemukan untuk '" + keyword + "'." + AnsiColors.RESET);
         } else {
-            System.out.println(ANSI_CYAN + "Ditemukan " + found + " hasil." + ANSI_RESET);
+            System.out.println(AnsiColors.CYAN + "Ditemukan " + found + " hasil." + AnsiColors.RESET);
         }
 
         return searchResults;

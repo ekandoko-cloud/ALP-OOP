@@ -1,5 +1,6 @@
 package models.quest;
 
+import main.AnsiColors;
 import enums.StatusQuest;
 import systems.quest.QuestTracker;
 
@@ -8,20 +9,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SubQuest extends Quest {
-
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_MAGENTA = "\u001B[35m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
-    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
-    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
-    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
-    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
-    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
 
     private final String wilayah;
 
@@ -58,16 +45,16 @@ public class SubQuest extends Quest {
         }
 
         System.out.println();
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ██████╗ ██╗   ██╗██████╗      ██████╗ ██╗   ██╗███████╗███████╗████████╗   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ██╔════╝ ██║   ██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝   " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "  ╚█████╗  ██║   ██║██████╔╝    ██║   ██║██║   ██║█████╗  ███████╗   ██║      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ╚═══██╗ ██║   ██║██╔══██╗    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ██████╔╝ ╚██████╔╝██████╔╝    ╚██████╔╝╚██████╔╝███████╗███████║   ██║      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "  ╚═════╝   ╚═════╝ ╚═════╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝      " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ██████╗ ██╗   ██╗██████╗      ██████╗ ██╗   ██╗███████╗███████╗████████╗   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ██╔════╝ ██║   ██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ╚█████╗  ██║   ██║██████╔╝    ██║   ██║██║   ██║█████╗  ███████╗   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ╚═══██╗ ██║   ██║██╔══██╗    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "  ██████╔╝ ╚██████╔╝██████╔╝    ╚██████╔╝╚██████╔╝███████╗███████║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "  ╚═════╝   ╚═════╝ ╚═════╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
         System.out.println();
 
         int no = 1;

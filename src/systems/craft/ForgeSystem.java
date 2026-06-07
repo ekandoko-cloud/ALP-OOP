@@ -205,10 +205,6 @@ public class ForgeSystem {
         return DEFAULT_MAX_UPGRADE_LEVEL;
     }
 
-    public void setLevelMaks(int levelMaks) {
-    }
-
-
     public ArrayList<forgeFormula> getDaftarFormula() {
         return daftarFormula;
     }

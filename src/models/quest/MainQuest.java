@@ -1,5 +1,6 @@
 package models.quest;
 
+import main.AnsiColors;
 import models.account.AccountProfile;
 import models.character.Monster;
 import models.character.PlayerCharacter;
@@ -10,20 +11,6 @@ import systems.quest.QuestTracker;
 import java.util.*;
 
 public class MainQuest extends Quest {
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_MAGENTA = "\u001B[35m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
-    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
-    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
-    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
-    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
-    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
-
     private int chapterTerbuka;
     private String wilayah;
     private int nomorQuest;
@@ -106,16 +93,8 @@ public class MainQuest extends Quest {
         return false;
     }
 
-    public boolean butuhMusuh(String namaMusuh) {
-        return membutuhkanMusuh(namaMusuh);
-    }
-
     public boolean bisaDiambilPadaChapter(int chapterAktif) {
         return chapterAktif >= chapterTerbuka;
-    }
-
-    public boolean siapDipakai(int chapterAktif) {
-        return bisaDiambilPadaChapter(chapterAktif);
     }
 
     public void catatObjectiveMainQuest(int progressTambahan, String catatan) {
@@ -130,7 +109,7 @@ public class MainQuest extends Quest {
 
     public static void displayQuestTracker(QuestTracker qt) {
         if (qt == null) {
-            System.out.println(ANSI_YELLOW + "Belum ada quest tracker." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker." + AnsiColors.RESET);
             return;
         }
 
@@ -138,32 +117,32 @@ public class MainQuest extends Quest {
         boolean adaOngoing = false;
         if (daftar != null && !daftar.isEmpty()) {
             System.out.println();
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ███╗   ███╗ █████╗ ██╗███╗   ██╗     ██████╗ ██╗   ██╗███████╗███████╗████████╗ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ████╗ ████║██╔══██╗██║████╗  ██║    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝ " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "    ██╔████╔██║███████║██║██╔██╗ ██║    ██║   ██║██║   ██║█████╗  ███████╗   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ╚██████╔╝╚██████╔╝███████╗███████║   ██║    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝    " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║                                                                                    ║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "                        -  M A I N   Q U E S T   A C T I V E  -                     " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);            int no = 1;
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "    ███╗   ███╗ █████╗ ██╗███╗   ██╗     ██████╗ ██╗   ██╗███████╗███████╗████████╗ " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "    ████╗ ████║██╔══██╗██║████╗  ██║    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝ " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "    ██╔████╔██║███████║██║██╔██╗ ██║    ██║   ██║██║   ██║█████╗  ███████╗   ██║    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "    ██║╚██╔╝██║██╔══██║██║██║╚██╗██║    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "    ██║ ╚═╝ ██║██║  ██║██║██║ ╚████║    ╚██████╔╝╚██████╔╝███████╗███████║   ██║    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "    ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝     ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                        -  M A I N   Q U E S T   A C T I V E  -                     " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);            int no = 1;
             for (MainQuest mq : daftar) {
                 if (mq == null) continue;
                 if (mq.getStatusQuest() != StatusQuest.ONGOING) continue;
                 adaOngoing = true;
-                System.out.println(ANSI_BOLD + (no++) + ". " + mq.getNamaQuest() + ANSI_RESET + " " + ANSI_GREEN + "[ONGOING]");
+                System.out.println(AnsiColors.BOLD + (no++) + ". " + mq.getNamaQuest() + AnsiColors.RESET + " " + AnsiColors.GREEN + "[ONGOING]");
                 System.out.println("   Wilayah: " + mq.getWilayah() + " | Quest ke-" + mq.getNomorQuest());
                 System.out.println("   Objective: " + mq.getObjectiveQuest());
                 System.out.println("   Progress: " + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget());
                 System.out.println("   Hadiah: " + mq.getHadiahKoin() + " Gold + " + mq.getHadiahUtama());
-                System.out.println(ANSI_CYAN + "   ─────────────────────────────────────────" + ANSI_RESET);
+                System.out.println(AnsiColors.CYAN + "   ─────────────────────────────────────────" + AnsiColors.RESET);
             }
         }
         if (!adaOngoing) {
-            System.out.println(ANSI_YELLOW + "Tidak ada quest aktif. Ambil quest dari Quest Board!" + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Tidak ada quest aktif. Ambil quest dari Quest Board!" + AnsiColors.RESET);
         }
     }
 
@@ -171,12 +150,12 @@ public class MainQuest extends Quest {
         if (qt == null) return;
         ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
         if (riwayat != null && !riwayat.isEmpty()) {
-            System.out.println(ANSI_GREEN + ANSI_BOLD + "\n=== QUEST SELESAI ===" + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + AnsiColors.BOLD + "\n=== QUEST SELESAI ===" + AnsiColors.RESET);
             for (Quest q : riwayat) {
                 if (q instanceof MainQuest) {
                     MainQuest mq = (MainQuest) q;
-                    String statusLabel = (mq.getStatusQuest() == StatusQuest.COMPLETED) ? ANSI_GREEN + "[Siap Klaim]" : ANSI_CYAN + "[Sudah Diklaim]";
-                    System.out.println("- " + mq.getNamaQuest() + " (" + mq.getWilayah() + ") " + statusLabel + ANSI_RESET);
+                    String statusLabel = (mq.getStatusQuest() == StatusQuest.COMPLETED) ? AnsiColors.GREEN + "[Siap Klaim]" : AnsiColors.CYAN + "[Sudah Diklaim]";
+                    System.out.println("- " + mq.getNamaQuest() + " (" + mq.getWilayah() + ") " + statusLabel + AnsiColors.RESET);
                 }
             }
         }
@@ -184,37 +163,37 @@ public class MainQuest extends Quest {
 
     public static void displayQuestBoard(QuestTracker qt) {
         if (qt == null) {
-            System.out.println(ANSI_YELLOW + "Belum ada quest tracker." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker." + AnsiColors.RESET);
             return;
         }
 
         ArrayList<MainQuest> daftar = qt.getDaftarMainQuestAktif();
         if (daftar == null || daftar.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Tidak ada quest di papan pengumuman." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Tidak ada quest di papan pengumuman." + AnsiColors.RESET);
             return;
         }
 
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "                 Q U E S T   B O A R D                  " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "                 Q U E S T   B O A R D                  " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
 
             String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
         for (String wil : wilayahs) {
             boolean hasQuests = false;
             StringBuilder sb = new StringBuilder();
-            sb.append(ANSI_MAGENTA + ANSI_BOLD + "\n[" + wil + "]" + ANSI_RESET + "\n");
+            sb.append(AnsiColors.MAGENTA + AnsiColors.BOLD + "\n[" + wil + "]" + AnsiColors.RESET + "\n");
 
             for (MainQuest mq : daftar) {
                 if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
                 hasQuests = true;
                 String statusIcon;
-                if (mq.getStatusQuest() == StatusQuest.REWARDED) statusIcon = ANSI_CYAN + "[★]";
-                else if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = ANSI_GREEN + "[✓]";
-                else if (mq.getStatusQuest() == StatusQuest.ONGOING) statusIcon = ANSI_YELLOW + "[▶]";
-                else if (mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) statusIcon = ANSI_RED + "[🔒]";
-                else statusIcon = ANSI_RED + "[✗]";
+                if (mq.getStatusQuest() == StatusQuest.REWARDED) statusIcon = AnsiColors.CYAN + "[★]";
+                else if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = AnsiColors.GREEN + "[✓]";
+                else if (mq.getStatusQuest() == StatusQuest.ONGOING) statusIcon = AnsiColors.YELLOW + "[▶]";
+                else if (mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) statusIcon = AnsiColors.RED + "[🔒]";
+                else statusIcon = AnsiColors.RED + "[✗]";
 
-                sb.append(String.format("  %s Quest %d: %s%s", statusIcon, mq.getNomorQuest(), mq.getNamaQuest(), ANSI_RESET));
+                sb.append(String.format("  %s Quest %d: %s%s", statusIcon, mq.getNomorQuest(), mq.getNamaQuest(), AnsiColors.RESET));
                 sb.append(String.format(" (%d/%d)\n", mq.getObjectiveProgress(), mq.getObjectiveTarget()));
             }
 
@@ -229,27 +208,27 @@ public class MainQuest extends Quest {
             for (Quest q : riwayat) {
                 if (q instanceof MainQuest) count++;
             }
-            System.out.println(ANSI_GREEN + "\nTotal main quest selesai: " + count + "/25" + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + "\nTotal main quest selesai: " + count + "/25" + AnsiColors.RESET);
         } else {
-            System.out.println(ANSI_YELLOW + "\nTotal main quest selesai: 0/25" + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "\nTotal main quest selesai: 0/25" + AnsiColors.RESET);
         }
     }
 
     public static void displayQuestBoardForArea(QuestTracker qt, String currentArea, java.util.Scanner scanner) {
         if (qt == null || currentArea == null || currentArea.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Belum ada quest tracker atau area tidak diketahui." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker atau area tidak diketahui." + AnsiColors.RESET);
             return;
         }
 
         ArrayList<MainQuest> daftar = qt.getDaftarMainQuestAktif();
         if (daftar == null || daftar.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Tidak ada quest di papan pengumuman." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Tidak ada quest di papan pengumuman." + AnsiColors.RESET);
             return;
         }
 
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "           Q U E S T   B O A R D  -  " + currentArea.toUpperCase() + "           " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "           Q U E S T   B O A R D  -  " + currentArea.toUpperCase() + "           " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
 
         java.util.List<MainQuest> available = new java.util.ArrayList<>();
          for (MainQuest mq : daftar) {
@@ -261,17 +240,17 @@ public class MainQuest extends Quest {
          }
 
         if (available.isEmpty()) {
-            System.out.println(ANSI_YELLOW + "Tidak ada quest yang tersedia di " + currentArea + "." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Tidak ada quest yang tersedia di " + currentArea + "." + AnsiColors.RESET);
             return;
         }
 
-        System.out.println(ANSI_GREEN + "Quest tersedia di " + currentArea + ":" + ANSI_RESET);
+        System.out.println(AnsiColors.GREEN + "Quest tersedia di " + currentArea + ":" + AnsiColors.RESET);
         int idx = 1;
         for (MainQuest mq : available) {
-            System.out.println(ANSI_BOLD + (idx) + ". " + mq.getNamaQuest() + ANSI_RESET);
+            System.out.println(AnsiColors.BOLD + (idx) + ". " + mq.getNamaQuest() + AnsiColors.RESET);
             System.out.println("   Objective: " + mq.getObjectiveQuest());
             System.out.println("   Hadiah: " + mq.getHadiahKoin() + " Gold + " + mq.getHadiahUtama());
-            System.out.println(ANSI_CYAN + "   ─────────────────────" + ANSI_RESET);
+            System.out.println(AnsiColors.CYAN + "   ─────────────────────" + AnsiColors.RESET);
             idx++;
         }
 
@@ -279,33 +258,33 @@ public class MainQuest extends Quest {
         try {
             int pilihan = Integer.parseInt(scanner.nextLine());
             if (pilihan < 1 || pilihan > available.size()) {
-                System.out.println(ANSI_YELLOW + "Pembatalan." + ANSI_RESET);
+                System.out.println(AnsiColors.YELLOW + "Pembatalan." + AnsiColors.RESET);
                 return;
             }
             MainQuest picked = available.get(pilihan - 1);
             picked.setStatusQuest(StatusQuest.ONGOING);
-            System.out.println(ANSI_GREEN + "Quest \"" + picked.getNamaQuest() + "\" berhasil diambil!" + ANSI_RESET);
+            System.out.println(AnsiColors.GREEN + "Quest \"" + picked.getNamaQuest() + "\" berhasil diambil!" + AnsiColors.RESET);
         } catch (Exception e) {
-            System.out.println(ANSI_YELLOW + "Input tidak valid." + ANSI_RESET);
+            System.out.println(AnsiColors.YELLOW + "Input tidak valid." + AnsiColors.RESET);
         }
     }
 
     public static void berikanHadiah(MainQuest quest, AccountProfile akun, Map<Integer, Item> ingredientAlam, Map<Integer, Item> ingredientMonster, Map<Integer, Item> consumablesMap) {
         if (quest == null || akun == null) {
-            System.out.println(ANSI_RED + "Error: quest atau akun null." + ANSI_RESET);
+            System.out.println(AnsiColors.RED + "Error: quest atau akun null." + AnsiColors.RESET);
             return;
         }
 
         quest.setStatusQuest(StatusQuest.REWARDED);
 
-        System.out.println(ANSI_GREEN + ANSI_BOLD + "\n╔══════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(ANSI_GREEN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "         QUEST SELESAI! MENDAPATKAN:      " + ANSI_GREEN + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(ANSI_GREEN + ANSI_BOLD + "╚══════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.GREEN + AnsiColors.BOLD + "\n╔══════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.GREEN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "         QUEST SELESAI! MENDAPATKAN:      " + AnsiColors.GREEN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.GREEN + AnsiColors.BOLD + "╚══════════════════════════════════════╝" + AnsiColors.RESET);
 
         int gold = quest.getHadiahKoin();
         if (gold > 0) {
             akun.setTotalGold(akun.getTotalGold() + gold);
-            System.out.println("  " + ANSI_YELLOW + gold + " Gold" + ANSI_RESET);
+            System.out.println("  " + AnsiColors.YELLOW + gold + " Gold" + AnsiColors.RESET);
         }
 
         int expReward = 50 + (quest.getChapterTerbuka() * 30);
@@ -316,7 +295,7 @@ public class MainQuest extends Quest {
                     pc.tambahExp(expReward);
                 }
             }
-            System.out.println("  " + ANSI_MAGENTA + expReward + " EXP (setiap anggota party)" + ANSI_RESET);
+            System.out.println("  " + AnsiColors.MAGENTA + expReward + " EXP (setiap anggota party)" + AnsiColors.RESET);
         }
 
         String hadiahStr = quest.getHadiahUtama();
@@ -346,9 +325,9 @@ public class MainQuest extends Quest {
                     for (int i = 0; i < qty; i++) {
                         akun.addItemToInventory(found);
                     }
-                    System.out.println("  " + ANSI_CYAN + qty + "x " + found.getNamaItem() + ANSI_RESET);
+                    System.out.println("  " + AnsiColors.CYAN + qty + "x " + found.getNamaItem() + AnsiColors.RESET);
                 } else {
-                    System.out.println("  " + ANSI_MAGENTA + part + " (hadiah khusus)" + ANSI_RESET);
+                    System.out.println("  " + AnsiColors.MAGENTA + part + " (hadiah khusus)" + AnsiColors.RESET);
                 }
             }
         }
@@ -390,20 +369,20 @@ public class MainQuest extends Quest {
                 return;
         }
 
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "\n=== MONSTER DI " + wilayah.toUpperCase() + " ===" + ANSI_RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n=== MONSTER DI " + wilayah.toUpperCase() + " ===" + AnsiColors.RESET);
         for (String name : monsterNames) {
             boolean found = false;
             for (Monster m : semuaMonster) {
                 if (m != null && m.getNama().equalsIgnoreCase(name)) {
-                    System.out.println(ANSI_YELLOW + "  " + m.getNama() + ANSI_RESET + " | HP:" + m.getMaxHp() + " STR:" + m.getKekuatan() + " DEF:" + m.getDefense());
+                    System.out.println(AnsiColors.YELLOW + "  " + m.getNama() + AnsiColors.RESET + " | HP:" + m.getMaxHp() + " STR:" + m.getKekuatan() + " DEF:" + m.getDefense());
                     System.out.println("  " + m.getTriviaPenyakit());
-                    System.out.println(ANSI_CYAN + "  ─────────────────────" + ANSI_RESET);
+                    System.out.println(AnsiColors.CYAN + "  ─────────────────────" + AnsiColors.RESET);
                     found = true;
                     break;
                 }
             }
             if (!found) {
-                System.out.println("  " + ANSI_RED + name + " (data belum tersedia)" + ANSI_RESET);
+                System.out.println("  " + AnsiColors.RED + name + " (data belum tersedia)" + AnsiColors.RESET);
             }
         }
     }
@@ -426,14 +405,14 @@ public class MainQuest extends Quest {
     }
 
     public static void tampilkanSemuaQuest(List<MainQuest> daftar) {
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET + ANSI_YELLOW + ANSI_BOLD + "            D A F T A R   S E M U A   Q U E S T             " + ANSI_CYAN + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(ANSI_CYAN + ANSI_BOLD + "╚═══════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "            D A F T A R   S E M U A   Q U E S T             " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
 
             String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
         for (String wil : wilayahs) {
             boolean hasQuests = false;
-            System.out.println(ANSI_MAGENTA + ANSI_BOLD + "\n[" + wil + "]" + ANSI_RESET);
+            System.out.println(AnsiColors.MAGENTA + AnsiColors.BOLD + "\n[" + wil + "]" + AnsiColors.RESET);
 
             for (MainQuest mq : daftar) {
                 if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
@@ -441,7 +420,7 @@ public class MainQuest extends Quest {
                 System.out.println("  Quest " + mq.getNomorQuest() + ": " + mq.getNamaQuest());
                 System.out.println("    Objective: " + mq.getObjectiveQuest());
                 System.out.println("    Hadiah: " + mq.getHadiahKoin() + " Gold + " + mq.getHadiahUtama());
-                System.out.println(ANSI_CYAN + "    ─────────────────────" + ANSI_RESET);
+                System.out.println(AnsiColors.CYAN + "    ─────────────────────" + AnsiColors.RESET);
             }
 
             if (!hasQuests) {

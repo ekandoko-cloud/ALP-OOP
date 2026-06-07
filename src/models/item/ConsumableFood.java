@@ -59,18 +59,14 @@ public class ConsumableFood extends Item implements IConsumable {
     }
 
 
+    @Override
     public void consume(GameCharacter target) {
-        useItem(target);
-    }
-
-    public void useItem(GameCharacter target) {
         if (target == null) {
             return;
         }
 
         target.setCurrentHp(Math.max(0, Math.min(target.getMaxHp(), target.getCurrentHp() + healHpAmount)));
         target.setCurrentMp(Math.max(0, Math.min(target.getMaxMp(), target.getCurrentMp() + healMpAmount)));
-        // apply permanent buffs
         target.setKekuatan(Math.max(0, target.getKekuatan() + strBuff));
         target.setDefense(Math.max(0, target.getDefense() + defBuff));
     }

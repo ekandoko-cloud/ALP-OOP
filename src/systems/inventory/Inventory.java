@@ -162,7 +162,7 @@ public class Inventory {
             }
 
             PlayerCharacter target = members.get(targetIndex - 1);
-            food.useItem(target);
+            food.consume(target);
 
             listBarang.remove(item);
             if (currentAccount.getInventory() != null) {

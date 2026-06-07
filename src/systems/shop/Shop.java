@@ -1,6 +1,7 @@
 package systems.shop;
 import java.util.*;
 
+import main.AnsiColors;
 import models.item.ConsumableFood;
 import models.item.Equipment;
 import models.item.Item;
@@ -8,27 +9,12 @@ import models.account.AccountProfile;
 public class Shop {
     private ArrayList<Item> daftarItem;
     private String shopName;
-    private AccountProfile linkedAccount;
-
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_ITALIC = "\u001b[3m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
-    private static final String SOFT_TEAL = "\u001B[38;2;64;200;180m";
-    private static final String WARM_GOLD = "\u001B[38;2;220;180;80m";
-    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
-    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
-    private static final String DIM_GRAY = "\u001B[38;2;130;145;160m";
-
+    private AccountProfile currentAccount;
 
     public Shop(ArrayList<Item> daftarItem, String shopName, AccountProfile account) {
         this.daftarItem = daftarItem;
         this.shopName = shopName;
-        this.linkedAccount = account;
+        this.currentAccount = account;
     }
 
     public String getShopName() {
@@ -49,22 +35,22 @@ public class Shop {
 
     public void tampilkanItem() {
         if (daftarItem.isEmpty()) {
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + String.format("   %-73s", shopName) + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + String.format("   %-73s", "Toko sedang sepi! Tidak ada item tersedia.") + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + String.format("   %-73s", shopName) + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + String.format("   %-73s", "Toko sedang sepi! Tidak ada item tersedia.") + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             return;
         }
 
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD + ANSI_BOLD + String.format("   %-73s", "Selamat datang di " + shopName + "!") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + String.format("   %-28s | %-15s | %-10s%s", "Nama Item", "Tipe", "Harga", "              ") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "   " + "-".repeat(71) + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + String.format("   %-73s", "Selamat datang di " + shopName + "!") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + String.format("   %-28s | %-15s | %-10s%s", "Nama Item", "Tipe", "Harga", "              ") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "   " + "-".repeat(71) + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
 
         int index = 1;
         for (Item item : daftarItem) {
             String tipe = item.getItemType().toString();
             String baris = String.format("   %d. %-24s | %-15s | %d gold", index, item.getNamaItem(), tipe, item.getHargaJual());
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("%-76s", baris) + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-            System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + String.format("%-76s", baris) + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             index++;
         }
     }
@@ -191,27 +177,23 @@ public class Shop {
     }
 
     public int getMaxInventorySlots() {
-        if (linkedAccount != null) {
-            return linkedAccount.getMaxInventorySlots();
+        if (currentAccount != null) {
+            return currentAccount.getMaxInventorySlots();
         }
         return models.account.AccountProfile.DEFAULT_MAX_INVENTORY_SLOTS;
     }
 
     public void setMaxInventorySlots(int maxInventorySlots) {
-        if (linkedAccount != null) {
-            linkedAccount.setMaxInventorySlots(maxInventorySlots);
+        if (currentAccount != null) {
+            currentAccount.setMaxInventorySlots(maxInventorySlots);
         }
     }
 
-    public void setLinkedAccount(AccountProfile account) {
-        this.linkedAccount = account;
-    }
-
-    public AccountProfile getLinkedAccount() {
-        return linkedAccount;
+    public AccountProfile getCurrentAccount() {
+        return currentAccount;
     }
 
     public void setCurrentAccount(AccountProfile account) {
-        setLinkedAccount(account);
+        this.currentAccount = account;
     }
 }

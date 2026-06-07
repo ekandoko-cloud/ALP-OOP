@@ -1,23 +1,10 @@
 package minigames;
 
+import main.AnsiColors;
 import models.account.AccountProfile;
 import java.util.*;
 
 public class GiziGame extends MiniGame {
-
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_BOLD = "\u001B[1m";
-    private static final String ANSI_CYAN = "\u001B[36m";
-    private static final String ANSI_GREEN = "\u001B[32m";
-    private static final String ANSI_YELLOW = "\u001B[33m";
-    private static final String ANSI_MAGENTA = "\u001B[35m";
-    private static final String ANSI_RED = "\u001B[31m";
-    private static final String ANSI_RED_BRIGHT = "\u001B[91m";
-    private static final String SOFT_TEAL  = "\u001B[38;2;64;200;180m";
-    private static final String WARM_GOLD  = "\u001B[38;2;220;180;80m";
-    private static final String SOFT_WHITE = "\u001B[38;2;220;230;240m";
-    private static final String SOFT_GREEN = "\u001B[38;2;100;200;140m";
-    private static final String DIM_GRAY   = "\u001B[38;2;130;145;160m";
 
     private final int budgetBantuan = 1000;
     private final int targetKenyang = 100;
@@ -45,35 +32,35 @@ public class GiziGame extends MiniGame {
         boolean isSelesai = false;
 
         System.out.println();
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╔═════════════════════════════════════════════════════════════════════════════╗" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ███╗   ███╗██╗███╗   ██╗██╗      ██████╗  █████╗ ███╗   ███╗███████╗    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + ANSI_BOLD + "   ████╗ ████║██║████╗  ██║██║     ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██╔████╔██║██║██╔██╗ ██║██║     ██║  ███╗███████║██╔████╔██║█████╗      " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD  + ANSI_BOLD + "   ██║╚██╔╝██║██║██║╚██╗██║██║     ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ██║ ╚═╝ ██║██║██║ ╚████║██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    " + SOFT_TEAL + ANSI_BOLD + "  ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + WARM_GOLD + ANSI_BOLD + "                    " + this.getNamaGame().toUpperCase() + "                                               ".substring(this.getNamaGame().length()) + SOFT_TEAL + ANSI_BOLD + "          ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + "   Desa di Distrik 7 sedang mengalami krisis pangan!                        " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Dana Hibah    : " + WARM_GOLD + "%-57s", this.budgetBantuan + " Koin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Target Kenyang: " + WARM_GOLD + "%-57s", ">= " + this.targetKenyang + " Poin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + String.format("   Target Gizi   : " + WARM_GOLD + "%-57s", ">= " + this.targetGizi + " Poin") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_WHITE + ANSI_BOLD + "   DAFTAR HARGA PASAR                                                       " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [1] Gandum (Karbo)  : " + WARM_GOLD + "%-49s", hargaGandum + " Koin | +" + poinKenyangGandum + " Kenyang,+" + poinGiziGandum + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [2] Daging (Protein): " + WARM_GOLD + "%-49s", hargaDaging + " Koin | +" + poinKenyangDaging + " Kenyang,+" + poinGiziDaging + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + SOFT_GREEN + String.format("   >  [3] Sayur  (Vitamin): " + WARM_GOLD + "%-49s", hargaSayur + " Koin | +" + poinKenyangSayur + " Kenyang,+" + poinGiziSayur + " Gizi") + ANSI_RESET + SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "║" + ANSI_RESET + "                                                                            " + SOFT_TEAL + ANSI_BOLD + " ║" + ANSI_RESET);
-        System.out.println(SOFT_TEAL + ANSI_BOLD + "╚═════════════════════════════════════════════════════════════════════════════╝" + ANSI_RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔═════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ███╗   ███╗██╗███╗   ██╗██╗      ██████╗  █████╗ ███╗   ███╗███████╗    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ████╗ ████║██║████╗  ██║██║     ██╔════╝ ██╔══██╗████╗ ████║██╔════╝    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ██╔████╔██║██║██╔██╗ ██║██║     ██║  ███╗███████║██╔████╔██║█████╗      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ██║╚██╔╝██║██║██║╚██╗██║██║     ██║   ██║██╔══██║██║╚██╔╝██║██╔══╝      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "   ██║ ╚═╝ ██║██║██║ ╚████║██║     ╚██████╔╝██║  ██║██║ ╚═╝ ██║███████╗    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "   ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝    " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "  ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "                    " + this.getNamaGame().toUpperCase() + "                                               ".substring(this.getNamaGame().length()) + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "          ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "   Desa di Distrik 7 sedang mengalami krisis pangan!                        " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + String.format("   Dana Hibah    : " + AnsiColors.WARM_GOLD + "%-57s", this.budgetBantuan + " Koin") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + String.format("   Target Kenyang: " + AnsiColors.WARM_GOLD + "%-57s", ">= " + this.targetKenyang + " Poin") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + String.format("   Target Gizi   : " + AnsiColors.WARM_GOLD + "%-57s", ">= " + this.targetGizi + " Poin") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "   DAFTAR HARGA PASAR                                                       " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠═════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + String.format("   >  [1] Gandum (Karbo)  : " + AnsiColors.WARM_GOLD + "%-49s", hargaGandum + " Koin | +" + poinKenyangGandum + " Kenyang,+" + poinGiziGandum + " Gizi") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + String.format("   >  [2] Daging (Protein): " + AnsiColors.WARM_GOLD + "%-49s", hargaDaging + " Koin | +" + poinKenyangDaging + " Kenyang,+" + poinGiziDaging + " Gizi") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + String.format("   >  [3] Sayur  (Vitamin): " + AnsiColors.WARM_GOLD + "%-49s", hargaSayur + " Koin | +" + poinKenyangSayur + " Kenyang,+" + poinGiziSayur + " Gizi") + AnsiColors.RESET + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚═════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
         System.out.println();
 
         while (!isSelesai) {

@@ -24,6 +24,7 @@ public class ClassNode {
 
 
     public void unlock() {
+        this.isUnlocked = true;
     }
 
     public boolean isAvailable() {
