@@ -1,10 +1,12 @@
 package systems.craft;
+
 import java.util.*;
 
 import DummyData.forgeformula;
 import models.account.AccountProfile;
 import models.item.Equipment;
 import models.item.Item;
+
 public class ForgeSystem {
     private static final int DEFAULT_MAX_UPGRADE_LEVEL = 10;
     private AccountProfile currentAccount;
@@ -16,9 +18,7 @@ public class ForgeSystem {
 
     public ForgeSystem(AccountProfile currentAccount, ArrayList<forgeFormula> daftarFormula) {
         this.currentAccount = currentAccount;
-        this.daftarFormula = (daftarFormula != null && !daftarFormula.isEmpty())
-                ? daftarFormula
-                : forgeformula.getDummyForgeFormulas();
+        this.daftarFormula = (daftarFormula != null && !daftarFormula.isEmpty()) ? daftarFormula : forgeformula.getDummyForgeFormulas();
     }
 
     public void setCurrentAccount(AccountProfile currentAccount) {
@@ -59,7 +59,7 @@ public class ForgeSystem {
             index++;
         }
     }
-    
+
     public boolean upgrade(int index, AccountProfile playerAccount) {
         if (playerAccount == null) {
             System.out.println("\nProfil pemain tidak tersedia!");
@@ -131,7 +131,7 @@ public class ForgeSystem {
 
         return true;
     }
-    
+
     private int countItemInInventory(LinkedList<Item> inventory, String itemName) {
         int count = 0;
         for (Item item : inventory) {

@@ -104,9 +104,6 @@ public class QuizGame extends MiniGame {
 
         System.out.println();
         System.out.println("=== QUIZ NUTRISI ===");
-        if (currentProfile != null) {
-            System.out.println("Pemain: " + currentProfile.getUsername());
-        }
 
         for (int i = 0; i < sesi.length; i++) {
             Quiz soal = sesi[i];

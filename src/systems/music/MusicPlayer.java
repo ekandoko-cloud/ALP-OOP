@@ -71,8 +71,8 @@ public class MusicPlayer {
         playlist.addAll(newTitles);
         filenames.addAll(newFiles);
         currentIndex = 0;
-        currentSong = playlist.get(0);
-        return startClip(filenames.get(0));
+        currentSong = playlist.getFirst();
+        return startClip(filenames.getFirst());
     }
 
     public void stop() {

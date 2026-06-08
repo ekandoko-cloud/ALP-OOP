@@ -128,58 +128,58 @@ public class MainQuest extends Quest {
         }
     }
 
-    public static void displayQuestBoard(QuestTracker qt) {
-        if (qt == null) {
-            System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker." + AnsiColors.RESET);
-            return;
-        }
-
-        ArrayList<MainQuest> daftar = qt.getDaftarMainQuestAktif();
-        if (daftar == null || daftar.isEmpty()) {
-            System.out.println(AnsiColors.YELLOW + "Tidak ada quest di papan pengumuman." + AnsiColors.RESET);
-            return;
-        }
-
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "                 Q U E S T   B O A R D                  " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
-
-            String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
-        for (String wil : wilayahs) {
-            boolean hasQuests = false;
-            StringBuilder sb = new StringBuilder();
-            sb.append(AnsiColors.MAGENTA + AnsiColors.BOLD + "\n[" + wil + "]" + AnsiColors.RESET + "\n");
-
-            for (MainQuest mq : daftar) {
-                if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
-                hasQuests = true;
-                String statusIcon;
-                if (mq.getStatusQuest() == StatusQuest.REWARDED) statusIcon = AnsiColors.CYAN + "[★]";
-                else if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = AnsiColors.GREEN + "[✓]";
-                else if (mq.getStatusQuest() == StatusQuest.ONGOING) statusIcon = AnsiColors.YELLOW + "[▶]";
-                else if (mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) statusIcon = AnsiColors.RED + "[🔒]";
-                else statusIcon = AnsiColors.RED + "[✗]";
-
-                sb.append(String.format("  %s Quest %d: %s%s", statusIcon, mq.getNomorQuest(), mq.getNamaQuest(), AnsiColors.RESET));
-                sb.append(String.format(" (%d/%d)\n", mq.getObjectiveProgress(), mq.getObjectiveTarget()));
-            }
-
-            if (hasQuests) {
-                System.out.print(sb.toString());
-            }
-        }
-
-        ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
-        if (riwayat != null && !riwayat.isEmpty()) {
-            int count = 0;
-            for (Quest q : riwayat) {
-                if (q instanceof MainQuest) count++;
-            }
-            System.out.println(AnsiColors.GREEN + "\nTotal main quest selesai: " + count + "/25" + AnsiColors.RESET);
-        } else {
-            System.out.println(AnsiColors.YELLOW + "\nTotal main quest selesai: 0/25" + AnsiColors.RESET);
-        }
-    }
+//    public static void displayQuestBoard(QuestTracker qt) {
+//        if (qt == null) {
+//            System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker." + AnsiColors.RESET);
+//            return;
+//        }
+//
+//        ArrayList<MainQuest> daftar = qt.getDaftarMainQuestAktif();
+//        if (daftar == null || daftar.isEmpty()) {
+//            System.out.println(AnsiColors.YELLOW + "Tidak ada quest di papan pengumuman." + AnsiColors.RESET);
+//            return;
+//        }
+//
+//        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+//        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "                 Q U E S T   B O A R D                  " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+//        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
+//
+//            String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
+//        for (String wil : wilayahs) {
+//            boolean hasQuests = false;
+//            StringBuilder sb = new StringBuilder();
+//            sb.append(AnsiColors.MAGENTA + AnsiColors.BOLD + "\n[" + wil + "]" + AnsiColors.RESET + "\n");
+//
+//            for (MainQuest mq : daftar) {
+//                if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
+//                hasQuests = true;
+//                String statusIcon;
+//                if (mq.getStatusQuest() == StatusQuest.REWARDED) statusIcon = AnsiColors.CYAN + "[★]";
+//                else if (mq.getStatusQuest() == StatusQuest.COMPLETED) statusIcon = AnsiColors.GREEN + "[✓]";
+//                else if (mq.getStatusQuest() == StatusQuest.ONGOING) statusIcon = AnsiColors.YELLOW + "[▶]";
+//                else if (mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) statusIcon = AnsiColors.RED + "[🔒]";
+//                else statusIcon = AnsiColors.RED + "[✗]";
+//
+//                sb.append(String.format("  %s Quest %d: %s%s", statusIcon, mq.getNomorQuest(), mq.getNamaQuest(), AnsiColors.RESET));
+//                sb.append(String.format(" (%d/%d)\n", mq.getObjectiveProgress(), mq.getObjectiveTarget()));
+//            }
+//
+//            if (hasQuests) {
+//                System.out.print(sb.toString());
+//            }
+//        }
+//
+//        ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
+//        if (riwayat != null && !riwayat.isEmpty()) {
+//            int count = 0;
+//            for (Quest q : riwayat) {
+//                if (q instanceof MainQuest) count++;
+//            }
+//            System.out.println(AnsiColors.GREEN + "\nTotal main quest selesai: " + count + "/25" + AnsiColors.RESET);
+//        } else {
+//            System.out.println(AnsiColors.YELLOW + "\nTotal main quest selesai: 0/25" + AnsiColors.RESET);
+//        }
+//    }
 
     public static void displayQuestBoardForArea(QuestTracker qt, String currentArea, java.util.Scanner scanner) {
         if (qt == null || currentArea == null|| currentArea.isEmpty()) {
@@ -197,10 +197,9 @@ public class MainQuest extends Quest {
         System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "           Q U E S T   B O A R D  -  " + currentArea.toUpperCase() + "           " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
         System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
 
-        java.util.List<MainQuest> available = new java.util.ArrayList<>();
+        List<MainQuest> available = new ArrayList<>();
          for (MainQuest mq : daftar) {
              if (mq == null) continue;
-             // Only show quests in current area with BELUM_DIAMBIL status
              if (mq.getWilayah() != null && mq.getWilayah().equalsIgnoreCase(currentArea) && mq.getStatusQuest() == StatusQuest.BELUM_DIAMBIL) {
                  available.add(mq);
              }

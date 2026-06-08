@@ -1,5 +1,7 @@
 package enums;
 
 public enum EquipmentType {
-    WEAPON, ARMOR, ACCESSORY;
+    WEAPON,
+    ARMOR,
+    ACCESSORY;
 }

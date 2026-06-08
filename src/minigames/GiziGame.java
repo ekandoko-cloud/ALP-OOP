@@ -23,7 +23,7 @@ public class GiziGame extends MiniGame {
     private final int poinGiziSayur = 25;
 
     public GiziGame() {
-        super("Investasi Gizi Desa (SDG 2)", 500); // 500 adalah rewardKoin
+        super("Investasi Gizi Desa (SDG 2)", 500);
     }
 
     @Override

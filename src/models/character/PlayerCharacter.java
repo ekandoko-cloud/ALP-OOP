@@ -133,11 +133,11 @@ public class PlayerCharacter extends GameCharacter implements Skill{
     public void levelUp() {
         this.level++;
         this.maxExp = this.level * 100;
-        this.maxHp++;
+        this.maxHp += 10;
         this.currentHp = this.maxHp;
-        this.maxMp++;
+        this.maxMp += 5;
         this.currentMp = this.maxMp;
-        this.kekuatan++;
+        this.kekuatan += 2;
         this.defense++;
         System.out.println("LEVEL UP! " + this.nama + " sekarang level " + this.level + "!");
     }

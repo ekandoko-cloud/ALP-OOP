@@ -163,4 +163,8 @@ public class Shop {
     public void setCurrentAccount(AccountProfile account) {
         this.currentAccount = account;
     }
+
+    public AccountProfile getCurrentAccount() {
+        return currentAccount;
+    }
 }

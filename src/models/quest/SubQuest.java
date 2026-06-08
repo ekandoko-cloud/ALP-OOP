@@ -81,7 +81,6 @@ public class SubQuest extends Quest {
             return;
         }
 
-        // Build available list from the global DummyData catalog so new accounts can see/accept subquests
          List<SubQuest> available = new ArrayList<>();
          try {
              List<SubQuest> catalog = DummyData.subquest.getDummySubQuestByWilayah(area);
@@ -89,10 +88,8 @@ public class SubQuest extends Quest {
                  for (SubQuest sq : catalog) {
                      if (sq == null) continue;
 
-                     // Only show BELUM_DIAMBIL quests
                      if (sq.getStatusQuest() != enums.StatusQuest.BELUM_DIAMBIL) continue;
 
-                     // Skip if already active (already taken)
                      List<SubQuest> aktif = qt.getDaftarSubQuestAktif();
                      boolean alreadyActive = false;
                      if (aktif != null) {
@@ -105,7 +102,6 @@ public class SubQuest extends Quest {
                      }
                      if (alreadyActive) continue;
 
-                     // Skip if already completed (in history)
                      List<Quest> selesai = qt.getRiwayatMisiSelesai();
                      boolean alreadyDone = false;
                      if (selesai != null) {
@@ -159,7 +155,6 @@ public class SubQuest extends Quest {
                 return;
             }
 
-            // Do not mutate the global DummyData instance. Create a player-specific copy
             SubQuest playerQuest = new SubQuest(
                     picked.getIdQuest(),
                     picked.getNamaQuest(),
