@@ -1904,29 +1904,48 @@ public class App {
     private ArrayList<Item> forgeShopItems;
     private ArrayList<Item> equipmentShopItems;
     private ArrayList<Item> shop1Items;
-
-    private void consumableShopItems(){
-        if(consumablesShop == null){
-            consumablesShopItems = new ArrayList<>();
-            consumablesShop = new Shop(consumablesShopItems, "Consumables Ingredients Shop", currentAccount);
-        }
-    }
+    private Shop armorShop;
+    private Shop accessoryShop;
+    private Shop weaponShop;
+    private ArrayList<Item> armorShopItems;
+    private ArrayList<Item> accessoryShopItems;
+    private ArrayList<Item> weaponShopItems;
 
     private void shop1() {
-        if (shop1 == null) {
-            shop1Items = new ArrayList<>();
-            shop1 = new Shop(shop1Items, "Shop 1", currentAccount);
-            shop1Items.add(consumables.get(1));
-            shop1Items.add(consumables.get(2));
-            shop1Items.add(consumables.get(3));
-            shop1Items.add(consumables.get(4));
-            shop1Items.add(consumables.get(5));
-            shop1Items.add(consumables.get(6));
-            shop1Items.add(consumables.get(7));
-            shop1Items.add(consumables.get(8));
-        } else {
-            shop1.setCurrentAccount(currentAccount);
+        if (consumablesShop == null) {
+            consumablesShopItems = new ArrayList<>(ingredientConsumablesCatalog.values());
+            consumablesShop = new Shop(consumablesShopItems, "Consumables Ingredients Shop", currentAccount);
         }
+        consumablesShop.setCurrentAccount(currentAccount);
+
+        if (forgeShop == null) {
+            forgeShopItems = new ArrayList<>();
+            for (int i = 1; i <= 10; i++) {
+                Item item = ingredientAlamCatalog.get(i);
+                if (item != null) forgeShopItems.add(item);
+            }
+            forgeShop = new Shop(forgeShopItems, "Forge Materials Shop", currentAccount);
+        }
+        forgeShop.setCurrentAccount(currentAccount);
+
+        if (weaponShop == null) {
+            weaponShopItems = new ArrayList<>(weaponCatalog.values());
+            weaponShop = new Shop(weaponShopItems, "Weapon Shop", currentAccount);
+        }
+        weaponShop.setCurrentAccount(currentAccount);
+
+        if (armorShop == null) {
+            armorShopItems = new ArrayList<>(armorCatalog.values());
+            armorShop = new Shop(armorShopItems, "Armor Shop", currentAccount);
+        }
+        armorShop.setCurrentAccount(currentAccount);
+
+        if (accessoryShop == null) {
+            accessoryShopItems = new ArrayList<>(accessoryCatalog.values());
+            accessoryShop = new Shop(accessoryShopItems, "Accessory Shop", currentAccount);
+        }
+        accessoryShop.setCurrentAccount(currentAccount);
+
         shopMenu1();
     }
 
@@ -1953,6 +1972,108 @@ public class App {
     public void shopMenu1() {
         while (true) {
             System.out.println();
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                         ███████╗██╗  ██╗ ██████╗ ██████╗                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                         ██╔════╝██║  ██║██╔═══██╗██╔══██╗                         " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD +  "                         ███████╗███████║██║   ██║██████╔╝                         " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD +  "                         ╚════██║██╔══██║██║   ██║██╔═══╝                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                         ███████║██║  ██║╚██████╔╝██║                              " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                         ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝                              " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + " ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                      -  Selamat datang di Toko! Pilih Tipe  -                      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [1] Consumables Ingredients Shop                                               " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [2] Forge Materials Shop                                                       " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [3] Equipment Shop                                                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + "  >  [4] Back to Main Menu                                                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "                                     Choose an option :                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
+            System.out.print(AnsiColors.SOFT_WHITE + "  >> " + AnsiColors.RESET);
+
+            try {
+                int choice = inpInt.nextInt();
+                if (choice == 1) {
+                    consumableShopMenu();
+                }
+                else if (choice == 2) {
+                    forgeShopMenu();
+                }
+                else if (choice == 3) {
+                    equipmentShopMenu();
+                }
+                else if (choice == 4) {
+                    mainMenu();
+                }
+                else {
+                    System.out.println(INVALID_INPUT_BOX);
+                }
+            } catch (Exception e) {
+                inpInt.nextLine();
+                System.out.println(INVALID_INPUT_BOX);
+            }
+        }
+    }
+
+    private void equipmentShopMenu() {
+        while (true) {
+            System.out.println();
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ███████╗ ██████╗  ██╗   ██╗ ██╗ ██████╗  ███╗   ███╗ ███████╗ ███╗   ██╗ ████████╗" + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ██╔════╝ ██╔═══██╗██║   ██║ ██║ ██╔══██╗ ████╗ ████║ ██╔════╝ ████╗  ██║ ╚══██╔══╝" + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "  █████╗   ██║   ██║██║   ██║ ██║ ██████╔╝ ██╔████╔██║ █████╗   ██╔██╗ ██║    ██║   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "  ██╔══╝   ██║   ██║██║   ██║ ██║ ██╔═══╝  ██║╚██╔╝██║ ██╔══╝   ██║╚██╗██║    ██║   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "  ███████╗ ╚██████╔╝╚██████╔╝ ██║ ██║      ██║ ╚═╝ ██║ ███████╗ ██║ ╚████║    ██║   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "  ╚══════╝  ╚═════╝  ╚═════╝  ╚═╝ ╚═╝      ╚═╝     ╚═╝ ╚══════╝ ╚═╝  ╚═══╝    ╚═╝   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                     -  Pilih Tipe Equipment yang Diinginkan  -                     " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [1] Weapon Shop                                                                " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [2] Armor Shop                                                                 " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + "  >  [3] Accessory Shop                                                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + "  >  [4] Back to Shop Menu                                                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "                                     Choose an option :                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
+            System.out.print(AnsiColors.SOFT_WHITE + "  >> " + AnsiColors.RESET);
+
+            try {
+                int choice = inpInt.nextInt();
+                if (choice == 1) {
+                    weaponShopMenu();
+                }
+                else if (choice == 2) {
+                    armorShopMenu();
+                }
+                else if (choice == 3) {
+                    accessoryShopMenu();
+                }
+                else if (choice == 4) {
+                    shopMenu1();
+                }
+                else {
+                    System.out.println(INVALID_INPUT_BOX);
+                }
+            } catch (Exception e) {
+                inpInt.nextLine();
+                System.out.println(INVALID_INPUT_BOX);
+            }
+        }
+    }
+
+    private void displayShopMenu(Shop shop, String errorPrefix) {
+        while (true) {
+            System.out.println();
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                     ███████╗██╗  ██╗ ██████╗ ██████╗                       " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
@@ -1964,7 +2085,7 @@ public class App {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            shop1.tampilkanItem();
+            shop.tampilkanItem();
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
@@ -1974,7 +2095,7 @@ public class App {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "   [3]" + AnsiColors.RESET + "  Display Item Details                                                " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + "   [4]" + AnsiColors.RESET + "  Back to Main Menu                                                   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + "   [4]" + AnsiColors.RESET + "  Back to Shop Menu                                                   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
             System.out.println();
@@ -1983,70 +2104,81 @@ public class App {
             try {
                 int choice = inpInt.nextInt();
 
-
                 if (choice == 1) {
                     System.out.print("Enter the index of the item you want to buy: ");
                     int itemIndex = inpInt.nextInt();
-
                     System.out.print("Enter the amount: ");
                     int itemAmount = inpInt.nextInt();
-
-                    shop1.beliItem(itemIndex, itemAmount, currentAccount);
+                    shop.beliItem(itemIndex, itemAmount, currentAccount);
                 } else if (choice == 2) {
                     try {
                         if (currentAccount == null) {
                             System.out.println("Error: Account tidak tersedia.");
                             continue;
                         }
-
                         LinkedList<Item> inventory = currentAccount.getInventory();
                         if (inventory == null || inventory.isEmpty()) {
                             System.out.println("Inventory Anda kosong! Tidak ada item untuk dijual.");
                             continue;
                         }
-
                         Inventory inventoryPlayer = new Inventory(currentAccount);
                         inventoryPlayer.displayInventory();
                         System.out.println();
                         System.out.print("Enter the index of the item you want to sell: ");
-
                         if (!inpInt.hasNextInt()) {
                             System.out.println("Input tidak valid. Masukkan angka!");
                             inpInt.nextLine();
                             continue;
                         }
-
                         int itemIndex = inpInt.nextInt();
                         inpInt.nextLine();
-
                         if (itemIndex < 1 || itemIndex > inventory.size()) {
                             System.out.println("Index tidak valid! (Valid: 1 - " + inventory.size() + ")");
                             continue;
                         }
-
-                        shop1.sellItem(itemIndex, currentAccount);
+                        shop.sellItem(itemIndex, currentAccount);
                     } catch (NullPointerException e) {
-                        System.err.println("[App.shop1.jual] Data null saat jual item: " + e.getMessage());
+                        System.err.println("[App." + errorPrefix + ".jual] Data null saat jual item: " + e.getMessage());
                         System.out.println("Error: Data tidak tersedia untuk penjualan!");
                     } catch (Exception e) {
-                        System.err.println("[App.shop1.jual] Gagal menjual item: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+                        System.err.println("[App." + errorPrefix + ".jual] Gagal menjual item: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                         System.out.println("Error saat menjual item: " + e.getMessage());
                     }
                 } else if (choice == 3) {
                     System.out.print("Enter the index of the item you want to see the details of: ");
                     int itemIndex = inpInt.nextInt();
-                    shop1.displayItemDetail(itemIndex);
+                    shop.displayItemDetail(itemIndex);
                 } else if (choice == 4) {
-                    mainMenu();
+                    shopMenu1();
                 } else {
                     System.out.println("Invalid Input. Please pick according to the index");
                 }
             } catch (Exception e) {
                 inpInt.nextLine();
-                System.err.println("[App.shop1] Input error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+                System.err.println("[App." + errorPrefix + "] Input error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                 System.out.println("Invalid Input");
             }
         }
+    }
+
+    private void consumableShopMenu() {
+        displayShopMenu(consumablesShop, "consumablesShop");
+    }
+
+    private void forgeShopMenu() {
+        displayShopMenu(forgeShop, "forgeShop");
+    }
+
+    private void weaponShopMenu() {
+        displayShopMenu(weaponShop, "weaponShop");
+    }
+
+    private void armorShopMenu() {
+        displayShopMenu(armorShop, "armorShop");
+    }
+
+    private void accessoryShopMenu() {
+        displayShopMenu(accessoryShop, "accessoryShop");
     }
 
     //FITUR INVENTORY
@@ -2393,7 +2525,8 @@ public class App {
         if (aktif != null) {
             for (MainQuest mq : aktif) {
                 if (mq == null) continue;
-                if (mq.getStatusQuest() != enums.StatusQuest.COMPLETED && mq.getStatusQuest() != enums.StatusQuest.REWARDED) continue;
+                if (mq.getStatusQuest() != enums.StatusQuest.COMPLETED && mq.getStatusQuest() != enums.StatusQuest.REWARDED)
+                    continue;
                 int indeksDiRiwayat = -1;
                 for (int i = 0; i < riwayat.size(); i++) {
                     Quest q = riwayat.get(i);
