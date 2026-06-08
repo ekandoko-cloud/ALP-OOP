@@ -22,7 +22,7 @@ public class MapTraversal {
 
     public MapTraversal() {
         this.riwayatArea = new Stack<>();
-        this.riwayatArea.push(LINEAR_LOCATIONS.get(0));
+        this.riwayatArea.push(LINEAR_LOCATIONS.getFirst());
     }
 
     public MapTraversal(String startArea) {
@@ -31,7 +31,7 @@ public class MapTraversal {
     }
 
     public void initializeFromAreaName(String startArea) {
-        if (startArea == null) startArea = LINEAR_LOCATIONS.get(0).getNamaLokasi();
+        if (startArea == null) startArea = LINEAR_LOCATIONS.getFirst().getNamaLokasi();
         for (Location loc : LINEAR_LOCATIONS) {
             this.riwayatArea.push(loc);
             if (loc.getNamaLokasi().equalsIgnoreCase(startArea)) {
@@ -39,7 +39,7 @@ public class MapTraversal {
             }
         }
         this.riwayatArea.clear();
-        this.riwayatArea.push(LINEAR_LOCATIONS.get(0));
+        this.riwayatArea.push(LINEAR_LOCATIONS.getFirst());
     }
 
     public Stack<Location> getRiwayatArea() {
@@ -58,10 +58,6 @@ public class MapTraversal {
         return false;
     }
 
-    // Move to a named area respecting the linear structure.
-    // - If target is the next area: push it.
-    // - If target is a previous area: pop until it becomes current.
-    // - Otherwise (non-adjacent forward jump) returns false.
     public boolean goTo(String areaName) {
         if (areaName == null) return false;
         Location current = areaSaatIni();
@@ -72,16 +68,15 @@ public class MapTraversal {
         int curIdx = indexOf(curName);
         if (targetIdx == -1) return false;
 
-        if (targetIdx == curIdx + 1) { // forward one step
+        if (targetIdx == curIdx + 1) {
             riwayatArea.push(LINEAR_LOCATIONS.get(targetIdx));
             return true;
-        } else if (targetIdx < curIdx) { // go back: pop until target
+        } else if (targetIdx < curIdx) {
             while (!riwayatArea.isEmpty() && !areaSaatIni().getNamaLokasi().equalsIgnoreCase(areaName)) {
                 riwayatArea.pop();
             }
             return true;
         }
-        // disallow multi-step forward jumps in this linear traversal implementation
         return false;
     }
 

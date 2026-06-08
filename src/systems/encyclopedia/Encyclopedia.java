@@ -243,8 +243,7 @@ public class Encyclopedia {
 
     private void printClassTreeRecursive(ClassNode node, int depth) {
         String indent = "  ".repeat(depth);
-        String status = node.isUnlocked() ? AnsiColors.GREEN + "[UNLOCKED]" + AnsiColors.RESET : AnsiColors.RED + "[LOCKED]" + AnsiColors.RESET;
-        System.out.println(indent + "- " + AnsiColors.YELLOW + node.getNamaClass() + AnsiColors.RESET + " (Level " + node.getSyaratLevel() + ") " + status);
+        System.out.println(indent + "- " + AnsiColors.YELLOW + node.getNamaClass() + AnsiColors.RESET + " (Level " + node.getSyaratLevel());
         System.out.println(indent + "  " + node.getDeskripsi());
         for (ClassNode child : node.getChildren()) {
             printClassTreeRecursive(child, depth + 1);
@@ -260,8 +259,7 @@ public class Encyclopedia {
         int i = 1;
         for (Map.Entry<String, Object> entry : indexSkillTree.entrySet()) {
             SkillNode s = (SkillNode) entry.getValue();
-            String status = s.isUnlocked() ? AnsiColors.GREEN + "[UNLOCKED]" + AnsiColors.RESET : AnsiColors.RED + "[LOCKED]" + AnsiColors.RESET;
-            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + s.getNamaSkill() + AnsiColors.RESET + " " + status);
+            System.out.println(AnsiColors.GREEN + "[" + i + "]" + AnsiColors.RESET + " " + AnsiColors.YELLOW + s.getNamaSkill() + AnsiColors.RESET);
             System.out.println("   " + s.getDeskripsi());
             System.out.println("   Biaya: " + s.getBiayaGold() + " gold");
             if (s.getParent() != null) {

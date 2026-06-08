@@ -156,7 +156,7 @@ public class SaveLoadSystem {
             System.out.println("Game Saved! Progres berhasil disimpan ke \"" + fileName + "\".");
 
         } catch (Exception e) {
-            System.err.println("[SaveLoadSystem.save] Gagal menyimpan game: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            System.err.println("Gagal menyimpan game: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("Gagal menyimpan progres. Silakan coba lagi.");
         }
     }

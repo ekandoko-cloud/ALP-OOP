@@ -2,12 +2,6 @@ package systems.map;
 import java.util.*;
 import models.location.Location;
 
-/**
- * Waypoint System:
- * Menyimpan daftar area yang pernah dikunjungi pemain.
- * Memungkinkan pemain untuk teleport ke area yang sudah dibuka.
- * ArrayList digunakan untuk penyimpanan dinamis dengan akses O(1) via indeks.
- */
 public class WaypointSystem {
     private ArrayList<Location> lokasiTerbuka;
     private Location lokasiSaatIni;
@@ -34,27 +28,18 @@ public class WaypointSystem {
         this.lokasiSaatIni = lokasiSaatIni;
     }
 
-    /**
-     * Menambahkan area baru ke daftar waypoint jika belum pernah dikunjungi.
-     * @param loc - Area yang akan ditambahkan
-     */
     public void tambahLokasi(Location loc) {
         if (loc == null) return;
 
-        // Cek apakah area sudah ada di daftar
         for (Location existing : lokasiTerbuka) {
             if (existing != null && existing.getNamaLokasi().equalsIgnoreCase(loc.getNamaLokasi())) {
-                return; // Area sudah ada, tidak perlu ditambahkan
+                return;
             }
         }
 
-        // Tambahkan area baru
         lokasiTerbuka.add(loc);
     }
 
-    /**
-     * Menampilkan daftar area yang telah dibuka (visited areas).
-     */
     public void tampilkanDaftar() {
         if (lokasiTerbuka.isEmpty()) {
             System.out.println("Belum ada area yang dikunjungi.");

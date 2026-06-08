@@ -32,27 +32,26 @@ public class ClassSystem {
             case "Swordsman":
             case "Knight":
             case "Berserker":
-                // focus ATK and HP
-                pc.setKekuatan(pc.getKekuatan() + 3);
-                pc.setDefense(pc.getDefense() + 1);
-                pc.setMaxHp(pc.getMaxHp() + 5);
+                pc.setKekuatan(pc.getKekuatan() + 20);
+                pc.setDefense(pc.getDefense() + 10);
+                pc.setMaxHp(pc.getMaxHp() + 100);
                 pc.setCurrentHp(pc.getMaxHp());
                 break;
             case "Archer":
             case "Scout":
             case "Marksman":
             case "Ranger":
-                pc.setKekuatan(pc.getKekuatan() + 2);
-                pc.setDefense(pc.getDefense() + 1);
-                pc.setMaxMp(pc.getMaxMp() + 2);
+                pc.setKekuatan(pc.getKekuatan() + 30);
+                pc.setDefense(pc.getDefense() + 5);
+                pc.setMaxMp(pc.getMaxMp() + 50);
                 pc.setCurrentMp(pc.getMaxMp());
                 break;
             case "Mage":
             case "Wizard":
             case "Witch":
             case "Archmage":
-                pc.setKekuatan(pc.getKekuatan() + 1);
-                pc.setMaxMp(pc.getMaxMp() + 5);
+                pc.setKekuatan(pc.getKekuatan() + 50);
+                pc.setMaxMp(pc.getMaxMp() + 100);
                 pc.setCurrentMp(pc.getMaxMp());
                 break;
             case "Support":
@@ -60,8 +59,8 @@ public class ClassSystem {
             case "Angel":
             case "Paladin":
             case "Archangel":
-                pc.setDefense(pc.getDefense() + 3);
-                pc.setMaxHp(pc.getMaxHp() + 3);
+                pc.setDefense(pc.getDefense() + 50);
+                pc.setMaxHp(pc.getMaxHp() + 150);
                 pc.setCurrentHp(pc.getMaxHp());
                 break;
             default:
