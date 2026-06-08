@@ -4,6 +4,7 @@ import DummyData.mainquest;
 import enums.BattleResult;
 import models.account.AccountProfile;
 import models.character.GameCharacter;
+import models.character.PlayerCharacter;
 import models.location.Location;
 import models.quest.MainQuest;
 import systems.map.MapTraversal;
@@ -28,11 +29,6 @@ public class AdventureSystem {
         Scanner scanner = input == null ? new Scanner(System.in) : input;
         Location currentLocation = mapTraversal.areaSaatIni();
         int chapter = chapterDariArea(currentLocation);
-
-        QuestTracker questTracker = account.getQuestTracker();
-        if (questTracker != null) {
-            questTracker.sinkronisasiChapterTerbuka(chapter);
-        }
 
         int roll = random.nextInt(100);
         if (roll < CHANCE_BATTLE) {
@@ -68,6 +64,12 @@ public class AdventureSystem {
             account.setTotalGold(account.getTotalGold() + bonusGold);
             System.out.println("Kamu menang dan mendapatkan " + bonusGold + " Gold.");
         } else if (result == BattleResult.DEFEAT) {
+            for (PlayerCharacter pc : account.getParty()) {
+                if (pc != null) {
+                    pc.setCurrentHp(pc.getMaxHp());
+                    pc.setCurrentMp(pc.getMaxMp());
+                }
+            }
             System.out.println("Party kamu kalah. Cobalah lagi setelah memperkuat karakter.");
         } else {
             System.out.println("Kamu kabur dari battle.");

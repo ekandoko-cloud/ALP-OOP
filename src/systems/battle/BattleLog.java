@@ -51,21 +51,4 @@ public class BattleLog {
         turnEntries.add(new ArrayList<>());
         currentTurn = 1;
     }
-
-    public ArrayList<String> getHistoryLog() {
-        ArrayList<String> flat = new ArrayList<>();
-        for (ArrayList<String> turn : turnEntries) {
-            flat.addAll(turn);
-        }
-        return flat;
-    }
-
-    public void setHistoryLog(ArrayList<String> historyLog) {
-        this.turnEntries.clear();
-        this.turnEntries.add(new ArrayList<>());
-        this.currentTurn = 1;
-        if (historyLog != null) {
-            this.turnEntries.get(0).addAll(historyLog);
-        }
-    }
 }

@@ -13,16 +13,8 @@ public class Location {
         return namaLokasi;
     }
 
-    public void setNamaLokasi(String namaLokasi) {
-        this.namaLokasi = namaLokasi;
-    }
-
     public String getDeskripsiLokasi() {
         return deskripsiLokasi;
-    }
-
-    public void setDeskripsiLokasi(String deskripsiLokasi) {
-        this.deskripsiLokasi = deskripsiLokasi;
     }
 }
 

@@ -172,9 +172,11 @@ public class Inventory {
             System.out.println("Item consumable digunakan pada " + target.getNama() + ".");
             return true;
         } catch (IndexOutOfBoundsException e) {
+            System.err.println("[Inventory.useItem] Index tidak valid: " + e.getMessage());
             System.out.println("Error: Index tidak valid!");
             return false;
         } catch (Exception e) {
+            System.err.println("[Inventory.useItem] Gagal menggunakan item: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("Error menggunakan item: " + e.getMessage());
             return false;
         }
@@ -279,35 +281,13 @@ public class Inventory {
             }
             return true;
         } catch (Exception e) {
+            System.err.println("[Inventory.equipItem] Gagal equip item: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("Error equip item: " + e.getMessage());
             return false;
         }
     }
 
-    public LinkedList<Item> getListBarang() {
-        return listBarang;
-    }
-
-    public void setListBarang(LinkedList<Item> listBarang) {
-        this.listBarang = listBarang;
-    }
-
     private void sortByName(List<Item> items) {
         items.sort(Comparator.comparing(Item::getNamaItem));
-    }
-
-
-    public int getMAX_INVENTORY_SLOTS() {
-        if (currentAccount != null) {
-            return currentAccount.getMaxInventorySlots();
-        }
-        return MAX_INVENTORY_SLOTS; // fallback to local default
-    }
-
-    public void setMAX_INVENTORY_SLOTS(int maxSlots) {
-        if (currentAccount != null) {
-            currentAccount.setMaxInventorySlots(maxSlots);
-        }
-        this.MAX_INVENTORY_SLOTS = maxSlots;
     }
 }

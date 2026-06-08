@@ -49,8 +49,6 @@ public class SaveLoadSystem {
             writer.newLine();
             writer.write("totalGold=" + profile.getTotalGold());
             writer.newLine();
-            writer.write("totalPlaytime=" + profile.getTotalPlaytimeFormatted());
-            writer.newLine();
             writer.write("maxInventorySlots=" + profile.getMaxInventorySlots());
             writer.newLine();
             writer.write("areaName=" + profile.getAreaName());
@@ -66,7 +64,7 @@ public class SaveLoadSystem {
                     if (karakter == null) {
                         continue;
                     }
-                    writer.write("karakter=" + karakter.getNama() + "^" + karakter.getNamaClass() + "^" + karakter.getLevel() + "^" + karakter.getMaxHp() + "^" + karakter.getCurrentHp() + "^" + karakter.getMaxMp() + "^" + karakter.getCurrentMp() + "^" + karakter.getKekuatan() + "^" + karakter.getDefense() + "^" + karakter.getCurrentExp() + "^" + karakter.getMaxExp() + "^" + karakter.isStatusTubuhNirlelah() + "^" + (karakter.getCurrentWeapon() != null ? karakter.getCurrentWeapon().getIdItem() : 0) + "^" + (karakter.getCurrentArmor() != null ? karakter.getCurrentArmor().getIdItem() : 0) + "^" + (karakter.getCurrentAccessory() != null ? karakter.getCurrentAccessory().getIdItem() : 0));
+                    writer.write("karakter=" + karakter.getNama() + "^" + karakter.getNamaClass() + "^" + karakter.getLevel() + "^" + karakter.getMaxHp() + "^" + karakter.getCurrentHp() + "^" + karakter.getMaxMp() + "^" + karakter.getCurrentMp() + "^" + karakter.getKekuatan() + "^" + karakter.getDefense() + "^" + karakter.getCurrentExp() + "^" + karakter.getMaxExp() + "^" + (karakter.getCurrentWeapon() != null ? karakter.getCurrentWeapon().getIdItem() : 0) + "^" + (karakter.getCurrentArmor() != null ? karakter.getCurrentArmor().getIdItem() : 0) + "^" + (karakter.getCurrentAccessory() != null ? karakter.getCurrentAccessory().getIdItem() : 0));
                     writer.newLine();
                 }
             }
@@ -158,7 +156,8 @@ public class SaveLoadSystem {
             System.out.println("Game Saved! Progres berhasil disimpan ke \"" + fileName + "\".");
 
         } catch (Exception e) {
-            System.out.println("Error saving game: " + e.getMessage());
+            System.err.println("[SaveLoadSystem.save] Gagal menyimpan game: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            System.out.println("Gagal menyimpan progres. Silakan coba lagi.");
         }
     }
 
@@ -174,7 +173,6 @@ public class SaveLoadSystem {
         //temp file
         String usernameSave = "";
         int totalGold = 0;
-        int totalPlaytime = 0;
         int maxInventorySlots = -1;
         String areaName = "";
 
@@ -209,24 +207,6 @@ public class SaveLoadSystem {
                         usernameSave = line.substring("username=".length());
                     } else if (line.startsWith("totalGold=")) {
                         totalGold = Integer.parseInt(line.substring("totalGold=".length()));
-                    } else if (line.startsWith("totalPlaytime=")) {
-                        String val = line.substring("totalPlaytime=".length());
-                        if (val.contains(":")) {
-                            String[] parts = val.split(":");
-                            try {
-                                int h = Integer.parseInt(parts[0]);
-                                int m = parts.length > 1 ? Integer.parseInt(parts[1]) : 0;
-                                totalPlaytime = h * 60 + m;
-                            } catch (NumberFormatException nfe) {
-                                totalPlaytime = 0;
-                            }
-                        } else {
-                            try {
-                                totalPlaytime = Integer.parseInt(val);
-                            } catch (NumberFormatException nfe) {
-                                totalPlaytime = 0;
-                            }
-                        }
                     } else if (line.startsWith("maxInventorySlots=")) {
                         try {
                             maxInventorySlots = Integer.parseInt(line.substring("maxInventorySlots=".length()));
@@ -249,8 +229,7 @@ public class SaveLoadSystem {
                                     Integer.parseInt(data[2]),  // level
                                     Integer.parseInt(data[9]),  // currentExp
                                     Integer.parseInt(data[10]), // maxExp
-                                    data[1], //class
-                                    Boolean.parseBoolean(data[11])); //fatigue
+                                    data[1]); //class
                             if (data.length >= 13) {
                                 trySetEquipmentSlot(karakter, data[12], "WEAPON");
                             }
@@ -418,7 +397,6 @@ public class SaveLoadSystem {
             AccountProfile profile = new AccountProfile(usernameSave.isEmpty() ? username : usernameSave, "", totalGold, partyArray, inventoryList, questTracker);
             // apply loaded maxInventorySlots if present (will re-apply trimming inside setMaxInventorySlots)
             if (maxInventorySlots > 0) profile.setMaxInventorySlots(maxInventorySlots);
-            profile.setTotalPlaytime(totalPlaytime);
             profile.setAreaName(areaName);
             profile.setUnlockedSkillNames(unlockedSkills);
             for (String loc : visitedLocations) {
@@ -426,7 +404,8 @@ public class SaveLoadSystem {
             }
             return profile;
         } catch (Exception e) {
-            System.out.println("Error loading game: " + e.getMessage());
+            System.err.println("[SaveLoadSystem.load] Gagal memuat game: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+            System.out.println("Gagal memuat progres. File save mungkin rusak.");
             return null;
         }
     }

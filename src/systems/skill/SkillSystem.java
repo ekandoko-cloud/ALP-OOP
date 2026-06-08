@@ -27,7 +27,7 @@ public class SkillSystem {
         if (account.getTotalGold() < chosen.getBiayaGold()) return;
 
         account.setTotalGold(account.getTotalGold() - chosen.getBiayaGold());
-        chosen.unlock();
+        chosen.setUnlocked(true);
         account.addUnlockedSkillName(chosen.getNamaSkill());
         applySkillEffect(chosen, account);
     }

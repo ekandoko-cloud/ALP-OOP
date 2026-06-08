@@ -1,24 +1,23 @@
 [BASIC INFO]
 username=r
-totalGold=0
-totalPlaytime=0:00
+totalGold=1169
 maxInventorySlots=200
-areaName=
+areaName=Valerion
 
 [PARTY INFO]
-karakter=Faris^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Wren^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Darius^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
-karakter=Ishar^CLASSLESS^1^100^100^50^50^10^5^0^100^false^0^0^0
+karakter=Barek^CLASSLESS^3^102^84^52^52^17^7^264^300^0^0^0
+karakter=Yevon^CLASSLESS^3^102^96^52^52^17^7^264^300^0^0^0
+karakter=Quist^CLASSLESS^3^102^97^52^52^17^7^264^300^0^0^0
+karakter=Fenn^CLASSLESS^3^102^96^52^52^17^7^264^300^0^0^0
 
 [INVENTORY INFO]
 
 [QUEST INFO]
-mainQuest=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^0^100^1^BELUM_DIAMBIL^^Valerion^1^5x Copper^Infected Rat~Infected Rat~Infected Rat~Scavenger Scout
-mainQuest=2^Melacak Akar Parasit^Main Quest Valerion - Quest 2.^2x Corrupted Crawler, 2x Blight Spore^4^0^150^1^BELUM_DIAMBIL^^Valerion^2^5x Bitter Herb^Corrupted Crawler~Corrupted Crawler~Blight Spore~Blight Spore
-mainQuest=3^Mengamankan Air Bersih^Main Quest Valerion - Quest 3.^1x Scavenger Hunter, 3x Infected Rat^4^0^200^1^BELUM_DIAMBIL^^Valerion^3^1x Filtered Water^Scavenger Hunter~Infected Rat~Infected Rat~Infected Rat
-mainQuest=4^Pemetaan Area Blight^Main Quest Valerion - Quest 4.^2x Blight Spore, 2x Corrupted Crawler^4^0^0^1^BELUM_DIAMBIL^^Valerion^4^5x Iron + 5x Withered Herb^Blight Spore~Blight Spore~Corrupted Crawler~Corrupted Crawler
-mainQuest=5^Melawan Blight-Root^Main Quest Valerion - Quest 5.^2x Blight Spore, 2x Corrupted Crawler, 1x Boss: Blight-Root^5^0^300^1^BELUM_DIAMBIL^^Valerion^5^Blight-Root Core^Blight Spore~Blight Spore~Corrupted Crawler~Corrupted Crawler~Blight-Root
+mainQuest=1^Investigasi Tanah Mati^Main Quest Valerion - Quest 1.^3x Infected Rat, 1x Scavenger Scout^4^4^100^1^COMPLETED^[MainQuest] Kalahkan Infected Rat (1/4)~[MainQuest] Kalahkan Infected Rat (2/4)~[MainQuest] Kalahkan Infected Rat (3/4)~[MainQuest] Kalahkan Scavenger Scout (4/4)^Valerion^1^5x Copper^Infected Rat~Infected Rat~Infected Rat~Scavenger Scout
+mainQuest=2^Melacak Akar Parasit^Main Quest Valerion - Quest 2.^2x Corrupted Crawler, 2x Blight Spore^4^4^150^1^COMPLETED^[MainQuest] Kalahkan Blight Spore (1/4)~[MainQuest] Kalahkan Blight Spore (2/4)~[MainQuest] Kalahkan Corrupted Crawler (3/4)~[MainQuest] Kalahkan Corrupted Crawler (4/4)^Valerion^2^5x Bitter Herb^Corrupted Crawler~Corrupted Crawler~Blight Spore~Blight Spore
+mainQuest=3^Mengamankan Air Bersih^Main Quest Valerion - Quest 3.^1x Scavenger Hunter, 3x Infected Rat^4^4^200^1^COMPLETED^[MainQuest] Kalahkan Infected Rat (1/4)~[MainQuest] Kalahkan Infected Rat (2/4)~[MainQuest] Kalahkan Infected Rat (3/4)~[MainQuest] Kalahkan Scavenger Hunter (4/4)^Valerion^3^1x Filtered Water^Scavenger Hunter~Infected Rat~Infected Rat~Infected Rat
+mainQuest=4^Pemetaan Area Blight^Main Quest Valerion - Quest 4.^2x Blight Spore, 2x Corrupted Crawler^4^4^0^1^COMPLETED^[MainQuest] Kalahkan Blight Spore (1/4)~[MainQuest] Kalahkan Blight Spore (2/4)~[MainQuest] Kalahkan Corrupted Crawler (3/4)~[MainQuest] Kalahkan Corrupted Crawler (4/4)^Valerion^4^5x Iron + 5x Withered Herb^Blight Spore~Blight Spore~Corrupted Crawler~Corrupted Crawler
+mainQuest=5^Melawan Blight-Root^Main Quest Valerion - Quest 5.^2x Blight Spore, 2x Corrupted Crawler, 1x Boss: Blight-Root^5^5^300^1^COMPLETED^[MainQuest] Kalahkan Blight Spore (1/5)~[MainQuest] Kalahkan Blight Spore (2/5)~[MainQuest] Kalahkan Corrupted Crawler (3/5)~[MainQuest] Kalahkan Corrupted Crawler (4/5)~[MainQuest] Kalahkan Corrupted Crawler (5/5)^Valerion^5^Blight-Root Core^Blight Spore~Blight Spore~Corrupted Crawler~Corrupted Crawler~Blight-Root
 mainQuest=6^Analisis Miasma^Main Quest Asgard - Quest 1.^3x Swamplands Leech, 1x Miasma Husk^4^0^250^2^BELUM_DIAMBIL^^Asgard^1^5x Murky Sludge^Swamplands Leech~Swamplands Leech~Swamplands Leech~Miasma Husk
 mainQuest=7^Mencari Filter Crystal^Main Quest Asgard - Quest 2.^2x Sludge Mutant, 2x Swamplands Leech^4^0^300^2^BELUM_DIAMBIL^^Asgard^2^2x Crystal Shard^Sludge Mutant~Sludge Mutant~Swamplands Leech~Swamplands Leech
 mainQuest=8^Menyelamatkan Penduduk^Main Quest Asgard - Quest 3.^1x Miasma Husk, 3x Sludge Mutant^4^0^400^2^BELUM_DIAMBIL^^Asgard^3^5x Sanguine Herb^Miasma Husk~Sludge Mutant~Sludge Mutant~Sludge Mutant
@@ -39,19 +38,13 @@ mainQuest=22^Mengaktifkan Seed^Main Quest Aldoria - Quest 2.^2x Flare Crawler, 2
 mainQuest=23^Menggabungkan Formula^Main Quest Aldoria - Quest 3.^1x Radiant Sentinel, 3x Flare Crawler^4^0^2500^5^BELUM_DIAMBIL^^Aldoria^3^5x Mithril^Radiant Sentinel~Flare Crawler~Flare Crawler~Flare Crawler
 mainQuest=24^Penghancur Pelindung^Main Quest Aldoria - Quest 4.^2x Radiant Sentinel, 2x Flare Crawler^4^0^3000^5^BELUM_DIAMBIL^^Aldoria^4^10x Meteorite Dust^Radiant Sentinel~Radiant Sentinel~Flare Crawler~Flare Crawler
 mainQuest=25^Melawan Chimera^Main Quest Aldoria - Quest 5.^2x Ash Beast, 2x Flare Crawler, 1x Boss: Crimson Chimera^5^0^5000^5^BELUM_DIAMBIL^^Aldoria^5^Core of Purified Earth^Ash Beast~Ash Beast~Flare Crawler~Flare Crawler~Crimson Chimera
-subQuest=1^Bersihkan Dermaga Tua^Sub Quest Valerion.^Kalahkan 3x Infected Rat^3^0^60^BELUM_DIAMBIL^^Valerion
-subQuest=2^Cari Hasil Laut Aman^Sub Quest Valerion.^Kumpulkan 4x bahan dari area pantai^4^0^80^BELUM_DIAMBIL^^Valerion
-subQuest=3^Lindungi Gudang Pasar^Sub Quest Valerion.^Kalahkan 2x Scavenger Scout^2^0^100^BELUM_DIAMBIL^^Valerion
-subQuest=4^Baca Catatan Perpustakaan^Sub Quest Asgard.^Kumpulkan 3x informasi dari area kota^3^0^90^BELUM_DIAMBIL^^Asgard
-subQuest=5^Amankan Jalur Kebun^Sub Quest Asgard.^Kalahkan 3x Swamplands Leech^3^0^110^BELUM_DIAMBIL^^Asgard
-subQuest=6^Ambil Sampel Murni^Sub Quest Asgard.^Kumpulkan 4x bahan penelitian^4^0^130^BELUM_DIAMBIL^^Asgard
-subQuest=7^Perbaiki Lumbung^Sub Quest Grandis.^Kumpulkan 4x bahan bangunan^4^0^120^BELUM_DIAMBIL^^Grandis
-subQuest=8^Usir Hama Ladang^Sub Quest Grandis.^Kalahkan 3x Security Drone^3^0^140^BELUM_DIAMBIL^^Grandis
-subQuest=9^Panen Cepat^Sub Quest Grandis.^Kumpulkan 5x hasil panen^5^0^170^BELUM_DIAMBIL^^Grandis
-subQuest=10^Racik Ramuan Ringan^Sub Quest Lumina.^Kumpulkan 3x bahan herbal^3^0^150^BELUM_DIAMBIL^^Lumina
-subQuest=11^Jaga Laboratorium^Sub Quest Lumina.^Kalahkan 2x Failed Experiment^2^0^180^BELUM_DIAMBIL^^Lumina
-subQuest=12^Distribusi Obat^Sub Quest Lumina.^Antarkan 4x paket obat^4^0^220^BELUM_DIAMBIL^^Lumina
-subQuest=13^Perkuat Benteng^Sub Quest Aldoria.^Kumpulkan 5x material pertahanan^5^0^220^BELUM_DIAMBIL^^Aldoria
-subQuest=14^Tahan Serangan Abu^Sub Quest Aldoria.^Kalahkan 3x Ash Beast^3^0^260^BELUM_DIAMBIL^^Aldoria
-subQuest=15^Sterilkan Gudang Utama^Sub Quest Aldoria.^Kumpulkan 4x material pemurnian^4^0^320^BELUM_DIAMBIL^^Aldoria
+subQuest=1^Bersihkan Dermaga Tua^Sub Quest Valerion.^Kalahkan 3x Infected Rat^3^0^60^ONGOING^^Valerion
+subQuest=2^Cari Hasil Laut Aman^Sub Quest Valerion.^Kumpulkan 4x bahan dari area pantai^4^0^80^ONGOING^^Valerion
+subQuest=3^Lindungi Gudang Pasar^Sub Quest Valerion.^Kalahkan 2x Scavenger Scout^2^0^100^ONGOING^^Valerion
+
+[SKILL INFO]
+unlockedSkills=Aura Serang I
+
+[LOCATION INFO]
+visitedLocations=valerion
 

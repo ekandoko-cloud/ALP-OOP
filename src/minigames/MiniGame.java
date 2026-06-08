@@ -15,16 +15,8 @@ public abstract class MiniGame {
         return namaGame;
     }
 
-    public void setNamaGame(String namaGame) {
-        this.namaGame = namaGame;
-    }
-
     public int getRewardKoin() {
         return rewardKoin;
-    }
-
-    public void setRewardKoin(int rewardKoin) {
-        this.rewardKoin = rewardKoin;
     }
 
     public void startGame(AccountProfile currentProfile) {

@@ -24,7 +24,6 @@ import systems.craft.ForgeSystem;
 import systems.craft.CraftingSystem;
 import systems.encyclopedia.Encyclopedia;
 import systems.gacha.GachaSystem;
-import systems.gacha.itemGacha;
 import systems.inventory.Inventory;
 import systems.save.SaveLoadSystem;
 import systems.shop.Shop;
@@ -43,7 +42,6 @@ public class App {
     public Scanner inpInt = new Scanner(System.in);
     public Scanner inpStr = new Scanner(System.in);
 
-    Inventory inventory;
     //ensiklopedia
     private final HashMap<Integer, Item> ingredientAlamCatalog = inqredients_alam.getDummyIngredientsAlamMap();
     private final HashMap<Integer, Item> ingredientMonsterCatalog = inqredients_monster.getDummyIngredientsMonsterMap();
@@ -55,7 +53,6 @@ public class App {
     private final HashMap<Integer, systems.craft.craftingRecipe> craftingRecipes = DummyData.craftingRecipe.getDummyRecipesMap();
     private final HashMap<Integer, Location> kotaMap = kota.getDummyKotaMap();
     private final HashMap<Integer, Monster> monster = DummyData.monster.getDummyMonstersMap();
-    private final HashMap<Integer, itemGacha> gachaItems = DummyData.gacha.getDummyGachaMap();
     private final HashMap<Integer, Encyclopedia> ensiklopedia = new HashMap<>();
 
     // Current logged-in account
@@ -64,10 +61,11 @@ public class App {
     private CraftingSystem craftingSystem;
     private PlayerCharacter[] party = new PlayerCharacter[4];
 
+    //class skills
     private static final Map<String, Skill> classSkills = new HashMap<>();
 
     static {
-        Skill damageSkill = new Skill() {
+        Skill Warrior = new Skill() {
             @Override
             public void gunakanSkill(GameCharacter source, GameCharacter target) {
                 if (source.getCurrentMp() < 15) {
@@ -78,7 +76,129 @@ public class App {
                 target.terimaDamage(40 + Math.max(0, source.getKekuatan() / 2));
             }
         };
-        Skill healSkill = new Skill() {
+
+        Skill Knight = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 12) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 12);
+                target.terimaDamage(60 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Swordman = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 30) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 30);
+                target.terimaDamage(150 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Berseker = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 20) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 20);
+                source.setCurrentHp(source.getCurrentHp() - 10);
+                target.terimaDamage(200 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Archer = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 15) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 15);
+                target.terimaDamage(40 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Scout = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 10) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 10);
+                target.terimaDamage(35 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Ranger = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 25) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 25);
+                target.terimaDamage(55 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Marksman = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 40) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 40);
+                target.terimaDamage(180 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Mage = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 15) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 15);
+                target.terimaDamage(40 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Wizard = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 40) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 40);
+                target.terimaDamage(80 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Archmage = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 65) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 65);
+                target.terimaDamage(250 + Math.max(0, source.getKekuatan() / 2));
+            }
+        };
+
+        Skill Support = new Skill() {
             @Override
             public void gunakanSkill(GameCharacter source, GameCharacter target) {
                 if (source.getCurrentMp() < 20) {
@@ -90,23 +210,74 @@ public class App {
             }
         };
 
-        classSkills.put("Warrior", damageSkill);
-        classSkills.put("Knight", damageSkill);
-        classSkills.put("Swordsman", damageSkill);
-        classSkills.put("Berserker", damageSkill);
-        classSkills.put("Archer", damageSkill);
-        classSkills.put("Scout", damageSkill);
-        classSkills.put("Ranger", damageSkill);
-        classSkills.put("Marksman", damageSkill);
-        classSkills.put("Mage", damageSkill);
-        classSkills.put("Wizard", damageSkill);
-        classSkills.put("Archmage", damageSkill);
-        classSkills.put("Sorcerer", damageSkill);
-        classSkills.put("Support", healSkill);
-        classSkills.put("Shieldman", healSkill);
-        classSkills.put("Angel", healSkill);
-        classSkills.put("Paladin", healSkill);
-        classSkills.put("Archangel", healSkill);
+        Skill Shieldman = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 15) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 15);
+                source.setCurrentHp(source.getCurrentHp() + 10);
+                target.setCurrentHp(Math.min(target.getMaxHp(), target.getCurrentHp() + 30));
+            }
+        };
+
+        Skill Angel = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 25) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 25);
+                target.setCurrentHp(Math.min(target.getMaxHp(), target.getCurrentHp() + 50));
+            }
+        };
+
+        Skill Paladin = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 30) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 30);
+                source.setCurrentHp(source.getCurrentHp() + 25);
+                target.setCurrentHp(Math.min(target.getMaxHp(), target.getCurrentHp() + 30));
+            }
+        };
+
+        Skill Archangel = new Skill() {
+            @Override
+            public void gunakanSkill(GameCharacter source, GameCharacter target) {
+                if (source.getCurrentMp() < 60) {
+                    System.out.println("Mana tidak cukup");
+                    return;
+                }
+                source.setCurrentMp(source.getCurrentMp() - 60);
+                target.setCurrentHp(Math.min(target.getMaxHp(), target.getCurrentHp() + 80));
+                target.setCurrentMp(Math.min(target.getMaxMp(), target.getCurrentMp() + 30));
+            }
+        };
+
+        classSkills.put("Warrior", Warrior);
+        classSkills.put("Knight", Knight);
+        classSkills.put("Swordsman", Swordman);
+        classSkills.put("Berserker", Berseker);
+        classSkills.put("Archer", Archer);
+        classSkills.put("Scout", Archer);
+        classSkills.put("Ranger", Archer);
+        classSkills.put("Marksman", Archer);
+        classSkills.put("Mage", Mage);
+        classSkills.put("Wizard", Mage);
+        classSkills.put("Archmage", Mage);
+        classSkills.put("Sorcerer", Mage);
+        classSkills.put("Support", Support);
+        classSkills.put("Shieldman", Shieldman);
+        classSkills.put("Angel", Angel);
+        classSkills.put("Paladin", Paladin);
+        classSkills.put("Archangel", Archangel);
     }
 
     //minigame
@@ -293,7 +464,7 @@ public class App {
                         } else {
                             pick = "Hero" + (i + 1);
                         }
-                        newParty[i] = new PlayerCharacter(pick, 100, 100, 50, 50, 10, 5, 1, 0, 100, "CLASSLESS", false);
+                        newParty[i] = new PlayerCharacter(pick, 100, 100, 50, 50, 10, 5, 1, 0, 100, "CLASSLESS");
                     }
                     this.currentAccount = new AccountProfile(usernameLogin, password, 0, newParty, new LinkedList<>(), null);
                     ensureQuestTrackerCatalog(this.currentAccount);
@@ -319,8 +490,6 @@ public class App {
                 } else {
                     forgeSystem.setCurrentAccount(currentAccount);
                 }
-
-                if (currentAccount != null) currentAccount.startPlaytime();
 
                 if (currentAccount != null) {
                     String savedArea = currentAccount.getAreaName();
@@ -959,18 +1128,16 @@ public class App {
                     musicPlayerMenu();
                 } else if (choice == 17) {
                     if (currentAccount != null) {
-                        currentAccount.stopPlaytimeAndAccumulate();
+                        ;
                         saveload.save(currentAccount);
-                        System.out.println("Game saved successfully. (playtime updated: " + currentAccount.getTotalPlaytimeFormatted() + ")");
-                        currentAccount.startPlaytime();
+                        System.out.println("Game saved successfully.");
                     } else {
                         System.out.println("No account loaded to save.");
                     }
                 } else if (choice == 18) {
                     if (currentAccount != null) {
-                        currentAccount.stopPlaytimeAndAccumulate();
                         saveload.save(currentAccount);
-                        System.out.println("Logging out... Playtime saved: " + currentAccount.getTotalPlaytimeFormatted());
+                        System.out.println("Logging out...");
                     } else {
                         System.out.println("Logging out...");
                     }
@@ -1368,8 +1535,8 @@ public class App {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                         ██████╗ ██╗      █████╗ ██╗   ██╗                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                         ██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝                          " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD +  "                         ██████╔╝██║     ███████║ ╚████╔╝                           " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD +  "                         ██╔═══╝ ██║     ██╔══██║  ╚██╔╝                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "                         ██████╔╝██║     ███████║ ╚████╔╝                           " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "                         ██╔═══╝ ██║     ██╔══██║  ╚██╔╝                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                         ██║     ███████╗██║  ██║   ██║                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                         ╚═╝     ╚══════╝╚═╝  ╚═╝   ╚═╝                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
@@ -1403,7 +1570,7 @@ public class App {
                         if (range != null && !MapTraversal.areAllQuestsInRangeCompleted(completed, range[0], range[1])) {
                             int done = MapTraversal.countCompletedQuestsInRange(completed, range[0], range[1]);
                             System.out.println("Selesaikan semua main quest di " + currentLoc.getNamaLokasi() + " sebelum lanjut.");
-                            System.out.println("  Main quest selesai: " + done + "/5");
+                            System.out.println("Main quest selesai: " + done + "/5");
                             continue;
                         }
                     }
@@ -1606,6 +1773,26 @@ public class App {
         currentAccount.addItemToInventory(getIngredientById(30));
         currentAccount.addItemToInventory(getIngredientById(32));
         currentAccount.addItemToInventory(getIngredientById(32));
+        currentAccount.addItemToInventory(getIngredientById(201));
+        currentAccount.addItemToInventory(getIngredientById(202));
+        currentAccount.addItemToInventory(getIngredientById(203));
+        currentAccount.addItemToInventory(getIngredientById(204));
+        currentAccount.addItemToInventory(getIngredientById(205));
+        currentAccount.addItemToInventory(getIngredientById(206));
+        currentAccount.addItemToInventory(getIngredientById(206));
+        currentAccount.addItemToInventory(getIngredientById(207));
+        currentAccount.addItemToInventory(getIngredientById(208));
+        currentAccount.addItemToInventory(getIngredientById(209));
+        currentAccount.addItemToInventory(getIngredientById(209));
+        currentAccount.addItemToInventory(getIngredientById(210));
+        currentAccount.addItemToInventory(getIngredientById(210));
+        currentAccount.addItemToInventory(getIngredientById(211));
+        currentAccount.addItemToInventory(getIngredientById(212));
+        currentAccount.addItemToInventory(getIngredientById(213));
+        currentAccount.addItemToInventory(getIngredientById(213));
+        currentAccount.addItemToInventory(getIngredientById(214));
+        currentAccount.addItemToInventory(getIngredientById(215));
+        currentAccount.addItemToInventory(getIngredientById(215));
 
         while (true) {
             System.out.println();
@@ -1710,7 +1897,20 @@ public class App {
 
     //FITUR SHOP
     private Shop shop1;
+    private Shop consumablesShop;
+    private Shop forgeShop;
+    private Shop equipmentShop;
+    private ArrayList<Item> consumablesShopItems;
+    private ArrayList<Item> forgeShopItems;
+    private ArrayList<Item> equipmentShopItems;
     private ArrayList<Item> shop1Items;
+
+    private void consumableShopItems(){
+        if(consumablesShop == null){
+            consumablesShopItems = new ArrayList<>();
+            consumablesShop = new Shop(consumablesShopItems, "Consumables Ingredients Shop", currentAccount);
+        }
+    }
 
     private void shop1() {
         if (shop1 == null) {
@@ -1755,12 +1955,12 @@ public class App {
             System.out.println();
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ███████╗██╗  ██╗ ██████╗ ██████╗                                         " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ██╔════╝██║  ██║██╔═══██╗██╔══██╗                                        " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "   ███████╗███████║██║   ██║██████╔╝                                        " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "   ╚════██║██╔══██║██║   ██║██╔═══╝                                         " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "   ███████║██║  ██║╚██████╔╝██║                                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "   ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝                                             " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                     ███████╗██╗  ██╗ ██████╗ ██████╗                       " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "                     ██╔════╝██║  ██║██╔═══██╗██╔══██╗                      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "                     ███████╗███████║██║   ██║██████╔╝                      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD + AnsiColors.BOLD + "                     ╚════██║██╔══██║██║   ██║██╔═══╝                       " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                     ███████║██║  ██║╚██████╔╝██║                           " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + AnsiColors.BOLD + "                     ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝                           " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════╣" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
@@ -1778,7 +1978,7 @@ public class App {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
             System.out.println();
-            System.out.print(AnsiColors.SOFT_WHITE + "   Choose an option: " + AnsiColors.RESET);
+            System.out.print(AnsiColors.SOFT_WHITE + "Choose an option: " + AnsiColors.RESET);
 
             try {
                 int choice = inpInt.nextInt();
@@ -1826,8 +2026,10 @@ public class App {
 
                         shop1.sellItem(itemIndex, currentAccount);
                     } catch (NullPointerException e) {
+                        System.err.println("[App.shop1.jual] Data null saat jual item: " + e.getMessage());
                         System.out.println("Error: Data tidak tersedia untuk penjualan!");
                     } catch (Exception e) {
+                        System.err.println("[App.shop1.jual] Gagal menjual item: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                         System.out.println("Error saat menjual item: " + e.getMessage());
                     }
                 } else if (choice == 3) {
@@ -1839,8 +2041,9 @@ public class App {
                 } else {
                     System.out.println("Invalid Input. Please pick according to the index");
                 }
-            } catch (Exception ignored) {
+            } catch (Exception e) {
                 inpInt.nextLine();
+                System.err.println("[App.shop1] Input error: " + e.getClass().getSimpleName() + " - " + e.getMessage());
                 System.out.println("Invalid Input");
             }
         }
@@ -1914,7 +2117,6 @@ public class App {
                                     " | STR: " + pc.getKekuatan() +
                                     " | DEF: " + pc.getDefense() +
                                     " | EXP: " + pc.getCurrentExp() + "/" + pc.getMaxExp() +
-                                    " | Nirlelah: " + pc.isStatusTubuhNirlelah() +
                                     " | Weapon: " + (pc.getCurrentWeapon() == null ? "None" : pc.getCurrentWeapon().getNamaItem()) +
                                     " | Armor: " + (pc.getCurrentArmor() == null ? "None" : pc.getCurrentArmor().getNamaItem()) +
                                     " | Accessory: " + (pc.getCurrentAccessory() == null ? "None" : pc.getCurrentAccessory().getNamaItem()));
@@ -2111,7 +2313,7 @@ public class App {
         }
 
         System.out.println("\u001B[36m\u001B[1m\n╔═══════════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[36m\u001B[1m║\u001B[0m         QUEST REWARDS AVAILABLE         \u001B[36m\u001B[1m║\u001B[0m");
+        System.out.println("\u001B[36m\u001B[1m║\u001B[0m         QUEST REWARDS AVAILABLE         \u001B[36m\u001B[1m    ║\u001B[0m");
         System.out.println("\u001B[36m\u001B[1m╚═══════════════════════════════════════╝\u001B[0m");
 
         for (int i = 0; i < completedQuests.size(); i++) {
@@ -2182,6 +2384,31 @@ public class App {
         if (qt.getRiwayatMisiSelesai() == null) {
             qt.setRiwayatMisiSelesai(new ArrayList<Quest>());
         }
+
+        // Sinkronisasi riwayatMisiSelesai dengan main quest yang sudah COMPLETED/REWARDED di daftar aktif.
+        // Hal ini menjamin save lama (yang belum punya questHistory) tetap bisa progress ke area berikutnya
+        // dan referensi MainQuest yang benar terpakai saat klaim hadiah.
+        ArrayList<Quest> riwayat = qt.getRiwayatMisiSelesai();
+        ArrayList<MainQuest> aktif = qt.getDaftarMainQuestAktif();
+        if (aktif != null) {
+            for (MainQuest mq : aktif) {
+                if (mq == null) continue;
+                if (mq.getStatusQuest() != enums.StatusQuest.COMPLETED && mq.getStatusQuest() != enums.StatusQuest.REWARDED) continue;
+                int indeksDiRiwayat = -1;
+                for (int i = 0; i < riwayat.size(); i++) {
+                    Quest q = riwayat.get(i);
+                    if (q != null && q.getIdQuest() == mq.getIdQuest()) {
+                        indeksDiRiwayat = i;
+                        break;
+                    }
+                }
+                if (indeksDiRiwayat < 0) {
+                    riwayat.add(mq);
+                } else if (!(riwayat.get(indeksDiRiwayat) instanceof MainQuest)) {
+                    riwayat.set(indeksDiRiwayat, mq);
+                }
+            }
+        }
     }
 
     private int countQuestsByStatus(ArrayList<? extends Quest> quests, enums.StatusQuest targetStatus) {
@@ -2218,8 +2445,6 @@ public class App {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "   Total Gold    : " + AnsiColors.WARM_GOLD + currentAccount.getTotalGold() + AnsiColors.RESET + "                                                         ".substring(String.valueOf(currentAccount.getTotalGold()).length()) + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "   Total Playtime: " + AnsiColors.WARM_GOLD + currentAccount.getTotalPlaytimeFormatted() + AnsiColors.RESET + " (H:MM)                                              " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-            System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_WHITE + "   Area Name     : " + AnsiColors.WARM_GOLD + (currentAccount.getAreaName() == null || currentAccount.getAreaName().isEmpty() ? "Belum menjelajah" : currentAccount.getAreaName()) + AnsiColors.RESET + "                                                 " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + "                                                                            " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╚════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
@@ -2242,7 +2467,6 @@ public class App {
                             " | STR: " + pc.getKekuatan() +
                             " | DEF: " + pc.getDefense() +
                             " | EXP: " + pc.getCurrentExp() + "/" + pc.getMaxExp() +
-                            " | Nirlelah: " + pc.isStatusTubuhNirlelah() +
                             " | Weapon: " + (pc.getCurrentWeapon() == null ? "None" : pc.getCurrentWeapon().getNamaItem()) +
                             " | Armor: " + (pc.getCurrentArmor() == null ? "None" : pc.getCurrentArmor().getNamaItem()) +
                             " | Accessory: " + (pc.getCurrentAccessory() == null ? "None" : pc.getCurrentAccessory().getNamaItem()));
@@ -2337,7 +2561,6 @@ public class App {
                                 System.out.println("STR        : " + pc.getKekuatan());
                                 System.out.println("DEF        : " + pc.getDefense());
                                 System.out.println("EXP        : " + pc.getCurrentExp() + "/" + pc.getMaxExp());
-                                System.out.println("Nirlelah   : " + (pc.isStatusTubuhNirlelah() ? "Ya" : "Tidak"));
                                 Equipment weapon = pc.getCurrentWeapon();
                                 Equipment armor = pc.getCurrentArmor();
                                 Equipment accessory = pc.getCurrentAccessory();

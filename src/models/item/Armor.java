@@ -17,13 +17,6 @@ public class Armor extends Equipment {
         this.requiredClassType = requiredClassType == null ? ClassType.CLASSLESS : requiredClassType;
     }
 
-    public int getBonusKekuatan() {
-        return 0;
-    }
-
-    public void setBonusKekuatan(int bonusKekuatan) {
-    }
-
     public int getBonusDefense() {
         return bonusDefense;
     }
@@ -33,11 +26,16 @@ public class Armor extends Equipment {
     }
 
     @Override
-    public ClassType getRequiredClassType() {
-        return requiredClassType;
+    public int getBonusKekuatan() {
+        return 0;
     }
 
-    public void setRequiredClassType(ClassType requiredClassType) {
-        this.requiredClassType = requiredClassType == null ? ClassType.CLASSLESS : requiredClassType;
+    @Override
+    public void setBonusKekuatan(int bonusKekuatan) {
+    }
+
+    @Override
+    public ClassType getRequiredClassType() {
+        return requiredClassType;
     }
 }

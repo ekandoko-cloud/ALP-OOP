@@ -23,36 +23,16 @@ public class ClassNode {
     }
 
 
-    public void unlock() {
-        this.isUnlocked = true;
-    }
-
-    public boolean isAvailable() {
-        return true;
-    }
-
     public String getNamaClass() {
         return namaClass;
-    }
-
-    public void setNamaClass(String namaClass) {
-        this.namaClass = namaClass;
     }
 
     public String getDeskripsi() {
         return deskripsi;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
     public int getSyaratLevel() {
         return syaratLevel;
-    }
-
-    public void setSyaratLevel(int syaratLevel) {
-        this.syaratLevel = syaratLevel;
     }
 
     public boolean isUnlocked() {
@@ -67,24 +47,12 @@ public class ClassNode {
         return tipeClass;
     }
 
-    public void setTipeClass(ClassType tipeClass) {
-        this.tipeClass = tipeClass;
-    }
-
     public ClassNode getParent() {
         return parent;
     }
 
-    public void setParent(ClassNode parent) {
-        this.parent = parent;
-    }
-
     public ArrayList<ClassNode> getChildren() {
         return children;
-    }
-
-    public void setChildren(ArrayList<ClassNode> children) {
-        this.children = children;
     }
 }
 

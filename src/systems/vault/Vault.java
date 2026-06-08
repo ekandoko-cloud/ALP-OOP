@@ -16,10 +16,6 @@ public class Vault {
         return items;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items != null ? items : new ArrayList<>();
-    }
-
     public boolean deposit(AccountProfile account, Item item) {
         if (account == null || item == null) {
             return false;
@@ -49,9 +45,5 @@ public class Vault {
         items.remove(item);
         account.addItemToInventory(item);
         return true;
-    }
-
-    public int size() {
-        return items.size();
     }
 }

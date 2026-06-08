@@ -47,12 +47,12 @@ public class SubQuest extends Quest {
         System.out.println();
         System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╔════════════════════════════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
         System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ██████╗ ██╗   ██╗██████╗      ██████╗ ██╗   ██╗███████╗███████╗████████╗   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ██╔════╝ ██║   ██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "  ╚█████╗  ██║   ██║██████╔╝    ██║   ██║██║   ██║█████╗  ███████╗   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ╚═══██╗ ██║   ██║██╔══██╗    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "  ██████╔╝ ╚██████╔╝██████╔╝    ╚██████╔╝╚██████╔╝███████╗███████║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "  ╚═════╝   ╚═════╝ ╚═════╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "    ██████╗ ██╗   ██╗██████╗      ██████╗ ██╗   ██╗███████╗███████╗████████╗   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ██╔════╝ ██║   ██║██╔══██╗    ██╔═══██╗██║   ██║██╔════╝██╔════╝╚══██╔══╝   " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.SOFT_GREEN + AnsiColors.BOLD + "   ╚█████╗  ██║   ██║██████╔╝    ██║   ██║██║   ██║█████╗  ███████╗   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "    ╚═══██╗ ██║   ██║██╔══██╗    ██║   ██║██║   ██║██╔══╝  ╚════██║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ██████╔╝ ╚██████╔╝██████╔╝    ╚██████╔╝╚██████╔╝███████╗███████║   ██║      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
+        System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.WARM_GOLD  + AnsiColors.BOLD + "   ╚═════╝   ╚═════╝ ╚═════╝      ╚═════╝  ╚═════╝ ╚══════╝╚══════╝   ╚═╝      " + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "     ║" + AnsiColors.RESET);
         System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║                                                                                    ║" + AnsiColors.RESET);
         System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "╠════════════════════════════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
         System.out.println();
@@ -178,7 +178,10 @@ public class SubQuest extends Quest {
             }
 
             System.out.println("Subquest \"" + picked.getNamaQuest() + "\" berhasil diambil!");
+        } catch (NumberFormatException e) {
+            System.out.println("Input tidak valid. Masukkan angka.");
         } catch (Exception e) {
+            System.err.println("[SubQuest.pilihSubQuest] Error tidak terduga: " + e.getClass().getSimpleName() + " - " + e.getMessage());
             System.out.println("Input tidak valid.");
         }
     }

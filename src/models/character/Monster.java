@@ -1,7 +1,5 @@
 package models.character;
 
-
-
 public class Monster extends GameCharacter {
     private String triviaPenyakit;
     private int xpDiberikan;

@@ -48,7 +48,6 @@ public class accessory {
         return new Accessory(id, name, price, desc, bonusKekuatan, bonusDefense, 0);
     }
 
-
     public static HashMap<Integer, Item> getDummyAccessoriesMap() {
         HashMap<Integer, Item> map = new HashMap<>();
         for (Accessory accessory : DUMMY_ACCESSORIES) {

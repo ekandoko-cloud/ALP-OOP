@@ -1,8 +1,10 @@
 package systems.craft;
 
 import java.util.*;
+
 import models.account.AccountProfile;
 import models.item.Item;
+
 public class CraftingSystem {
     private ArrayList<craftingRecipe> daftarResep;
 
@@ -23,18 +25,24 @@ public class CraftingSystem {
         }
 
         int idx = 1;
+        int count = 1 ;
         for (craftingRecipe r : daftarResep) {
-            System.out.printf("%-4s %-30.30s%n", idx + ".", r.getRecipeName());
-            if (r.getRequiredIngredients() != null && !r.getRequiredIngredients().isEmpty()) {
-                int i = 1;
-                for (craftingRecipe.IngredientReq req : r.getRequiredIngredients()) {
-                    System.out.printf("    %d. %s x%d%n", i, req.getIngredient().getNamaItem(), req.getAmount());
-                    i++;
+            if(count<=10){
+                System.out.printf("%-4s %-30.30s%n", idx + ".", r.getRecipeName());
+                if (r.getRequiredIngredients() != null && !r.getRequiredIngredients().isEmpty()) {
+                    int i = 1;
+                    for (craftingRecipe.IngredientReq req : r.getRequiredIngredients()) {
+                        System.out.printf("    %d. %s x%d%n", i, req.getIngredient().getNamaItem(), req.getAmount());
+                        i++;
+                    }
+                } else {
+                    System.out.println("Tidak membutuhkan bahan");
                 }
-            } else {
-                System.out.println("    Tidak membutuhkan bahan");
+                idx++;
+                count++;
+            }else{
+                break;
             }
-            idx++;
         }
     }
 
@@ -119,14 +127,6 @@ public class CraftingSystem {
 
     private boolean hasSpaceForCraftResult(int inventorySize, Item result, int maxSlots) {
         return inventorySize + (result == null ? 0 : 1) <= maxSlots;
-    }
-
-    public ArrayList<craftingRecipe> getDaftarResep() {
-        return daftarResep;
-    }
-
-    public void setDaftarResep(ArrayList<craftingRecipe> daftarResep) {
-        this.daftarResep = daftarResep;
     }
 }
 

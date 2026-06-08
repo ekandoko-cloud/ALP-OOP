@@ -98,14 +98,6 @@ public class armor {
         return new Armor(id, name, price, desc, bonusDefense, 0, requiredClassType);
     }
 
-    public static List<Armor> getDummyArmors() {
-        return new ArrayList<>(DUMMY_ARMORS);
-    }
-
-    public static Armor[] getDummyArmorsArray() {
-        return DUMMY_ARMORS.toArray(new Armor[0]);
-    }
-
     public static HashMap<Integer, Item> getDummyArmorsMap() {
         HashMap<Integer, Item> map = new HashMap<>();
         for (Armor armor : DUMMY_ARMORS) {

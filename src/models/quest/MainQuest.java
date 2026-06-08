@@ -37,47 +37,20 @@ public class MainQuest extends Quest {
         return chapterTerbuka;
     }
 
-    public void setChapterTerbuka(int chapterTerbuka) {
-        this.chapterTerbuka = chapterTerbuka;
-    }
-
     public String getWilayah() {
         return wilayah;
-    }
-
-    public void setWilayah(String wilayah) {
-        this.wilayah = wilayah;
     }
 
     public int getNomorQuest() {
         return nomorQuest;
     }
 
-    public void setNomorQuest(int nomorQuest) {
-        this.nomorQuest = nomorQuest;
-    }
-
     public String getHadiahUtama() {
         return hadiahUtama;
     }
 
-    public void setHadiahUtama(String hadiahUtama) {
-        this.hadiahUtama = hadiahUtama;
-    }
-
     public List<String> getLineUpMusuh() {
         return Collections.unmodifiableList(lineUpMusuh);
-    }
-
-    public void setLineUpMusuh(List<String> lineUpMusuh) {
-        this.lineUpMusuh.clear();
-        if (lineUpMusuh != null) {
-            this.lineUpMusuh.addAll(lineUpMusuh);
-        }
-    }
-
-    public String getLineUpMusuhRingkas() {
-        return String.join(", ", lineUpMusuh);
     }
 
     public boolean membutuhkanMusuh(String namaMusuh) {
@@ -93,10 +66,6 @@ public class MainQuest extends Quest {
         return false;
     }
 
-    public boolean bisaDiambilPadaChapter(int chapterAktif) {
-        return chapterAktif >= chapterTerbuka;
-    }
-
     public void catatObjectiveMainQuest(int progressTambahan, String catatan) {
         catatObjective(progressTambahan, "[MainQuest] " + catatan);
     }
@@ -104,8 +73,6 @@ public class MainQuest extends Quest {
     public void tambahProgress(int progressTambahan, String catatan) {
         catatObjectiveMainQuest(progressTambahan, catatan);
     }
-
-    // ================= STATIC METHODS FOR APP =================
 
     public static void displayQuestTracker(QuestTracker qt) {
         if (qt == null) {
@@ -215,7 +182,7 @@ public class MainQuest extends Quest {
     }
 
     public static void displayQuestBoardForArea(QuestTracker qt, String currentArea, java.util.Scanner scanner) {
-        if (qt == null || currentArea == null || currentArea.isEmpty()) {
+        if (qt == null || currentArea == null|| currentArea.isEmpty()) {
             System.out.println(AnsiColors.YELLOW + "Belum ada quest tracker atau area tidak diketahui." + AnsiColors.RESET);
             return;
         }
@@ -387,45 +354,4 @@ public class MainQuest extends Quest {
         }
     }
 
-    public static List<String> getNamaMusuhWilayah(String wilayah) {
-        switch (wilayah.toLowerCase()) {
-            case "valerion":
-                return Arrays.asList("Infected Rat", "Scavenger Scout", "Corrupted Crawler", "Blight Spore", "Scavenger Hunter", "Blight-Root");
-                  case "asgard":
-                return Arrays.asList("Swamplands Leech", "Miasma Husk", "Sludge Mutant", "Goliath Toad");
-            case "grandis":
-                return Arrays.asList("Security Drone", "Enath Trooper", "Elite Guard", "Heavy Enath Trooper", "Baron Gluttony");
-            case "lumina":
-                return Arrays.asList("Test Subject X", "Alchemist Cultist", "Failed Experiment", "Dr. Mortis");
-            case "aldoria":
-                return Arrays.asList("Ash Beast", "Radiant Sentinel", "Flare Crawler", "Crimson Chimera");
-            default:
-                return new ArrayList<>();
-        }
-    }
-
-    public static void tampilkanSemuaQuest(List<MainQuest> daftar) {
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "\n╔═══════════════════════════════════════════════════════════════╗" + AnsiColors.RESET);
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET + AnsiColors.YELLOW + AnsiColors.BOLD + "            D A F T A R   S E M U A   Q U E S T             " + AnsiColors.CYAN + AnsiColors.BOLD + "║" + AnsiColors.RESET);
-        System.out.println(AnsiColors.CYAN + AnsiColors.BOLD + "╚═══════════════════════════════════════════════════════════════╝" + AnsiColors.RESET);
-
-            String[] wilayahs = {"Valerion", "Asgard", "Grandis", "Lumina", "Aldoria"};
-        for (String wil : wilayahs) {
-            boolean hasQuests = false;
-            System.out.println(AnsiColors.MAGENTA + AnsiColors.BOLD + "\n[" + wil + "]" + AnsiColors.RESET);
-
-            for (MainQuest mq : daftar) {
-                if (mq == null || !mq.getWilayah().equalsIgnoreCase(wil)) continue;
-                hasQuests = true;
-                System.out.println("  Quest " + mq.getNomorQuest() + ": " + mq.getNamaQuest());
-                System.out.println("    Objective: " + mq.getObjectiveQuest());
-                System.out.println("    Hadiah: " + mq.getHadiahKoin() + " Gold + " + mq.getHadiahUtama());
-                System.out.println(AnsiColors.CYAN + "    ─────────────────────" + AnsiColors.RESET);
-            }
-
-            if (!hasQuests) {
-                System.out.println("  (Tidak ada quest)");
-            }
-        }
-    }
 }

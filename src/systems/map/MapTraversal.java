@@ -46,16 +46,6 @@ public class MapTraversal {
         return riwayatArea;
     }
 
-    public void setRiwayatArea(Stack<Location> riwayatArea) {
-        this.riwayatArea = riwayatArea;
-    }
-
-    public void pindahArea(Location area) {
-        if (area != null) {
-            riwayatArea.push(area);
-        }
-    }
-
     public boolean goToNext() {
         Location current = areaSaatIni();
         if (current == null) return false;
@@ -147,12 +137,6 @@ public class MapTraversal {
 
     public static boolean areAllQuestsInRangeCompleted(List<Quest> completedQuests, int startId, int endId) {
         return countCompletedQuestsInRange(completedQuests, startId, endId) >= (endId - startId + 1);
-    }
-
-    public boolean isCurrentAreaCleared(List<Quest> completedQuests) {
-        int[] range = getQuestIdRangeForCurrentArea();
-        if (range == null) return false;
-        return areAllQuestsInRangeCompleted(completedQuests, range[0], range[1]);
     }
 }
 

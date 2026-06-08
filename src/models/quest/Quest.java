@@ -37,40 +37,20 @@ public abstract class Quest {
         return idQuest;
     }
 
-    public void setIdQuest(int idQuest) {
-        this.idQuest = idQuest;
-    }
-
     public String getNamaQuest() {
         return namaQuest;
-    }
-
-    public void setNamaQuest(String namaQuest) {
-        this.namaQuest = namaQuest;
     }
 
     public String getDeskripsiQuest() {
         return deskripsiQuest;
     }
 
-    public void setDeskripsiQuest(String deskripsiQuest) {
-        this.deskripsiQuest = deskripsiQuest;
-    }
-
     public String getObjectiveQuest() {
         return objectiveQuest;
     }
 
-    public void setObjectiveQuest(String objectiveQuest) {
-        this.objectiveQuest = objectiveQuest;
-    }
-
     public int getObjectiveTarget() {
         return objectiveTarget;
-    }
-
-    public void setObjectiveTarget(int objectiveTarget) {
-        this.objectiveTarget = objectiveTarget;
     }
 
     public int getObjectiveProgress() {
@@ -84,10 +64,6 @@ public abstract class Quest {
 
     public int getHadiahKoin() {
         return hadiahKoin;
-    }
-
-    public void setHadiahKoin(int hadiahKoin) {
-        this.hadiahKoin = hadiahKoin;
     }
 
     public StatusQuest getStatusQuest() {

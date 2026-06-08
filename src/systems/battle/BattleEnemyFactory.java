@@ -24,17 +24,6 @@ public class BattleEnemyFactory {
         return createPartyFromNames(quest.getLineUpMusuh(), chapter);
     }
 
-    public static GameCharacter[] createRandomPartyForChapter(int chapter, Random random) {
-        Random rng = random == null ? new Random() : random;
-        List<MainQuest> available = mainquest.getDummyMainQuestByChapter(chapter);
-        if (available.isEmpty()) {
-            return new GameCharacter[0];
-        }
-
-        MainQuest picked = available.get(rng.nextInt(available.size()));
-        return createPartyFromQuest(picked, chapter);
-    }
-
     public static GameCharacter[] createPartyFromNames(List<String> enemyNames, int chapter) {
         if (enemyNames == null || enemyNames.isEmpty()) {
             return new GameCharacter[0];

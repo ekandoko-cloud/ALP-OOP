@@ -46,10 +46,6 @@ public class MusicPlayer {
         return currentIndex;
     }
 
-    public int size() {
-        return playlist.size();
-    }
-
     public boolean play(int index) {
         if (index < 1 || index > playlist.size()) return false;
         stop();

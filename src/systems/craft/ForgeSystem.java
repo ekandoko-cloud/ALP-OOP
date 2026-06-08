@@ -199,19 +199,6 @@ public class ForgeSystem {
         equipment.setBonusDefense(equipment.getBonusDefense() + appliedDef);
         return appliedDef;
     }
-
-
-    public int getLevelMaks() {
-        return DEFAULT_MAX_UPGRADE_LEVEL;
-    }
-
-    public ArrayList<forgeFormula> getDaftarFormula() {
-        return daftarFormula;
-    }
-
-    public void setDaftarFormula(ArrayList<forgeFormula> daftarFormula) {
-        this.daftarFormula = daftarFormula;
-    }
 }
 
 

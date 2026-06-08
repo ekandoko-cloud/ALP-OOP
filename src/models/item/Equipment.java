@@ -23,16 +23,6 @@ public abstract class Equipment extends Item implements IEquippable {
         this.equipmentType = equipmentType;
     }
 
-    public void setTipeEquipment(String equipmentType) {
-        if (equipmentType == null) {
-            return;
-        }
-        try {
-            this.equipmentType = enums.EquipmentType.valueOf(equipmentType.trim().toUpperCase());
-        } catch (IllegalArgumentException ignored) {
-        }
-    }
-
     public int getLevelTempa() {
         return levelTempa;
     }

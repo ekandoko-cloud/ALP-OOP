@@ -39,38 +39,36 @@ public class QuestTracker {
         this.riwayatMisiSelesai = riwayatMisiSelesai;
     }
 
-    public void sinkronisasiChapterTerbuka(int chapterAktif) {
-    }
-
     public ArrayList<String> catatMusuhKalah(String namaMusuh) {
-        ArrayList<String> catatan = new ArrayList<>();
+        ArrayList<String> log = new ArrayList<>();
         if (namaMusuh == null || daftarMainQuestAktif == null) {
-            return catatan;
+            return log;
         }
-
-        for (int i = daftarMainQuestAktif.size() - 1; i >= 0; i--) {
-            MainQuest mq = daftarMainQuestAktif.get(i);
-            if (mq == null || mq.getStatusQuest() != StatusQuest.ONGOING) {
-                continue;
-            }
-
+        for (MainQuest mq : daftarMainQuestAktif) {
+            if (mq == null) continue;
+            if (mq.getStatusQuest() != StatusQuest.ONGOING) continue;
             if (mq.membutuhkanMusuh(namaMusuh)) {
-                mq.tambahProgress(1, "Mengalahkan " + namaMusuh);
-                catatan.add("Quest naik: " + mq.getNamaQuest() + " = " + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget());
-
+                mq.tambahProgress(1, "Kalahkan " + namaMusuh);
+                log.add("Progress: " + mq.getNamaQuest() + " (" + mq.getObjectiveProgress() + "/" + mq.getObjectiveTarget() + ")");
                 if (mq.getStatusQuest() == StatusQuest.COMPLETED) {
-                    // remove by index to avoid ConcurrentModificationException
-                    daftarMainQuestAktif.remove(i);
                     if (riwayatMisiSelesai == null) {
                         riwayatMisiSelesai = new ArrayList<>();
                     }
-                    riwayatMisiSelesai.add(mq);
-                    catatan.add("Quest selesai: " + mq.getNamaQuest() + " — Kunjungi Quest Board untuk klaim hadiah!");
+                    boolean sudahAdaDiRiwayat = false;
+                    for (Quest q : riwayatMisiSelesai) {
+                        if (q != null && q.getIdQuest() == mq.getIdQuest()) {
+                            sudahAdaDiRiwayat = true;
+                            break;
+                        }
+                    }
+                    if (!sudahAdaDiRiwayat) {
+                        riwayatMisiSelesai.add(mq);
+                        log.add("Quest selesai: " + mq.getNamaQuest() + " - ambil hadiah di Quest Board!");
+                    }
                 }
             }
         }
-
-        return catatan;
+        return log;
     }
 }
 

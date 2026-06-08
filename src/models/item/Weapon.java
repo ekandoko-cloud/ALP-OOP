@@ -30,10 +30,6 @@ public class Weapon extends Equipment {
         return requiredClassType;
     }
 
-    public void setRequiredClassType(ClassType requiredClassType) {
-        this.requiredClassType = requiredClassType == null ? ClassType.CLASSLESS : requiredClassType;
-    }
-
     public int getBonusDefense() {
         return 0;
     }

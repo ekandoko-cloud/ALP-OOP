@@ -22,24 +22,12 @@ public class SkillNode {
         return namaSkill;
     }
 
-    public void setNamaSkill(String namaSkill) {
-        this.namaSkill = namaSkill;
-    }
-
     public String getDeskripsi() {
         return deskripsi;
     }
 
-    public void setDeskripsi(String deskripsi) {
-        this.deskripsi = deskripsi;
-    }
-
     public int getBiayaGold() {
         return biayaGold;
-    }
-
-    public void setBiayaGold(int biayaGold) {
-        this.biayaGold = biayaGold;
     }
 
     public boolean isUnlocked() {
@@ -54,20 +42,8 @@ public class SkillNode {
         return parent;
     }
 
-    public void setParent(SkillNode parent) {
-        this.parent = parent;
-    }
-
     public ArrayList<SkillNode> getChildren() {
         return children;
-    }
-
-    public void setChildren(ArrayList<SkillNode> children) {
-        this.children = children;
-    }
-
-    public void unlock() {
-        this.isUnlocked = true;
     }
 
     public boolean isAvailable() {

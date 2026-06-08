@@ -26,10 +26,6 @@ public class WaypointSystem {
         return lokasiTerbuka;
     }
 
-    public void setLokasiTerbuka(ArrayList<Location> lokasiTerbuka) {
-        this.lokasiTerbuka = lokasiTerbuka != null ? lokasiTerbuka : new ArrayList<>();
-    }
-
     public Location getLokasiSaatIni() {
         return lokasiSaatIni;
     }
@@ -80,25 +76,6 @@ public class WaypointSystem {
         }
 
         System.out.println("╚════════════════════════════════════════════════════╝");
-    }
-
-    /**
-     * Teleport ke area (waypoint).
-     * @param loc - Area tujuan
-     */
-    public void teleport(Location loc) {
-        if (loc == null) return;
-
-        // Validasi bahwa area ada di daftar waypoint
-        for (Location wp : lokasiTerbuka) {
-            if (wp != null && wp.getNamaLokasi().equalsIgnoreCase(loc.getNamaLokasi())) {
-                this.lokasiSaatIni = loc;
-                System.out.println("✓ Teleport berhasil! Anda sekarang berada di " + loc.getNamaLokasi());
-                return;
-            }
-        }
-
-        System.out.println("✗ Area tidak tersedia di waypoint Anda.");
     }
 }
 

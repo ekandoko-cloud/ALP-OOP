@@ -41,7 +41,6 @@ public class Encyclopedia {
     public HashMap<String, Object> getIndexClassTree() { return indexClassTree; }
     public HashMap<String, Object> getIndexSkillTree() { return indexSkillTree; }
     public HashMap<String, Object> getIndexUtama() { return indexUtama; }
-    public int getTotalEntri() { return indexUtama.size(); }
 
     public void setClassTreeRoot(ClassNode root) {
         this.classTreeRoot = root;
@@ -420,36 +419,5 @@ public class Encyclopedia {
         }
 
         return searchResults;
-    }
-
-    public void descItem(Object obj) {
-        if (obj instanceof Monster) {
-            Monster m = (Monster) obj;
-            System.out.println("   Tipe: Monster | HP: " + m.getMaxHp() + " | STR: " + m.getKekuatan() + " | DEF: " + m.getDefense());
-        } else if (obj instanceof Location) {
-            Location l = (Location) obj;
-            System.out.println("   Tipe: Lokasi");
-            System.out.println("   " + l.getDeskripsiLokasi());
-        } else if (obj instanceof systems.craft.craftingRecipe) {
-            systems.craft.craftingRecipe r = (systems.craft.craftingRecipe) obj;
-            System.out.println("   Tipe: Resep Crafting | Hasil: " + (r.getResultItem() != null ? r.getResultItem().getNamaItem() : "?"));
-        } else if (obj instanceof systems.craft.forgeFormula) {
-            systems.craft.forgeFormula f = (systems.craft.forgeFormula) obj;
-            System.out.println("   Tipe: Forge Formula | Level " + f.getLevel() + " | Material: " + f.getMaterialName());
-        } else if (obj instanceof ClassNode cn) {
-            System.out.println("   Tipe: Class Tree | Level Requirement: " + cn.getSyaratLevel());
-        } else if (obj instanceof SkillNode sn) {
-            System.out.println("   Tipe: Skill Tree | Biaya: " + sn.getBiayaGold() + " gold");
-        } else if (obj instanceof Item) {
-            Item item = (Item) obj;
-            if (item instanceof Equipment) {
-                Equipment eq = (Equipment) item;
-                System.out.println("   Tipe: " + eq.getTipeEquipment().name() + " | Harga: " + item.getHargaJual());
-            } else {
-                System.out.println("   Tipe: Item | Harga: " + item.getHargaJual());
-            }
-        } else {
-            System.out.println("   Tipe: " + obj.getClass().getSimpleName());
-        }
     }
 }

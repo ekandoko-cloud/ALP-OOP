@@ -17,22 +17,6 @@ public class Shop {
         this.currentAccount = account;
     }
 
-    public String getShopName() {
-        return shopName;
-    }
-
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
-    }
-
-    public ArrayList<Item> getDaftarItem() {
-        return daftarItem;
-    }
-
-    public void setDaftarItem(ArrayList<Item> daftarItem) {
-        this.daftarItem = daftarItem;
-    }
-
     public void tampilkanItem() {
         if (daftarItem.isEmpty()) {
             System.out.println(AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET + String.format("   %-73s", shopName) + AnsiColors.SOFT_TEAL + AnsiColors.BOLD + "║" + AnsiColors.RESET);
@@ -174,23 +158,6 @@ public class Shop {
         System.out.println("  Harga jual: " + sellPrice + " gold");
         System.out.println("  Gold sekarang: " + playerAccount.getTotalGold());
         return true;
-    }
-
-    public int getMaxInventorySlots() {
-        if (currentAccount != null) {
-            return currentAccount.getMaxInventorySlots();
-        }
-        return models.account.AccountProfile.DEFAULT_MAX_INVENTORY_SLOTS;
-    }
-
-    public void setMaxInventorySlots(int maxInventorySlots) {
-        if (currentAccount != null) {
-            currentAccount.setMaxInventorySlots(maxInventorySlots);
-        }
-    }
-
-    public AccountProfile getCurrentAccount() {
-        return currentAccount;
     }
 
     public void setCurrentAccount(AccountProfile account) {
